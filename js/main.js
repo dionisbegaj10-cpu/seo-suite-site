@@ -72,7 +72,7 @@ function animateDistance(end, index){
     if(ctrlDistance === false){
         ctrlDistance = true;
         if(blob.blobDistance >= end){
-            var step = (blob.blobDistance - end)/100;
+            var step = (blob.blobDistance - end)/30;
             intDistance = setInterval(function(){
                 if(blob.blobDistance > end){
                     if((blob.blobDistance - step)>end){
@@ -86,7 +86,7 @@ function animateDistance(end, index){
                 }
             },1);
         }else{
-            var step = (end - blob.blobDistance)/100;
+            var step = (end - blob.blobDistance)/30;
             intDistance = setInterval(function(){
                 if(blob.blobDistance < end){
                     if((blob.blobDistance + step)<end){
