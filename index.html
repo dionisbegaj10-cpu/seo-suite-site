@@ -482,7 +482,7 @@
                         </div>
                     </div>
                     <div class="cpf-row">
-                        <button type="submit" id="cpf-submit">Send &rarr;</button>
+                        <button type="button" id="cpf-submit">Send &rarr;</button>
                     </div>
                     <p id="cpf-success" style="display:none;">Thanks — we'll be in touch soon.</p>
                 </form>
@@ -707,7 +707,7 @@
             });
 
             // Form submit — white ripple expand + black-dot bunny
-            document.getElementById('cpf-submit').addEventListener('click', function(e){
+            function handleSend(e){
                 e.preventDefault();
                 var name  = document.getElementById('cpf-name').value.trim();
                 var email = document.getElementById('cpf-email').value.trim();
@@ -765,7 +765,11 @@
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                     };
                 }, 680);
-            });
+            }
+            var _sendFired = false;
+            function onceSend(e){ e.preventDefault(); if(_sendFired) return; _sendFired = true; setTimeout(function(){ _sendFired = false; }, 2000); handleSend(e); }
+            document.getElementById('cpf-submit').addEventListener('click', onceSend);
+            document.getElementById('cpf-submit').addEventListener('touchend', onceSend);
         })();
         </script>
     </body>
