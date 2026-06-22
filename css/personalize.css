@@ -41,6 +41,19 @@
 .customer-clients li .integration:active {
     font-weight: 900;
 }
+/* Tiles follow the blob: dark on the white field, light on the black bunny —
+   so during the tiles→stats transition (both on screen at once) they stay
+   readable in whichever state the shared blob is in. */
+body.animated .customer-clients li .integration {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+body.animated .customer-clients li .integration:hover {
+    border-color: rgba(255, 255, 255, 0.55);
+}
+body.animated #explore-label {
+    color: rgba(255, 255, 255, 0.55);
+}
 
 /* --- Product stat tiles (formerly awards) --- */
 .stat-grid {
@@ -122,6 +135,11 @@ body.animated .stat-grid li span {
 /* --- Text section paragraph spacing --- */
 #text1 p + p { margin-top: 1.4em; }
 #text1 { margin-bottom: 120px !important; }
+
+/* Paragraphs follow the blob: white while entering over the dark hero blob,
+   dark once the blob has faded to white under them — so they're never dark
+   text ghosting on the black bunny. */
+body.animated #text1 span { color: #ffffff; }
 
 
 /* --- Explore label above service tiles --- */
