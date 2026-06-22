@@ -134,19 +134,25 @@ $(document).ready(function(){
     var aatitle = document.getElementById('aa-loghi');
     var services = document.getElementById('aa-loghi');
     window.addEventListener('scroll', function (event) {
+        var viewH = window.innerHeight || document.documentElement.clientHeight;
+        var introRect = intro.getBoundingClientRect();
+        // Scroll-linked zoom: map intro scrolling out → blob zooms in
+        if (introRect.bottom > 0) {
+            var t = Math.max(0, Math.min(1, 1 - introRect.bottom / viewH));
+            blob.blobDistance = 1000 * (1 - t);
+        }
         if (isInViewport(intro)) {
             blob.morphTo(shapes[0]);
             blob.blobSize = 250;
-            animateDistance(1000, 1);
             animatePerspective(1, 1);
-            blob.dotSize = ($(window).width()>480)?1.5:1; //1.5;
+            blob.dotSize = ($(window).width()>480)?1.5:1;
         }
         if (isInViewport(text)) {
             blob.morphTo(shapes[1]);
             blob.blobSize = 220;
-            animateDistance(0, 2);
+            blob.blobDistance = 0;
             animatePerspective(3, 2);
-            blob.dotSize = ($(window).width()>480)?1:0.8;//1;
+            blob.dotSize = ($(window).width()>480)?1:0.8;
         }
         if (isInViewport(title1)) {
             blob.morphTo(shapes[2]);
