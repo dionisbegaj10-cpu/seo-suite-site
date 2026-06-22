@@ -133,9 +133,11 @@ $(document).ready(function(){
     var ftitle = document.getElementById('delegato-testo-5');
     var aatitle = document.getElementById('aa-loghi');
     var services = document.getElementById('aa-loghi');
+    var _topLabel = document.getElementById('top-left-label');
     window.addEventListener('scroll', function (event) {
         var viewH = window.innerHeight || document.documentElement.clientHeight;
         var introRect = intro.getBoundingClientRect();
+        if (_topLabel) _topLabel.style.opacity = (window.pageYOffset < 10) ? '1' : '0';
         // Scroll-linked zoom: map intro scrolling out → blob zooms in
         if (introRect.bottom > 0) {
             var t = Math.max(0, Math.min(1, 1 - introRect.bottom / viewH));
