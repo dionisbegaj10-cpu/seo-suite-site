@@ -134,7 +134,12 @@ $(document).ready(function(){
     var aatitle = document.getElementById('aa-loghi');
     var services = document.getElementById('aa-loghi');
     var _topLabel = document.getElementById('top-left-label');
-    var _lightSecs = document.querySelectorAll('.light-sec');
+    // Light-content anchors used to decide when the blob should fade to white.
+    // Only the intro paragraphs and the service tiles are light (dark text);
+    // the service detail lists have white text so they stay on the dark bunny.
+    var _pEl = document.getElementById('text1');        // intro paragraphs
+    var _tEl = document.querySelector('.box-customers'); // service tiles
+    var _wEl = document.querySelector('.box-works');     // service detail lists (reveal anchor)
     var _curShapeIdx = -1;
     // Only restart the morph when the target shape actually changes —
     // calling morphTo every scroll tick restarts the tween and causes jank.
@@ -150,16 +155,6 @@ $(document).ready(function(){
             var t = Math.max(0, Math.min(1, 1 - introRect.bottom / viewH));
             blob.blobDistance = 1000 * (1 - t);
         }
-
-        // Orb shows only over dark sections — hide it whenever the viewport
-        // centre sits inside a light (white) section.
-        var vc = viewH / 2;
-        var overLight = false;
-        for (var li = 0; li < _lightSecs.length; li++) {
-            var lr = _lightSecs[li].getBoundingClientRect();
-            if (lr.top <= vc && lr.bottom >= vc) { overLight = true; break; }
-        }
-        document.body.classList.toggle('orb-on', !overLight);
 
         if (isInViewport(intro)) {
             morphShape(0);
@@ -213,24 +208,27 @@ $(document).ready(function(){
             });
 	}
         */
-        /* Scroll Control */
-        if (isInViewport(intro)) {
-            $("body").addClass("animated");
-        }else{
-            $("body").removeClass("animated");
+        /* Scroll control — the blob is black over dark sections (hero, SEO AI
+           Suite stats, footer) and fades to white over light content. Driven by
+           the viewport centre instead of isInViewport() of tiny trigger spans,
+           so it never turns black under the white text/tiles on tall mobile
+           screens — which was what made that text overlap / disappear. */
+        var vc = viewH / 2;
+        var lightOn = false;
+        if (_pEl && _tEl) {
+            var pr = _pEl.getBoundingClientRect(), tr = _tEl.getBoundingClientRect();
+            if (pr.top <= vc && tr.bottom >= vc) lightOn = true; // paragraphs → tiles
+        }
+        if (lightOn) {
+            $("body, #blob_container").removeClass("animated");
+        } else {
+            $("body, #blob_container").addClass("animated");
         }
         if (isInViewport(text)) {
-            $("#text1").addClass("animated");    
+            $("#text1").addClass("animated");
         }
         if (isInViewport(collaborations)) {
             $("#collaborations, .customer-clients").addClass("animated");
-        }
-        if (isInViewport(title1) || isInViewport(ftitle) || isInViewport(intro)) {
-            $("#blob_container").addClass("animated");
-            $("body").addClass("animated");
-        }else{
-            $("#blob_container").removeClass("animated");
-            $("body").removeClass("animated");
         }
         if (isInViewport(ftitle)) {
             $("#ftitle, .footer-box-center, #address, .footer-box-right").addClass("animated");
@@ -243,8 +241,11 @@ $(document).ready(function(){
 
             animateNumbers();
         }
-        if (isInViewport(service)) {
-            $("#services, .work-1, .work-2, .work-3, .work-4, .work-4, #social-media, #branding, #web-design, #advertising").addClass("animated");
+        // Reveal the service detail lists once they scroll into view. Geometry
+        // is used instead of isInViewport() so they reveal reliably on mobile,
+        // where the tiny trigger span rarely sits fully inside the viewport.
+        if (isInViewport(service) || (_wEl && _wEl.getBoundingClientRect().top < viewH * 0.85)) {
+            $("#services, .work-1, .work-2, .work-3, .work-4, #social-media, #branding, #web-design, #advertising").addClass("animated");
         }
     }, false);
     // Fire once on load so the orb / blob state is correct before any scroll.

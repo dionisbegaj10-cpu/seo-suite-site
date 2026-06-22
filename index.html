@@ -118,7 +118,7 @@
             </div>
         </div>
         </section>
-        <section class="light-sec">
+        <section>
         <div class="container">
             <span class="delegato" id="delegato-testo-1"></span>
             <div class="box box-pres" id="text1">
@@ -192,7 +192,7 @@
             </div>
         </div>
         </section>    
-        <section class="light-sec">
+        <section>
         <div class="container">
           <span class="delegato" id="delegato-testo-2"></span>
             <div class="box box-customers">
@@ -335,7 +335,7 @@
                     </div>
                 </div>
             </div>
-        <div class="container light-sec">
+        <div class="container">
           <span class="delegato" id="delegato-testo-4"></span>
             <div class="box">
                 <div class="container-box-flex">
@@ -751,10 +751,9 @@
                     document.body.style.overflow = '';
 
                     // Switch blob to black dots on a white field, lifted above the ripple.
-                    // setProperty(..,'important') is required to beat the always-black blob CSS.
                     if (typeof blob !== 'undefined') { blob.dotColor = '#1c1c1c'; }
                     var blobEl = document.getElementById('blob_container');
-                    if (blobEl) { blobEl.style.zIndex = '10003'; blobEl.style.setProperty('background-color', '#ffffff', 'important'); }
+                    if (blobEl) { blobEl.style.zIndex = '10003'; blobEl.style.opacity = '1'; blobEl.style.setProperty('background-color', '#ffffff', 'important'); }
 
                     // Show "Message sent." text above the blob
                     document.getElementById('send-success-overlay').classList.add('visible');
@@ -768,7 +767,7 @@
                         ripple.style.transition = 'transform 0.4s ease';
                         ripple.style.transform  = 'scale(0)';
                         var blobEl = document.getElementById('blob_container');
-                        if (blobEl) { blobEl.style.zIndex = '-1'; blobEl.style.setProperty('background-color', '#000000', 'important'); }
+                        if (blobEl) { blobEl.style.zIndex = '-1'; blobEl.style.opacity = ''; blobEl.style.removeProperty('background-color'); }
                         if (typeof blob !== 'undefined') { blob.dotColor = '#d0d0d0'; }
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                     };
