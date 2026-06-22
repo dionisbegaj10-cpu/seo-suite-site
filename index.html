@@ -42,7 +42,7 @@
         // Push text1 letter transitions back so they start after the blob zoom (~700ms)
         var _origSetAnimationDelay = setAnimationDelay;
         setAnimationDelay = function(id, start_delay){
-            if (id === 'text1') start_delay = 700;
+            if (id === 'text1') start_delay = 1200;
             _origSetAnimationDelay(id, start_delay);
         };
         </script>

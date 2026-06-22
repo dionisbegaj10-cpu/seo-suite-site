@@ -73,7 +73,7 @@ function animateDistance(end, index){
     if(ctrlDistance === false){
         ctrlDistance = true;
         var start = blob.blobDistance;
-        var duration = 350;
+        var duration = 180;
         var startTime = null;
         function ease(t){ return t<0.5 ? 2*t*t : -1+(4-2*t)*t; }
         function step(ts){
