@@ -134,6 +134,13 @@ $(document).ready(function(){
     var aatitle = document.getElementById('aa-loghi');
     var services = document.getElementById('aa-loghi');
     var _topLabel = document.getElementById('top-left-label');
+    var _lightSecs = document.querySelectorAll('.light-sec');
+    var _curShapeIdx = -1;
+    // Only restart the morph when the target shape actually changes —
+    // calling morphTo every scroll tick restarts the tween and causes jank.
+    function morphShape(idx){
+        if (_curShapeIdx !== idx){ _curShapeIdx = idx; blob.morphTo(shapes[idx]); }
+    }
     window.addEventListener('scroll', function (event) {
         var viewH = window.innerHeight || document.documentElement.clientHeight;
         var introRect = intro.getBoundingClientRect();
@@ -143,28 +150,39 @@ $(document).ready(function(){
             var t = Math.max(0, Math.min(1, 1 - introRect.bottom / viewH));
             blob.blobDistance = 1000 * (1 - t);
         }
+
+        // Orb shows only over dark sections — hide it whenever the viewport
+        // centre sits inside a light (white) section.
+        var vc = viewH / 2;
+        var overLight = false;
+        for (var li = 0; li < _lightSecs.length; li++) {
+            var lr = _lightSecs[li].getBoundingClientRect();
+            if (lr.top <= vc && lr.bottom >= vc) { overLight = true; break; }
+        }
+        document.body.classList.toggle('orb-on', !overLight);
+
         if (isInViewport(intro)) {
-            blob.morphTo(shapes[0]);
+            morphShape(0);
             blob.blobSize = 250;
             animatePerspective(1, 1);
             blob.dotSize = ($(window).width()>480)?1.5:1;
         }
         if (isInViewport(text)) {
-            blob.morphTo(shapes[1]);
+            morphShape(1);
             blob.blobSize = 220;
             blob.blobDistance = 0;
             animatePerspective(3, 2);
             blob.dotSize = ($(window).width()>480)?1:0.8;
         }
         if (isInViewport(title1)) {
-            blob.morphTo(shapes[2]);
+            morphShape(2);
             blob.blobSize = 220;
             animateDistance(1000, 3);
             animatePerspective(1, 3);
             blob.dotSize = ($(window).width()>480)?1.021:0.6;//1.021;
         }
         if (isInViewport(ftitle)) {
-            blob.morphTo(shapes[3]);
+            morphShape(3);
             blob.blobSize = 220;
             animateDistance(1000, 4);
             animatePerspective(1, 4);
@@ -229,6 +247,8 @@ $(document).ready(function(){
             $("#services, .work-1, .work-2, .work-3, .work-4, .work-4, #social-media, #branding, #web-design, #advertising").addClass("animated");
         }
     }, false);
+    // Fire once on load so the orb / blob state is correct before any scroll.
+    window.dispatchEvent(new Event('scroll'));
     //setInterval(function(){jsband.ColorTween.run(blob, "dotColor", "rgb("+255*Math.random()+","+255*Math.random()+","+255*Math.random()+")", jsband.Ease.lin(), 1000)}, 1000)
 });
 $(document).ready(function(){

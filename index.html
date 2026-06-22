@@ -39,10 +39,17 @@
             });
         };
 
-        // Push text1 letter transitions back so they start after the blob zoom (~700ms)
+        // text1 reveals word-by-word after the blob zoom. Keep the stagger
+        // tight so the whole paragraph block lands in ~1s, not ~4s.
         var _origSetAnimationDelay = setAnimationDelay;
         setAnimationDelay = function(id, start_delay){
-            if (id === 'text1') start_delay = 1200;
+            if (id === 'text1') {
+                var START = 220, STEP = 14;
+                jQuery('#text1').find('span').each(function(i){
+                    this.style.transitionDelay = (START + i * STEP) + 'ms';
+                });
+                return;
+            }
             _origSetAnimationDelay(id, start_delay);
         };
         </script>
@@ -111,7 +118,7 @@
             </div>
         </div>
         </section>
-        <section>
+        <section class="light-sec">
         <div class="container">
             <span class="delegato" id="delegato-testo-1"></span>
             <div class="box box-pres" id="text1">
@@ -185,7 +192,7 @@
             </div>
         </div>
         </section>    
-        <section>
+        <section class="light-sec">
         <div class="container">
           <span class="delegato" id="delegato-testo-2"></span>
             <div class="box box-customers">
@@ -328,7 +335,7 @@
                     </div>
                 </div>
             </div>
-        <div class="container">
+        <div class="container light-sec">
           <span class="delegato" id="delegato-testo-4"></span>
             <div class="box">
                 <div class="container-box-flex">
@@ -743,10 +750,11 @@
                     backdrop.classList.remove('open');
                     document.body.style.overflow = '';
 
-                    // Switch blob to black dots and lift it above the ripple
+                    // Switch blob to black dots on a white field, lifted above the ripple.
+                    // setProperty(..,'important') is required to beat the always-black blob CSS.
                     if (typeof blob !== 'undefined') { blob.dotColor = '#1c1c1c'; }
                     var blobEl = document.getElementById('blob_container');
-                    if (blobEl) { blobEl.style.zIndex = '10003'; blobEl.style.background = 'transparent'; }
+                    if (blobEl) { blobEl.style.zIndex = '10003'; blobEl.style.setProperty('background-color', '#ffffff', 'important'); }
 
                     // Show "Message sent." text above the blob
                     document.getElementById('send-success-overlay').classList.add('visible');
@@ -760,7 +768,7 @@
                         ripple.style.transition = 'transform 0.4s ease';
                         ripple.style.transform  = 'scale(0)';
                         var blobEl = document.getElementById('blob_container');
-                        if (blobEl) { blobEl.style.zIndex = '-1'; blobEl.style.background = 'white'; }
+                        if (blobEl) { blobEl.style.zIndex = '-1'; blobEl.style.setProperty('background-color', '#000000', 'important'); }
                         if (typeof blob !== 'undefined') { blob.dotColor = '#d0d0d0'; }
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                     };

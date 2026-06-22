@@ -119,6 +119,19 @@ body.animated .stat-grid li span {
     pointer-events: none;
 }
 
+/* --- Light (white) content sections sit opaque above the fixed blob,
+   so the black bunny can never bleed through or invert their text.
+   overflow:hidden contains child margins so the white background stays
+   continuous and the blob can't show through the gap between sections. --- */
+.light-sec {
+    position: relative;
+    z-index: 1;
+    background: #ffffff;
+    overflow: hidden;
+}
+/* Adjacent light sections must touch — no transparent seam between them */
+.light-sec + .light-sec { margin-top: -1px; }
+
 /* --- Text section paragraph spacing --- */
 #text1 p + p { margin-top: 1.4em; }
 #text1 { margin-bottom: 120px !important; }
@@ -321,7 +334,7 @@ body.animated .stat-grid li span {
     opacity: 0;
     transition: opacity 0.4s ease;
 }
-body.animated #pixel-orb {
+body.orb-on #pixel-orb {
     opacity: 1;
     pointer-events: all;
 }

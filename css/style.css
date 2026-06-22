@@ -75,9 +75,9 @@ body.animated .logo_placeholder img{
 }
 
 body #blob_container{
-    transition:background-color 0.3s linear, opacity 0.3s linear;
-    background-color:#fff !important;
-    opacity: 0;
+    transition:background-color 0.3s linear;
+    background-color:#000 !important;
+    opacity: 1;
 }
 body.animated #blob_container {
     background-color:#000 !important;
