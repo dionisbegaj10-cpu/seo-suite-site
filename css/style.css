@@ -75,11 +75,13 @@ body.animated .logo_placeholder img{
 }
 
 body #blob_container{
-    transition:background-color 0.3s linear;
+    transition:background-color 0.3s linear, opacity 0.3s linear;
     background-color:#fff !important;
+    opacity: 0;
 }
 body.animated #blob_container {
     background-color:#000 !important;
+    opacity: 1;
 }
 
 body.body_blu #blob_container {
