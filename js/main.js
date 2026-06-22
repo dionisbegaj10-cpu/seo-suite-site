@@ -63,45 +63,33 @@ var inter;
 var intDistance, intPerspective;
 var ctrlDistance = ctrlPerspective= false;
 var curAni = 1;
+var _distRafId = null;
 function animateDistance(end, index){
     if(curAni !== index){
-        ctrlDistance = false;
         curAni = index;
-        clearInterval(intDistance);
+        if(_distRafId){ cancelAnimationFrame(_distRafId); _distRafId = null; }
+        ctrlDistance = false;
     }
     if(ctrlDistance === false){
         ctrlDistance = true;
-        if(blob.blobDistance >= end){
-            var step = (blob.blobDistance - end)/30;
-            intDistance = setInterval(function(){
-                if(blob.blobDistance > end){
-                    if((blob.blobDistance - step)>end){
-                        blob.blobDistance -= step;
-                    }else{
-                        blob.blobDistance = end;
-                    }
-                }else{
-                    ctrlDistance = false;
-                    clearInterval(intDistance);
-                }
-            },1);
-        }else{
-            var step = (end - blob.blobDistance)/30;
-            intDistance = setInterval(function(){
-                if(blob.blobDistance < end){
-                    if((blob.blobDistance + step)<end){
-                        blob.blobDistance += step;
-                    }else{
-                        blob.blobDistance = end;
-                    }
-                }else{
-                    ctrlDistance = false;
-                    clearInterval(intDistance);
-                }
-            },1);
+        var start = blob.blobDistance;
+        var duration = 350;
+        var startTime = null;
+        function ease(t){ return t<0.5 ? 2*t*t : -1+(4-2*t)*t; }
+        function step(ts){
+            if(!startTime) startTime = ts;
+            var t = Math.min((ts - startTime) / duration, 1);
+            blob.blobDistance = start + (end - start) * ease(t);
+            if(t < 1){
+                _distRafId = requestAnimationFrame(step);
+            } else {
+                blob.blobDistance = end;
+                ctrlDistance = false;
+                _distRafId = null;
+            }
         }
+        _distRafId = requestAnimationFrame(step);
     }
-    //blob.blobDistance = end;
 }
 function animatePerspective(end, index){
     if(curAni !== index){

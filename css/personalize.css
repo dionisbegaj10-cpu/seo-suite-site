@@ -322,6 +322,7 @@ body.animated .stat-grid li span {
 }
 body.animated #pixel-orb {
     opacity: 1;
+    pointer-events: all;
 }
 
 /* --- Contact Us button — fixed top right --- */
