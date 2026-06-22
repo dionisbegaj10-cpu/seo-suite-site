@@ -1,0 +1,8 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <path id="ctaRingW" d="M100,18 a82,82 0 1,1 0,164 a82,82 0 1,1 0,-164"/>
+  </defs>
+  <text fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">
+    <textPath href="#ctaRingW" xlink:href="#ctaRingW" startOffset="0" textLength="515" lengthAdjust="spacingAndGlyphs">GET&#160;STARTED&#160;&#183;&#160;CONTACT&#160;US&#160;&#183;&#160;GET&#160;STARTED&#160;&#183;&#160;CONTACT&#160;US&#160;&#183;&#160;</textPath>
+  </text>
+</svg>

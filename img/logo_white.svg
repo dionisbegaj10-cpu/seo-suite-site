@@ -1,0 +1,13 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <path id="logoRingW" d="M100,22 a78,78 0 1,1 0,156 a78,78 0 1,1 0,-156"/>
+  </defs>
+  <g fill="#ffffff">
+    <circle cx="100" cy="100" r="97" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+    <text font-family="Arial, Helvetica, sans-serif" font-size="12.5" font-weight="700" letter-spacing="1">
+      <textPath href="#logoRingW" xlink:href="#logoRingW" startOffset="0" textLength="490" lengthAdjust="spacingAndGlyphs">AI&#160;SUITE&#160;&#183;&#160;FOR&#160;WORDPRESS&#160;&#183;&#160;AI&#160;SUITE&#160;&#183;&#160;FOR&#160;WORDPRESS&#160;&#183;&#160;</textPath>
+    </text>
+    <circle cx="100" cy="100" r="40" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="100" y="110" text-anchor="middle" font-family="'Grumpy 24', Georgia, serif" font-size="31" font-weight="400">SEO</text>
+  </g>
+</svg>
