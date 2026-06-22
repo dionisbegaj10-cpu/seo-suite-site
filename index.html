@@ -707,11 +707,11 @@
             });
 
             // Form submit — white ripple expand + black-dot bunny
-            document.getElementById('contact-panel-form').addEventListener('submit', function(e){
+            document.getElementById('cpf-submit').addEventListener('click', function(e){
                 e.preventDefault();
                 var name  = document.getElementById('cpf-name').value.trim();
                 var email = document.getElementById('cpf-email').value.trim();
-                if (!name || !email) return;
+                if (!name || !email) { alert('Please enter your name and email.'); return; }
 
                 var btn    = document.getElementById('cpf-submit');
                 var ripple = document.getElementById('send-ripple');
