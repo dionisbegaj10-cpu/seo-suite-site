@@ -24,7 +24,7 @@ var shapes = [
 var blob_settings = {
         BLOB_SIZE: 250,
         BLOB_DISTANCE: 1000,
-        DETALISATION: 60,
+        DETALISATION: ($(window).width()>480)?60:35,
         PERSPECTIVE_DISTORTION: 1,
         ROTATION_SPEED: 5,
         DOT_SIZE: ($(window).width()>480)?1.5:1, //1.5,
@@ -421,13 +421,12 @@ $(document).ready(function(){
         $(".loader").animate({"opacity":0},300,function(){
         */
             $("body").removeClass("bodypreloader");
-            $(".box, footer, .container, section, .bottom_nav").animate({"opacity":1},300, function(){
-                $("#intro").addClass("animated");
-                bound = elm.getBoundingClientRect();
-                diagonal = Math.sqrt( Math.pow(bound.width, 2) + Math.pow(bound.height, 2) );
-                centerX = bound.width/2 + bound.left;
-                centerY = bound.height/2 + bound.top;
-            });
+            $(".box, footer, .container, section, .bottom_nav").css({"opacity":1});
+            $("#intro").addClass("animated");
+            bound = elm.getBoundingClientRect();
+            diagonal = Math.sqrt( Math.pow(bound.width, 2) + Math.pow(bound.height, 2) );
+            centerX = bound.width/2 + bound.left;
+            centerY = bound.height/2 + bound.top;
             /*
         });
     });
