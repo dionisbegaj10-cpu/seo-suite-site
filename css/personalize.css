@@ -250,17 +250,3 @@ body.hero-view #pixel-orb { opacity: 1; pointer-events: all; }
 
 /* The pixel orb replaces the rotating pencil badge as the contact button. */
 .bottom_nav { display: none !important; }
-
-/* --- Hero bunny dot-cloud (replaces the sphere on the hero) --- */
-#hero-bunny {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-}
-/* While the bunny is showing on the hero, hide the wave-blob so they don't overlap;
-   it fades back in as you scroll past the hero. */
-#blob_container { transition: opacity 0.35s ease, background-color 0.3s linear; }
-body.bunny-stage #blob_container { opacity: 0 !important; }
