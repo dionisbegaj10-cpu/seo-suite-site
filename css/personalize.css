@@ -1,0 +1,34 @@
+/* ============================================================
+   SEO Suite cosmetic layer over the original ilab engine.
+   COSMETIC ONLY — no blob / scroll / animation rules here, so the
+   original scroll engine (main.js + style.css) is left fully intact.
+   ============================================================ */
+
+/* Even spacing between the three intro paragraphs (original only spaced the first). */
+#text1 p { margin-bottom: 3.5vh; }
+#text1 p:last-child { margin-bottom: 0; }
+
+/* Replace the Italian "CONTATTACI PER UN PREVENTIVO" rotating badge with an
+   English "CONTACT US · FOR A QUOTE" circular word-mark (same rotating element). */
+.edit_button_text:before {
+    background-image: url('../img/cta_en_black.svg') !important;
+}
+.mainBody.animated .edit_button_text:before {
+    background-image: url('../img/cta_en_white.svg') !important;
+}
+
+/* Replace the circular ILAB logo with a SEO SUITE word-mark.
+   mix-blend-mode keeps it readable on both the dark hero and light sections. */
+#mytopnav a.brand-logo {
+    background-image: none !important;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    font-size: 15px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #ffffff;
+    mix-blend-mode: difference;
+    text-decoration: none;
+    white-space: nowrap;
+    line-height: 1;
+}

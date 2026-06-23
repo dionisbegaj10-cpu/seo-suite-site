@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <defs>
+    <path id="ctaCircle" d="M 120,32 a 88,88 0 1,1 0,176 a 88,88 0 1,1 0,-176" />
+  </defs>
+  <text fill="#111111" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="20" letter-spacing="3">
+    <textPath href="#ctaCircle" startOffset="0">CONTACT US&#160;&#160;&#183;&#160;&#160;FOR A QUOTE&#160;&#160;&#183;&#160;&#160;</textPath>
+  </text>
+</svg>
