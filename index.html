@@ -48,6 +48,7 @@
 
 
         <div id="blob_container" style="position:fixed; width: 100vw; height: 100vh;top:0;left:0; background: white; z-index:-1;"></div>
+        <canvas id="hero-bunny"></canvas>
         
         <section>    
         <div class="container">
@@ -655,10 +656,97 @@
                 var y = window.pageYOffset;
                 document.body.classList.toggle('hero-view', y < (window.innerHeight * 0.55));
                 document.body.classList.toggle('at-top', y < 30);
+                document.body.classList.toggle('bunny-stage', y < (window.innerHeight * 0.30));
             }
             window.addEventListener('scroll', updateOrbVisibility, { passive: true });
             window.addEventListener('resize', updateOrbVisibility);
             updateOrbVisibility();
+        })();
+        </script>
+
+        <script>
+        /* Hero bunny — a dot-cloud shaped like a bunny face, with the same
+           dotted aesthetic, a gentle alive breathing/sway, and a scroll-zoom.
+           Shown on the hero; fades out (and the wave-blob takes over) on scroll. */
+        (function(){
+            var canvas = document.getElementById('hero-bunny');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var dpr = Math.min(window.devicePixelRatio || 1, 2);
+            var W, H, cx, cy, unit;
+
+            // --- bunny silhouette test (normalized coords, centred at 0,0) ---
+            function inEllipse(x, y, ex, ey, rx, ry, rot){
+                var dx = x - ex, dy = y - ey;
+                var c = Math.cos(-rot), s = Math.sin(-rot);
+                var X = dx*c - dy*s, Y = dx*s + dy*c;
+                return (X*X)/(rx*rx) + (Y*Y)/(ry*ry) <= 1;
+            }
+            function inBunny(x, y){
+                // eyes / nose cut-outs (negative space → reads as a face)
+                if (inEllipse(x, y, -0.20, 0.02, 0.075, 0.10, 0)) return false; // left eye
+                if (inEllipse(x, y,  0.20, 0.02, 0.075, 0.10, 0)) return false; // right eye
+                if (inEllipse(x, y,  0.00, 0.30, 0.07, 0.05, 0)) return false;  // nose
+                // head + two ears
+                if (inEllipse(x, y, 0, 0.12, 0.52, 0.50, 0)) return true;        // head
+                if (inEllipse(x, y, -0.27, -0.62, 0.15, 0.46, -0.18)) return true; // left ear
+                if (inEllipse(x, y,  0.27, -0.62, 0.15, 0.46,  0.18)) return true; // right ear
+                return false;
+            }
+
+            // sample points inside the silhouette
+            var pts = [];
+            var TARGET = 1900, tries = 0;
+            while (pts.length < TARGET && tries < TARGET * 40) {
+                tries++;
+                var x = (Math.random()*2 - 1) * 0.8;
+                var y = (Math.random()*2 - 1) * 1.15 - 0.15;
+                if (inBunny(x, y)) {
+                    pts.push({ x: x, y: y, z: Math.random()*2 - 1, ph: Math.random()*Math.PI*2, sz: Math.random()*0.9 + 0.6 });
+                }
+            }
+
+            function resize(){
+                W = window.innerWidth; H = window.innerHeight;
+                canvas.width = W * dpr; canvas.height = H * dpr;
+                canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                cx = W / 2; cy = H * 0.46;
+                unit = Math.min(W, H) * (W < 600 ? 0.46 : 0.40);
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            var t = 0;
+            function frame(){
+                ctx.clearRect(0, 0, W, H);
+                var sy = window.pageYOffset;
+                var viewH = window.innerHeight || 1;
+                var prog = Math.max(0, Math.min(1, sy / (viewH * 0.30)));   // scroll progress through hero
+                var alpha = 1 - prog;                                        // fade out as you scroll
+                if (alpha <= 0.01) { requestAnimationFrame(frame); return; } // nothing to draw once scrolled
+                t += 0.016;
+                var breathe = 1 + 0.025 * Math.sin(t * 0.9);
+                var sway = 0.07 * Math.sin(t * 0.55);                        // gentle left/right tilt
+                var zoom = 1 + prog * 0.9;                                   // zoom in on scroll
+                var scale = unit * breathe * zoom;
+                var cosA = Math.cos(sway), sinA = Math.sin(sway);
+                for (var i = 0; i < pts.length; i++){
+                    var p = pts[i];
+                    var rx = p.x * cosA - p.y * sinA;
+                    var ry = p.x * sinA + p.y * cosA;
+                    var shimmer = Math.sin(t * 1.8 + p.ph);
+                    var px = cx + rx * scale + shimmer * 1.1;
+                    var py = cy + ry * scale + Math.cos(t * 1.6 + p.ph) * 1.1;
+                    var depth = 0.55 + 0.45 * ((p.z + Math.sin(t * 0.6 + p.ph)) * 0.5 + 0.5);
+                    ctx.globalAlpha = alpha * depth;
+                    ctx.fillStyle = '#d0d0d0';
+                    var s = p.sz * (W < 600 ? 1.1 : 1.4);
+                    ctx.fillRect(px, py, s, s);
+                }
+                requestAnimationFrame(frame);
+            }
+            frame();
         })();
         </script>
     </body>
