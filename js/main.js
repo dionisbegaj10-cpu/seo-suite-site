@@ -24,7 +24,7 @@ var shapes = [
 var blob_settings = {
         BLOB_SIZE: 250,
         BLOB_DISTANCE: 1000,
-        DETALISATION: ($(window).width()>480)?60:35,
+        DETALISATION: 60,
         PERSPECTIVE_DISTORTION: 1,
         ROTATION_SPEED: 5,
         DOT_SIZE: ($(window).width()>480)?1.5:1, //1.5,
@@ -63,33 +63,45 @@ var inter;
 var intDistance, intPerspective;
 var ctrlDistance = ctrlPerspective= false;
 var curAni = 1;
-var _distRafId = null;
 function animateDistance(end, index){
     if(curAni !== index){
-        curAni = index;
-        if(_distRafId){ cancelAnimationFrame(_distRafId); _distRafId = null; }
         ctrlDistance = false;
+        curAni = index;
+        clearInterval(intDistance);
     }
     if(ctrlDistance === false){
         ctrlDistance = true;
-        var start = blob.blobDistance;
-        var duration = 180;
-        var startTime = null;
-        function ease(t){ return t<0.5 ? 2*t*t : -1+(4-2*t)*t; }
-        function step(ts){
-            if(!startTime) startTime = ts;
-            var t = Math.min((ts - startTime) / duration, 1);
-            blob.blobDistance = start + (end - start) * ease(t);
-            if(t < 1){
-                _distRafId = requestAnimationFrame(step);
-            } else {
-                blob.blobDistance = end;
-                ctrlDistance = false;
-                _distRafId = null;
-            }
+        if(blob.blobDistance >= end){
+            var step = (blob.blobDistance - end)/100;
+            intDistance = setInterval(function(){
+                if(blob.blobDistance > end){
+                    if((blob.blobDistance - step)>end){
+                        blob.blobDistance -= step;
+                    }else{
+                        blob.blobDistance = end;
+                    }
+                }else{
+                    ctrlDistance = false;
+                    clearInterval(intDistance);
+                }
+            },1);
+        }else{
+            var step = (end - blob.blobDistance)/100;
+            intDistance = setInterval(function(){
+                if(blob.blobDistance < end){
+                    if((blob.blobDistance + step)<end){
+                        blob.blobDistance += step;
+                    }else{
+                        blob.blobDistance = end;
+                    }
+                }else{
+                    ctrlDistance = false;
+                    clearInterval(intDistance);
+                }
+            },1);
         }
-        _distRafId = requestAnimationFrame(step);
     }
+    //blob.blobDistance = end;
 }
 function animatePerspective(end, index){
     if(curAni !== index){
@@ -133,51 +145,30 @@ $(document).ready(function(){
     var ftitle = document.getElementById('delegato-testo-5');
     var aatitle = document.getElementById('aa-loghi');
     var services = document.getElementById('aa-loghi');
-    var _topLabel = document.getElementById('top-left-label');
-    // Light-content anchors used to decide when the blob should fade to white.
-    // Only the intro paragraphs and the service tiles are light (dark text);
-    // the service detail lists have white text so they stay on the dark bunny.
-    var _pEl = document.getElementById('text1');        // intro paragraphs
-    var _tEl = document.querySelector('.box-customers'); // service tiles
-    var _wEl = document.querySelector('.box-works');     // service detail lists (reveal anchor)
-    var _curShapeIdx = -1;
-    // Only restart the morph when the target shape actually changes —
-    // calling morphTo every scroll tick restarts the tween and causes jank.
-    function morphShape(idx){
-        if (_curShapeIdx !== idx){ _curShapeIdx = idx; blob.morphTo(shapes[idx]); }
-    }
     window.addEventListener('scroll', function (event) {
-        var viewH = window.innerHeight || document.documentElement.clientHeight;
-        var introRect = intro.getBoundingClientRect();
-        if (_topLabel) _topLabel.style.opacity = (window.pageYOffset < 10) ? '1' : '0';
-        // Scroll-linked zoom: map intro scrolling out → blob zooms in
-        if (introRect.bottom > 0) {
-            var t = Math.max(0, Math.min(1, 1 - introRect.bottom / viewH));
-            blob.blobDistance = 1000 * (1 - t);
-        }
-
         if (isInViewport(intro)) {
-            morphShape(0);
+            blob.morphTo(shapes[0]);
             blob.blobSize = 250;
+            animateDistance(1000, 1);
             animatePerspective(1, 1);
-            blob.dotSize = ($(window).width()>480)?1.5:1;
+            blob.dotSize = ($(window).width()>480)?1.5:1; //1.5;
         }
         if (isInViewport(text)) {
-            morphShape(1);
+            blob.morphTo(shapes[1]);
             blob.blobSize = 220;
-            blob.blobDistance = 0;
+            animateDistance(0, 2);
             animatePerspective(3, 2);
-            blob.dotSize = ($(window).width()>480)?1:0.8;
+            blob.dotSize = ($(window).width()>480)?1:0.8;//1;
         }
         if (isInViewport(title1)) {
-            morphShape(2);
+            blob.morphTo(shapes[2]);
             blob.blobSize = 220;
             animateDistance(1000, 3);
             animatePerspective(1, 3);
             blob.dotSize = ($(window).width()>480)?1.021:0.6;//1.021;
         }
         if (isInViewport(ftitle)) {
-            morphShape(3);
+            blob.morphTo(shapes[3]);
             blob.blobSize = 220;
             animateDistance(1000, 4);
             animatePerspective(1, 4);
@@ -208,27 +199,24 @@ $(document).ready(function(){
             });
 	}
         */
-        /* Scroll control — the blob is black over dark sections (hero, SEO AI
-           Suite stats, footer) and fades to white over light content. Driven by
-           the viewport centre instead of isInViewport() of tiny trigger spans,
-           so it never turns black under the white text/tiles on tall mobile
-           screens — which was what made that text overlap / disappear. */
-        var vc = viewH / 2;
-        var lightOn = false;
-        if (_pEl && _tEl) {
-            var pr = _pEl.getBoundingClientRect(), tr = _tEl.getBoundingClientRect();
-            if (pr.top <= vc && tr.bottom >= vc) lightOn = true; // paragraphs → tiles
-        }
-        if (lightOn) {
-            $("body, #blob_container").removeClass("animated");
-        } else {
-            $("body, #blob_container").addClass("animated");
+        /* Scroll Control */
+        if (isInViewport(intro)) {
+            $("body").addClass("animated");
+        }else{
+            $("body").removeClass("animated");
         }
         if (isInViewport(text)) {
-            $("#text1").addClass("animated");
+            $("#text1").addClass("animated");    
         }
         if (isInViewport(collaborations)) {
             $("#collaborations, .customer-clients").addClass("animated");
+        }
+        if (isInViewport(title1) || isInViewport(ftitle) || isInViewport(intro)) {
+            $("#blob_container").addClass("animated");
+            $("body").addClass("animated");
+        }else{
+            $("#blob_container").removeClass("animated");
+            $("body").removeClass("animated");
         }
         if (isInViewport(ftitle)) {
             $("#ftitle, .footer-box-center, #address, .footer-box-right").addClass("animated");
@@ -241,15 +229,10 @@ $(document).ready(function(){
 
             animateNumbers();
         }
-        // Reveal the service detail lists once they scroll into view. Geometry
-        // is used instead of isInViewport() so they reveal reliably on mobile,
-        // where the tiny trigger span rarely sits fully inside the viewport.
-        if (isInViewport(service) || (_wEl && _wEl.getBoundingClientRect().top < viewH * 0.85)) {
-            $("#services, .work-1, .work-2, .work-3, .work-4, #social-media, #branding, #web-design, #advertising").addClass("animated");
+        if (isInViewport(service)) {
+            $("#services, .work-1, .work-2, .work-3, .work-4, .work-4, #social-media, #branding, #web-design, #advertising").addClass("animated");
         }
     }, false);
-    // Fire once on load so the orb / blob state is correct before any scroll.
-    window.dispatchEvent(new Event('scroll'));
     //setInterval(function(){jsband.ColorTween.run(blob, "dotColor", "rgb("+255*Math.random()+","+255*Math.random()+","+255*Math.random()+")", jsband.Ease.lin(), 1000)}, 1000)
 });
 $(document).ready(function(){
@@ -450,12 +433,13 @@ $(document).ready(function(){
         $(".loader").animate({"opacity":0},300,function(){
         */
             $("body").removeClass("bodypreloader");
-            $(".box, footer, .container, section, .bottom_nav").css({"opacity":1});
-            $("#intro").addClass("animated");
-            bound = elm.getBoundingClientRect();
-            diagonal = Math.sqrt( Math.pow(bound.width, 2) + Math.pow(bound.height, 2) );
-            centerX = bound.width/2 + bound.left;
-            centerY = bound.height/2 + bound.top;
+            $(".box, footer, .container, section, .bottom_nav").animate({"opacity":1},300, function(){
+                $("#intro").addClass("animated");
+                bound = elm.getBoundingClientRect();
+                diagonal = Math.sqrt( Math.pow(bound.width, 2) + Math.pow(bound.height, 2) );
+                centerX = bound.width/2 + bound.left;
+                centerY = bound.height/2 + bound.top;
+            });
             /*
         });
     });
