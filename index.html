@@ -649,10 +649,12 @@
             }
             draw();
 
-            // Visible only while the hero is on screen — fades the moment you scroll past it.
+            // Orb: visible while the hero is on screen, fades the moment you scroll past it.
+            // SEO SUITE wordmark: visible only at the very top, fades as soon as you start scrolling.
             function updateOrbVisibility(){
-                var show = window.pageYOffset < (window.innerHeight * 0.55);
-                document.body.classList.toggle('hero-view', show);
+                var y = window.pageYOffset;
+                document.body.classList.toggle('hero-view', y < (window.innerHeight * 0.55));
+                document.body.classList.toggle('at-top', y < 30);
             }
             window.addEventListener('scroll', updateOrbVisibility, { passive: true });
             window.addEventListener('resize', updateOrbVisibility);

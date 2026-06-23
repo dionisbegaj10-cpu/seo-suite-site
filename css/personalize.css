@@ -31,7 +31,11 @@
     text-decoration: none;
     white-space: nowrap;
     line-height: 1;
+    opacity: 0;
+    transition: opacity 0.35s ease;
 }
+/* SEO SUITE shows only at the very top of the hero, fades as soon as you scroll. */
+body.at-top #mytopnav a.brand-logo { opacity: 1; }
 
 /* ============================================================
    Service tiles (boxes) + detail panel + contact slide-up panel
