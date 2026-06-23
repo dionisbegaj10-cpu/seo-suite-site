@@ -654,7 +654,7 @@
             // SEO SUITE wordmark: visible only at the very top, fades as soon as you start scrolling.
             function updateOrbVisibility(){
                 var y = window.pageYOffset;
-                document.body.classList.toggle('hero-view', y < (window.innerHeight * 0.55));
+                document.body.classList.toggle('hero-view', y < (window.innerHeight * 0.32));
                 document.body.classList.toggle('at-top', y < 30);
                 document.body.classList.toggle('bunny-stage', y < (window.innerHeight * 0.30));
             }
