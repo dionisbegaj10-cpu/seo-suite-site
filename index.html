@@ -142,22 +142,14 @@
         <div class="container">
           <span class="delegato" id="delegato-testo-2"></span>
             <div class="box box-customers">
-                <h2 id="customers"><span id="collaborations">
-                    <span>c</span><span>l</span><span>i</span><span>e</span><span>n</span><span>t</span><span>s</span></span>
-                </h2>
+                <h2 id="customers" style="display:none;"><span id="collaborations"></span></h2>
+                <p id="explore-label">Explore our services</p>
                 <ul class="customer customer-clients">
-                    <li><img src="img/clienti/001_01.png" alt="Mc Donald" /></li>
-                    <li><img src="img/clienti/001_02.png" alt="Camomilla" /></li>
-                    <li><img src="img/clienti/001_03.png" alt="Lacoste" /></li>
-                    <li><img src="img/clienti/001_04.png" alt="Artigli" /></li>
-                    <li><img src="img/clienti/001_05.png" alt="Termoplast" /></li>
-                    <li><img src="img/clienti/001_06.png" alt="Revise Concept" /></li>
-                    <li><img src="img/clienti/001_08.png" alt="Kostumn" /></li>
-                    <li><img src="img/clienti/001_07.png" alt="Minimal" /></li>
-                    <li><img src="img/clienti/001_09.png" alt="Gallistrings" /></li>
-                    <li><img src="img/clienti/001_10.png" alt="Sabox" /></li>
-                    <li><img src="img/clienti/001_11.png" alt="Formaperta" /></li>
-                    <li><img src="img/clienti/001_13.png" alt="Atelier Asap" /></li>
+                    <li><span class="integration">Branding</span></li>
+                    <li><span class="integration">Web &amp;<br>Design</span></li>
+                    <li style="width:100%;"><span class="integration">AI Suite</span></li>
+                    <li><span class="integration">Growth</span></li>
+                    <li><span class="integration">Performance</span></li>
                 </ul>
             </div>
         </div>
@@ -424,7 +416,6 @@
             </div>
         </div>
         <span class="edit_button_overlay"></span>
-        <iframe src="contact_form.php" id="contactframe" frameborder="0"></iframe>
         <script src="js/cursor.js"></script>
         <!-- script src="js/skew.js"></script -->
         <!--script src="js/imagesloaded.pkgd.min.js"></script>
@@ -441,6 +432,188 @@
                     fbq('track', 'Contact');
                 }
             });
+        </script>
+
+        <!-- Contact slide-up panel -->
+        <div id="contact-panel">
+            <button id="contact-panel-close" aria-label="Close">&times;</button>
+            <div id="contact-panel-inner">
+                <h2 id="contact-panel-title">Let's work<br>together.</h2>
+                <form id="contact-panel-form" novalidate>
+                    <div class="cpf-row cpf-row-2">
+                        <div class="cpf-field">
+                            <label for="cpf-name">Name</label>
+                            <input type="text" id="cpf-name" name="name" required>
+                        </div>
+                        <div class="cpf-field">
+                            <label for="cpf-lastname">Last Name</label>
+                            <input type="text" id="cpf-lastname" name="lastname" required>
+                        </div>
+                    </div>
+                    <div class="cpf-row cpf-row-2">
+                        <div class="cpf-field">
+                            <label for="cpf-email">Email</label>
+                            <input type="email" id="cpf-email" name="email" required>
+                        </div>
+                        <div class="cpf-field">
+                            <label for="cpf-phone">Telephone</label>
+                            <input type="tel" id="cpf-phone" name="phone">
+                        </div>
+                    </div>
+                    <div class="cpf-row">
+                        <div class="cpf-field">
+                            <label>I'm interested in</label>
+                            <div class="cpf-tags">
+                                <button type="button" class="cpf-tag" data-value="All Services">All Services</button>
+                                <button type="button" class="cpf-tag" data-value="Branding">Branding</button>
+                                <button type="button" class="cpf-tag" data-value="Web & Design">Web &amp; Design</button>
+                                <button type="button" class="cpf-tag" data-value="Growth">Growth</button>
+                                <button type="button" class="cpf-tag" data-value="Performance">Performance</button>
+                                <button type="button" class="cpf-tag" data-value="AI Suite">AI Suite</button>
+                                <button type="button" class="cpf-tag" data-value="SEO Optimization">SEO Optimization</button>
+                            </div>
+                            <input type="hidden" id="cpf-interest" name="interest">
+                        </div>
+                    </div>
+                    <div class="cpf-row">
+                        <button type="button" id="cpf-submit">Send &rarr;</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="contact-panel-backdrop"></div>
+        <div id="send-ripple"></div>
+        <div id="send-success-overlay">
+            <canvas id="send-success-canvas"></canvas>
+            <button id="send-success-close">&times;</button>
+            <p id="send-success-text">We will<br>contact you<br>soon.</p>
+        </div>
+
+        <!-- Service detail slide-in panel -->
+        <div id="service-panel">
+            <button id="service-panel-close" aria-label="Close">&times;</button>
+            <div id="service-panel-inner">
+                <h3 id="service-panel-title"></h3>
+                <p id="service-panel-body"></p>
+            </div>
+        </div>
+        <div id="service-panel-backdrop"></div>
+        <style>
+        #service-panel {
+            position: fixed; top: 0; right: -100%; width: 100%; height: 100%;
+            background: #fff; z-index: 9000; box-sizing: border-box;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: right 0.42s cubic-bezier(0.22,1,0.36,1);
+        }
+        #service-panel.open { right: 0; }
+        #service-panel-inner { width: min(600px, 88vw); }
+        #service-panel-close {
+            position: absolute; top: 28px; right: 28px; background: none; border: none;
+            font-size: 32px; cursor: pointer; color: #111; line-height: 1; opacity: 0.5;
+            transition: opacity 0.2s;
+        }
+        #service-panel-close:hover { opacity: 1; }
+        #service-panel-title {
+            font-family: 'Grumpy 24', Georgia, serif; font-size: clamp(2.4rem,7vw,4rem);
+            color: #111; margin: 0 0 32px; line-height: 1.05;
+        }
+        #service-panel-body {
+            font-family: Arial, Helvetica, sans-serif; font-size: 16px; line-height: 1.8;
+            color: #444; margin: 0;
+        }
+        #service-panel-backdrop {
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.35); z-index: 8999;
+        }
+        #service-panel-backdrop.open { display: block; }
+        </style>
+
+        <script>
+        /* Service tiles → slide-in detail panel */
+        (function(){
+            var data = {
+                'Branding': { title: 'Branding', body: 'We build brands from the ground up — naming, tone of voice, visual identity, art direction and copywriting. Every brand strategy is designed to be distinctive, consistent and built to last.' },
+                'Web &Design': { title: 'Web &amp; Design', body: 'From UI/UX and web design to full-stack development, eCommerce and landing pages — we build digital experiences that convert. Whether a CMS-powered site or a headless build, every detail is crafted to perform.' },
+                'Growth': { title: 'Growth', body: 'Growth strategies rooted in data — SEO, AI search visibility, content marketing, email and organic social — turning audience attention into measurable business results.' },
+                'Performance': { title: 'Performance', body: 'Paid media across Google, Meta and beyond — combining sharp creative with rigorous analytics to drive efficient acquisition, lower CPAs and scalable returns.' },
+                'AI Suite': { title: 'AI Suite', body: 'SEO AI Suite is our own software — an AI-powered SEO platform with 20+ built-in skills. It connects to Google Search Console and the AI model of your choice to plan content, optimize pages, audit sites, track rankings and monitor competitors, all from one dashboard.' }
+            };
+            var panel = document.getElementById('service-panel');
+            var backdrop = document.getElementById('service-panel-backdrop');
+            var titleEl = document.getElementById('service-panel-title');
+            var bodyEl = document.getElementById('service-panel-body');
+            function openPanel(key){ var d = data[key]; if(!d) return; titleEl.innerHTML = d.title; bodyEl.textContent = d.body; panel.classList.add('open'); backdrop.classList.add('open'); }
+            function closePanel(){ panel.classList.remove('open'); backdrop.classList.remove('open'); }
+            document.getElementById('service-panel-close').addEventListener('click', closePanel);
+            backdrop.addEventListener('click', closePanel);
+            jQuery('.customer-clients .integration').on('click', function(){ openPanel($(this).text().replace(/\s+/g,' ').trim()); });
+        })();
+        </script>
+
+        <script>
+        /* Contact slide-up panel — opened by the rotating CONTACT US badge */
+        (function(){
+            var panel    = document.getElementById('contact-panel');
+            var backdrop = document.getElementById('contact-panel-backdrop');
+            function openPanel(){ panel.classList.add('open'); backdrop.classList.add('open'); document.body.style.overflow = 'hidden'; }
+            function closePanel(){ panel.classList.remove('open'); backdrop.classList.remove('open'); document.body.style.overflow = ''; }
+
+            // Intercept the rotating badge (capture phase) so it opens this panel
+            // instead of the original PHP-iframe contact (which can't run on Pages).
+            var trigger = document.getElementById('edit_button');
+            if (trigger) {
+                trigger.style.cursor = 'pointer';
+                trigger.addEventListener('click', function(e){ e.preventDefault(); e.stopImmediatePropagation(); openPanel(); }, true);
+            }
+            document.getElementById('contact-panel-close').addEventListener('click', closePanel);
+            backdrop.addEventListener('click', closePanel);
+
+            var selectedInterest = '';
+            document.querySelectorAll('.cpf-tag').forEach(function(tag){
+                tag.addEventListener('click', function(){
+                    document.querySelectorAll('.cpf-tag').forEach(function(t){ t.classList.remove('active'); });
+                    tag.classList.add('active');
+                    selectedInterest = tag.dataset.value;
+                    document.getElementById('cpf-interest').value = selectedInterest;
+                });
+            });
+
+            function handleSend(e){
+                e.preventDefault();
+                var name  = document.getElementById('cpf-name').value.trim();
+                var email = document.getElementById('cpf-email').value.trim();
+                if (!name || !email) { alert('Please enter your name and email.'); return; }
+                var btn    = document.getElementById('cpf-submit');
+                var ripple = document.getElementById('send-ripple');
+                var br     = btn.getBoundingClientRect();
+                var cx     = br.left + br.width / 2;
+                var cy     = br.top  + br.height / 2;
+                var maxR   = Math.ceil(Math.sqrt(Math.pow(Math.max(cx, window.innerWidth - cx), 2) + Math.pow(Math.max(cy, window.innerHeight - cy), 2))) * 2;
+                ripple.style.width = maxR + 'px'; ripple.style.height = maxR + 'px';
+                ripple.style.left = (cx - maxR/2) + 'px'; ripple.style.top = (cy - maxR/2) + 'px';
+                ripple.style.transition = 'none'; ripple.style.transform = 'scale(0)';
+                requestAnimationFrame(function(){ requestAnimationFrame(function(){ ripple.style.transition = 'transform 0.72s cubic-bezier(0.4,0,0.2,1)'; ripple.style.transform = 'scale(1)'; }); });
+                setTimeout(function(){
+                    panel.classList.remove('open'); backdrop.classList.remove('open'); document.body.style.overflow = '';
+                    if (typeof blob !== 'undefined') { blob.dotColor = '#1c1c1c'; }
+                    var blobEl = document.getElementById('blob_container');
+                    if (blobEl) { blobEl.style.zIndex = '10003'; blobEl.style.opacity = '1'; blobEl.style.setProperty('background-color', '#ffffff', 'important'); }
+                    document.getElementById('send-success-overlay').classList.add('visible');
+                    document.getElementById('send-success-canvas').style.display = 'none';
+                    document.getElementById('send-success-close').onclick = function(){
+                        document.getElementById('send-success-overlay').classList.remove('visible');
+                        ripple.style.transition = 'transform 0.4s ease'; ripple.style.transform = 'scale(0)';
+                        var b = document.getElementById('blob_container');
+                        if (b) { b.style.zIndex = '-1'; b.style.opacity = ''; b.style.removeProperty('background-color'); }
+                        if (typeof blob !== 'undefined') { blob.dotColor = '#d0d0d0'; }
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    };
+                }, 680);
+            }
+            var _sendFired = false;
+            function onceSend(e){ e.preventDefault(); if(_sendFired) return; _sendFired = true; setTimeout(function(){ _sendFired = false; }, 2000); handleSend(e); }
+            document.getElementById('cpf-submit').addEventListener('click', onceSend);
+            document.getElementById('cpf-submit').addEventListener('touchend', onceSend);
+        })();
         </script>
     </body>
 </html>

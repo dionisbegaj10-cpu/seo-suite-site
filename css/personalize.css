@@ -32,3 +32,158 @@
     white-space: nowrap;
     line-height: 1;
 }
+
+/* ============================================================
+   Service tiles (boxes) + detail panel + contact slide-up panel
+   ============================================================ */
+
+/* --- Explore label above the service tiles --- */
+#explore-label {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.45);
+    margin: 0 0 24px;
+    transition: color .25s ease;
+}
+body.animated #explore-label { color: rgba(255,255,255,0.55); }
+
+/* --- Service tiles (were the client-logo grid) --- */
+.customer-clients li {
+    display: flex;
+    box-sizing: border-box;
+}
+.customer-clients li .integration {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    min-height: 130px;
+    margin: 7px;
+    padding: 14px 10px;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    font-size: 15px;
+    line-height: 1.55;
+    color: #1c1c1c;
+    border: 2px solid rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: color .25s ease, border-color .25s ease, transform .25s ease;
+}
+.customer-clients li .integration:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 0, 0, 0.45);
+}
+.customer-clients li .integration:active { font-weight: 900; }
+/* Tiles follow the blob so they stay readable in both light and dark states. */
+body.animated .customer-clients li .integration {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+body.animated .customer-clients li .integration:hover { border-color: rgba(255, 255, 255, 0.55); }
+
+@media (max-width: 767px) {
+    .customer-clients li { width: 50%; }
+}
+
+/* --- Contact slide-up panel --- */
+#contact-panel {
+    position: fixed;
+    bottom: -100%;
+    left: 0; right: 0;
+    height: 100%;
+    background: #0e0e0e;
+    z-index: 10000;
+    overflow-y: auto;
+    transition: bottom 0.55s cubic-bezier(0.22,1,0.36,1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#contact-panel.open { bottom: 0; }
+#contact-panel-backdrop { display: none; position: fixed; inset: 0; z-index: 9999; }
+#contact-panel-backdrop.open { display: block; }
+#contact-panel-close {
+    position: absolute; top: 28px; right: 28px;
+    background: none; border: none; font-size: 32px; line-height: 1;
+    color: #fff; cursor: pointer; opacity: 0.6; transition: opacity 0.2s;
+}
+#contact-panel-close:hover { opacity: 1; }
+#contact-panel-inner { width: min(560px, 88vw); padding: 80px 0 60px; }
+#contact-panel-title {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: clamp(2.4rem, 7vw, 4rem);
+    color: #fff; margin: 0 0 48px; line-height: 1.05;
+}
+.cpf-row { margin-bottom: 32px; }
+.cpf-row-2 { display: flex; gap: 32px; }
+.cpf-row-2 .cpf-field { flex: 1; }
+.cpf-field { padding-bottom: 4px; }
+.cpf-field label {
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 1.8px;
+    text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 10px;
+}
+.cpf-field input {
+    width: 100%; box-sizing: border-box; background: transparent; border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.2); color: #fff;
+    font-family: Arial, Helvetica, sans-serif; font-size: 15px; padding: 10px 0;
+    outline: none; transition: border-color 0.2s;
+}
+.cpf-field input::placeholder { color: rgba(255,255,255,0.25); }
+.cpf-field input:focus { border-color: rgba(255,255,255,0.7); }
+.cpf-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+.cpf-tag {
+    background: transparent; border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.55); border-radius: 100px; padding: 8px 18px;
+    font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: 700;
+    letter-spacing: 1.2px; text-transform: uppercase; cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.cpf-tag:hover { border-color: rgba(255,255,255,0.6); color: #fff; }
+.cpf-tag.active { background: #fff; color: #0e0e0e; border-color: #fff; }
+#contact-panel-form .cpf-row:last-of-type { display: flex; justify-content: flex-end; }
+#cpf-submit {
+    margin-top: 16px; background: #fff; color: #0e0e0e; border: none;
+    border-radius: 100px; padding: 16px 40px;
+    font-family: Arial, Helvetica, sans-serif; font-weight: 900; font-size: 13px;
+    letter-spacing: 2px; text-transform: uppercase; cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+#cpf-submit:hover { transform: translateY(-2px); background: #e8e8e8; }
+@media (max-width: 600px) {
+    .cpf-row-2 { flex-direction: column; gap: 0; }
+    .cpf-row-2 .cpf-field + .cpf-field { margin-top: 32px; }
+}
+
+/* --- Send ripple + success overlay --- */
+#send-ripple {
+    position: fixed; border-radius: 50%; background: #ffffff; transform: scale(0);
+    pointer-events: none; z-index: 10001; transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+#send-ripple.expand { transform: scale(1); }
+#send-success-overlay {
+    position: fixed; inset: 0; background: transparent; z-index: 10004;
+    display: none; align-items: center; justify-content: center; pointer-events: none;
+}
+#send-success-overlay.visible { display: flex; }
+#send-success-close {
+    position: fixed; top: 28px; right: 28px; background: none; border: none;
+    font-size: 32px; line-height: 1; color: #111; cursor: pointer; opacity: 0.5;
+    pointer-events: all; transition: opacity 0.2s; z-index: 1;
+}
+#send-success-close:hover { opacity: 1; }
+#send-success-text {
+    text-align: center; font-family: 'Grumpy 24', Georgia, serif;
+    font-size: clamp(2.4rem, 9vw, 5rem); color: #111; line-height: 1.05;
+}
