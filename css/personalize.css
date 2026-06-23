@@ -228,3 +228,21 @@ body.animated .customer-clients li .integration:hover { border-color: rgba(255, 
     #aa-loghi.stat-grid { flex-direction: column; }
     #aa-loghi.stat-grid li { width: 100%; padding: 18px; }
 }
+
+/* --- Pixel orb contact button — shown only while the hero is on screen --- */
+#pixel-orb {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 120px;
+    height: 120px;
+    z-index: 9998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    cursor: pointer;
+}
+body.hero-view #pixel-orb { opacity: 1; pointer-events: all; }
+
+/* The pixel orb replaces the rotating pencil badge as the contact button. */
+.bottom_nav { display: none !important; }

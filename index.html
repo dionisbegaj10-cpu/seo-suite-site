@@ -426,6 +426,9 @@
             });
         </script>
 
+        <!-- Pixel orb contact button (hero only) -->
+        <canvas id="pixel-orb" role="button" aria-label="Contact Us"></canvas>
+
         <!-- Contact slide-up panel -->
         <div id="contact-panel">
             <button id="contact-panel-close" aria-label="Close">&times;</button>
@@ -542,20 +545,23 @@
         </script>
 
         <script>
-        /* Contact slide-up panel — opened by the rotating CONTACT US badge */
+        /* Contact slide-up panel — opened by the pixel orb (hero only) and the footer CTA */
         (function(){
             var panel    = document.getElementById('contact-panel');
             var backdrop = document.getElementById('contact-panel-backdrop');
             function openPanel(){ panel.classList.add('open'); backdrop.classList.add('open'); document.body.style.overflow = 'hidden'; }
             function closePanel(){ panel.classList.remove('open'); backdrop.classList.remove('open'); document.body.style.overflow = ''; }
+            window.__openContact = openPanel;
 
-            // Intercept the rotating badge (capture phase) so it opens this panel
-            // instead of the original PHP-iframe contact (which can't run on Pages).
-            var trigger = document.getElementById('edit_button');
-            if (trigger) {
-                trigger.style.cursor = 'pointer';
-                trigger.addEventListener('click', function(e){ e.preventDefault(); e.stopImmediatePropagation(); openPanel(); }, true);
-            }
+            // Pixel orb opens the panel.
+            var orb = document.getElementById('pixel-orb');
+            if (orb) orb.addEventListener('click', openPanel);
+
+            // Footer "start a project" also opens the panel (capture-phase intercept
+            // so it doesn't trigger the original PHP-iframe contact).
+            var ftitle = document.getElementById('ftitle');
+            if (ftitle) ftitle.addEventListener('click', function(e){ e.preventDefault(); e.stopImmediatePropagation(); openPanel(); }, true);
+
             document.getElementById('contact-panel-close').addEventListener('click', closePanel);
             backdrop.addEventListener('click', closePanel);
 
@@ -605,6 +611,52 @@
             function onceSend(e){ e.preventDefault(); if(_sendFired) return; _sendFired = true; setTimeout(function(){ _sendFired = false; }, 2000); handleSend(e); }
             document.getElementById('cpf-submit').addEventListener('click', onceSend);
             document.getElementById('cpf-submit').addEventListener('touchend', onceSend);
+        })();
+        </script>
+
+        <script>
+        /* Pixel orb — rotating pixel halo with CONTACT US, shown only on the hero. */
+        (function(){
+            var c = document.getElementById('pixel-orb');
+            if (!c) return;
+            var dpr = window.devicePixelRatio || 1;
+            var SIZE = 120;
+            c.width = SIZE * dpr; c.height = SIZE * dpr;
+            var ctx = c.getContext('2d');
+            ctx.scale(dpr, dpr);
+            var cx = SIZE / 2, cy = SIZE / 2, R = 36;
+            var pixels = [];
+            for (var i = 0; i < 80; i++) { var a = (i/80)*Math.PI*2; pixels.push({ r: R + (Math.random()-0.5)*6, a: a, size: Math.random()*1.4 + 0.5 }); }
+            for (var j = 0; j < 60; j++) { pixels.push({ r: R + 6 + Math.random()*18, a: Math.random()*Math.PI*2, size: Math.random()*1.0 + 0.3 }); }
+            var angle = 0;
+            function draw(){
+                ctx.clearRect(0, 0, SIZE, SIZE);
+                angle += 0.004;
+                pixels.forEach(function(p){
+                    var a = p.a + angle;
+                    var x = cx + Math.cos(a)*p.r, y = cy + Math.sin(a)*p.r;
+                    var dist = Math.sqrt((x-cx)*(x-cx) + (y-cy)*(y-cy));
+                    ctx.globalAlpha = Math.max(0.08, 1 - dist/(R+28));
+                    ctx.fillStyle = '#d0d0d0';
+                    ctx.fillRect(x, y, p.size, p.size);
+                });
+                ctx.globalAlpha = 1; ctx.fillStyle = '#ffffff';
+                ctx.font = '900 10px Arial, sans-serif';
+                ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+                ctx.fillText('CONTACT', cx, cy - 6);
+                ctx.fillText('US', cx, cy + 7);
+                requestAnimationFrame(draw);
+            }
+            draw();
+
+            // Visible only while the hero is on screen — fades the moment you scroll past it.
+            function updateOrbVisibility(){
+                var show = window.pageYOffset < (window.innerHeight * 0.55);
+                document.body.classList.toggle('hero-view', show);
+            }
+            window.addEventListener('scroll', updateOrbVisibility, { passive: true });
+            window.addEventListener('resize', updateOrbVisibility);
+            updateOrbVisibility();
         })();
         </script>
     </body>
