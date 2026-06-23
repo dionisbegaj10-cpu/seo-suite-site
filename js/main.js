@@ -146,17 +146,26 @@ $(document).ready(function(){
     var aatitle = document.getElementById('aa-loghi');
     var services = document.getElementById('aa-loghi');
     window.addEventListener('scroll', function (event) {
+        // Scroll-linked hero zoom: the blob starts zooming in the instant you
+        // scroll, instead of waiting for the text section to trigger it.
+        var _viewH = window.innerHeight || document.documentElement.clientHeight;
+        var _y = window.pageYOffset;
+        if (_y < _viewH) {
+            // Zoom completes by ~26% of the first screen — right as the text
+            // section arrives — so it tracks the scroll without a jump.
+            var _hz = Math.max(0, Math.min(1, _y / (_viewH * 0.26)));
+            blob.blobDistance = 1000 * (1 - _hz);
+        }
         if (isInViewport(intro)) {
             blob.morphTo(shapes[0]);
             blob.blobSize = 250;
-            animateDistance(1000, 1);
             animatePerspective(1, 1);
             blob.dotSize = ($(window).width()>480)?1.5:1; //1.5;
         }
         if (isInViewport(text)) {
             blob.morphTo(shapes[1]);
             blob.blobSize = 220;
-            animateDistance(0, 2);
+            blob.blobDistance = 0;
             animatePerspective(3, 2);
             blob.dotSize = ($(window).width()>480)?1:0.8;//1;
         }
