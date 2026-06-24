@@ -664,17 +664,25 @@
         </script>
 
         <script>
-        /* Match the browser chrome (iOS Safari top/bottom bars) to the section
-           colour as you scroll — dark sections → black bars, light sections →
-           white bars — so the whole frame flows with the content. */
+        /* Match the browser chrome (iOS Safari top/bottom bars) to the ACTUAL
+           visible background — the blob's real computed colour — so the bars
+           always agree with what's on screen, even mid-transition. Keying to a
+           class flag was an approximation that could drift out of sync. */
         (function(){
             var meta = document.querySelector('meta[name="theme-color"]');
             if (!meta) { meta = document.createElement('meta'); meta.setAttribute('name','theme-color'); document.head.appendChild(meta); }
-            function sync(){
-                meta.setAttribute('content', document.body.classList.contains('animated') ? '#000000' : '#ffffff');
+            var blob = document.getElementById('blob_container');
+            var last = '', t0 = 0;
+            function tick(ts){
+                if (ts - t0 > 90) {           // ~11fps — cheap, plenty smooth for a bar tint
+                    t0 = ts;
+                    var c = blob ? getComputedStyle(blob).backgroundColor
+                                 : (document.body.classList.contains('animated') ? 'rgb(0,0,0)' : 'rgb(255,255,255)');
+                    if (c && c.indexOf('rgb') === 0 && c !== last) { last = c; meta.setAttribute('content', c); }
+                }
+                requestAnimationFrame(tick);
             }
-            new MutationObserver(sync).observe(document.body, { attributes: true, attributeFilter: ['class'] });
-            sync();
+            requestAnimationFrame(tick);
         })();
         </script>
     </body>
