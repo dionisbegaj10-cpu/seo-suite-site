@@ -495,12 +495,13 @@
         <div id="service-panel-backdrop"></div>
         <style>
         #service-panel {
-            position: fixed; top: 0; right: -100%; width: 100%; height: 100%;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #fff; z-index: 9000; box-sizing: border-box;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transition: right 0.42s cubic-bezier(0.22,1,0.36,1);
+            transform: translateX(100%); visibility: hidden;
+            transition: transform 0.42s cubic-bezier(0.22,1,0.36,1), visibility 0s linear 0.42s;
         }
-        #service-panel.open { right: 0; }
+        #service-panel.open { transform: translateX(0); visibility: visible; transition: transform 0.42s cubic-bezier(0.22,1,0.36,1), visibility 0s; }
         #service-panel-inner { width: min(600px, 88vw); }
         #service-panel-close {
             position: absolute; top: 28px; right: 28px; background: none; border: none;
