@@ -22,7 +22,7 @@
         <link rel="manifest" href="img/site.webmanifest">
         <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#5bbad5">
         <meta name="msapplication-TileColor" content="#da532c">
-        <meta name="theme-color" content="#ffffff">
+        <meta name="theme-color" content="#000000">
         <meta property="og:type" content="website" />
         <meta property="og:title" content="SEO Suite — Digital Creative Studio" />
         <meta property="og:image" content="img/800x418.jpg" />
@@ -660,6 +660,21 @@
             window.addEventListener('scroll', updateOrbVisibility, { passive: true });
             window.addEventListener('resize', updateOrbVisibility);
             updateOrbVisibility();
+        })();
+        </script>
+
+        <script>
+        /* Match the browser chrome (iOS Safari top/bottom bars) to the section
+           colour as you scroll — dark sections → black bars, light sections →
+           white bars — so the whole frame flows with the content. */
+        (function(){
+            var meta = document.querySelector('meta[name="theme-color"]');
+            if (!meta) { meta = document.createElement('meta'); meta.setAttribute('name','theme-color'); document.head.appendChild(meta); }
+            function sync(){
+                meta.setAttribute('content', document.body.classList.contains('animated') ? '#000000' : '#ffffff');
+            }
+            new MutationObserver(sync).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+            sync();
         })();
         </script>
     </body>
