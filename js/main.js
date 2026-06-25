@@ -34,9 +34,9 @@ var blob_settings = {
         MOUSE_SENSITIVITY: 1,
         INERTIAL_TIME: 4,
         INITIAL_SHAPE: {
-            wave1: {amplitude: 76.923, frequency: 0.879, phase: 0},
-            wave2: {amplitude: 60, frequency: 0.165, phase: 0},
-            wave3: {amplitude: 50, frequency: 0, phase: 0}
+            wave1: {amplitude: 200, frequency: 7.692, phase: 6.283},
+            wave2: {amplitude: 200, frequency: 7.912, phase: 6.283},
+            wave3: {amplitude: 200, frequency: 10, phase: 6.283}
         },
         USE_WAVE_MOTION: true,
         USE_WAVE_SWING: true,
@@ -218,7 +218,7 @@ $(document).ready(function(){
             $("#text1").addClass("animated");    
         }
         if (isInViewport(collaborations)) {
-            $("#collaborations, .customer-clients").addClass("animated");
+            $("#collaborations, .customer-clients, #explore-label").addClass("animated");
         }
         if (isInViewport(title1) || isInViewport(ftitle) || isInViewport(intro)) {
             $("#blob_container").addClass("animated");

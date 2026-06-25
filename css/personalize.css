@@ -51,9 +51,12 @@ body.at-top #mytopnav a.brand-logo { opacity: 1; }
     text-transform: uppercase;
     color: rgba(0,0,0,0.45);
     margin: 0 0 24px;
-    transition: color .25s ease;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: transform 0.3s linear 0.3s, opacity 0.3s linear 0.3s, color .25s ease;
 }
 body.animated #explore-label { color: rgba(255,255,255,0.55); }
+#explore-label.animated { opacity: 1; transform: translateY(0); }
 
 /* --- Service tiles (were the client-logo grid) --- */
 .customer-clients li {
