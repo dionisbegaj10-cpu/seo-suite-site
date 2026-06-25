@@ -115,8 +115,6 @@ body.animated .customer-clients li .integration:hover { border-color: rgba(255, 
     visibility: hidden;
     transition: transform 0.55s cubic-bezier(0.22,1,0.36,1), visibility 0s linear 0.55s;
     display: flex;
-    align-items: center;
-    justify-content: center;
 }
 #contact-panel.open {
     transform: translateY(0);
@@ -126,12 +124,22 @@ body.animated .customer-clients li .integration:hover { border-color: rgba(255, 
 #contact-panel-backdrop { display: none; position: fixed; inset: 0; z-index: 9999; }
 #contact-panel-backdrop.open { display: block; }
 #contact-panel-close {
-    position: absolute; top: 28px; right: 28px;
+    position: fixed; top: 28px; right: 28px; z-index: 2;
+    top: max(28px, env(safe-area-inset-top, 0px) + 12px);
     background: none; border: none; font-size: 32px; line-height: 1;
     color: #fff; cursor: pointer; opacity: 0.6; transition: opacity 0.2s;
 }
 #contact-panel-close:hover { opacity: 1; }
-#contact-panel-inner { width: min(560px, 88vw); padding: 80px 0 60px; }
+/* Centre with margin:auto (not align-items:center) so the heading is never
+   pushed above the scrollable top when the form is taller than the screen.
+   Extra top/bottom padding clears the iOS address bar and home indicator. */
+#contact-panel-inner {
+    width: min(560px, 88vw);
+    margin: auto;
+    padding: 88px 0 56px;
+    padding-top: max(88px, env(safe-area-inset-top, 0px) + 64px);
+    padding-bottom: max(56px, env(safe-area-inset-bottom, 0px) + 40px);
+}
 #contact-panel-title {
     font-family: 'Grumpy 24', Georgia, serif;
     font-size: clamp(2.4rem, 7vw, 4rem);
