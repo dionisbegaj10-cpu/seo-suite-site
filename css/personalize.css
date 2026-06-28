@@ -69,7 +69,7 @@ body.animated #explore-label { color: rgba(255,255,255,0.55); }
     align-items: center;
     justify-content: center;
     text-align: center;
-    width: 100%;
+    width: calc(100% - 14px);
     min-height: 130px;
     margin: 7px;
     padding: 14px 10px;
