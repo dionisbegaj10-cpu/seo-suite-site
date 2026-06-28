@@ -592,11 +592,7 @@
                 });
             });
 
-            function handleSend(e){
-                e.preventDefault();
-                var name  = document.getElementById('cpf-name').value.trim();
-                var email = document.getElementById('cpf-email').value.trim();
-                if (!name || !email) { alert('Please enter your name and email.'); return; }
+            function showSuccessAnimation(){
                 var btn    = document.getElementById('cpf-submit');
                 var ripple = document.getElementById('send-ripple');
                 var br     = btn.getBoundingClientRect();
@@ -623,6 +619,33 @@
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                     };
                 }, 680);
+            }
+            function handleSend(e){
+                e.preventDefault();
+                var name  = document.getElementById('cpf-name').value.trim();
+                var email = document.getElementById('cpf-email').value.trim();
+                if (!name || !email) { alert('Please enter your name and email.'); return; }
+                var btn = document.getElementById('cpf-submit');
+                btn.disabled = true; btn.textContent = 'Sending…';
+                fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({
+                        access_key: 'e5efcbcd-2157-432c-9d6a-d87cc2284a5e',
+                        subject: 'New enquiry from seosuite.studio',
+                        name: name + ' ' + document.getElementById('cpf-lastname').value.trim(),
+                        email: email,
+                        phone: document.getElementById('cpf-phone').value.trim(),
+                        interest: document.getElementById('cpf-interest').value
+                    })
+                }).then(function(r){ return r.json(); }).then(function(data){
+                    btn.disabled = false; btn.innerHTML = 'Send &rarr;';
+                    if (data.success) { showSuccessAnimation(); }
+                    else { alert('Something went wrong. Please try again.'); }
+                }).catch(function(){
+                    btn.disabled = false; btn.innerHTML = 'Send &rarr;';
+                    alert('Network error. Please check your connection and try again.');
+                });
             }
             var _sendFired = false;
             function onceSend(e){ e.preventDefault(); if(_sendFired) return; _sendFired = true; setTimeout(function(){ _sendFired = false; }, 2000); handleSend(e); }
