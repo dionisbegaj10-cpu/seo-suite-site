@@ -58,6 +58,10 @@ var isInViewport = function (elem) {
         bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
 };
+// True once the element has entered or scrolled past the top of the viewport.
+var hasPassed = function (elem) {
+    return elem.getBoundingClientRect().top <= (window.innerHeight || document.documentElement.clientHeight);
+};
 var inter;
 
 var intDistance, intPerspective;
@@ -214,10 +218,10 @@ $(document).ready(function(){
         }else{
             $("body").removeClass("animated");
         }
-        if (isInViewport(text)) {
-            $("#text1").addClass("animated");    
+        if (hasPassed(text)) {
+            $("#text1").addClass("animated");
         }
-        if (isInViewport(collaborations)) {
+        if (hasPassed(collaborations)) {
             $("#collaborations, .customer-clients, #explore-label").addClass("animated");
         }
         if (isInViewport(title1) || isInViewport(ftitle) || isInViewport(intro)) {
@@ -227,10 +231,10 @@ $(document).ready(function(){
             $("#blob_container").removeClass("animated");
             $("body").removeClass("animated");
         }
-        if (isInViewport(ftitle)) {
+        if (hasPassed(ftitle)) {
             $("#ftitle, .footer-box-center, #address, .footer-box-right").addClass("animated");
         }
-        if (isInViewport(aatitle)) {
+        if (hasPassed(aatitle)) {
             $("#aa-title, #aa-loghi").addClass("animated");
             $("#award-text").addClass("animated").animate({"top":"0"},1000, function(){
                 $("body, body #mytopnav img, body .logo_placeholder img").css("transition-delay", "0s, 0s");
@@ -238,7 +242,7 @@ $(document).ready(function(){
 
             animateNumbers();
         }
-        if (isInViewport(service)) {
+        if (hasPassed(service)) {
             $("#services, .work-1, .work-2, .work-3, .work-4, .work-4, #social-media, #branding, #web-design, #advertising").addClass("animated");
         }
     }, false);
