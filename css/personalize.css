@@ -103,6 +103,75 @@ body.animated .customer-clients li .integration:hover { border-color: rgba(255, 
     .customer-clients li:first-child { width: 100% !important; }
 }
 
+/* --- Free website analysis CTA section --- */
+#free-analysis-section {
+    padding: 80px 0 60px;
+    text-align: center;
+}
+#free-analysis-label {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.38);
+    margin: 0 0 28px;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.35s ease 0.1s, transform 0.35s ease 0.1s, color 0.25s ease;
+}
+body.animated #free-analysis-label { color: rgba(255,255,255,0.38); }
+#free-analysis-section.animated #free-analysis-label { opacity: 1; transform: translateY(0); }
+
+#free-analysis-title {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    line-height: 1.05;
+    color: #1c1c1c;
+    margin: 0 0 28px;
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.45s ease 0.2s, transform 0.45s ease 0.2s, color 0.25s ease;
+}
+#free-analysis-title span { display: inline; }
+body.animated #free-analysis-title { color: #ffffff; }
+#free-analysis-section.animated #free-analysis-title { opacity: 1; transform: translateY(0); }
+
+#free-analysis-sub {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    color: rgba(0,0,0,0.5);
+    max-width: 420px;
+    margin: 0 auto 40px;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.4s ease 0.32s, transform 0.4s ease 0.32s, color 0.25s ease;
+}
+body.animated #free-analysis-sub { color: rgba(255,255,255,0.5); }
+#free-analysis-section.animated #free-analysis-sub { opacity: 1; transform: translateY(0); }
+
+#free-analysis-cta {
+    display: inline-block;
+    background: #1c1c1c;
+    color: #ffffff;
+    border: none;
+    border-radius: 100px;
+    padding: 18px 44px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.4s ease 0.44s, transform 0.4s ease 0.44s, background 0.2s ease, color 0.2s ease;
+}
+body.animated #free-analysis-cta { background: #ffffff; color: #1c1c1c; }
+#free-analysis-section.animated #free-analysis-cta { opacity: 1; transform: translateY(0); }
+#free-analysis-cta:hover { transform: translateY(-3px) !important; opacity: 0.88 !important; }
+
 /* --- Contact slide-up panel --- */
 #contact-panel {
     position: fixed;

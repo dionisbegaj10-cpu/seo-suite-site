@@ -141,6 +141,7 @@ $(document).ready(function(){
     $('body').addClass('animated');
     blob = new BlobAnimation("blob_container", blob_settings);
 
+    var freeAnalysis = document.getElementById('free-analysis-section');
     var service = document.getElementById('delegato-testo-4');
     var collaborations = document.getElementById('delegato-testo-2');
     var intro = document.getElementById('intro');
@@ -220,6 +221,9 @@ $(document).ready(function(){
         }
         if (hasPassed(text)) {
             $("#text1").addClass("animated");
+        }
+        if (freeAnalysis && hasPassed(freeAnalysis)) {
+            $("#free-analysis-section").addClass("animated");
         }
         if (hasPassed(collaborations)) {
             $("#collaborations, .customer-clients, #explore-label").addClass("animated");
