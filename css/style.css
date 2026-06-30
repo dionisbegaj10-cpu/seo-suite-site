@@ -354,6 +354,10 @@ p {
     position: relative;
     white-space: normal;
     display:inline-block;
+    font-family: 'Grumpy 24', serif;
+    font-size: 3em;
+    margin-top: 0;
+    margin-bottom: 0;
     /*width: min-content;*/
 }
 #ftitle:after{
