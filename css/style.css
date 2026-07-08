@@ -856,92 +856,60 @@ iframe.animated{
 }
 
 /* ── Blog teaser section ── */
-#blog-teaser .box {
-    padding-top: 80px;
-    padding-bottom: 80px;
-}
-.blog-teaser-inner {
-    display: flex;
-    gap: 60px;
-    align-items: flex-start;
-}
-.blog-teaser-left {
-    flex: 1;
-    min-width: 0;
-}
-.blog-teaser-right {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
 .blog-teaser-label {
-    font-family: 'Grumpy 24', serif;
     font-size: 11px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #555;
+    color: #888;
     margin: 0 0 20px;
 }
 .blog-teaser-heading {
     font-family: 'Grumpy 24', serif;
     font-size: 36px;
-    color: #fff;
     font-weight: 400;
     line-height: 1.15;
-    margin: 0 0 24px;
-}
-.blog-teaser-sub {
-    color: #666;
-    font-size: 15px;
-    line-height: 1.7;
     margin: 0 0 36px;
-    max-width: 380px;
+}
+.blog-teaser-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 36px;
+    border-top: 1px solid rgba(0,0,0,0.12);
+}
+.blog-teaser-list li {
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+    padding: 16px 0;
+}
+.blog-teaser-list li a {
+    font-size: 16px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: opacity 0.2s;
+}
+.blog-teaser-list li a:hover {
+    opacity: 0.6;
+}
+.blog-teaser-tag {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid currentColor;
+    border-radius: 20px;
+    padding: 3px 10px;
+    opacity: 0.5;
+    flex-shrink: 0;
 }
 .blog-teaser-cta {
     font-family: 'Grumpy 24', serif;
     font-size: 16px;
-    color: #fff;
     text-decoration: none;
-    border-bottom: 1px solid #444;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
     padding-bottom: 4px;
     transition: border-color 0.3s;
+    display: inline-block;
 }
 .blog-teaser-cta:hover {
-    border-color: #fff;
-}
-.blog-card {
-    border: 1px solid #1f1f1f;
-    border-radius: 8px;
-    padding: 20px 22px;
-    background: #0a0a0a;
-    transition: border-color 0.3s;
-    cursor: pointer;
-}
-.blog-card:hover {
-    border-color: #333;
-}
-.blog-card-tag {
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #555;
-    border: 1px solid #222;
-    border-radius: 20px;
-    padding: 3px 10px;
-    display: inline-block;
-    margin-bottom: 12px;
-}
-.blog-card-title {
-    font-family: 'Grumpy 24', serif;
-    font-size: 16px;
-    color: #fff;
-    margin: 0 0 8px;
-    line-height: 1.3;
-}
-.blog-card-read {
-    font-size: 11px;
-    color: #444;
-    margin: 0;
+    border-color: currentColor;
 }
