@@ -51,11 +51,16 @@ var blob_settings = {
     }
 var isInViewport = function (elem) {
     var bounding = elem.getBoundingClientRect();
-    var vh = window.innerHeight || document.documentElement.clientHeight;
-    return bounding.top < vh && bounding.bottom > 0;
+    return (
+        bounding.top >= 0 &&
+        bounding.left >= 0 &&
+        bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
 };
+// True once the element has entered or scrolled past the top of the viewport.
 var hasPassed = function (elem) {
-    return elem.getBoundingClientRect().top <= (window.innerHeight || document.documentElement.clientHeight) * 0.92;
+    return elem.getBoundingClientRect().top <= (window.innerHeight || document.documentElement.clientHeight);
 };
 var inter;
 
@@ -208,46 +213,43 @@ $(document).ready(function(){
             });
 	}
         */
-        /* Background + blob toggle: black in hero/awards/footer, white in between */
-        if (isInViewport(title1) || isInViewport(ftitle) || isInViewport(intro)) {
+        /* Scroll Control */
+        if (isInViewport(intro)) {
             $("body").addClass("animated");
-            $("#blob_container").addClass("animated");
-        } else {
+        }else{
             $("body").removeClass("animated");
+        }
+        if (hasPassed(text)) {
+            $("#text1").addClass("animated");
+        }
+        if (freeAnalysis && hasPassed(freeAnalysis)) {
+            $("#free-analysis-section").addClass("animated");
+        }
+        if (hasPassed(collaborations)) {
+            $("#collaborations, .customer-clients, #explore-label").addClass("animated");
+        }
+        if (isInViewport(title1) || isInViewport(ftitle) || isInViewport(intro)) {
+            $("#blob_container").addClass("animated");
+            $("body").addClass("animated");
+        }else{
             $("#blob_container").removeClass("animated");
+            $("body").removeClass("animated");
+        }
+        if (hasPassed(ftitle)) {
+            $("#ftitle, .footer-box-center, #address, .footer-box-right").addClass("animated");
+        }
+        if (hasPassed(aatitle)) {
+            $("#aa-title, #aa-loghi").addClass("animated");
+            $("#award-text").addClass("animated").animate({"top":"0"},1000, function(){
+                $("body, body #mytopnav img, body .logo_placeholder img").css("transition-delay", "0s, 0s");
+            });
+
+            animateNumbers();
+        }
+        if (hasPassed(service)) {
+            $("#services, .work-1, .work-2, .work-3, .work-4, .work-4, #social-media, #branding, #web-design, #advertising").addClass("animated");
         }
     }, false);
-
-    /* IntersectionObserver — reliable reveal on any scroll speed / Safari momentum */
-    var revealObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (!entry.isIntersecting) return;
-            var id = entry.target.id;
-            if (id === 'delegato-testo-1') {
-                $("#text1").addClass("animated");
-            } else if (id === 'delegato-testo-2') {
-                $("#collaborations, .customer-clients, #explore-label").addClass("animated");
-            } else if (id === 'delegato-testo-3') {
-                $("#aa-title, #aa-loghi").addClass("animated");
-                $("#award-text").addClass("animated").animate({"top":"0"}, 800, function(){
-                    $("body, body #mytopnav img, body .logo_placeholder img").css("transition-delay", "0s, 0s");
-                });
-                animateNumbers();
-            } else if (id === 'delegato-testo-4') {
-                $("#services, .work-1, .work-2, .work-3, .work-4, #social-media, #branding, #web-design, #advertising").addClass("animated");
-            } else if (id === 'delegato-testo-5') {
-                $("#ftitle, .footer-box-center, #address, .footer-box-right").addClass("animated");
-            } else if (id === 'free-analysis-section') {
-                $("#free-analysis-section").addClass("animated");
-            }
-            revealObserver.unobserve(entry.target);
-        });
-    }, { threshold: 0.1, rootMargin: '0px 0px -5% 0px' });
-
-    [text, collaborations, title1, service, ftitle].forEach(function(el) {
-        if (el) revealObserver.observe(el);
-    });
-    if (freeAnalysis) revealObserver.observe(freeAnalysis);
     //setInterval(function(){jsband.ColorTween.run(blob, "dotColor", "rgb("+255*Math.random()+","+255*Math.random()+","+255*Math.random()+")", jsband.Ease.lin(), 1000)}, 1000)
 });
 $(document).ready(function(){
