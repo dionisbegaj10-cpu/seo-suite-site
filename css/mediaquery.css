@@ -237,5 +237,18 @@
 @media (max-width: 320px){
     h1{
         font-size: 2.3em;
-    }  
+    }
+}
+
+@media (max-width: 768px){
+    .blog-teaser-inner {
+        flex-direction: column;
+        gap: 32px;
+    }
+    .blog-teaser-heading {
+        font-size: 28px;
+    }
+    .blog-teaser-sub {
+        max-width: 100%;
+    }
 }
