@@ -250,6 +250,20 @@ $(document).ready(function(){
             $("#services, .work-1, .work-2, .work-3, .work-4, .work-4, #social-media, #branding, #web-design, #advertising").addClass("animated");
         }
     }, false);
+
+    // iOS Safari doesn't fire scroll during momentum — fire a check on touchend too
+    window.addEventListener('touchend', function() {
+        setTimeout(function() {
+            window.dispatchEvent(new Event('scroll'));
+        }, 100);
+        setTimeout(function() {
+            window.dispatchEvent(new Event('scroll'));
+        }, 400);
+        setTimeout(function() {
+            window.dispatchEvent(new Event('scroll'));
+        }, 800);
+    }, { passive: true });
+
     //setInterval(function(){jsband.ColorTween.run(blob, "dotColor", "rgb("+255*Math.random()+","+255*Math.random()+","+255*Math.random()+")", jsband.Ease.lin(), 1000)}, 1000)
 });
 $(document).ready(function(){
