@@ -208,18 +208,11 @@ $(document).ready(function(){
             });
 	}
         */
-        /* Scroll Control — blob visibility only (IntersectionObserver handles the rest) */
+        /* Scroll Control — blob visibility only (IntersectionObserver handles text reveals) */
         if (isInViewport(title1) || isInViewport(ftitle) || isInViewport(intro)) {
             $("#blob_container").addClass("animated");
-            $("body").addClass("animated");
         } else {
             $("#blob_container").removeClass("animated");
-            $("body").removeClass("animated");
-        }
-        if (isInViewport(intro)) {
-            $("body").addClass("animated");
-        } else {
-            $("body").removeClass("animated");
         }
     }, false);
 
