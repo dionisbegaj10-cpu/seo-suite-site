@@ -642,20 +642,24 @@
             // The blob container already provides the black/white backdrop, so
             // the body can be transparent.
             document.body.style.backgroundColor = 'transparent';
-            var last = '', t0 = 0;
-            function tick(ts){
-                if (ts - t0 > 90) {           // ~11fps — cheap, plenty smooth for a bar tint
-                    t0 = ts;
-                    var c = blob ? getComputedStyle(blob).backgroundColor
-                                 : (document.body.classList.contains('animated') ? 'rgb(0,0,0)' : 'rgb(255,255,255)');
-                    if (c && c.indexOf('rgb') === 0 && c !== last) {
-                        last = c;
-                        meta.setAttribute('content', c);
-                        // iOS Safari tints its top/bottom bars from the <html>
-                        // background, not just theme-color — keep it in sync too.
-                        // (Only <html>: painting <body> covers the sphere canvas.)
-                        document.documentElement.style.backgroundColor = c;
-                    }
+            var last = '';
+            function tick(){
+                // Snap to the section's TARGET colour (black/white) instead of
+                // sampling the blob's mid-transition greys — feeding Safari a
+                // stream of intermediate colours made the bars flicker. One
+                // change per section flip; Safari animates the bar itself.
+                var cls = document.body.classList;
+                var c = cls.contains('body_blu') ? '#3b5998'
+                      : cls.contains('body_linkedin') ? '#2977c9'
+                      : cls.contains('animated') ? '#000000' : '#ffffff';
+                if (c !== last) {
+                    last = c;
+                    meta.setAttribute('content', c);
+                    // iOS Safari tints its top/bottom bars from the <html>
+                    // background, not just theme-color — keep it in sync too.
+                    // (Only <html>: painting <body> covers the sphere canvas.)
+                    document.documentElement.style.backgroundColor = c;
+                    document.documentElement.style.transition = 'background-color 0.3s linear';
                 }
                 requestAnimationFrame(tick);
             }
