@@ -208,10 +208,12 @@ $(document).ready(function(){
             });
 	}
         */
-        /* Scroll Control — blob visibility only (IntersectionObserver handles text reveals) */
+        /* Background + blob toggle: black in hero/awards/footer, white in between */
         if (isInViewport(title1) || isInViewport(ftitle) || isInViewport(intro)) {
+            $("body").addClass("animated");
             $("#blob_container").addClass("animated");
         } else {
+            $("body").removeClass("animated");
             $("#blob_container").removeClass("animated");
         }
     }, false);
