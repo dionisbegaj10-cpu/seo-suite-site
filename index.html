@@ -643,7 +643,14 @@
                     t0 = ts;
                     var c = blob ? getComputedStyle(blob).backgroundColor
                                  : (document.body.classList.contains('animated') ? 'rgb(0,0,0)' : 'rgb(255,255,255)');
-                    if (c && c.indexOf('rgb') === 0 && c !== last) { last = c; meta.setAttribute('content', c); }
+                    if (c && c.indexOf('rgb') === 0 && c !== last) {
+                        last = c;
+                        meta.setAttribute('content', c);
+                        // iOS Safari tints its top/bottom bars from the <html>/<body>
+                        // background, not just theme-color — keep them in sync too.
+                        document.documentElement.style.backgroundColor = c;
+                        document.body.style.backgroundColor = c;
+                    }
                 }
                 requestAnimationFrame(tick);
             }
