@@ -150,90 +150,106 @@ $(document).ready(function(){
     var ftitle = document.getElementById('delegato-testo-5');
     var aatitle = document.getElementById('aa-loghi');
     var services = document.getElementById('aa-loghi');
-    // rAF loop — runs every frame so iOS momentum scroll is never missed
-    var _triggered = { text: false, collaborations: false, aatitle: false, service: false, ftitle: false, freeAnalysis: false };
-    var _isMobile = $(window).width() <= 480;
-    function scrollTick() {
+    window.addEventListener('scroll', function (event) {
+        // Scroll-linked hero zoom: the blob starts zooming in the instant you
+        // scroll, instead of waiting for the text section to trigger it.
         var _viewH = window.innerHeight || document.documentElement.clientHeight;
         var _y = window.pageYOffset;
-
-        // Hero zoom
         if (_y < _viewH) {
+            // Zoom completes by ~26% of the first screen — right as the text
+            // section arrives — so it tracks the scroll without a jump.
             var _hz = Math.max(0, Math.min(1, _y / (_viewH * 0.26)));
             blob.blobDistance = 1000 * (1 - _hz);
         }
-
-        // Blob morph per section
         if (isInViewport(intro)) {
             blob.morphTo(shapes[0]);
             blob.blobSize = 250;
             animatePerspective(1, 1);
-            blob.dotSize = _isMobile ? 1 : 1.5;
+            blob.dotSize = ($(window).width()>480)?1.5:1; //1.5;
         }
         if (isInViewport(text)) {
             blob.morphTo(shapes[1]);
             blob.blobSize = 220;
             blob.blobDistance = 0;
             animatePerspective(3, 2);
-            blob.dotSize = _isMobile ? 0.8 : 1;
+            blob.dotSize = ($(window).width()>480)?1:0.8;//1;
         }
         if (isInViewport(title1)) {
             blob.morphTo(shapes[2]);
             blob.blobSize = 220;
             animateDistance(1000, 3);
             animatePerspective(1, 3);
-            blob.dotSize = _isMobile ? 0.6 : 1.021;
+            blob.dotSize = ($(window).width()>480)?1.021:0.6;//1.021;
         }
         if (isInViewport(ftitle)) {
             blob.morphTo(shapes[3]);
             blob.blobSize = 220;
             animateDistance(1000, 4);
             animatePerspective(1, 4);
-            blob.dotSize = _isMobile ? 0.6 : 1.021;
+            blob.dotSize = ($(window).width()>480)?1.021:0.6;//1.021;
         }
 
-        // Background + blob container toggle
-        if (isInViewport(title1) || isInViewport(ftitle) || isInViewport(intro)) {
+        /*
+        if (isInViewport(intro)) {
+            blob.morphTo(shapes[0]);
+            clearInterval(inter);
+            inter = setInterval(function(){
+                if(blob.perspectiveDistortion >=1){
+                    blob.perspectiveDistortion -=0.1;
+                }else{
+                    clearInterval(inter);
+                }
+            });
+        }
+	if (isInViewport(customers)) {
+            blob.morphTo(shapes[0]);
+            clearInterval(inter);
+            inter = setInterval(function(){
+                if(blob.perspectiveDistortion <=10){
+                    blob.perspectiveDistortion +=0.1;
+                }else{
+                    clearInterval(inter);
+                }
+            });
+	}
+        */
+        /* Scroll Control */
+        if (isInViewport(intro)) {
             $("body").addClass("animated");
-            $("#blob_container").addClass("animated");
-        } else {
+        }else{
             $("body").removeClass("animated");
-            $("#blob_container").removeClass("animated");
         }
-
-        // One-time reveals
-        if (!_triggered.text && hasPassed(text)) {
-            _triggered.text = true;
+        if (hasPassed(text)) {
             $("#text1").addClass("animated");
         }
-        if (!_triggered.collaborations && hasPassed(collaborations)) {
-            _triggered.collaborations = true;
-            $("#collaborations, .customer-clients, #explore-label").addClass("animated");
-        }
-        if (!_triggered.aatitle && hasPassed(aatitle)) {
-            _triggered.aatitle = true;
-            $("#aa-title, #aa-loghi").addClass("animated");
-            $("#award-text").addClass("animated").animate({"top":"0"}, 1000, function(){
-                $("body, body #mytopnav img, body .logo_placeholder img").css("transition-delay", "0s, 0s");
-            });
-            animateNumbers();
-        }
-        if (!_triggered.service && hasPassed(service)) {
-            _triggered.service = true;
-            $("#services, .work-1, .work-2, .work-3, .work-4, #social-media, #branding, #web-design, #advertising").addClass("animated");
-        }
-        if (!_triggered.ftitle && hasPassed(ftitle)) {
-            _triggered.ftitle = true;
-            $("#ftitle, .footer-box-center, #address, .footer-box-right").addClass("animated");
-        }
-        if (!_triggered.freeAnalysis && freeAnalysis && hasPassed(freeAnalysis)) {
-            _triggered.freeAnalysis = true;
+        if (freeAnalysis && hasPassed(freeAnalysis)) {
             $("#free-analysis-section").addClass("animated");
         }
+        if (hasPassed(collaborations)) {
+            $("#collaborations, .customer-clients, #explore-label").addClass("animated");
+        }
+        if (isInViewport(title1) || isInViewport(ftitle) || isInViewport(intro)) {
+            $("#blob_container").addClass("animated");
+            $("body").addClass("animated");
+        }else{
+            $("#blob_container").removeClass("animated");
+            $("body").removeClass("animated");
+        }
+        if (hasPassed(ftitle)) {
+            $("#ftitle, .footer-box-center, #address, .footer-box-right").addClass("animated");
+        }
+        if (hasPassed(aatitle)) {
+            $("#aa-title, #aa-loghi").addClass("animated");
+            $("#award-text").addClass("animated").animate({"top":"0"},1000, function(){
+                $("body, body #mytopnav img, body .logo_placeholder img").css("transition-delay", "0s, 0s");
+            });
 
-        requestAnimationFrame(scrollTick);
-    }
-    requestAnimationFrame(scrollTick);
+            animateNumbers();
+        }
+        if (hasPassed(service)) {
+            $("#services, .work-1, .work-2, .work-3, .work-4, .work-4, #social-media, #branding, #web-design, #advertising").addClass("animated");
+        }
+    }, false);
     //setInterval(function(){jsband.ColorTween.run(blob, "dotColor", "rgb("+255*Math.random()+","+255*Math.random()+","+255*Math.random()+")", jsband.Ease.lin(), 1000)}, 1000)
 });
 $(document).ready(function(){
