@@ -377,7 +377,7 @@ p {
     transform: translateY(15px);
     transition-timing-function: cubic-bezier(.25,.46,.45,.94), cubic-bezier(.25,.46,.45,.94);
     transition-property: transform, opacity;
-    transition-duration: 0.4s, 0.4s;
+    transition-duration: 0.7s, 0.7s;
 }
 
 #social-media li, #branding li, #web-design li, #advertising li {
@@ -386,7 +386,7 @@ p {
     transform: translateX(-15px);
     transition-timing-function: cubic-bezier(.25,.46,.45,.94), cubic-bezier(.25,.46,.45,.94);
     transition-property: transform, opacity;
-    transition-duration: 0.4s, 0.4s;
+    transition-duration: 0.7s, 0.7s;
 }
 
 #text1.animated span, #intro.animated span, #award-text.animated span, #ftitle.animated span {
