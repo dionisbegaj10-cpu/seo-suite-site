@@ -637,6 +637,11 @@
             var meta = document.querySelector('meta[name="theme-color"]');
             if (!meta) { meta = document.createElement('meta'); meta.setAttribute('name','theme-color'); document.head.appendChild(meta); }
             var blob = document.getElementById('blob_container');
+            // Once <html> gets its own background, the body's background stops
+            // propagating to the root and would paint OVER the z-index:-1 sphere.
+            // The blob container already provides the black/white backdrop, so
+            // the body can be transparent.
+            document.body.style.backgroundColor = 'transparent';
             var last = '', t0 = 0;
             function tick(ts){
                 if (ts - t0 > 90) {           // ~11fps — cheap, plenty smooth for a bar tint
