@@ -646,10 +646,10 @@
                     if (c && c.indexOf('rgb') === 0 && c !== last) {
                         last = c;
                         meta.setAttribute('content', c);
-                        // iOS Safari tints its top/bottom bars from the <html>/<body>
-                        // background, not just theme-color — keep them in sync too.
+                        // iOS Safari tints its top/bottom bars from the <html>
+                        // background, not just theme-color — keep it in sync too.
+                        // (Only <html>: painting <body> covers the sphere canvas.)
                         document.documentElement.style.backgroundColor = c;
-                        document.body.style.backgroundColor = c;
                     }
                 }
                 requestAnimationFrame(tick);
