@@ -855,9 +855,6 @@ iframe.animated{
 }
 
 /* ── Blog teaser section ── */
-#blog-teaser {
-    background: #000;
-}
 #blog-teaser .box {
     padding-top: 80px;
     padding-bottom: 80px;
