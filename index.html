@@ -643,15 +643,28 @@
             // the body can be transparent.
             document.body.style.backgroundColor = 'transparent';
             var last = '';
+            document.documentElement.style.transition = 'background-color 0.3s linear';
             function tick(){
-                // Snap to the section's TARGET colour (black/white) instead of
-                // sampling the blob's mid-transition greys — feeding Safari a
-                // stream of intermediate colours made the bars flicker. One
-                // change per section flip; Safari animates the bar itself.
-                var cls = document.body.classList;
-                var c = cls.contains('body_blu') ? '#3b5998'
-                      : cls.contains('body_linkedin') ? '#2977c9'
-                      : cls.contains('animated') ? '#000000' : '#ffffff';
+                // Sample the blob's REAL rendered colour (ground truth for what's
+                // on screen), but snap greys to pure black/white at the halfway
+                // point — intermediate greys made the bars flicker, while the
+                // class flag flipped at the wrong moment in some sections.
+                var c = '';
+                var raw = blob ? getComputedStyle(blob).backgroundColor : '';
+                var m = raw.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+                if (m) {
+                    var r = +m[1], g = +m[2], b = +m[3];
+                    var maxc = Math.max(r, g, b), minc = Math.min(r, g, b);
+                    if (maxc - minc < 30) {
+                        // grey — mid-transition between sections: snap at 50%
+                        c = ((r + g + b) / 3 < 128) ? '#000000' : '#ffffff';
+                    } else {
+                        // saturated (social-hover blues etc.) — use as-is
+                        c = raw;
+                    }
+                } else {
+                    c = document.body.classList.contains('animated') ? '#000000' : '#ffffff';
+                }
                 if (c !== last) {
                     last = c;
                     meta.setAttribute('content', c);
@@ -659,7 +672,6 @@
                     // background, not just theme-color — keep it in sync too.
                     // (Only <html>: painting <body> covers the sphere canvas.)
                     document.documentElement.style.backgroundColor = c;
-                    document.documentElement.style.transition = 'background-color 0.3s linear';
                 }
                 requestAnimationFrame(tick);
             }
