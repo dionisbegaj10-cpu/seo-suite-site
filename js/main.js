@@ -238,7 +238,7 @@ $(document).ready(function(){
         if (hasPassed(ftitle)) {
             $("#ftitle, .footer-box-center, #address, .footer-box-right").addClass("animated");
         }
-        if (hasPassed(aatitle)) {
+        if (hasPassed(aatitle) && !$("#award-text").hasClass("animated")) {
             $("#aa-title, #aa-loghi").addClass("animated");
             $("#award-text").addClass("animated").animate({"top":"0"},1000, function(){
                 $("body, body #mytopnav img, body .logo_placeholder img").css("transition-delay", "0s, 0s");
