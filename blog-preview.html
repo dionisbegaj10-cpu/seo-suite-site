@@ -8,6 +8,14 @@
 <script src="js/libs/jsband-min.js"></script>
 <script src="js/blob-min.js"></script>
 <style>
+@font-face {
+    font-family: 'Grumpy 24';
+    src: url('css/fonts/Grumpy-Black24.woff2') format('woff2'),
+        url('css/fonts/Grumpy-Black24.woff') format('woff'),
+        url('css/fonts/Grumpy-Black24.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
 html, body { background: #000; margin: 0; padding: 0; }
 body { height: 300vh; overflow-x: hidden; cursor: auto; }
 #blob_container {
@@ -16,11 +24,24 @@ body { height: 300vh; overflow-x: hidden; cursor: auto; }
     width: 100vw; height: 100vh;
     background: #000;
 }
+#page-title {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    margin: 0;
+    text-align: center;
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: clamp(2.6rem, 7vw, 5rem);
+    line-height: 1.05;
+    color: #fff;
+}
 </style>
 </head>
 <body>
 
 <div id="blob_container"></div>
+<h1 id="page-title">Learn, Explore<br>&amp; Grow</h1>
 
 <script>
 var shape = { wave1: {amplitude: 200, frequency: 7.692, phase: 6.283}, wave2: {amplitude: 200, frequency: 7.912, phase: 6.283}, wave3: {amplitude: 200, frequency: 10, phase: 6.283} };
