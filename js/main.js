@@ -58,9 +58,10 @@ var isInViewport = function (elem) {
         bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
 };
-// True once the element has entered or scrolled past the top of the viewport.
+// True once the element is within 1.5 viewport heights — reveals start early
+// so fast scrolling never lands on a blank section waiting for its animation.
 var hasPassed = function (elem) {
-    return elem.getBoundingClientRect().top <= (window.innerHeight || document.documentElement.clientHeight);
+    return elem.getBoundingClientRect().top <= (window.innerHeight || document.documentElement.clientHeight) * 1.5;
 };
 var inter;
 
