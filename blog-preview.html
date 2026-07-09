@@ -1,363 +1,625 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog — SEO Suite</title>
-<link href="css/style.css" rel="stylesheet"/>
-<link href="css/mediaquery.css" rel="stylesheet"/>
-<link href="css/personalize.css" rel="stylesheet"/>
-<script src="js/libs/jsband-min.js"></script>
-<script src="js/blob-min.js"></script>
-<style>
-/* ============================================================
-   Blog page — one continuous flow, no boxed/carded sections,
-   matching the homepage's borderless, typography-led feel.
-   ============================================================ */
-body { cursor: auto; overflow-x: hidden; }
-.mainBody { background: #fff; color: #000; }
+    <head>
+        <meta charset="utf-8" />
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-15246QV0WM"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-15246QV0WM');
+        </script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SEO Suite — Digital Creative Studio | SEO, Branding & AI Search</title>
+        <meta name="description" content="SEO Suite is a digital creative and marketing studio — blending strategy, brand, design and technology, and making brands visible to AI search." />
+        <link href="css/style.css" rel="stylesheet"/>
+        <link href="css/mediaquery.css" rel="stylesheet"/>
+        <link href="css/portfolio_style.css" rel="stylesheet"/>
+        <link href="css/personalize.css" rel="stylesheet"/>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <script src="js/libs/anime.min.js"></script>
+        <script src="js/libs/jsband-min.js"></script>
+        <script src="js/blob-min.js"></script>
+        <script src="js/main.js"></script>
+        <script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
 
-/* --- Nav: fixed + transparent, exactly like the homepage's --- */
-.blog-nav {
-    position: fixed;
-    top: 24px; left: 0; right: 0;
-    z-index: 100;
-    padding: 0 6%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    pointer-events: none;
-}
-.blog-nav a {
-    pointer-events: auto;
-    display: inline-block;
-    background: rgba(28,28,28,0.85);
-    backdrop-filter: blur(6px);
-    border-radius: 100px;
-    padding: 10px 20px;
-}
-.blog-nav a.brand-logo {
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 900;
-    font-size: 12px;
-    letter-spacing: 2.5px;
-    color: #fff;
-    text-decoration: none;
-}
-.blog-nav .back-link {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 11px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.75);
-    text-decoration: none;
-    transition: color .2s ease;
-}
-.blog-nav .back-link:hover { color: #fff; }
+        <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+        <link rel="manifest" href="img/site.webmanifest">
+        <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#000000">
+        <meta name="theme-color" content="#000000">
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="SEO Suite — Digital Creative Studio" />
+        <meta property="og:image" content="https://seosuite.studio/img/seosuite-digital-creative-studio.jpg" />
+        <meta property="og:url" content="https://seosuite.studio/" />
+        <meta property="og:site_name" content="SEO Suite" />
+        <meta property="og:description" content="A digital creative and marketing studio — strategy, brand, design, technology, and AI search visibility." />
+        <meta name="twitter:title" content="SEO Suite — Digital Creative Studio">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:description" content="A digital creative and marketing studio — strategy, brand, design, technology, and AI search visibility.">
+        <meta name="twitter:image" content="https://seosuite.studio/img/seosuite-digital-creative-studio.jpg">
+        <link rel="canonical" href="https://seosuite.studio/" />
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          "name": "SEO Suite",
+          "description": "A digital creative and marketing studio — strategy, brand, design, technology, and AI search visibility.",
+          "url": "https://seosuite.studio/",
+          "email": "contact@seosuite.studio",
+          "areaServed": "Worldwide",
+          "serviceType": ["SEO", "Branding", "Web Design", "Digital Marketing", "AI Search Visibility"],
+          "sameAs": ["https://www.instagram.com/ssuite.studio"]
+        }
+        </script>
+        <!-- Analytics/Ads/Tag Manager removed. Conversion handlers stubbed as no-ops. -->
+        <script>
+            function gtag_report_conversion_sap(url){ if (typeof url !== 'undefined') window.location = url; return false; }
+            function gtag_report_conversion_eb(url){ if (typeof url !== 'undefined') window.location = url; return false; }
+        </script>
 
-/* --- Hero: full-bleed sphere, no boxed edge — bleeds straight into the
-   list below via the same black tone, just like the homepage's hero
-   handing off to the next section. --- */
-.blog-hero {
-    position: relative;
-    background: #000;
-    color: #fff;
-    text-align: center;
-    padding: 200px 6% 140px;
-    overflow: hidden;
-}
-.blog-hero #blob_container {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 0;
-    background-color: transparent !important;
-}
-.blog-hero .hero-content { position: relative; z-index: 1; }
-.blog-hero .blog-label {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-    margin: 0 0 24px;
-}
-.blog-hero h1 {
-    font-family: 'Grumpy 24', Georgia, serif;
-    font-size: clamp(2.6rem, 7vw, 5rem);
-    line-height: 1.05;
-    margin: 0 0 24px;
-    display: block;
-}
-.blog-hero p {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
-    line-height: 1.75;
-    color: rgba(255,255,255,0.6);
-    max-width: 480px;
-    margin: 0 auto;
-}
+    </head>
+    <body class="mainBody" id="start">
+    <div class="button-navigator">
+        
+        <!-- Tracking pixels removed for the SEO Suite clone. -->
+        <script>function fbq(){ /* no-op */ }</script>
 
-/* --- Filters: sit directly in the white flow, no separating band --- */
-.blog-filters {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    padding: 70px 6% 0;
-}
-.blog-filters button {
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 700;
-    font-size: 12px;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    padding: 10px 20px;
-    border-radius: 100px;
-    border: 1px solid rgba(0,0,0,0.2);
-    background: transparent;
-    color: rgba(0,0,0,0.55);
-    cursor: pointer;
-    transition: all .2s ease;
-}
-.blog-filters button.active,
-.blog-filters button:hover {
-    background: #1c1c1c;
-    border-color: #1c1c1c;
-    color: #fff;
-}
 
-/* --- Article list: flowing, borderless, hairline dividers only —
-   reads like the homepage's typographic sections, not stacked cards. --- */
-.blog-list {
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 90px 6% 140px;
-}
-.blog-entry {
-    display: block;
-    text-decoration: none;
-    color: #1c1c1c;
-    padding: 44px 0;
-    border-top: 1px solid rgba(0,0,0,0.1);
-    transition: opacity .2s ease;
-}
-.blog-list .blog-entry:first-child { border-top: none; padding-top: 0; }
-.blog-entry:hover { opacity: 0.55; }
-.blog-entry .cat {
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 700;
-    font-size: 11px;
-    letter-spacing: 1.4px;
-    text-transform: uppercase;
-    color: rgba(0,0,0,0.4);
-    margin: 0 0 14px;
-}
-.blog-entry h3 {
-    font-family: 'Grumpy 24', Georgia, serif;
-    font-weight: normal;
-    font-size: clamp(1.6rem, 3vw, 2.3rem);
-    line-height: 1.15;
-    margin: 0 0 16px;
-    max-width: 620px;
-}
-.blog-entry p {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
-    line-height: 1.7;
-    color: rgba(0,0,0,0.55);
-    max-width: 560px;
-    margin: 0 0 16px;
-}
-.blog-entry .meta {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    letter-spacing: .5px;
-    color: rgba(0,0,0,0.4);
-}
-.blog-entry.featured h3 { font-size: clamp(2rem, 4vw, 3rem); }
-.blog-entry.featured p { font-size: 16px; }
+        <div id="blob_container" style="position:fixed; width: 100vw; height: 100vh;top:0;left:0; background: white; z-index:-1;"></div>
+        
+        <section>    
+        <div class="container">
+            <div class="box box-header">
+                <h1 id="intro">
+                    <i class="no-wrap">
+                        <span>d</span><span>i</span><span>g</span><span>i</span><span>t</span><span>a</span><span>l</span>
+                    </i>
+                    <i class="no-wrap">
+                        <span>c</span><span>r</span><span>e</span><span>a</span><span>t</span><span>i</span><span>v</span><span>e</span>
+                    </i>
+                    <i class="no-wrap">
+                        <span>s</span><span>t</span><span>u</span><span>d</span><span>i</span><span>o</span>
+                    </i>
+                </h1>
+            </div>
+        </div>
+        </section>
+        <section>
+        <div class="container">
+            <span class="delegato" id="delegato-testo-1"></span>
+            <div class="box box-pres" id="text1">
+                <p>
+                    <span>SEO</span>
+                    <span>Suite</span>
+                    <span>&mdash;</span>
+                    <span>a</span>
+                    <span>digital</span>
+                    <span>creative</span>
+                    <span>and</span>
+                    <span>marketing</span>
+                    <span>studio,</span>
+                    <span>fusing</span>
+                    <span>strategy,</span>
+                    <span>brand,</span>
+                    <span>design</span>
+                    <span>and</span>
+                    <span>technology</span>
+                    <span>into</span>
+                    <span>experiences</span>
+                    <span>people</span>
+                    <span>remember.</span>
+                </p>
+                <p>
+                    <span>From</span>
+                    <span>concept</span>
+                    <span>to</span>
+                    <span>launch,</span>
+                    <span>we</span>
+                    <span>craft</span>
+                    <span>websites,</span>
+                    <span>campaigns</span>
+                    <span>and</span>
+                    <span>content</span>
+                    <span>engineered</span>
+                    <span>for</span>
+                    <span>growth</span>
+                    <span>&mdash;</span>
+                    <span>turning</span>
+                    <span>attention</span>
+                    <span>into</span>
+                    <span>measurable</span>
+                    <span>results.</span>
+                </p>
+                <p>
+                    <span>Your</span>
+                    <span>brand,</span>
+                    <span>visible</span>
+                    <span>to</span>
+                    <span>AI</span>
+                    <span>&mdash;</span>
+                    <span>so</span>
+                    <span>when</span>
+                    <span>people</span>
+                    <span>ask</span>
+                    <span>ChatGPT,</span>
+                    <span>Claude,</span>
+                    <span>Perplexity</span>
+                    <span>or</span>
+                    <span>Copilot</span>
+                    <span>for</span>
+                    <span>a</span>
+                    <span>recommendation,</span>
+                    <span>you</span>
+                    <span>show</span>
+                    <span>up.</span>
+                </p>
+            </div>
+        </div>
+        </section>    
+        <section>
+        <div class="container">
+          <span class="delegato" id="delegato-testo-2"></span>
+            <div class="box box-customers">
+                <h2 id="customers" style="display:none;"><span id="collaborations"></span></h2>
+                <p id="explore-label">Tap to explore our services</p>
+                <ul class="customer customer-clients">
+                    <li><span class="integration">Performance</span></li>
+                    <li><span class="integration">Web &amp;<br>Design</span></li>
+                    <li><span class="integration">AI Suite</span></li>
+                    <li><span class="integration">Growth</span></li>
+                    <li><span class="integration">Branding</span></li>
+                </ul>
+            </div>
+        </div>
+        </section>
+        <!-- Free website analysis CTA -->
+        <section>
+        <div class="container">
+            <div class="box" id="free-analysis-section">
+                <p id="free-analysis-label">Limited spots available</p>
+                <h2 id="free-analysis-title">
+                    <span>Get your</span><br>
+                    <span>website</span><br>
+                    <span>analysis.</span>
+                </h2>
+                <p id="free-analysis-sub">We review your site, SEO health, and AI visibility — then send you a detailed report. No pitch, no strings.</p>
+                <button id="free-analysis-cta" onclick="window.__openContact && window.__openContact()">Request your analysis &rarr;</button>
+            </div>
+        </div>
+        </section>
 
-/* --- CTA: continues the black tone straight from the list, same
-   pattern as the homepage's analysis section. --- */
-.blog-cta {
-    background: #000;
-    color: #fff;
-    text-align: center;
-    padding: 130px 6%;
-}
-.blog-cta p.label {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.38);
-    margin: 0 0 24px;
-}
-.blog-cta h2 {
-    font-family: 'Grumpy 24', Georgia, serif;
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    margin: 0 0 24px;
-    display: block;
-}
-.blog-cta .btn {
-    display: inline-block;
-    margin-top: 20px;
-    background: #fff;
-    color: #1c1c1c;
-    border: none;
-    border-radius: 100px;
-    padding: 18px 44px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 900;
-    font-size: 13px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: transform .25s ease, opacity .25s ease;
-}
-.blog-cta .btn:hover { transform: translateY(-3px); opacity: 0.88; }
-
-/* --- Footer: same black, no divider — one uninterrupted dark run
-   from the CTA through to the bottom, like the homepage footer. --- */
-.blog-footer {
-    background: #000;
-    color: #fff;
-    padding: 0 6% 60px;
-}
-.blog-footer .row {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 24px;
-    max-width: 1160px;
-    margin: 0 auto;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    color: rgba(255,255,255,0.5);
-}
-.blog-footer a { color: rgba(255,255,255,0.8); text-decoration: none; }
-
-@media (max-width: 700px) {
-    .blog-hero { padding: 150px 8% 100px; }
-    .blog-entry p { display: none; }
-}
-</style>
-</head>
-<body class="mainBody">
-
-<nav class="blog-nav">
-    <a href="index.html" class="brand-logo">SEO SUITE</a>
-    <a href="index.html" class="back-link">&larr; Back to site</a>
-</nav>
-
-<header class="blog-hero">
-    <div id="blob_container"></div>
-    <div class="hero-content">
-        <p class="blog-label">Free resources</p>
-        <h1>Learn, Explore<br>&amp; Grow</h1>
-        <p>Practical guides on SEO, AI search visibility, web performance, and design — written to help you make smarter decisions for your business.</p>
+    
+            <div class="aa-content">
+              <span class="delegato" id="delegato-testo-3"></span>
+                <div id="award-agency" class="container black">
+                    <div class="box" id="awwwards">
+                        <h2 id="aa-title">
+                            <span>S</span><span>E</span><span>O</span> <span>A</span><span>I</span> <span>S</span><span>u</span><span>i</span><span>t</span><span>e</span>
+                        </h2>
+                        <span id="award-text">
+                            <span>Growth,</span>
+                            <span>built</span>
+                            <span>in-house.</span>
+                        </span>
+                        <ul id="aa-loghi" class="customer stat-grid">
+                            <li>
+                                <span class="stat-num">20+</span>
+                                <em class="stat-label">AI skills built-in</em>
+                            </li>
+                            <li>
+                                <span class="stat-num">0</span>
+                                <em class="stat-label">credits needed</em>
+                            </li>
+                            <li>
+                                <span class="stat-num">1</span>
+                                <em class="stat-label">dashboard for everything</em>
+                            </li>
+                         </ul>
+                    </div>
+                </div>
+            </div>
+        <div class="container">
+          <span class="delegato" id="delegato-testo-4"></span>
+            <div class="box" id="learn-section">
+                <p id="learn-label">Free resources</p>
+                <h2 id="learn-title">
+                    <span>Learn,</span><br>
+                    <span>Explore</span><br>
+                    <span>&amp; Grow</span>
+                </h2>
+                <p id="learn-sub">Success online starts with understanding what drives visibility, traffic, and conversions. Our expert guides break down the strategies behind modern digital growth, helping you make smarter decisions for your business.</p>
+                <a href="/blog" id="learn-cta" cursor-hover>Explore our blog &rarr;</a>
+            </div>
+        </div>
+        <div class="bottom_nav">
+            <div id="edit_button" class="edit_button" onclick="return gtag_report_conversion_eb();">
+            <!-- div id="edit_button" class="edit_button" -->
+                <span class="edit_button_point"></span>
+                <span class="edit_button_text"></span>
+                <span class="edit_button_pencil"></span>
+            </div>
+        </div>
     </div>
-</header>
+        <div class="cursor">
+            <div class="cursor__inner cursor-circle"></div>
+            <div class="cursor__inner cursor-dot"></div>
+        </div>
 
-<script>
-// Same shape/settings the homepage hero uses, so the sphere renders and
-// moves identically — just scoped to the hero band instead of full-page.
-var blogBlobShape = { wave1: {amplitude: 76.923, frequency: 0.879, phase: 0}, wave2: {amplitude: 60, frequency: 0.165, phase: 0}, wave3: {amplitude: 50, frequency: 0, phase: 0} };
-var blogBlobSettings = {
-    BLOB_SIZE: 250,
-    BLOB_DISTANCE: 1000,
-    DETALISATION: 60,
-    PERSPECTIVE_DISTORTION: 1,
-    ROTATION_SPEED: 5,
-    DOT_SIZE: (window.innerWidth > 480) ? 1.5 : 1,
-    DOT_COLOR: "#d0d0d0",
-    MOUSE_DISTANCE_MIN: 20,
-    MOUSE_DISTANCE_MAX: 400,
-    MOUSE_SENSITIVITY: 1,
-    INERTIAL_TIME: 4,
-    INITIAL_SHAPE: blogBlobShape,
-    USE_WAVE_MOTION: true,
-    USE_WAVE_SWING: true,
-    USE_MORPHING: true,
-    MORPHING_AUTOPLAY: true,
-    MORPHING_DURATION: 1,
-    MORPHING_DELAY: 0,
-    MORPHING_TRANSITION_TYPE: "cubic",
-    MORPHING_SHAPES: [blogBlobShape],
-    WAVE_1_MOTION_SPEED: 1.3,
-    WAVE_2_MOTION_SPEED: 0.8
-};
-new BlobAnimation("blob_container", blogBlobSettings);
-</script>
 
-<div class="blog-filters">
-    <button class="active">All</button>
-    <button>SEO</button>
-    <button>AI Search</button>
-    <button>Performance</button>
-    <button>Design</button>
-</div>
+        <footer>
+            <div class="container black">
+              <span class="delegato" id="delegato-testo-5"></span>  
+                <div class="box">
+                    <div class="top_footer">
+                        <div class="box-title">
+                            <h1 id="ftitle" role="presentation" onclick="return gtag_report_conversion_sap();">
+                                <i>
+                                    <span>s</span><span>t</span><span>a</span><span>r</span><span>t</span>
+                                </i>
+                                <i>
+                                    <span>a</span>
+                                </i>
+                                <i>
+                                    <span>p</span><span>r</span><span>o</span><span>j</span><span>e</span><span>c</span><span>t</span>
+                                </i>
+                            </h1>
+                            <div class="contact_overlay"></div>
+                        </div>
+                    </div>
+                    <div class="bottom_footer">
+                        <div class="footer-box">
+                            <div class="footer-box-left">
+                            <address id="address">SEO Suite<br/>Digital Creative Studio<br />Worldwide &middot; Remote-first</address>
+                            </div>
+                                <div class="footer-box-center">
+                                <ul>
+                                    <li><a id="mail" href="mailto:contact@seosuite.studio" cursor-hover>contact@seosuite.studio</a></li>
+                                    <li>Available for new projects</li>
+                                </ul>
+                                </div>
+                                    <div class="footer-box-right">
+                                    <ul>
+                                        <li><a href="https://www.instagram.com/ssuite.studio" target="_blank" rel="noopener noreferrer" cursor-hover>Instagram</a></li>
+                                    </ul>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </footer>
+        <div class="box box-topnav">
+            <div class="topnav" id="mytopnav">
+                <div class="logo" id="logo">
+                    <a href="#start" class="brand-logo">SEO SUITE</a>
+                </div>
+            </div>
+        </div>
+        <span class="edit_button_overlay"></span>
+        <script src="js/cursor.js"></script>
+        <!-- script src="js/skew.js"></script -->
+        <!--script src="js/imagesloaded.pkgd.min.js"></script>
+        <script src="js/TweenMax.min.js"></script>
+        <script src="js/draggabilly.pkgd.min.js"></script>
+        <script src="js/portfolio.js"></script-->
+        <script>
+            // Preload all the images in the page
+            //imagesLoaded(document.querySelectorAll('.img-inner'), {background: true}, () => document.body.classList.remove('loading'));
+        </script>        
+        <script>
+            $("#mail").on("click", function(){
+                if(typeof fbq == "function"){
+                    fbq('track', 'Contact');
+                }
+            });
+        </script>
 
-<div class="blog-list">
-    <a href="#" class="blog-entry featured">
-        <p class="cat">AI Search</p>
-        <h3>How to Get Your Business Found on ChatGPT, Claude &amp; Perplexity</h3>
-        <p>AI assistants are becoming a search engine of their own. Here's how to structure your site and content so AI models recommend your business.</p>
-        <div class="meta">8 min read &middot; SEO Suite Team</div>
-    </a>
+        <!-- Pixel orb contact button (hero only) -->
+        <canvas id="pixel-orb" role="button" aria-label="Contact Us"></canvas>
 
-    <a href="#" class="blog-entry">
-        <p class="cat">SEO</p>
-        <h3>SEO vs GEO: What's the Difference?</h3>
-        <p>Search engine optimization and generative engine optimization aren't the same game. Here's what's changed.</p>
-        <div class="meta">6 min read</div>
-    </a>
+        <!-- Contact slide-up panel -->
+        <div id="contact-panel">
+            <button id="contact-panel-close" aria-label="Close">&times;</button>
+            <div id="contact-panel-inner">
+                <h2 id="contact-panel-title">Let's work<br>together.</h2>
+                <form id="contact-panel-form" novalidate>
+                    <div class="cpf-row cpf-row-2">
+                        <div class="cpf-field">
+                            <label for="cpf-name">Name</label>
+                            <input type="text" id="cpf-name" name="name" required>
+                        </div>
+                        <div class="cpf-field">
+                            <label for="cpf-lastname">Last Name</label>
+                            <input type="text" id="cpf-lastname" name="lastname" required>
+                        </div>
+                    </div>
+                    <div class="cpf-row cpf-row-2">
+                        <div class="cpf-field">
+                            <label for="cpf-email">Email</label>
+                            <input type="email" id="cpf-email" name="email" required>
+                        </div>
+                        <div class="cpf-field">
+                            <label for="cpf-phone">Telephone</label>
+                            <input type="tel" id="cpf-phone" name="phone">
+                        </div>
+                    </div>
+                    <div class="cpf-row">
+                        <div class="cpf-field">
+                            <label>I'm interested in</label>
+                            <div class="cpf-tags">
+                                <button type="button" class="cpf-tag" data-value="All Services">All Services</button>
+                                <button type="button" class="cpf-tag" data-value="Branding">Branding</button>
+                                <button type="button" class="cpf-tag" data-value="Web & Design">Web &amp; Design</button>
+                                <button type="button" class="cpf-tag" data-value="Growth">Growth</button>
+                                <button type="button" class="cpf-tag" data-value="Performance">Performance</button>
+                                <button type="button" class="cpf-tag" data-value="AI Suite">AI Suite</button>
+                                <button type="button" class="cpf-tag" data-value="SEO Optimization">SEO Optimization</button>
+                                <button type="button" class="cpf-tag" data-value="Website Analysis">Website Analysis</button>
+                            </div>
+                            <input type="hidden" id="cpf-interest" name="interest">
+                        </div>
+                    </div>
+                    <div class="cpf-row">
+                        <button type="button" id="cpf-submit">Send &rarr;</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="contact-panel-backdrop"></div>
+        <div id="send-ripple"></div>
+        <div id="send-success-overlay">
+            <canvas id="send-success-canvas"></canvas>
+            <button id="send-success-close">&times;</button>
+            <p id="send-success-text">We will<br>contact you<br>soon.</p>
+        </div>
 
-    <a href="#" class="blog-entry">
-        <p class="cat">SEO</p>
-        <h3>Why Your Website Isn't Showing Up in Google</h3>
-        <p>Indexing, crawlability, and technical SEO issues that silently keep your site invisible — and how to fix them.</p>
-        <div class="meta">7 min read</div>
-    </a>
+        <!-- Service detail slide-in panel -->
+        <div id="service-panel">
+            <button id="service-panel-close" aria-label="Close">&times;</button>
+            <div id="service-panel-inner">
+                <h3 id="service-panel-title"></h3>
+                <p id="service-panel-body"></p>
+            </div>
+        </div>
+        <div id="service-panel-backdrop"></div>
+        <style>
+        #service-panel {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #fff; z-index: 9000; box-sizing: border-box;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transform: translateX(100%); visibility: hidden;
+            transition: transform 0.42s cubic-bezier(0.22,1,0.36,1), visibility 0s linear 0.42s;
+        }
+        #service-panel.open { transform: translateX(0); visibility: visible; transition: transform 0.42s cubic-bezier(0.22,1,0.36,1), visibility 0s; }
+        #service-panel-inner { width: min(600px, 88vw); }
+        #service-panel-close {
+            position: absolute; top: 28px; right: 28px; background: none; border: none;
+            font-size: 32px; cursor: pointer; color: #111; line-height: 1; opacity: 0.5;
+            transition: opacity 0.2s;
+        }
+        #service-panel-close:hover { opacity: 1; }
+        #service-panel-title {
+            font-family: 'Grumpy 24', Georgia, serif; font-size: clamp(2.4rem,7vw,4rem);
+            color: #111; margin: 0 0 32px; line-height: 1.05;
+        }
+        #service-panel-body {
+            font-family: Arial, Helvetica, sans-serif; font-size: 16px; line-height: 1.8;
+            color: #444; margin: 0;
+        }
+        #service-panel-backdrop {
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.35); z-index: 8999;
+        }
+        #service-panel-backdrop.open { display: block; }
+        </style>
 
-    <a href="#" class="blog-entry">
-        <p class="cat">Design</p>
-        <h3>What Is a Digital Creative Studio?</h3>
-        <p>Strategy, brand, design, and technology under one roof — why fragmented vendors slow growth down.</p>
-        <div class="meta">5 min read</div>
-    </a>
+        <script>
+        /* Service tiles → slide-in detail panel */
+        (function(){
+            var data = {
+                'Branding': { title: 'Branding', body: 'We build brands from the ground up — naming, tone of voice, visual identity, art direction and copywriting. Every brand strategy is designed to be distinctive, consistent and built to last.' },
+                'Web &Design': { title: 'Web &amp; Design', body: 'From UI/UX and web design to full-stack development, eCommerce and landing pages — we build digital experiences that convert. Whether a CMS-powered site or a headless build, every detail is crafted to perform.' },
+                'Growth': { title: 'Growth', body: 'Growth strategies rooted in data — SEO, AI search visibility, content marketing, email and organic social — turning audience attention into measurable business results.' },
+                'Performance': { title: 'Performance', body: 'Paid media across Google, Meta and beyond — combining sharp creative with rigorous analytics to drive efficient acquisition, lower CPAs and scalable returns.' },
+                'AI Suite': { title: 'AI Suite', body: 'SEO AI Suite is our own software — an AI-powered SEO platform with 20+ built-in skills. It connects to Google Search Console and the AI model of your choice to plan content, optimize pages, audit sites, track rankings and monitor competitors, all from one dashboard.' }
+            };
+            var panel = document.getElementById('service-panel');
+            var backdrop = document.getElementById('service-panel-backdrop');
+            var titleEl = document.getElementById('service-panel-title');
+            var bodyEl = document.getElementById('service-panel-body');
+            function openPanel(key){ var d = data[key]; if(!d) return; titleEl.innerHTML = d.title; bodyEl.textContent = d.body; panel.classList.add('open'); backdrop.classList.add('open'); }
+            function closePanel(){ panel.classList.remove('open'); backdrop.classList.remove('open'); }
+            document.getElementById('service-panel-close').addEventListener('click', closePanel);
+            backdrop.addEventListener('click', closePanel);
+            jQuery('.customer-clients .integration').on('click', function(){ openPanel($(this).text().replace(/\s+/g,' ').trim()); });
+        })();
+        </script>
 
-    <a href="#" class="blog-entry">
-        <p class="cat">Performance</p>
-        <h3>Core Web Vitals: What Actually Moves Rankings</h3>
-        <p>Loading speed, interactivity, and visual stability — a practical breakdown of what Google measures and why it matters.</p>
-        <div class="meta">6 min read</div>
-    </a>
+        <script>
+        /* Contact slide-up panel — opened by the pixel orb (hero only) and the footer CTA */
+        (function(){
+            var panel    = document.getElementById('contact-panel');
+            var backdrop = document.getElementById('contact-panel-backdrop');
+            function openPanel(){ panel.classList.add('open'); backdrop.classList.add('open'); document.body.style.overflow = 'hidden'; }
+            function closePanel(){ panel.classList.remove('open'); backdrop.classList.remove('open'); document.body.style.overflow = ''; }
+            window.__openContact = openPanel;
 
-    <a href="#" class="blog-entry">
-        <p class="cat">SEO</p>
-        <h3>How Long Does SEO Take to Work?</h3>
-        <p>A realistic timeline for organic growth — and the early signals that tell you it's working before rankings move.</p>
-        <div class="meta">4 min read</div>
-    </a>
-</div>
+            // Pixel orb opens the panel.
+            var orb = document.getElementById('pixel-orb');
+            if (orb) orb.addEventListener('click', openPanel);
 
-<section class="blog-cta">
-    <p class="label">Stay ahead</p>
-    <h2>Get insights in<br>your inbox.</h2>
-    <a href="index.html#start" class="btn">Get in touch &rarr;</a>
-</section>
+            // Footer "start a project" also opens the panel (capture-phase intercept
+            // so it doesn't trigger the original PHP-iframe contact).
+            var ftitle = document.getElementById('ftitle');
+            if (ftitle) ftitle.addEventListener('click', function(e){ e.preventDefault(); e.stopImmediatePropagation(); openPanel(); }, true);
 
-<footer class="blog-footer">
-    <div class="row">
-        <div>SEO Suite<br>Digital Creative Studio<br>Worldwide &middot; Remote-first</div>
-        <div><a href="mailto:contact@seosuite.studio">contact@seosuite.studio</a><br>Available for new projects</div>
-        <div><a href="https://www.instagram.com/ssuite.studio" target="_blank" rel="noopener noreferrer">Instagram</a></div>
-    </div>
-</footer>
+            document.getElementById('contact-panel-close').addEventListener('click', closePanel);
+            backdrop.addEventListener('click', closePanel);
 
-</body>
+            var selectedInterest = '';
+            document.querySelectorAll('.cpf-tag').forEach(function(tag){
+                tag.addEventListener('click', function(){
+                    document.querySelectorAll('.cpf-tag').forEach(function(t){ t.classList.remove('active'); });
+                    tag.classList.add('active');
+                    selectedInterest = tag.dataset.value;
+                    document.getElementById('cpf-interest').value = selectedInterest;
+                });
+            });
+
+            function showSuccessAnimation(){
+                var btn    = document.getElementById('cpf-submit');
+                var ripple = document.getElementById('send-ripple');
+                var br     = btn.getBoundingClientRect();
+                var cx     = br.left + br.width / 2;
+                var cy     = br.top  + br.height / 2;
+                var maxR   = Math.ceil(Math.sqrt(Math.pow(Math.max(cx, window.innerWidth - cx), 2) + Math.pow(Math.max(cy, window.innerHeight - cy), 2))) * 2;
+                ripple.style.width = maxR + 'px'; ripple.style.height = maxR + 'px';
+                ripple.style.left = (cx - maxR/2) + 'px'; ripple.style.top = (cy - maxR/2) + 'px';
+                ripple.style.transition = 'none'; ripple.style.transform = 'scale(0)';
+                requestAnimationFrame(function(){ requestAnimationFrame(function(){ ripple.style.transition = 'transform 0.72s cubic-bezier(0.4,0,0.2,1)'; ripple.style.transform = 'scale(1)'; }); });
+                setTimeout(function(){
+                    panel.classList.remove('open'); backdrop.classList.remove('open'); document.body.style.overflow = '';
+                    if (typeof blob !== 'undefined') { blob.dotColor = '#1c1c1c'; }
+                    var blobEl = document.getElementById('blob_container');
+                    if (blobEl) { blobEl.style.zIndex = '10003'; blobEl.style.opacity = '1'; blobEl.style.setProperty('background-color', '#ffffff', 'important'); }
+                    document.getElementById('send-success-overlay').classList.add('visible');
+                    document.getElementById('send-success-canvas').style.display = 'none';
+                    document.getElementById('send-success-close').onclick = function(){
+                        document.getElementById('send-success-overlay').classList.remove('visible');
+                        ripple.style.transition = 'transform 0.4s ease'; ripple.style.transform = 'scale(0)';
+                        var b = document.getElementById('blob_container');
+                        if (b) { b.style.zIndex = '-1'; b.style.opacity = ''; b.style.removeProperty('background-color'); }
+                        if (typeof blob !== 'undefined') { blob.dotColor = '#d0d0d0'; }
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    };
+                }, 680);
+            }
+            function handleSend(e){
+                e.preventDefault();
+                var name  = document.getElementById('cpf-name').value.trim();
+                var email = document.getElementById('cpf-email').value.trim();
+                if (!name || !email) { alert('Please enter your name and email.'); return; }
+                var btn = document.getElementById('cpf-submit');
+                btn.disabled = true; btn.textContent = 'Sending…';
+                fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({
+                        access_key: 'e5efcbcd-2157-432c-9d6a-d87cc2284a5e',
+                        subject: 'New enquiry from seosuite.studio',
+                        name: name + ' ' + document.getElementById('cpf-lastname').value.trim(),
+                        email: email,
+                        phone: document.getElementById('cpf-phone').value.trim(),
+                        interest: document.getElementById('cpf-interest').value
+                    })
+                }).then(function(r){ return r.json(); }).then(function(data){
+                    btn.disabled = false; btn.innerHTML = 'Send &rarr;';
+                    if (data.success) { showSuccessAnimation(); }
+                    else { alert('Something went wrong. Please try again.'); }
+                }).catch(function(){
+                    btn.disabled = false; btn.innerHTML = 'Send &rarr;';
+                    alert('Network error. Please check your connection and try again.');
+                });
+            }
+            var _sendFired = false;
+            function onceSend(e){ e.preventDefault(); if(_sendFired) return; _sendFired = true; setTimeout(function(){ _sendFired = false; }, 2000); handleSend(e); }
+            document.getElementById('cpf-submit').addEventListener('click', onceSend);
+            document.getElementById('cpf-submit').addEventListener('touchend', onceSend);
+        })();
+        </script>
+
+        <script>
+        /* Pixel orb — rotating pixel halo with CONTACT US, shown only on the hero. */
+        (function(){
+            var c = document.getElementById('pixel-orb');
+            if (!c) return;
+            var dpr = window.devicePixelRatio || 1;
+            var SIZE = 120;
+            c.width = SIZE * dpr; c.height = SIZE * dpr;
+            var ctx = c.getContext('2d');
+            ctx.scale(dpr, dpr);
+            var cx = SIZE / 2, cy = SIZE / 2, R = 36;
+            var pixels = [];
+            for (var i = 0; i < 80; i++) { var a = (i/80)*Math.PI*2; pixels.push({ r: R + (Math.random()-0.5)*6, a: a, size: Math.random()*1.4 + 0.5 }); }
+            for (var j = 0; j < 60; j++) { pixels.push({ r: R + 6 + Math.random()*18, a: Math.random()*Math.PI*2, size: Math.random()*1.0 + 0.3 }); }
+            var angle = 0;
+            function draw(){
+                ctx.clearRect(0, 0, SIZE, SIZE);
+                angle += 0.004;
+                pixels.forEach(function(p){
+                    var a = p.a + angle;
+                    var x = cx + Math.cos(a)*p.r, y = cy + Math.sin(a)*p.r;
+                    var dist = Math.sqrt((x-cx)*(x-cx) + (y-cy)*(y-cy));
+                    ctx.globalAlpha = Math.max(0.08, 1 - dist/(R+28));
+                    ctx.fillStyle = '#d0d0d0';
+                    ctx.fillRect(x, y, p.size, p.size);
+                });
+                ctx.globalAlpha = 1; ctx.fillStyle = '#ffffff';
+                ctx.font = '900 10px Arial, sans-serif';
+                ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+                ctx.fillText('CONTACT', cx, cy - 6);
+                ctx.fillText('US', cx, cy + 7);
+                requestAnimationFrame(draw);
+            }
+            draw();
+
+            // Orb: visible while the hero is on screen, fades the moment you scroll past it.
+            // SEO SUITE wordmark: visible only at the very top, fades as soon as you start scrolling.
+            function updateOrbVisibility(){
+                var y = window.pageYOffset;
+                document.body.classList.toggle('hero-view', y < (window.innerHeight * 0.55));
+                document.body.classList.toggle('at-top', y < 30);
+            }
+            window.addEventListener('scroll', updateOrbVisibility, { passive: true });
+            window.addEventListener('resize', updateOrbVisibility);
+            updateOrbVisibility();
+        })();
+        </script>
+
+        <script>
+        /* Match the browser chrome (iOS Safari top/bottom bars) to the ACTUAL
+           visible background — the blob's real computed colour — so the bars
+           always agree with what's on screen, even mid-transition. Keying to a
+           class flag was an approximation that could drift out of sync. */
+        (function(){
+            var meta = document.querySelector('meta[name="theme-color"]');
+            if (!meta) { meta = document.createElement('meta'); meta.setAttribute('name','theme-color'); document.head.appendChild(meta); }
+            var blob = document.getElementById('blob_container');
+            // Once <html> gets its own background, the body's background stops
+            // propagating to the root and would paint OVER the z-index:-1 sphere.
+            // The blob container already provides the black/white backdrop, so
+            // the body can be transparent.
+            document.body.style.backgroundColor = 'transparent';
+            var last = '', lastMeta = '';
+            function tick(){
+                // The <html> background (what Safari's bars sample) mirrors the
+                // blob's REAL rendered colour every frame, with no transition of
+                // its own — so the bars ride the page's fade pixel-for-pixel
+                // instead of flipping ahead of or behind it.
+                var raw = blob ? getComputedStyle(blob).backgroundColor : '';
+                if (!raw || raw.indexOf('rgb') !== 0) {
+                    raw = document.body.classList.contains('animated') ? 'rgb(0, 0, 0)' : 'rgb(255, 255, 255)';
+                }
+                if (raw !== last) {
+                    last = raw;
+                    // (Only <html>: painting <body> covers the sphere canvas.)
+                    document.documentElement.style.backgroundColor = raw;
+                }
+                // theme-color only needs the settled colour — update it rarely,
+                // snapped at the halfway point, to avoid meta churn.
+                var m = raw.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+                if (m) {
+                    var r = +m[1], g = +m[2], b = +m[3];
+                    var snapped = (Math.max(r,g,b) - Math.min(r,g,b) >= 30) ? raw
+                                : ((r + g + b) / 3 < 128 ? '#000000' : '#ffffff');
+                    if (snapped !== lastMeta) { lastMeta = snapped; meta.setAttribute('content', snapped); }
+                }
+                requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
+        })();
+        </script>
+    </body>
 </html>
