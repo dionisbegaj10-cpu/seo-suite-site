@@ -249,7 +249,7 @@ $(document).ready(function(){
             animateNumbers();
         }
         if (hasPassed(service)) {
-            $("#services, .work-1, .work-2, .work-3, .work-4, .work-4, #social-media, #branding, #web-design, #advertising").addClass("animated");
+            $("#services, .work-1, .work-2, .work-3, .work-4, #social-media, #branding, #web-design, #advertising, #learn-intro, #learn-intro-2, #learn-outro").addClass("animated");
         }
     }, false);
     //setInterval(function(){jsband.ColorTween.run(blob, "dotColor", "rgb("+255*Math.random()+","+255*Math.random()+","+255*Math.random()+")", jsband.Ease.lin(), 1000)}, 1000)

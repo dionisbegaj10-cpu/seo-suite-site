@@ -333,6 +333,19 @@ p {
     transform: translateY(0);
 }
 
+#learn-intro, #learn-intro-2, #learn-outro {
+    opacity:0;
+    transform: translateY(15px);
+    transition: transform 0.3s linear, opacity 0.3s linear;
+}
+#learn-intro { transition-delay: 0.05s; }
+#learn-intro-2 { transition-delay: 0.15s; }
+#learn-outro { transition-delay: 0.75s; }
+#learn-intro.animated, #learn-intro-2.animated, #learn-outro.animated {
+    opacity:1;
+    transform: translateY(0);
+}
+
 .work-1.animated, .work-2.animated, .work-3.animated, .work-4.animated {
     opacity:1;
     transform: translateX(0);
