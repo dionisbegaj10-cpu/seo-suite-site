@@ -157,7 +157,7 @@ $(document).ready(function(){
         // scroll, instead of waiting for the text section to trigger it.
         var _viewH = window.innerHeight || document.documentElement.clientHeight;
         var _y = window.pageYOffset;
-        if (_y < _viewH) {
+        if (intro && isInViewport(intro) && _y < _viewH) {
             // Zoom completes by ~26% of the first screen — right as the text
             // section arrives — so it tracks the scroll without a jump.
             var _hz = Math.max(0, Math.min(1, _y / (_viewH * 0.26)));
