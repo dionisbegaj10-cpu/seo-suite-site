@@ -333,17 +333,43 @@ p {
     transform: translateY(0);
 }
 
-#learn-intro, #learn-intro-2, #learn-outro {
+#learn-intro, #learn-intro-2, #learn-outro, #learn-blog-btn {
     opacity:0;
     transform: translateY(15px);
     transition: transform 0.3s linear, opacity 0.3s linear;
 }
 #learn-intro { transition-delay: 0.05s; }
 #learn-intro-2 { transition-delay: 0.15s; }
-#learn-outro { transition-delay: 0.75s; }
-#learn-intro.animated, #learn-intro-2.animated, #learn-outro.animated {
+#learn-outro { transition-delay: 0.25s; }
+#learn-blog-btn { transition-delay: 0.35s; }
+#learn-intro.animated, #learn-intro-2.animated, #learn-outro.animated, #learn-blog-btn.animated {
     opacity:1;
     transform: translateY(0);
+}
+
+#learn-blog-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 14px 32px;
+    border: 1px solid rgba(0,0,0,0.6);
+    border-radius: 30px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #000;
+    transition: color .25s ease, border-color .25s ease, transform .25s ease, opacity 0.3s linear, transform 0.3s linear;
+}
+#learn-blog-btn:hover {
+    transform: translateY(-3px);
+    border-color: rgba(0,0,0,0.9);
+}
+body.animated #learn-blog-btn {
+    color: #fff;
+    border-color: rgba(255,255,255,0.5);
+}
+body.animated #learn-blog-btn:hover {
+    border-color: rgba(255,255,255,0.9);
 }
 
 .work-1.animated, .work-2.animated, .work-3.animated, .work-4.animated {
