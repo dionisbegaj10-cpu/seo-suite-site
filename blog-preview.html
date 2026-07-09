@@ -23,12 +23,6 @@
 <script src="js/libs/jsband-min.js"></script>
 <script src="js/blob-min.js"></script>
 <script src="js/main.js"></script>
-<script>
-// This page hides the hero, so the distance "zoom" animation between
-// sections (tuned for the full homepage flow) feels too strong here.
-// Neutralize it without touching the shared main.js used by the homepage.
-window.animateDistance = function(){};
-</script>
 <script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
 <link href="img/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
 <link href="img/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
@@ -284,8 +278,6 @@ window.animateDistance = function(){};
                 }
             });
         </script>
-<!-- Pixel orb contact button (hero only) -->
-<canvas aria-label="Contact Us" id="pixel-orb" role="button"></canvas>
 <!-- Contact slide-up panel -->
 <div id="contact-panel">
 <div id="contact-panel-inner">
@@ -397,10 +389,6 @@ window.animateDistance = function(){};
             function closePanel(){ panel.classList.remove('open'); backdrop.classList.remove('open'); document.body.style.overflow = ''; }
             window.__openContact = openPanel;
 
-            // Pixel orb opens the panel.
-            var orb = document.getElementById('pixel-orb');
-            if (orb) orb.addEventListener('click', openPanel);
-
             // Footer "start a project" also opens the panel (capture-phase intercept
             // so it doesn't trigger the original PHP-iframe contact).
             var ftitle = document.getElementById('ftitle');
@@ -478,53 +466,6 @@ window.animateDistance = function(){};
             function onceSend(e){ e.preventDefault(); if(_sendFired) return; _sendFired = true; setTimeout(function(){ _sendFired = false; }, 2000); handleSend(e); }
             document.getElementById('cpf-submit').addEventListener('click', onceSend);
             document.getElementById('cpf-submit').addEventListener('touchend', onceSend);
-        })();
-        </script>
-<script>
-        /* Pixel orb — rotating pixel halo with CONTACT US, shown only on the hero. */
-        (function(){
-            var c = document.getElementById('pixel-orb');
-            if (!c) return;
-            var dpr = window.devicePixelRatio || 1;
-            var SIZE = 120;
-            c.width = SIZE * dpr; c.height = SIZE * dpr;
-            var ctx = c.getContext('2d');
-            ctx.scale(dpr, dpr);
-            var cx = SIZE / 2, cy = SIZE / 2, R = 36;
-            var pixels = [];
-            for (var i = 0; i < 80; i++) { var a = (i/80)*Math.PI*2; pixels.push({ r: R + (Math.random()-0.5)*6, a: a, size: Math.random()*1.4 + 0.5 }); }
-            for (var j = 0; j < 60; j++) { pixels.push({ r: R + 6 + Math.random()*18, a: Math.random()*Math.PI*2, size: Math.random()*1.0 + 0.3 }); }
-            var angle = 0;
-            function draw(){
-                ctx.clearRect(0, 0, SIZE, SIZE);
-                angle += 0.004;
-                pixels.forEach(function(p){
-                    var a = p.a + angle;
-                    var x = cx + Math.cos(a)*p.r, y = cy + Math.sin(a)*p.r;
-                    var dist = Math.sqrt((x-cx)*(x-cx) + (y-cy)*(y-cy));
-                    ctx.globalAlpha = Math.max(0.08, 1 - dist/(R+28));
-                    ctx.fillStyle = '#d0d0d0';
-                    ctx.fillRect(x, y, p.size, p.size);
-                });
-                ctx.globalAlpha = 1; ctx.fillStyle = '#ffffff';
-                ctx.font = '900 10px Arial, sans-serif';
-                ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-                ctx.fillText('CONTACT', cx, cy - 6);
-                ctx.fillText('US', cx, cy + 7);
-                requestAnimationFrame(draw);
-            }
-            draw();
-
-            // Orb: visible while the hero is on screen, fades the moment you scroll past it.
-            // SEO SUITE wordmark: visible only at the very top, fades as soon as you start scrolling.
-            function updateOrbVisibility(){
-                var y = window.pageYOffset;
-                document.body.classList.toggle('hero-view', y < (window.innerHeight * 0.55));
-                document.body.classList.toggle('at-top', y < 30);
-            }
-            window.addEventListener('scroll', updateOrbVisibility, { passive: true });
-            window.addEventListener('resize', updateOrbVisibility);
-            updateOrbVisibility();
         })();
         </script>
 <script>
