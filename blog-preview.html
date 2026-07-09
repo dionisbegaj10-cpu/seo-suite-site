@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — SEO Suite</title>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="css/mediaquery.css" rel="stylesheet"/>
+<link href="css/personalize.css" rel="stylesheet"/>
+<script src="js/libs/jsband-min.js"></script>
+<script src="js/blob-min.js"></script>
+<style>
+/* ============================================================
+   Blog page — mockup, reuses the site's real fonts/colors/tokens
+   ============================================================ */
+body { cursor: auto; overflow-x: hidden; }
+.mainBody { background: #fff; color: #000; }
+
+/* --- Nav (static, no scroll-fade — blog has no hero orb) --- */
+.blog-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    padding: 24px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.blog-nav a.brand-logo {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    font-size: 15px;
+    letter-spacing: 2.5px;
+    color: #000;
+    text-decoration: none;
+}
+.blog-nav .back-link {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.5);
+    text-decoration: none;
+    transition: color .2s ease;
+}
+.blog-nav .back-link:hover { color: #000; }
+
+/* --- Hero (dark, matches homepage's black sections) --- */
+.blog-hero {
+    position: relative;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 110px 6% 90px;
+    overflow: hidden;
+}
+.blog-hero #blob_container {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    background-color: transparent !important;
+}
+.blog-hero .hero-content { position: relative; z-index: 1; }
+.blog-hero .blog-label {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin: 0 0 24px;
+}
+.blog-hero h1 {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: clamp(2.6rem, 7vw, 5rem);
+    line-height: 1.05;
+    margin: 0 0 24px;
+    display: block;
+}
+.blog-hero p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.6);
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+/* --- Filter pills --- */
+.blog-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 44px 6% 10px;
+}
+.blog-filters button {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 100px;
+    border: 1px solid rgba(0,0,0,0.2);
+    background: transparent;
+    color: rgba(0,0,0,0.55);
+    cursor: pointer;
+    transition: all .2s ease;
+}
+.blog-filters button.active,
+.blog-filters button:hover {
+    background: #1c1c1c;
+    border-color: #1c1c1c;
+    color: #fff;
+}
+
+/* --- Article grid --- */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 40px 6% 100px;
+}
+.blog-card {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid rgba(0,0,0,0.1);
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #1c1c1c;
+    transition: transform .25s ease, border-color .25s ease;
+}
+.blog-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0,0,0,0.3);
+}
+.blog-card .thumb {
+    height: 180px;
+    background: #f2f2f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 2.4rem;
+    color: rgba(0,0,0,0.15);
+}
+.blog-card .body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+.blog-card .cat {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.4);
+    margin-bottom: 12px;
+}
+.blog-card h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    font-size: 19px;
+    line-height: 1.35;
+    margin: 0 0 12px;
+    text-transform: none;
+}
+.blog-card p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.65;
+    color: rgba(0,0,0,0.55);
+    margin: 0 0 auto;
+    flex: 1;
+}
+.blog-card .meta {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    letter-spacing: .5px;
+    color: rgba(0,0,0,0.4);
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.blog-card.featured {
+    grid-column: span 3;
+    flex-direction: row;
+}
+.blog-card.featured .thumb { height: auto; width: 42%; font-size: 3.4rem; }
+.blog-card.featured .body { width: 58%; justify-content: center; padding: 44px; }
+.blog-card.featured h3 { font-size: 28px; }
+.blog-card.featured p { font-size: 15px; }
+
+@media (max-width: 900px) {
+    .blog-grid { grid-template-columns: repeat(2, 1fr); }
+    .blog-card.featured { grid-column: span 2; flex-direction: column; }
+    .blog-card.featured .thumb, .blog-card.featured .body { width: 100%; }
+}
+@media (max-width: 600px) {
+    .blog-grid { grid-template-columns: 1fr; }
+    .blog-card.featured { grid-column: span 1; }
+}
+
+/* --- Newsletter / CTA (mirrors free-analysis-section pill button) --- */
+.blog-cta {
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 90px 6%;
+}
+.blog-cta p.label {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.38);
+    margin: 0 0 24px;
+}
+.blog-cta h2 {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    margin: 0 0 24px;
+    display: block;
+}
+.blog-cta .btn {
+    display: inline-block;
+    margin-top: 20px;
+    background: #fff;
+    color: #1c1c1c;
+    border: none;
+    border-radius: 100px;
+    padding: 18px 44px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: transform .25s ease, opacity .25s ease;
+}
+.blog-cta .btn:hover { transform: translateY(-3px); opacity: 0.88; }
+
+/* --- Footer (reused from homepage pattern) --- */
+.blog-footer {
+    background: #000;
+    color: #fff;
+    padding: 60px 6% 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+.blog-footer .row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+    max-width: 1160px;
+    margin: 0 auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+}
+.blog-footer a { color: rgba(255,255,255,0.85); text-decoration: none; }
+</style>
+</head>
+<body class="mainBody">
+
+<nav class="blog-nav">
+    <a href="index.html" class="brand-logo">SEO SUITE</a>
+    <a href="index.html" class="back-link">&larr; Back to site</a>
+</nav>
+
+<header class="blog-hero">
+    <div id="blob_container"></div>
+    <div class="hero-content">
+        <p class="blog-label">Free resources</p>
+        <h1>Learn, Explore<br>&amp; Grow</h1>
+        <p>Practical guides on SEO, AI search visibility, web performance, and design — written to help you make smarter decisions for your business.</p>
+    </div>
+</header>
+
+<script>
+// Same shape/settings the homepage hero uses, so the sphere renders and
+// moves identically — just scoped to the hero band instead of full-page.
+var blogBlobShape = { wave1: {amplitude: 76.923, frequency: 0.879, phase: 0}, wave2: {amplitude: 60, frequency: 0.165, phase: 0}, wave3: {amplitude: 50, frequency: 0, phase: 0} };
+var blogBlobSettings = {
+    BLOB_SIZE: 250,
+    BLOB_DISTANCE: 1000,
+    DETALISATION: 60,
+    PERSPECTIVE_DISTORTION: 1,
+    ROTATION_SPEED: 5,
+    DOT_SIZE: (window.innerWidth > 480) ? 1.5 : 1,
+    DOT_COLOR: "#d0d0d0",
+    MOUSE_DISTANCE_MIN: 20,
+    MOUSE_DISTANCE_MAX: 400,
+    MOUSE_SENSITIVITY: 1,
+    INERTIAL_TIME: 4,
+    INITIAL_SHAPE: blogBlobShape,
+    USE_WAVE_MOTION: true,
+    USE_WAVE_SWING: true,
+    USE_MORPHING: true,
+    MORPHING_AUTOPLAY: true,
+    MORPHING_DURATION: 1,
+    MORPHING_DELAY: 0,
+    MORPHING_TRANSITION_TYPE: "cubic",
+    MORPHING_SHAPES: [blogBlobShape],
+    WAVE_1_MOTION_SPEED: 1.3,
+    WAVE_2_MOTION_SPEED: 0.8
+};
+new BlobAnimation("blob_container", blogBlobSettings);
+</script>
+
+<div class="blog-filters">
+    <button class="active">All</button>
+    <button>SEO</button>
+    <button>AI Search</button>
+    <button>Performance</button>
+    <button>Design</button>
+</div>
+
+<div class="blog-grid">
+    <a href="#" class="blog-card featured">
+        <div class="thumb">AI</div>
+        <div class="body">
+            <p class="cat">AI Search</p>
+            <h3>How to Get Your Business Found on ChatGPT, Claude &amp; Perplexity</h3>
+            <p>AI assistants are becoming a search engine of their own. Here's how to structure your site and content so AI models recommend your business.</p>
+            <div class="meta"><span>8 min read</span><span>&middot;</span><span>SEO Suite Team</span></div>
+        </div>
+    </a>
+
+    <a href="#" class="blog-card">
+        <div class="thumb">SEO</div>
+        <div class="body">
+            <p class="cat">SEO</p>
+            <h3>SEO vs GEO: What's the Difference?</h3>
+            <p>Search engine optimization and generative engine optimization aren't the same game. Here's what's changed.</p>
+            <div class="meta"><span>6 min read</span></div>
+        </div>
+    </a>
+
+    <a href="#" class="blog-card">
+        <div class="thumb">404</div>
+        <div class="body">
+            <p class="cat">SEO</p>
+            <h3>Why Your Website Isn't Showing Up in Google</h3>
+            <p>Indexing, crawlability, and technical SEO issues that silently keep your site invisible — and how to fix them.</p>
+            <div class="meta"><span>7 min read</span></div>
+        </div>
+    </a>
+
+    <a href="#" class="blog-card">
+        <div class="thumb">DS</div>
+        <div class="body">
+            <p class="cat">Design</p>
+            <h3>What Is a Digital Creative Studio?</h3>
+            <p>Strategy, brand, design, and technology under one roof — why fragmented vendors slow growth down.</p>
+            <div class="meta"><span>5 min read</span></div>
+        </div>
+    </a>
+
+    <a href="#" class="blog-card">
+        <div class="thumb">CWV</div>
+        <div class="body">
+            <p class="cat">Performance</p>
+            <h3>Core Web Vitals: What Actually Moves Rankings</h3>
+            <p>Loading speed, interactivity, and visual stability — a practical breakdown of what Google measures and why it matters.</p>
+            <div class="meta"><span>6 min read</span></div>
+        </div>
+    </a>
+
+    <a href="#" class="blog-card">
+        <div class="thumb">⏱</div>
+        <div class="body">
+            <p class="cat">SEO</p>
+            <h3>How Long Does SEO Take to Work?</h3>
+            <p>A realistic timeline for organic growth — and the early signals that tell you it's working before rankings move.</p>
+            <div class="meta"><span>4 min read</span></div>
+        </div>
+    </a>
+</div>
+
+<section class="blog-cta">
+    <p class="label">Stay ahead</p>
+    <h2>Get insights in<br>your inbox.</h2>
+    <a href="index.html#start" class="btn">Get in touch &rarr;</a>
+</section>
+
+<footer class="blog-footer">
+    <div class="row">
+        <div>SEO Suite<br>Digital Creative Studio<br>Worldwide &middot; Remote-first</div>
+        <div><a href="mailto:contact@seosuite.studio">contact@seosuite.studio</a><br>Available for new projects</div>
+        <div><a href="https://www.instagram.com/ssuite.studio" target="_blank" rel="noopener noreferrer">Instagram</a></div>
+    </div>
+</footer>
+
+</body>
+</html>
