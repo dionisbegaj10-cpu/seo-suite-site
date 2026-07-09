@@ -642,36 +642,29 @@
             // The blob container already provides the black/white backdrop, so
             // the body can be transparent.
             document.body.style.backgroundColor = 'transparent';
-            var last = '';
-            document.documentElement.style.transition = 'background-color 0.3s linear';
+            var last = '', lastMeta = '';
             function tick(){
-                // Sample the blob's REAL rendered colour (ground truth for what's
-                // on screen), but snap greys to pure black/white at the halfway
-                // point — intermediate greys made the bars flicker, while the
-                // class flag flipped at the wrong moment in some sections.
-                var c = '';
+                // The <html> background (what Safari's bars sample) mirrors the
+                // blob's REAL rendered colour every frame, with no transition of
+                // its own — so the bars ride the page's fade pixel-for-pixel
+                // instead of flipping ahead of or behind it.
                 var raw = blob ? getComputedStyle(blob).backgroundColor : '';
+                if (!raw || raw.indexOf('rgb') !== 0) {
+                    raw = document.body.classList.contains('animated') ? 'rgb(0, 0, 0)' : 'rgb(255, 255, 255)';
+                }
+                if (raw !== last) {
+                    last = raw;
+                    // (Only <html>: painting <body> covers the sphere canvas.)
+                    document.documentElement.style.backgroundColor = raw;
+                }
+                // theme-color only needs the settled colour — update it rarely,
+                // snapped at the halfway point, to avoid meta churn.
                 var m = raw.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
                 if (m) {
                     var r = +m[1], g = +m[2], b = +m[3];
-                    var maxc = Math.max(r, g, b), minc = Math.min(r, g, b);
-                    if (maxc - minc < 30) {
-                        // grey — mid-transition between sections: snap at 50%
-                        c = ((r + g + b) / 3 < 128) ? '#000000' : '#ffffff';
-                    } else {
-                        // saturated (social-hover blues etc.) — use as-is
-                        c = raw;
-                    }
-                } else {
-                    c = document.body.classList.contains('animated') ? '#000000' : '#ffffff';
-                }
-                if (c !== last) {
-                    last = c;
-                    meta.setAttribute('content', c);
-                    // iOS Safari tints its top/bottom bars from the <html>
-                    // background, not just theme-color — keep it in sync too.
-                    // (Only <html>: painting <body> covers the sphere canvas.)
-                    document.documentElement.style.backgroundColor = c;
+                    var snapped = (Math.max(r,g,b) - Math.min(r,g,b) >= 30) ? raw
+                                : ((r + g + b) / 3 < 128 ? '#000000' : '#ffffff');
+                    if (snapped !== lastMeta) { lastMeta = snapped; meta.setAttribute('content', snapped); }
                 }
                 requestAnimationFrame(tick);
             }
