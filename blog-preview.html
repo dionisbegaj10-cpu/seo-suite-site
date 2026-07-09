@@ -23,6 +23,12 @@
 <script src="js/libs/jsband-min.js"></script>
 <script src="js/blob-min.js"></script>
 <script src="js/main.js"></script>
+<script>
+// This page hides the hero, so the distance "zoom" animation between
+// sections (tuned for the full homepage flow) feels too strong here.
+// Neutralize it without touching the shared main.js used by the homepage.
+window.animateDistance = function(){};
+</script>
 <script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
 <link href="img/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
 <link href="img/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
