@@ -58,10 +58,11 @@ var isInViewport = function (elem) {
         bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
 };
-// True once the element is within 1.5 viewport heights — reveals start early
-// so fast scrolling never lands on a blank section waiting for its animation.
+// True once the element has entered the viewport (with a small 10% head start)
+// — the reveal plays where you can see it, and the fast transitions keep a
+// quick scroll from outrunning it.
 var hasPassed = function (elem) {
-    return elem.getBoundingClientRect().top <= (window.innerHeight || document.documentElement.clientHeight) * 1.5;
+    return elem.getBoundingClientRect().top <= (window.innerHeight || document.documentElement.clientHeight) * 1.1;
 };
 var inter;
 
