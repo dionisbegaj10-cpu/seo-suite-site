@@ -297,11 +297,11 @@ $(document).ready(function() {
     setAnimationDelay("aa-title", 100);
     setAnimationDelay("services", 100);
     setAnimationDelay("collaborations", 100);
-    setAnimationDelay("ftitle", 400);
-    setAnimationDelayLi("branding", 1200);
-    setAnimationDelayLi("web-design", 1600);
-    setAnimationDelayLi("advertising", 2000);
-    setAnimationDelayLi("social-media", 2400);
+    setAnimationDelay("ftitle", 150);
+    setAnimationDelayLi("branding", 300);
+    setAnimationDelayLi("web-design", 420);
+    setAnimationDelayLi("advertising", 540);
+    setAnimationDelayLi("social-media", 660);
     setNumberAnimation();
 });
 function closeContactForm(){
@@ -319,13 +319,13 @@ function closeContactForm(){
 function setAnimationDelay(id, start_delay){
     if(typeof start_delay === "undefined") start_delay = 0;
     $("#"+id).find("span").each(function(i){
-        $(this).css("transition-delay", ((i*30)+start_delay)+"ms");
+        $(this).css("transition-delay", ((i*15)+start_delay)+"ms");
     });
 }
 function setAnimationDelayLi(id, start_delay){
     if(typeof start_delay === "undefined") start_delay = 0;
     $("#"+id).find("li").each(function(i){
-        $(this).css("transition-delay", ((i*20)+start_delay)+"ms");
+        $(this).css("transition-delay", ((i*12)+start_delay)+"ms");
     });
 }
 function setNumberAnimation(){

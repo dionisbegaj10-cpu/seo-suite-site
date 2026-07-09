@@ -247,7 +247,7 @@ p {
     opacity:0;
     display:block;
     transform: translateY(15px);
-    transition: transform 0.3s linear 0.5s, opacity 0.3s linear 0.5s;
+    transition: transform 0.3s linear 0.15s, opacity 0.3s linear 0.15s;
 }
 
 .aa-content {
@@ -262,34 +262,34 @@ p {
     opacity:0;
     display:block;
     transform: translateX(-15px);
-    transition: transform 0.3s linear 1s, opacity 0.3s linear 1s;
+    transition: transform 0.3s linear 0.2s, opacity 0.3s linear 0.2s;
 }
 
 .work-2 {
     opacity:0;
     display:block;
     transform: translateX(-15px);
-    transition: transform 0.3s linear 1.4s, opacity 0.3s linear 1.4s;
+    transition: transform 0.3s linear 0.35s, opacity 0.3s linear 0.35s;
 }
 
 .work-3 {
     opacity:0;
     display:block;
     transform: translateX(-15px);
-    transition: transform 0.3s linear 1.8s, opacity 0.3s linear 1.8s;
+    transition: transform 0.3s linear 0.5s, opacity 0.3s linear 0.5s;
 }
 
 .work-4  {
     opacity:0;
     display:block;
     transform: translateX(-15px);
-    transition: transform 0.3s linear 2.2s, opacity 0.3s linear 2.2s;
+    transition: transform 0.3s linear 0.65s, opacity 0.3s linear 0.65s;
 }
 
 #aa-loghi {
     opacity:0;
     transform: translateY(15px);
-    transition: transform 0.3s linear 0.3s, opacity 0.3s linear 1s;
+    transition: transform 0.3s linear 0.15s, opacity 0.3s linear 0.3s;
 }
 
 
@@ -297,7 +297,7 @@ p {
     opacity:0;
     display:block;
     transform: translateY(15px);
-    transition: transform 0.3s linear 1.3s, opacity 0.3s linear 1.3s;
+    transition: transform 0.3s linear 0.4s, opacity 0.3s linear 0.4s;
 }
 
 #address {
@@ -305,14 +305,14 @@ p {
     width:100%;
     display:block;
     transform: translateY(15px);
-    transition: transform 0.3s linear 1s, opacity 0.3s linear 1s;
+    transition: transform 0.3s linear 0.3s, opacity 0.3s linear 0.3s;
 }
 
 .footer-box-right {
     opacity:0;
     display:block;
     transform: translateY(15px);
-    transition: transform 0.3s linear 1.6s, opacity 0.3s linear 1.6s;
+    transition: transform 0.3s linear 0.5s, opacity 0.3s linear 0.5s;
 }
 
 #collaborations span, #aa-title span, #services span {
@@ -377,7 +377,7 @@ p {
     transform: translateY(15px);
     transition-timing-function: cubic-bezier(.25,.46,.45,.94), cubic-bezier(.25,.46,.45,.94);
     transition-property: transform, opacity;
-    transition-duration: 0.7s, 0.7s;
+    transition-duration: 0.45s, 0.45s;
 }
 
 #social-media li, #branding li, #web-design li, #advertising li {
@@ -386,7 +386,7 @@ p {
     transform: translateX(-15px);
     transition-timing-function: cubic-bezier(.25,.46,.45,.94), cubic-bezier(.25,.46,.45,.94);
     transition-property: transform, opacity;
-    transition-duration: 0.7s, 0.7s;
+    transition-duration: 0.45s, 0.45s;
 }
 
 #text1.animated span, #intro.animated span, #award-text.animated span, #ftitle.animated span {
