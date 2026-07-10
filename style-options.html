@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style options</title>
+<style>
+@font-face {
+    font-family: 'Grumpy 24';
+    src: url('css/fonts/Grumpy-Black24.woff2') format('woff2'),
+        url('css/fonts/Grumpy-Black24.woff') format('woff'),
+        url('css/fonts/Grumpy-Black24.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+* { box-sizing: border-box; }
+html, body { background: #000; margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; }
+.opt-label {
+    color: rgba(255,255,255,0.4);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 40px 6% 20px;
+}
+
+/* ============ OPTION 1: Hairline editorial list (matches Learn section topic list) ============ */
+#opt1 { padding: 0 6% 80px; max-width: 780px; margin: 0 auto; }
+.op1-entry {
+    display: flex; gap: 28px; align-items: flex-start;
+    padding: 32px 0; border-top: 1px solid rgba(255,255,255,0.12);
+}
+#opt1 .op1-entry:first-child { border-top: none; }
+.op1-thumb { width: 96px; height: 96px; border-radius: 12px; object-fit: cover; flex-shrink: 0; }
+.op1-cat { color: rgba(255,255,255,0.4); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin: 0 0 8px; }
+.op1-title { font-family: 'Grumpy 24', Georgia, serif; font-size: 1.5rem; color: #fff; margin: 0 0 8px; line-height: 1.2; }
+.op1-quote { color: rgba(255,255,255,0.55); font-size: 14px; line-height: 1.6; margin: 0; }
+
+/* ============ OPTION 2: Pill-CTA minimal (matches free-analysis-section style) ============ */
+#opt2 { padding: 0 6% 100px; text-align: center; max-width: 640px; margin: 0 auto; }
+.op2-cat { color: rgba(255,255,255,0.38); font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; margin: 0 0 24px; }
+.op2-title { font-family: 'Grumpy 24', Georgia, serif; font-size: clamp(2rem, 5vw, 3.2rem); color: #fff; margin: 0 0 24px; line-height: 1.1; }
+.op2-quote { color: rgba(255,255,255,0.5); font-size: 15px; line-height: 1.75; max-width: 420px; margin: 0 auto 32px; }
+.op2-btn { display: inline-block; background: #fff; color: #1c1c1c; border: none; border-radius: 100px; padding: 16px 38px; font-weight: 900; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; }
+.op2-dots { display: flex; justify-content: center; gap: 8px; margin-top: 36px; }
+.op2-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.25); }
+.op2-dot.active { background: #fff; }
+
+/* ============ OPTION 3: Service-tile grid (matches customer-clients tile style) ============ */
+#opt3 { padding: 0 6% 100px; max-width: 900px; margin: 0 auto; }
+.op3-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.op3-tile { border: 2px solid rgba(255,255,255,0.18); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+.op3-thumb { width: 100%; height: 140px; border-radius: 10px; object-fit: cover; }
+.op3-cat { color: rgba(255,255,255,0.4); font-size: 10px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; margin: 0; }
+.op3-title { font-family: Arial, Helvetica, sans-serif; font-weight: 900; font-size: 17px; color: #fff; margin: 0; line-height: 1.3; }
+.op3-quote { color: rgba(255,255,255,0.5); font-size: 13px; line-height: 1.55; margin: 0; }
+
+/* ============ OPTION 4: Big magazine feature (single dominant post, image + overlay) ============ */
+#opt4 { padding: 0 6% 100px; max-width: 900px; margin: 0 auto; }
+.op4-card { position: relative; border-radius: 20px; overflow: hidden; height: 420px; }
+.op4-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.op4-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.1) 60%); display: flex; flex-direction: column; justify-content: flex-end; padding: 32px; }
+.op4-cat { color: rgba(255,255,255,0.6); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin: 0 0 10px; }
+.op4-title { font-family: 'Grumpy 24', Georgia, serif; font-size: 2rem; color: #fff; margin: 0 0 10px; }
+.op4-quote { color: rgba(255,255,255,0.75); font-size: 14px; line-height: 1.6; max-width: 480px; margin: 0; }
+</style>
+</head>
+<body>
+
+<p class="opt-label">Option 1 — hairline editorial list</p>
+<div id="opt1">
+    <div class="op1-entry">
+        <img class="op1-thumb" src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=200&auto=format&fit=crop&q=80" alt="">
+        <div>
+            <p class="op1-cat">AI Search</p>
+            <h3 class="op1-title">Master SEO</h3>
+            <p class="op1-quote">Increase organic traffic, improve search rankings, and build long-term visibility with proven SEO strategies.</p>
+        </div>
+    </div>
+    <div class="op1-entry">
+        <img class="op1-thumb" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=200&auto=format&fit=crop&q=80" alt="">
+        <div>
+            <p class="op1-cat">SEO</p>
+            <h3 class="op1-title">Unlock AI-Powered SEO</h3>
+            <p class="op1-quote">Discover how AI is transforming keyword research, content creation, and technical SEO.</p>
+        </div>
+    </div>
+    <div class="op1-entry">
+        <img class="op1-thumb" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&auto=format&fit=crop&q=80" alt="">
+        <div>
+            <p class="op1-cat">Performance</p>
+            <h3 class="op1-title">Boost Website Performance</h3>
+            <p class="op1-quote">Learn how faster loading times and Core Web Vitals improve UX and conversion rates.</p>
+        </div>
+    </div>
+</div>
+
+<p class="opt-label">Option 2 — pill-CTA minimal (matches your free-analysis section)</p>
+<div id="opt2">
+    <p class="op2-cat">Performance</p>
+    <h2 class="op2-title">Boost Website Performance</h2>
+    <p class="op2-quote">Learn how faster loading times, Core Web Vitals, and technical optimization improve user experience, SEO rankings, and conversion rates.</p>
+    <a class="op2-btn" href="#">Read article &rarr;</a>
+    <div class="op2-dots">
+        <span class="op2-dot"></span><span class="op2-dot active"></span><span class="op2-dot"></span><span class="op2-dot"></span>
+    </div>
+</div>
+
+<p class="opt-label">Option 3 — service-tile grid (matches your service tiles)</p>
+<div id="opt3">
+    <div class="op3-grid">
+        <div class="op3-tile">
+            <img class="op3-thumb" src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=500&auto=format&fit=crop&q=80" alt="">
+            <p class="op3-cat">AI Search</p>
+            <h3 class="op3-title">Master SEO</h3>
+            <p class="op3-quote">Increase organic traffic and build long-term visibility.</p>
+        </div>
+        <div class="op3-tile">
+            <img class="op3-thumb" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=500&auto=format&fit=crop&q=80" alt="">
+            <p class="op3-cat">SEO</p>
+            <h3 class="op3-title">Unlock AI-Powered SEO</h3>
+            <p class="op3-quote">See how AI is transforming keyword research.</p>
+        </div>
+        <div class="op3-tile">
+            <img class="op3-thumb" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&auto=format&fit=crop&q=80" alt="">
+            <p class="op3-cat">Performance</p>
+            <h3 class="op3-title">Boost Website Performance</h3>
+            <p class="op3-quote">Core Web Vitals and technical optimization.</p>
+        </div>
+        <div class="op3-tile">
+            <img class="op3-thumb" src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=500&auto=format&fit=crop&q=80" alt="">
+            <p class="op3-cat">Design</p>
+            <h3 class="op3-title">High-Converting Web Design</h3>
+            <p class="op3-quote">UX best practices that convert visitors.</p>
+        </div>
+    </div>
+</div>
+
+<p class="opt-label">Option 4 — big magazine feature</p>
+<div id="opt4">
+    <div class="op4-card">
+        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&auto=format&fit=crop&q=80" alt="">
+        <div class="op4-overlay">
+            <p class="op4-cat">SEO</p>
+            <h2 class="op4-title">Unlock AI-Powered SEO</h2>
+            <p class="op4-quote">Discover how artificial intelligence is transforming keyword research, content creation, technical SEO, and search performance.</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
