@@ -373,12 +373,12 @@ body.animated #trusted-label { color: rgba(255,255,255,0.4); }
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 46px;
+    height: 62px;
 }
 .trusted-logos img {
     height: 100%;
     width: auto;
-    max-width: 170px;
+    max-width: 210px;
     object-fit: contain;
     filter: brightness(0);
     opacity: 0.6;
@@ -401,6 +401,6 @@ body.animated .trusted-logos img {
         align-items: center;
         justify-items: center;
     }
-    .trusted-logos li { height: 36px; }
+    .trusted-logos li { height: 48px; }
     .trusted-logos img { max-width: 100%; }
 }
