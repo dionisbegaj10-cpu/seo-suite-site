@@ -381,7 +381,16 @@ body.hero-view #pixel-orb { opacity: 1; pointer-events: all; }
     opacity: 1;
 }
 @media (max-width: 767px) {
-    .trusted-logos { gap: 32px; }
-    .trusted-logos li { height: 26px; }
-    .trusted-logos img { max-width: 100px; }
+    .trusted-logos {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 24px;
+        row-gap: 28px;
+        align-items: center;
+    }
+    .trusted-logos li {
+        height: 32px;
+        justify-content: center;
+    }
+    .trusted-logos img { max-width: 100%; }
 }
