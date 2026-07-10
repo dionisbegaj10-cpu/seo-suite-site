@@ -347,6 +347,9 @@ body.hero-view #pixel-orb { opacity: 1; pointer-events: all; }
     text-align: center;
     border-top: 1px solid rgba(0,0,0,0.08);
 }
+/* Tighten the gap below the logos so it matches the gap above them. */
+.container:has(.box-trusted) { margin-bottom: 0; }
+#free-analysis-section { padding-top: 12px; }
 body.animated .box-trusted { border-top-color: rgba(255,255,255,0.12); }
 #trusted-label {
     font-family: Arial, Helvetica, sans-serif;
