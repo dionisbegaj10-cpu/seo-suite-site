@@ -298,11 +298,46 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
     color: rgba(0,0,0,0.72);
     margin: 0 0 24px;
 }
+
+/* --- Language switch (top right) --- */
+#lang-switch {
+    position: fixed;
+    top: max(24px, env(safe-area-inset-top, 0px) + 16px);
+    right: max(24px, env(safe-area-inset-right, 0px) + 16px);
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+#lang-switch .lang-opt {
+    background: none;
+    border: none;
+    padding: 4px 2px;
+    color: #ffffff;
+    cursor: pointer;
+    opacity: 0.45;
+    transition: opacity 0.2s ease, color 0.2s ease;
+}
+#lang-switch .lang-opt.active { opacity: 1; }
+#lang-switch .lang-opt:hover { opacity: 0.8; }
+#lang-switch .lang-sep { color: #ffffff; opacity: 0.3; }
+body:has(#article-overlay.open) #lang-switch .lang-opt,
+body:has(#article-overlay.open) #lang-switch .lang-sep { color: #1c1c1c; }
 </style>
 </head>
 <body>
 
 <div id="blob_container"></div>
+
+<div id="lang-switch" role="group" aria-label="Language">
+    <button type="button" class="lang-opt" data-lang="en">EN</button>
+    <span class="lang-sep">/</span>
+    <button type="button" class="lang-opt" data-lang="de">DE</button>
+</div>
 
 <div id="hero">
     <h1 id="page-title">Learn, Explore<br>&amp; Grow</h1>
@@ -364,52 +399,101 @@ new BlobAnimation("blob_container", {
 
 <script>
 (function(){
-    var posts = [
-        {
-            title: "Master SEO",
-            cat: "AI Search",
-            quote: "Increase organic traffic, improve search rankings, and build long-term visibility with proven search engine optimization strategies.",
-            img: "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=700&auto=format&fit=crop&q=80",
-            article: [
-                "Search engine optimization is still the most reliable way to earn consistent, high-intent traffic — but the tactics that worked five years ago rarely move the needle today. Google's ranking systems now weigh dozens of signals at once, from page experience to topical authority, and treating SEO as a checklist of keywords and backlinks is a fast way to plateau.",
-                "The strongest starting point is understanding what your audience is actually searching for, not just what you want to rank for. Keyword research should map to real intent: are people comparing options, looking for a how-to, or ready to buy? Content built around that intent naturally earns better engagement, and engagement is one of the clearest signals search engines use to judge relevance.",
-                "Technical health matters just as much as content quality. A fast, crawlable, mobile-friendly site gives your content a fair chance to be indexed and ranked — no amount of great writing overcomes a site that's slow or broken on mobile. Pair that technical foundation with a consistent publishing cadence and internal linking strategy, and you build the kind of long-term visibility that keeps compounding instead of resetting with every algorithm update."
-            ]
-        },
-        {
-            title: "Unlock AI-Powered SEO",
-            cat: "SEO",
-            quote: "Discover how artificial intelligence is transforming keyword research, content creation, technical SEO, and search performance.",
-            img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=700&auto=format&fit=crop&q=80",
-            article: [
-                "AI has moved from a novelty in the SEO toolkit to a core part of how modern search visibility gets built. Search engines themselves increasingly use AI to interpret queries and rank content, which means the sites that adapt their own workflows around AI tend to move faster than those still working manually.",
-                "On the research side, AI models can process far more search data than a person could manually, surfacing keyword clusters, content gaps, and competitor patterns in minutes instead of days. That doesn't replace strategic judgment — it just clears the busywork so more time goes into decisions that actually require a human perspective.",
-                "The same shift is happening in content creation and technical audits. AI-assisted drafting speeds up production, but the sites that win are the ones that use it as a first draft, not a final one — adding real expertise, original data, and a distinct point of view. Combined with AI-powered technical crawls that catch issues humans miss, this is quickly becoming the baseline for staying competitive in search."
-            ]
-        },
-        {
-            title: "Boost Website Performance",
-            cat: "Performance",
-            quote: "Learn how faster loading times, Core Web Vitals, and technical optimization improve user experience, SEO rankings, and conversion rates.",
-            img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&auto=format&fit=crop&q=80",
-            article: [
-                "Site speed isn't a nice-to-have anymore — it's a ranking factor, a conversion factor, and often the first thing visitors judge before they've read a single word. Core Web Vitals gave website performance a concrete, measurable standard: how fast content loads, how quickly the page becomes interactive, and how stable the layout stays as it loads.",
-                "Most performance problems trace back to a handful of causes: unoptimized images, render-blocking scripts, and third-party embeds that load more than they need to. Fixing these doesn't require a full rebuild — targeted image compression, deferring non-critical JavaScript, and trimming unnecessary plugins or trackers can meaningfully improve load times on their own.",
-                "The payoff compounds. Faster sites get crawled more efficiently by search engines, which helps new content get indexed sooner. Visitors bounce less and convert more, because every extra second of load time is a moment where attention can be lost. Treating performance as an ongoing discipline — not a one-time audit — keeps a site competitive as content and traffic grow."
-            ]
-        },
-        {
-            title: "Create High-Converting Web Designs",
-            cat: "Design",
-            quote: "Explore modern web design principles, responsive development, and UX best practices that turn visitors into loyal customers.",
-            img: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=700&auto=format&fit=crop&q=80",
-            article: [
-                "Good design is often invisible — visitors don't consciously notice a well-structured page, they just find what they need and move forward without friction. That's the real goal of a high-converting website: removing every unnecessary obstacle between a visitor's intent and the action you want them to take.",
-                "Responsive development is the foundation, not an afterthought. With traffic split across phones, tablets, and desktops, a layout that only feels intentional on one screen size loses a meaningful share of visitors before they even engage with the content. Designing mobile-first tends to produce cleaner, more focused pages across every device.",
-                "Beyond layout, conversion-focused design is about clarity and trust: a clear value proposition above the fold, calls to action that stand out without feeling aggressive, and enough visual breathing room that the page doesn't feel like it's competing for attention. Small, consistent improvements — faster forms, clearer navigation, better contrast — tend to outperform a single dramatic redesign."
-            ]
-        }
-    ];
+    var postsByLang = {
+        en: [
+            {
+                title: "Master SEO",
+                cat: "AI Search",
+                quote: "Increase organic traffic, improve search rankings, and build long-term visibility with proven search engine optimization strategies.",
+                article: [
+                    "Search engine optimization is still the most reliable way to earn consistent, high-intent traffic — but the tactics that worked five years ago rarely move the needle today. Google's ranking systems now weigh dozens of signals at once, from page experience to topical authority, and treating SEO as a checklist of keywords and backlinks is a fast way to plateau.",
+                    "The strongest starting point is understanding what your audience is actually searching for, not just what you want to rank for. Keyword research should map to real intent: are people comparing options, looking for a how-to, or ready to buy? Content built around that intent naturally earns better engagement, and engagement is one of the clearest signals search engines use to judge relevance.",
+                    "Technical health matters just as much as content quality. A fast, crawlable, mobile-friendly site gives your content a fair chance to be indexed and ranked — no amount of great writing overcomes a site that's slow or broken on mobile. Pair that technical foundation with a consistent publishing cadence and internal linking strategy, and you build the kind of long-term visibility that keeps compounding instead of resetting with every algorithm update."
+                ]
+            },
+            {
+                title: "Unlock AI-Powered SEO",
+                cat: "SEO",
+                quote: "Discover how artificial intelligence is transforming keyword research, content creation, technical SEO, and search performance.",
+                article: [
+                    "AI has moved from a novelty in the SEO toolkit to a core part of how modern search visibility gets built. Search engines themselves increasingly use AI to interpret queries and rank content, which means the sites that adapt their own workflows around AI tend to move faster than those still working manually.",
+                    "On the research side, AI models can process far more search data than a person could manually, surfacing keyword clusters, content gaps, and competitor patterns in minutes instead of days. That doesn't replace strategic judgment — it just clears the busywork so more time goes into decisions that actually require a human perspective.",
+                    "The same shift is happening in content creation and technical audits. AI-assisted drafting speeds up production, but the sites that win are the ones that use it as a first draft, not a final one — adding real expertise, original data, and a distinct point of view. Combined with AI-powered technical crawls that catch issues humans miss, this is quickly becoming the baseline for staying competitive in search."
+                ]
+            },
+            {
+                title: "Boost Website Performance",
+                cat: "Performance",
+                quote: "Learn how faster loading times, Core Web Vitals, and technical optimization improve user experience, SEO rankings, and conversion rates.",
+                article: [
+                    "Site speed isn't a nice-to-have anymore — it's a ranking factor, a conversion factor, and often the first thing visitors judge before they've read a single word. Core Web Vitals gave website performance a concrete, measurable standard: how fast content loads, how quickly the page becomes interactive, and how stable the layout stays as it loads.",
+                    "Most performance problems trace back to a handful of causes: unoptimized images, render-blocking scripts, and third-party embeds that load more than they need to. Fixing these doesn't require a full rebuild — targeted image compression, deferring non-critical JavaScript, and trimming unnecessary plugins or trackers can meaningfully improve load times on their own.",
+                    "The payoff compounds. Faster sites get crawled more efficiently by search engines, which helps new content get indexed sooner. Visitors bounce less and convert more, because every extra second of load time is a moment where attention can be lost. Treating performance as an ongoing discipline — not a one-time audit — keeps a site competitive as content and traffic grow."
+                ]
+            },
+            {
+                title: "Create High-Converting Web Designs",
+                cat: "Design",
+                quote: "Explore modern web design principles, responsive development, and UX best practices that turn visitors into loyal customers.",
+                article: [
+                    "Good design is often invisible — visitors don't consciously notice a well-structured page, they just find what they need and move forward without friction. That's the real goal of a high-converting website: removing every unnecessary obstacle between a visitor's intent and the action you want them to take.",
+                    "Responsive development is the foundation, not an afterthought. With traffic split across phones, tablets, and desktops, a layout that only feels intentional on one screen size loses a meaningful share of visitors before they even engage with the content. Designing mobile-first tends to produce cleaner, more focused pages across every device.",
+                    "Beyond layout, conversion-focused design is about clarity and trust: a clear value proposition above the fold, calls to action that stand out without feeling aggressive, and enough visual breathing room that the page doesn't feel like it's competing for attention. Small, consistent improvements — faster forms, clearer navigation, better contrast — tend to outperform a single dramatic redesign."
+                ]
+            }
+        ],
+        de: [
+            {
+                title: "SEO meistern",
+                cat: "KI-Suche",
+                quote: "Steigern Sie den organischen Traffic, verbessern Sie Ihre Suchrankings und bauen Sie langfristige Sichtbarkeit mit bewährten SEO-Strategien auf.",
+                article: [
+                    "Suchmaschinenoptimierung ist nach wie vor der zuverlässigste Weg, um konstanten Traffic mit hoher Kaufabsicht zu gewinnen — doch die Taktiken von vor fünf Jahren bringen heute kaum noch etwas. Googles Ranking-Systeme berücksichtigen inzwischen Dutzende Signale gleichzeitig, von der Page Experience bis zur thematischen Autorität. SEO als reine Checkliste aus Keywords und Backlinks zu behandeln, führt schnell in eine Sackgasse.",
+                    "Der stärkste Ausgangspunkt ist zu verstehen, wonach Ihr Publikum tatsächlich sucht — nicht nur, wofür Sie ranken möchten. Keyword-Recherche sollte sich an echter Absicht orientieren: Vergleichen Menschen Optionen, suchen sie eine Anleitung, oder sind sie kaufbereit? Inhalte, die auf diese Absicht zugeschnitten sind, erzielen von Natur aus mehr Interaktion — und Interaktion ist eines der klarsten Signale, mit denen Suchmaschinen Relevanz beurteilen.",
+                    "Technische Gesundheit ist genauso wichtig wie Content-Qualität. Eine schnelle, crawlbare, mobilfreundliche Website gibt Ihrem Content eine faire Chance, indexiert und gerankt zu werden — kein noch so guter Text gleicht eine langsame oder auf Mobilgeräten fehlerhafte Seite aus. Kombinieren Sie dieses technische Fundament mit einem konstanten Veröffentlichungsrhythmus und einer durchdachten internen Verlinkung, und Sie bauen die Art von langfristiger Sichtbarkeit auf, die sich stetig weiterentwickelt, statt bei jedem Algorithmus-Update wieder bei null anzufangen."
+                ]
+            },
+            {
+                title: "KI-gestützte SEO freischalten",
+                cat: "SEO",
+                quote: "Entdecken Sie, wie künstliche Intelligenz Keyword-Recherche, Content-Erstellung, technisches SEO und Suchperformance verändert.",
+                article: [
+                    "KI hat sich von einer Spielerei im SEO-Werkzeugkasten zu einem zentralen Bestandteil moderner Suchsichtbarkeit entwickelt. Suchmaschinen selbst nutzen zunehmend KI, um Anfragen zu interpretieren und Inhalte zu ranken — Websites, die ihre eigenen Arbeitsabläufe entsprechend anpassen, kommen schneller voran als jene, die weiterhin manuell arbeiten.",
+                    "Bei der Recherche können KI-Modelle weit mehr Suchdaten verarbeiten, als ein Mensch manuell könnte, und decken Keyword-Cluster, Content-Lücken und Wettbewerbermuster in Minuten statt Tagen auf. Das ersetzt keine strategische Beurteilung — es räumt nur die Fleißarbeit aus dem Weg, damit mehr Zeit für Entscheidungen bleibt, die wirklich eine menschliche Perspektive erfordern.",
+                    "Dieselbe Verschiebung findet auch bei Content-Erstellung und technischen Audits statt. KI-unterstütztes Schreiben beschleunigt die Produktion, aber die erfolgreichen Websites nutzen es als ersten Entwurf, nicht als Endergebnis — sie ergänzen echte Expertise, originäre Daten und eine eigene Perspektive. In Kombination mit KI-gestützten technischen Crawls, die Probleme aufdecken, die Menschen übersehen, wird das schnell zum Standard, um in der Suche wettbewerbsfähig zu bleiben."
+                ]
+            },
+            {
+                title: "Website-Performance steigern",
+                cat: "Performance",
+                quote: "Erfahren Sie, wie schnellere Ladezeiten, Core Web Vitals und technische Optimierung Nutzererlebnis, SEO-Rankings und Conversion-Raten verbessern.",
+                article: [
+                    "Ladegeschwindigkeit ist längst kein Nice-to-have mehr — sie ist ein Rankingfaktor, ein Conversion-Faktor und oft das Erste, was Besucher beurteilen, noch bevor sie ein einziges Wort gelesen haben. Core Web Vitals haben der Website-Performance einen konkreten, messbaren Standard gegeben: wie schnell Inhalte laden, wie schnell die Seite interaktiv wird und wie stabil das Layout beim Laden bleibt.",
+                    "Die meisten Performance-Probleme lassen sich auf wenige Ursachen zurückführen: unoptimierte Bilder, render-blockierende Skripte und Drittanbieter-Einbindungen, die mehr laden als nötig. Diese zu beheben erfordert keinen kompletten Neuaufbau — gezielte Bildkomprimierung, das Verzögern nicht kritischen JavaScripts und das Entfernen unnötiger Plugins oder Tracker können die Ladezeiten spürbar verbessern.",
+                    "Der Nutzen summiert sich. Schnellere Websites werden von Suchmaschinen effizienter gecrawlt, wodurch neue Inhalte schneller indexiert werden. Besucher springen seltener ab und konvertieren häufiger, denn jede zusätzliche Sekunde Ladezeit ist ein Moment, in dem Aufmerksamkeit verloren gehen kann. Performance als fortlaufende Disziplin zu behandeln — statt als einmaliges Audit — hält eine Website wettbewerbsfähig, während Inhalte und Traffic wachsen."
+                ]
+            },
+            {
+                title: "Konversionsstarke Webdesigns gestalten",
+                cat: "Design",
+                quote: "Entdecken Sie moderne Webdesign-Prinzipien, responsive Entwicklung und UX-Best-Practices, die Besucher in treue Kunden verwandeln.",
+                article: [
+                    "Gutes Design ist oft unsichtbar — Besucher bemerken eine gut strukturierte Seite nicht bewusst, sie finden einfach, was sie brauchen, und kommen reibungslos voran. Genau das ist das eigentliche Ziel einer konversionsstarken Website: jedes unnötige Hindernis zwischen der Absicht eines Besuchers und der gewünschten Handlung zu entfernen.",
+                    "Responsive Entwicklung ist das Fundament, kein nachträglicher Gedanke. Da sich der Traffic auf Smartphones, Tablets und Desktops verteilt, verliert ein Layout, das nur auf einer Bildschirmgröße durchdacht wirkt, einen erheblichen Teil der Besucher, noch bevor sie sich überhaupt mit dem Inhalt beschäftigen. Mobile-First-Design führt tendenziell zu klareren, fokussierteren Seiten auf jedem Gerät.",
+                    "Über das Layout hinaus geht es bei konversionsorientiertem Design um Klarheit und Vertrauen: ein klares Wertversprechen im sichtbaren Bereich, Handlungsaufforderungen, die auffallen, ohne aufdringlich zu wirken, und genug visueller Freiraum, damit die Seite nicht wie ein Kampf um Aufmerksamkeit wirkt. Kleine, konsequente Verbesserungen — schnellere Formulare, klarere Navigation, besserer Kontrast — übertreffen meist ein einzelnes dramatisches Redesign."
+                ]
+            }
+        ]
+    };
+
+    var uiText = {
+        en: { pageTitle: 'Learn, Explore<br>&amp; Grow', all: 'All', prev: 'Previous post', next: 'Next post', close: 'Close article' },
+        de: { pageTitle: 'Lernen, Entdecken<br>&amp; Wachsen', all: 'Alle', prev: 'Vorheriger Beitrag', next: 'Nächster Beitrag', close: 'Artikel schließen' }
+    };
+
+    var LANG_KEY = 'ss_lang';
+    var lang = localStorage.getItem(LANG_KEY) || 'en';
+    var posts = postsByLang[lang];
 
     var stage = document.getElementById('carousel-stage');
     var catEl = document.getElementById('carousel-cat');
@@ -422,19 +506,21 @@ new BlobAnimation("blob_container", {
 
     // Filter pills jump the carousel straight to the first post in that
     // category — inline in the page flow, no boxed section of its own.
-    var categories = ['All'];
-    posts.forEach(function(post){ if (categories.indexOf(post.cat) === -1) categories.push(post.cat); });
-    categories.forEach(function(cat){
+    // Tracked by post-index (language-agnostic) so labels can be relabeled
+    // on a language switch without losing which category is active.
+    var categoryIndices = [-1]; // -1 = "All"
+    postsByLang.en.forEach(function(post, i){
+        var already = categoryIndices.some(function(ci){ return ci !== -1 && postsByLang.en[ci].cat === post.cat; });
+        if (!already) categoryIndices.push(i);
+    });
+    categoryIndices.forEach(function(catIdx){
         var pill = document.createElement('button');
         pill.className = 'filter-pill';
-        pill.textContent = cat;
+        pill.textContent = catIdx === -1 ? uiText[lang].all : posts[catIdx].cat;
         pill.addEventListener('click', function(){
             pills.forEach(function(p){ p.classList.remove('active'); });
             pill.classList.add('active');
-            if (cat !== 'All') {
-                var idx = posts.findIndex(function(post){ return post.cat === cat; });
-                if (idx !== -1) { active = idx; render(); }
-            }
+            if (catIdx !== -1) { active = catIdx; render(); }
         });
         filterBar.appendChild(pill);
         pills.push(pill);
@@ -451,6 +537,7 @@ new BlobAnimation("blob_container", {
         { wave1: {amplitude: 34.066, frequency: 5.934, phase: 0}, wave2: {amplitude: 20.879, frequency: 6.154, phase: 0}, wave3: {amplitude: 50.549, frequency: 0, phase: 0} }
     ];
 
+    var cardTextEls = [];
     posts.forEach(function(post, i){
         var card = document.createElement('div');
         card.className = 'carousel-card';
@@ -473,6 +560,8 @@ new BlobAnimation("blob_container", {
         title.className = 'carousel-card-title';
         title.textContent = post.title;
         card.appendChild(title);
+
+        cardTextEls.push({ cat: cat, title: title });
 
         stage.appendChild(card);
         cards.push(card);
@@ -646,7 +735,58 @@ new BlobAnimation("blob_container", {
     stage.addEventListener('mousedown', function(e){ onStart(e.clientX); });
     window.addEventListener('mouseup', function(e){ if (dragging) onEnd(e.clientX); });
 
-    render();
+    // Language switch — shares the same localStorage key as the homepage,
+    // so a language choice made on either page carries over to the other.
+    var prevBtn = document.getElementById('carousel-prev');
+    var nextBtn = document.getElementById('carousel-next');
+    var closeBtn = document.getElementById('article-close');
+
+    function applyLang(newLang){
+        lang = newLang;
+        posts = postsByLang[lang];
+        document.documentElement.setAttribute('lang', lang);
+        localStorage.setItem(LANG_KEY, lang);
+
+        document.getElementById('page-title').innerHTML = uiText[lang].pageTitle;
+        prevBtn.setAttribute('aria-label', uiText[lang].prev);
+        nextBtn.setAttribute('aria-label', uiText[lang].next);
+        closeBtn.setAttribute('aria-label', uiText[lang].close);
+
+        pills.forEach(function(pill, i){
+            var catIdx = categoryIndices[i];
+            pill.textContent = catIdx === -1 ? uiText[lang].all : posts[catIdx].cat;
+        });
+
+        cardTextEls.forEach(function(refs, i){
+            refs.cat.textContent = posts[i].cat;
+            refs.title.textContent = posts[i].title;
+        });
+
+        // Re-localize the article overlay in place if it's currently open.
+        if (overlay.classList.contains('open')) {
+            var post = posts[active];
+            articleCat.textContent = post.cat;
+            articleTitle.textContent = post.title;
+            articleBody.innerHTML = '';
+            post.article.forEach(function(paragraph){
+                var p = document.createElement('p');
+                p.textContent = paragraph;
+                articleBody.appendChild(p);
+            });
+        }
+
+        document.querySelectorAll('.lang-opt').forEach(function(btn){
+            btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+
+        render();
+    }
+
+    document.querySelectorAll('.lang-opt').forEach(function(btn){
+        btn.addEventListener('click', function(){ applyLang(btn.dataset.lang); });
+    });
+
+    applyLang(lang);
     setInterval(next, 5000);
 })();
 </script>
