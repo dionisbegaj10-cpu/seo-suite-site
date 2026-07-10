@@ -231,7 +231,6 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
 
 #article-overlay {
     position: fixed;
-    top: 0; left: 0;
     z-index: 1000;
     background: #fff;
     color: #1c1c1c;
@@ -239,15 +238,19 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
     -webkit-overflow-scrolling: touch;
     opacity: 1;
     visibility: hidden;
-    transform-origin: top left;
-    transition: transform .5s cubic-bezier(.4,0,.2,1), border-radius .5s cubic-bezier(.4,0,.2,1), visibility 0s linear .5s;
+    /* Animate real box geometry (top/left/width/height), not a scale()
+       transform — scaling a non-square box unevenly distorts the border
+       radius and squishes the article text while it grows, which was
+       the glitchy look. */
+    transition: top .5s cubic-bezier(.4,0,.2,1), left .5s cubic-bezier(.4,0,.2,1), width .5s cubic-bezier(.4,0,.2,1), height .5s cubic-bezier(.4,0,.2,1), border-radius .5s cubic-bezier(.4,0,.2,1), visibility 0s linear .5s;
 }
 #article-overlay.open {
     opacity: 1;
     visibility: visible;
-    transform: translate(0,0) scale(1,1) !important;
+    top: 0 !important; left: 0 !important;
+    width: 100vw !important; height: 100vh !important;
     border-radius: 0 !important;
-    transition: transform .5s cubic-bezier(.4,0,.2,1), border-radius .5s cubic-bezier(.4,0,.2,1);
+    transition: top .5s cubic-bezier(.4,0,.2,1), left .5s cubic-bezier(.4,0,.2,1), width .5s cubic-bezier(.4,0,.2,1), height .5s cubic-bezier(.4,0,.2,1), border-radius .5s cubic-bezier(.4,0,.2,1);
 }
 /* Closing fades the full-screen panel out in place (no shrink, no hard
    cut) so the dark page underneath reveals itself gradually instead of
@@ -255,9 +258,18 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
 #article-overlay.closing {
     opacity: 0 !important;
     visibility: visible !important;
-    transform: translate(0,0) scale(1,1) !important;
+    top: 0 !important; left: 0 !important;
+    width: 100vw !important; height: 100vh !important;
     border-radius: 0 !important;
     transition: opacity .25s ease !important;
+}
+.article-inner {
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+#article-overlay.open .article-inner,
+#article-overlay.closing .article-inner {
+    opacity: 1;
 }
 .article-close {
     position: fixed;
@@ -579,15 +591,18 @@ new BlobAnimation("blob_container", {
             overlay.scrollTop = 0;
 
             // Grow the white panel out from the tapped card's exact size/
-            // position/shape until it covers the whole screen.
+            // position/shape until it covers the whole screen. Real box
+            // geometry (not a scale transform) keeps the border radius and
+            // article text from distorting while it grows.
             var rect = card.getBoundingClientRect();
             var cardRadius = getComputedStyle(card).borderRadius;
-            overlay.style.width = window.innerWidth + 'px';
-            overlay.style.height = window.innerHeight + 'px';
+            overlay.style.top = rect.top + 'px';
+            overlay.style.left = rect.left + 'px';
+            overlay.style.width = rect.width + 'px';
+            overlay.style.height = rect.height + 'px';
             overlay.style.borderRadius = cardRadius;
-            overlay.style.transform = 'translate(' + rect.left + 'px,' + rect.top + 'px) scale(' + (rect.width / window.innerWidth) + ',' + (rect.height / window.innerHeight) + ')';
             overlay.style.visibility = 'visible';
-            // Force a reflow so the browser registers the starting transform
+            // Force a reflow so the browser registers the starting box
             // before we add the class that animates it to full-screen.
             overlay.offsetHeight;
 
@@ -610,7 +625,10 @@ new BlobAnimation("blob_container", {
         setChrome('#000000');
         setTimeout(function(){
             overlay.classList.remove('closing');
-            overlay.style.transform = '';
+            overlay.style.top = '';
+            overlay.style.left = '';
+            overlay.style.width = '';
+            overlay.style.height = '';
             overlay.style.borderRadius = '';
             overlay.style.visibility = 'hidden';
         }, 250);
