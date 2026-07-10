@@ -608,6 +608,8 @@
             var meta = document.querySelector('meta[name="theme-color"]');
             if (!meta) { meta = document.createElement('meta'); meta.setAttribute('name','theme-color'); document.head.appendChild(meta); }
             var blob = document.getElementById('blob_container');
+            var servicePanel = document.getElementById('service-panel');
+            var contactPanel = document.getElementById('contact-panel');
             // Once <html> gets its own background, the body's background stops
             // propagating to the root and would paint OVER the z-index:-1 sphere.
             // The blob container already provides the black/white backdrop, so
@@ -622,6 +624,14 @@
                 var raw = blob ? getComputedStyle(blob).backgroundColor : '';
                 if (!raw || raw.indexOf('rgb') !== 0) {
                     raw = document.body.classList.contains('animated') ? 'rgb(0, 0, 0)' : 'rgb(255, 255, 255)';
+                }
+                // Full-screen panels cover the page entirely, so the bars
+                // must match THEM, not the blob underneath: the service
+                // panel is white, the contact panel is near-black.
+                if (servicePanel && servicePanel.classList.contains('open')) {
+                    raw = 'rgb(255, 255, 255)';
+                } else if (contactPanel && contactPanel.classList.contains('open')) {
+                    raw = 'rgb(14, 14, 14)';
                 }
                 if (raw !== last) {
                     last = raw;
