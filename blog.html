@@ -544,6 +544,15 @@ new BlobAnimation("blob_container", {
     var articleTitle = document.getElementById('article-title');
     var articleBody = document.getElementById('article-body');
 
+    var themeMeta = document.querySelector('meta[name="theme-color"]');
+    function setChrome(color){
+        // Keep Safari's top/bottom bars matching the actual page background —
+        // both the meta tag AND the html background itself, since Safari
+        // samples the real rendered color, not just the meta value.
+        if (themeMeta) themeMeta.setAttribute('content', color);
+        document.documentElement.style.backgroundColor = color;
+    }
+
     function openArticle(card, post){
         card.classList.add('flipping');
         setTimeout(function(){
@@ -559,12 +568,14 @@ new BlobAnimation("blob_container", {
             overlay.classList.add('open');
             document.body.style.overflow = 'hidden';
             card.classList.remove('flipping');
+            setChrome('#ffffff');
         }, 300);
     }
 
     function closeArticle(){
         overlay.classList.remove('open');
         document.body.style.overflow = '';
+        setChrome('#000000');
     }
 
     document.getElementById('article-close').addEventListener('click', closeArticle);
