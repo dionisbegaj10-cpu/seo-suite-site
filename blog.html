@@ -237,16 +237,16 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
     color: #1c1c1c;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    opacity: 0;
+    opacity: 1;
     visibility: hidden;
-    transform: translateY(24px);
-    transition: opacity .35s ease, transform .35s ease, visibility 0s linear .35s;
+    transform: translateY(100%);
+    transition: transform .45s cubic-bezier(.4,0,.2,1), visibility 0s linear .45s;
 }
 #article-overlay.open {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
-    transition: opacity .35s ease, transform .35s ease;
+    transition: transform .45s cubic-bezier(.4,0,.2,1);
 }
 .article-close {
     position: fixed;
@@ -555,9 +555,6 @@ new BlobAnimation("blob_container", {
     }
 
     function openArticle(card, post){
-        // Turn the bars white the instant the flip starts, not after —
-        // so they're already correct by the time the white article shows.
-        setChrome('#ffffff');
         card.classList.add('flipping');
         setTimeout(function(){
             articleCat.textContent = post.cat;
@@ -569,6 +566,9 @@ new BlobAnimation("blob_container", {
                 articleBody.appendChild(p);
             });
             overlay.scrollTop = 0;
+            // Turn the bars white right as the white panel starts sliding
+            // up to cover the page, so the bars and the page turn white together.
+            setChrome('#ffffff');
             overlay.classList.add('open');
             document.body.style.overflow = 'hidden';
             card.classList.remove('flipping');
