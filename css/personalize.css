@@ -340,3 +340,67 @@ body.hero-view #pixel-orb { opacity: 1; pointer-events: all; }
 
 /* The pixel orb replaces the rotating pencil badge as the contact button. */
 .bottom_nav { display: none !important; }
+
+/* --- Trusted-by logo strip --- */
+.box-trusted {
+    padding: 36px 0 8px;
+    text-align: center;
+    border-top: 1px solid rgba(0,0,0,0.08);
+}
+body.animated .box-trusted { border-top-color: rgba(255,255,255,0.12); }
+#trusted-label {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-size: 11px;
+    color: rgba(0,0,0,0.35);
+    margin: 0 0 32px;
+    transition: color 0.25s ease;
+}
+body.animated #trusted-label { color: rgba(255,255,255,0.4); }
+.trusted-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 56px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.trusted-logos li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 46px;
+}
+.trusted-logos img {
+    height: 100%;
+    width: auto;
+    max-width: 170px;
+    object-fit: contain;
+    filter: brightness(0);
+    opacity: 0.6;
+    transition: opacity 0.25s ease, filter 0.25s ease, transform 0.25s ease;
+}
+body.animated .trusted-logos img {
+    filter: brightness(0) invert(1);
+}
+.trusted-logos img:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+@media (max-width: 767px) {
+    .box-trusted { padding: 28px 0 4px; }
+    .trusted-logos {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 20px;
+        row-gap: 32px;
+        align-items: center;
+        justify-items: center;
+    }
+    .trusted-logos li { height: 36px; }
+    .trusted-logos img { max-width: 100%; }
+}
