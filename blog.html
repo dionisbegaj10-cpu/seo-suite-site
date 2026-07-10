@@ -231,45 +231,23 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
 
 #article-overlay {
     position: fixed;
+    inset: 0;
     z-index: 1000;
     background: #fff;
     color: #1c1c1c;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    opacity: 1;
+    opacity: 0;
     visibility: hidden;
-    /* Animate real box geometry (top/left/width/height), not a scale()
-       transform — scaling a non-square box unevenly distorts the border
-       radius and squishes the article text while it grows, which was
-       the glitchy look. */
-    transition: top .5s cubic-bezier(.4,0,.2,1), left .5s cubic-bezier(.4,0,.2,1), width .5s cubic-bezier(.4,0,.2,1), height .5s cubic-bezier(.4,0,.2,1), border-radius .5s cubic-bezier(.4,0,.2,1), visibility 0s linear .5s;
+    /* Plain full-screen fade — no card-position geometry animation, since
+       that depended on live measurements at tap time and was unreliable
+       on mobile (slow, sometimes not opening, sometimes stuck open). */
+    transition: opacity .3s ease, visibility 0s linear .3s;
 }
 #article-overlay.open {
     opacity: 1;
     visibility: visible;
-    top: 0 !important; left: 0 !important;
-    width: 100vw !important; height: 100vh !important;
-    border-radius: 0 !important;
-    transition: top .5s cubic-bezier(.4,0,.2,1), left .5s cubic-bezier(.4,0,.2,1), width .5s cubic-bezier(.4,0,.2,1), height .5s cubic-bezier(.4,0,.2,1), border-radius .5s cubic-bezier(.4,0,.2,1);
-}
-/* Closing fades the full-screen panel out in place (no shrink, no hard
-   cut) so the dark page underneath reveals itself gradually instead of
-   flashing a flat black frame before the particle sphere repaints. */
-#article-overlay.closing {
-    opacity: 0 !important;
-    visibility: visible !important;
-    top: 0 !important; left: 0 !important;
-    width: 100vw !important; height: 100vh !important;
-    border-radius: 0 !important;
-    transition: opacity .25s ease !important;
-}
-.article-inner {
-    opacity: 0;
     transition: opacity .3s ease;
-}
-#article-overlay.open .article-inner,
-#article-overlay.closing .article-inner {
-    opacity: 1;
 }
 .article-close {
     position: fixed;
@@ -578,60 +556,26 @@ new BlobAnimation("blob_container", {
     }
 
     function openArticle(card, post){
-        card.classList.add('flipping');
-        setTimeout(function(){
-            articleCat.textContent = post.cat;
-            articleTitle.textContent = post.title;
-            articleBody.innerHTML = '';
-            post.article.forEach(function(paragraph){
-                var p = document.createElement('p');
-                p.textContent = paragraph;
-                articleBody.appendChild(p);
-            });
-            overlay.scrollTop = 0;
-
-            // Grow the white panel out from the tapped card's exact size/
-            // position/shape until it covers the whole screen. Real box
-            // geometry (not a scale transform) keeps the border radius and
-            // article text from distorting while it grows.
-            var rect = card.getBoundingClientRect();
-            var cardRadius = getComputedStyle(card).borderRadius;
-            overlay.style.top = rect.top + 'px';
-            overlay.style.left = rect.left + 'px';
-            overlay.style.width = rect.width + 'px';
-            overlay.style.height = rect.height + 'px';
-            overlay.style.borderRadius = cardRadius;
-            overlay.style.visibility = 'visible';
-            // Force a reflow so the browser registers the starting box
-            // before we add the class that animates it to full-screen.
-            overlay.offsetHeight;
-
-            // Turn the bars white the instant the panel starts growing, so
-            // the bars and the page turn white together, gradually.
-            setChrome('#ffffff');
-            overlay.classList.add('open');
-            document.body.style.overflow = 'hidden';
-            card.classList.remove('flipping');
-        }, 300);
+        articleCat.textContent = post.cat;
+        articleTitle.textContent = post.title;
+        articleBody.innerHTML = '';
+        post.article.forEach(function(paragraph){
+            var p = document.createElement('p');
+            p.textContent = paragraph;
+            articleBody.appendChild(p);
+        });
+        overlay.scrollTop = 0;
+        // Bars and the page fade to white together.
+        setChrome('#ffffff');
+        overlay.style.visibility = 'visible';
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
     }
 
     function closeArticle(){
-        // Fade the full-screen panel out in place (no shrink-back, no hard
-        // cut) and turn the bars black at the same moment the fade starts,
-        // so the page goes dark gradually instead of flashing flat black.
         overlay.classList.remove('open');
-        overlay.classList.add('closing');
         document.body.style.overflow = '';
         setChrome('#000000');
-        setTimeout(function(){
-            overlay.classList.remove('closing');
-            overlay.style.top = '';
-            overlay.style.left = '';
-            overlay.style.width = '';
-            overlay.style.height = '';
-            overlay.style.borderRadius = '';
-            overlay.style.visibility = 'hidden';
-        }, 250);
     }
 
     document.getElementById('article-close').addEventListener('click', closeArticle);
