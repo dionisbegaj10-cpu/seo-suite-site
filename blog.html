@@ -241,22 +241,19 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
        through to the page underneath. */
     overscroll-behavior: contain;
     opacity: 0;
-    visibility: hidden;
-    /* iOS Safari can keep a -webkit-overflow-scrolling:touch layer
-       capturing touch/scroll input even while hidden, which is what was
-       eating the card swipes and page scroll. pointer-events:none while
-       closed guarantees touches pass straight through to the page. */
+    /* display:none while closed — iOS 26 Safari samples hidden fixed
+       overlays for its toolbar tint, so they must be fully gone. This also
+       guarantees touches pass straight through to the page while closed. */
+    display: none;
     pointer-events: none;
     /* Plain full-screen fade — no card-position geometry animation, since
        that depended on live measurements at tap time and was unreliable
        on mobile (slow, sometimes not opening, sometimes stuck open). */
-    transition: opacity .3s ease, visibility 0s linear .3s;
+    transition: opacity .3s ease;
 }
 #article-overlay.open {
     opacity: 1;
-    visibility: visible;
     pointer-events: auto;
-    transition: opacity .3s ease;
 }
 .article-close {
     position: fixed;
@@ -902,7 +899,9 @@ new BlobAnimation("blob_container", {
             articleBody.appendChild(p);
         });
         overlay.scrollTop = 0;
-        overlay.classList.add('open');
+        // display first, then .open a frame later so the fade still runs.
+        overlay.style.display = 'block';
+        setTimeout(function(){ overlay.classList.add('open'); }, 20);
         // NO body scroll lock: iOS Safari only re-samples its bar tint on
         // scroll activity, and freezing the page at the exact moment the
         // color changes left the bars stuck black. The overlay covers the
@@ -918,6 +917,7 @@ new BlobAnimation("blob_container", {
 
     function closeArticle(){
         overlay.classList.remove('open');
+        setTimeout(function(){ if (!overlay.classList.contains('open')) overlay.style.display = 'none'; }, 350);
         // Same nudge on the way back to black.
         requestAnimationFrame(function(){
             window.scrollBy(0, 1);

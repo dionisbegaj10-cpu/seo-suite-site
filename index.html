@@ -16,7 +16,7 @@
         <link href="css/style.css" rel="stylesheet"/>
         <link href="css/mediaquery.css" rel="stylesheet"/>
         <link href="css/portfolio_style.css" rel="stylesheet"/>
-        <link href="css/personalize.css?v=trusted10" rel="stylesheet"/>
+        <link href="css/personalize.css?v=trusted11" rel="stylesheet"/>
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
         <script src="js/libs/anime.min.js"></script>
         <script src="js/libs/jsband-min.js"></script>
@@ -405,11 +405,13 @@
         #service-panel {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #fff; z-index: 9000; box-sizing: border-box;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transform: translateX(100%); visibility: hidden;
-            transition: transform 0.42s cubic-bezier(0.22,1,0.36,1), visibility 0s linear 0.42s;
+            /* display:none while closed — iOS 26 Safari samples hidden fixed
+               overlays for its toolbar tint, so they must be fully gone. */
+            display: none; flex-direction: column; align-items: center; justify-content: center;
+            transform: translateX(100%);
+            transition: transform 0.42s cubic-bezier(0.22,1,0.36,1);
         }
-        #service-panel.open { transform: translateX(0); visibility: visible; transition: transform 0.42s cubic-bezier(0.22,1,0.36,1), visibility 0s; }
+        #service-panel.open { transform: translateX(0); }
         #service-panel-inner { width: min(600px, 88vw); }
         #service-panel-close {
             position: absolute; top: 28px; right: 28px; background: none; border: none;
@@ -425,10 +427,10 @@
             font-family: Arial, Helvetica, sans-serif; font-size: 16px; line-height: 1.8;
             color: #444; margin: 0;
         }
-        #service-panel-backdrop {
-            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.35); z-index: 8999;
-        }
-        #service-panel-backdrop.open { display: block; }
+        /* The panel is full-screen, so the dim backdrop is never visible —
+           and iOS 26 Safari samples fixed semi-transparent layers for its
+           toolbar tint, which turned the bars gray. Never show it. */
+        #service-panel-backdrop { display: none; }
         </style>
 
         <script>
@@ -451,14 +453,23 @@
                 var localized = window.__servicePanelData && window.__servicePanelData[lang];
                 var d = (localized && localized[key]) || data[key];
                 if(!d) return;
-                titleEl.innerHTML = d.title; bodyEl.textContent = d.body; panel.classList.add('open'); backdrop.classList.add('open');
+                titleEl.innerHTML = d.title; bodyEl.textContent = d.body;
+                // display first, then .open on the next frame so the slide
+                // transition still runs from translateX(100%).
+                panel.style.display = 'flex';
+                setTimeout(function(){ panel.classList.add('open'); }, 20);
+                // iOS 26 Safari ignores theme-color and derives its bars from
+                // the body background — drive it directly while the panel is up.
+                document.body.style.backgroundColor = '#ffffff';
                 nudgeBars();
             }
             function closePanel(){
-                panel.classList.remove('open'); backdrop.classList.remove('open');
+                panel.classList.remove('open');
+                document.body.style.backgroundColor = 'transparent';
+                setTimeout(function(){ if (!panel.classList.contains('open')) panel.style.display = 'none'; }, 450);
                 nudgeBars();
             }
-            // iOS Safari only re-samples its bar tint on scroll activity.
+            // iOS Safari re-samples its bar tint on scroll activity.
             // The two moves must land in DIFFERENT frames — done back-to-back
             // they cancel out before paint and no scroll event ever fires.
             function nudgeBars(){
@@ -478,8 +489,19 @@
         (function(){
             var panel    = document.getElementById('contact-panel');
             var backdrop = document.getElementById('contact-panel-backdrop');
-            function openPanel(){ panel.classList.add('open'); backdrop.classList.add('open'); document.body.style.overflow = 'hidden'; }
-            function closePanel(){ panel.classList.remove('open'); backdrop.classList.remove('open'); document.body.style.overflow = ''; }
+            function openPanel(){
+                panel.style.display = 'flex';
+                setTimeout(function(){ panel.classList.add('open'); }, 20);
+                backdrop.classList.add('open');
+                document.body.style.overflow = 'hidden';
+                document.body.style.backgroundColor = '#0e0e0e';
+            }
+            function closePanel(){
+                panel.classList.remove('open'); backdrop.classList.remove('open');
+                document.body.style.overflow = '';
+                document.body.style.backgroundColor = 'transparent';
+                setTimeout(function(){ if (!panel.classList.contains('open')) panel.style.display = 'none'; }, 600);
+            }
             window.__openContact = openPanel;
 
             // Pixel orb opens the panel.
@@ -517,6 +539,8 @@
                 requestAnimationFrame(function(){ requestAnimationFrame(function(){ ripple.style.transition = 'transform 0.72s cubic-bezier(0.4,0,0.2,1)'; ripple.style.transform = 'scale(1)'; }); });
                 setTimeout(function(){
                     panel.classList.remove('open'); backdrop.classList.remove('open'); document.body.style.overflow = '';
+                    document.body.style.backgroundColor = 'transparent';
+                    panel.style.display = 'none';
                     if (typeof blob !== 'undefined') { blob.dotColor = '#1c1c1c'; }
                     var blobEl = document.getElementById('blob_container');
                     if (blobEl) { blobEl.style.zIndex = '10003'; blobEl.style.opacity = '1'; blobEl.style.setProperty('background-color', '#ffffff', 'important'); }

@@ -185,16 +185,15 @@ body.animated #free-analysis-cta { background: #ffffff; color: #1c1c1c; }
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     /* Parked off-screen via transform (relative to its own size) so it can't
-       peek back in when iOS Safari's address bar resizes the viewport. */
+       peek back in when iOS Safari's address bar resizes the viewport.
+       display:none while closed — iOS 26 Safari samples hidden fixed
+       overlays for its toolbar tint, so they must be fully gone. */
     transform: translateY(100%);
-    visibility: hidden;
-    transition: transform 0.55s cubic-bezier(0.22,1,0.36,1), visibility 0s linear 0.55s;
-    display: flex;
+    display: none;
+    transition: transform 0.55s cubic-bezier(0.22,1,0.36,1);
 }
 #contact-panel.open {
     transform: translateY(0);
-    visibility: visible;
-    transition: transform 0.55s cubic-bezier(0.22,1,0.36,1), visibility 0s;
 }
 #contact-panel-backdrop { display: none; position: fixed; inset: 0; z-index: 9999; }
 #contact-panel-backdrop.open { display: block; }
