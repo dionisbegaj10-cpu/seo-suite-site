@@ -48,12 +48,44 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
     color: #fff;
 }
 
+/* --- Filter pills: inline in the flow, same transparent backdrop as
+   everything else — not a boxed section, just part of the continuous page. --- */
+#filter-bar {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 6% 50px;
+}
+.filter-pill {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    padding: 12px 22px;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: transparent;
+    color: rgba(255,255,255,0.6);
+    cursor: pointer;
+    transition: all .2s ease;
+}
+.filter-pill.active,
+.filter-pill:hover {
+    background: #fff;
+    border-color: #fff;
+    color: #1c1c1c;
+}
+
 /* --- Blog preview carousel: same dark backdrop, no section break --- */
 #carousel-section {
     position: relative;
     z-index: 1;
     background: transparent;
-    padding: 40px 6% 140px;
+    padding: 0 6% 140px;
 }
 .carousel-grid {
     max-width: 1000px;
@@ -259,6 +291,8 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
     <h1 id="page-title">Learn, Explore<br>&amp; Grow</h1>
 </div>
 
+<div id="filter-bar"></div>
+
 <section id="carousel-section">
     <div class="carousel-grid">
         <div class="carousel-stage" id="carousel-stage"></div>
@@ -364,8 +398,31 @@ new BlobAnimation("blob_container", {
     var catEl = document.getElementById('carousel-cat');
     var titleEl = document.getElementById('carousel-title');
     var quoteEl = document.getElementById('carousel-quote');
+    var filterBar = document.getElementById('filter-bar');
     var active = 0;
     var cards = [];
+    var pills = [];
+
+    // Filter pills jump the carousel straight to the first post in that
+    // category — inline in the page flow, no boxed section of its own.
+    var categories = ['All'];
+    posts.forEach(function(post){ if (categories.indexOf(post.cat) === -1) categories.push(post.cat); });
+    categories.forEach(function(cat){
+        var pill = document.createElement('button');
+        pill.className = 'filter-pill';
+        pill.textContent = cat;
+        pill.addEventListener('click', function(){
+            pills.forEach(function(p){ p.classList.remove('active'); });
+            pill.classList.add('active');
+            if (cat !== 'All') {
+                var idx = posts.findIndex(function(post){ return post.cat === cat; });
+                if (idx !== -1) { active = idx; render(); }
+            }
+        });
+        filterBar.appendChild(pill);
+        pills.push(pill);
+    });
+    pills[0].classList.add('active');
 
     posts.forEach(function(post, i){
         var card = document.createElement('div');
