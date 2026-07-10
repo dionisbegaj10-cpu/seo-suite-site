@@ -16,8 +16,10 @@
     font-weight: 900;
     font-style: normal;
 }
-html, body { background: #000; margin: 0; padding: 0; }
-body { overflow-x: hidden; cursor: auto; }
+html, body { background: #000; margin: 0; padding: 0; width: 100%; max-width: 100%; }
+html { overflow-x: hidden; }
+body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
+* { box-sizing: border-box; }
 
 /* Sphere stays fixed behind EVERYTHING for the whole page — the carousel
    below is a continuation of this same dark scene, not a new section. */
@@ -64,33 +66,47 @@ body { overflow-x: hidden; cursor: auto; }
 .carousel-stage {
     position: relative;
     width: 100%;
-    max-width: 340px;
-    height: 380px;
+    max-width: 480px;
+    height: 300px;
     margin: 0 auto;
+    overflow: hidden;
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
 }
 .carousel-card {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 340px;
+    top: 0;
+    left: 50%;
+    width: 220px;
+    height: 280px;
+    margin-left: -110px;
     border-radius: 10px;
     overflow: hidden;
     border: 2px solid rgba(255,255,255,0.25);
     background: #000;
-    opacity: 1;
-    transform-origin: top center;
-    transition: transform .25s ease, opacity .25s ease, border-color .25s ease;
+    opacity: 0;
+    transition: transform .35s ease, opacity .35s ease, border-color .35s ease;
     pointer-events: none;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 26px;
+    padding: 22px;
     box-sizing: border-box;
+    cursor: pointer;
 }
 .carousel-card.active {
     z-index: 10;
     pointer-events: auto;
     border-color: rgba(255,255,255,0.55);
+    opacity: 1;
+    cursor: default;
+}
+.carousel-card.prev,
+.carousel-card.next {
+    z-index: 5;
+    pointer-events: auto;
+    opacity: 0.4;
 }
 .carousel-card-index {
     position: absolute;
@@ -282,22 +298,37 @@ new BlobAnimation("blob_container", {
         cards.push(card);
     });
 
+    var SIDE_OFFSET = 150;
+
     function render(){
         var n = posts.length;
         cards.forEach(function(card, i){
-            card.classList.remove('active');
-            // Distance behind the active card, wrapping around the deck.
-            var depth = (i - active + n) % n;
-            if (depth === 0) {
+            card.classList.remove('active', 'prev', 'next');
+            // Position relative to active, wrapping both directions so the
+            // deck always rotates — never a dead end at either edge.
+            var rel = i - active;
+            if (rel > n / 2) rel -= n;
+            if (rel < -n / 2) rel += n;
+
+            if (rel === 0) {
                 card.classList.add('active');
-                card.style.transform = 'translate(0px, 0px) scale(1)';
+                card.style.transform = 'translateX(0px) scale(1)';
                 card.style.opacity = '1';
+                card.style.pointerEvents = 'auto';
+            } else if (rel === -1 || (n === 2 && rel === 1)) {
+                card.classList.add('prev');
+                card.style.transform = 'translateX(-' + SIDE_OFFSET + 'px) scale(0.82)';
+                card.style.opacity = '0.4';
+                card.style.pointerEvents = 'auto';
+            } else if (rel === 1) {
+                card.classList.add('next');
+                card.style.transform = 'translateX(' + SIDE_OFFSET + 'px) scale(0.82)';
+                card.style.opacity = '0.4';
+                card.style.pointerEvents = 'auto';
             } else {
-                var offset = depth * 18;
-                var scale = 1 - depth * 0.05;
-                card.style.transform = 'translate(' + offset + 'px, ' + offset + 'px) scale(' + scale + ')';
-                card.style.opacity = String(Math.max(0.35, 1 - depth * 0.22));
-                card.style.zIndex = String(n - depth);
+                card.style.opacity = '0';
+                card.style.transform = 'translateX(0px) scale(0.7)';
+                card.style.pointerEvents = 'none';
             }
         });
         var post = posts[active];
@@ -311,6 +342,29 @@ new BlobAnimation("blob_container", {
 
     document.getElementById('carousel-next').addEventListener('click', next);
     document.getElementById('carousel-prev').addEventListener('click', prev);
+
+    cards.forEach(function(card, i){
+        card.addEventListener('click', function(){
+            if (card.classList.contains('prev')) prev();
+            else if (card.classList.contains('next')) next();
+        });
+    });
+
+    // Touch swipe (mobile) + mouse drag (desktop) — both directions, circular.
+    var startX = null, dragging = false;
+    function onStart(x){ startX = x; dragging = true; }
+    function onEnd(x){
+        if (!dragging || startX === null) return;
+        dragging = false;
+        var delta = x - startX;
+        startX = null;
+        if (Math.abs(delta) < 30) return;
+        if (delta < 0) next(); else prev();
+    }
+    stage.addEventListener('touchstart', function(e){ onStart(e.touches[0].clientX); }, { passive: true });
+    stage.addEventListener('touchend', function(e){ onEnd(e.changedTouches[0].clientX); }, { passive: true });
+    stage.addEventListener('mousedown', function(e){ onStart(e.clientX); });
+    window.addEventListener('mouseup', function(e){ if (dragging) onEnd(e.clientX); });
 
     render();
     setInterval(next, 5000);
