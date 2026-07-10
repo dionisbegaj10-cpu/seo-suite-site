@@ -140,13 +140,18 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
     pointer-events: auto;
     opacity: 0.4;
 }
-.carousel-card-index {
+.carousel-card-blob {
     position: absolute;
-    top: 20px; left: 26px;
-    font-family: 'Grumpy 24', Georgia, serif;
-    font-size: 4rem;
-    line-height: 1;
-    color: rgba(255,255,255,0.08);
+    inset: 0;
+    z-index: 0;
+    background: #000;
+}
+.carousel-card-fade {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.1) 65%);
+    pointer-events: none;
 }
 .carousel-card-cat {
     font-family: Arial, Helvetica, sans-serif;
@@ -157,6 +162,7 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
     color: rgba(255,255,255,0.45);
     margin: 0 0 10px;
     position: relative;
+    z-index: 2;
 }
 .carousel-card-title {
     font-family: 'Grumpy 24', Georgia, serif;
@@ -165,6 +171,7 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
     color: #fff;
     margin: 0;
     position: relative;
+    z-index: 2;
 }
 
 .carousel-text { padding: 16px 0; }
@@ -424,14 +431,28 @@ new BlobAnimation("blob_container", {
     });
     pills[0].classList.add('active');
 
+    // Each card gets its own morphing dot-sphere — the same shapes used
+    // across the main site, so every post has a distinct silhouette that
+    // moves independently instead of a photo.
+    var cardShapes = [
+        { wave1: {amplitude: 76.923, frequency: 0.879, phase: 0}, wave2: {amplitude: 60, frequency: 0.165, phase: 0}, wave3: {amplitude: 50, frequency: 0, phase: 0} },
+        { wave1: {amplitude: 0, frequency: 0, phase: 0}, wave2: {amplitude: 0, frequency: 0, phase: 0}, wave3: {amplitude: 35, frequency: 10, phase: 0} },
+        { wave1: {amplitude: 200, frequency: 7.692, phase: 6.283}, wave2: {amplitude: 200, frequency: 7.912, phase: 6.283}, wave3: {amplitude: 200, frequency: 10, phase: 6.283} },
+        { wave1: {amplitude: 34.066, frequency: 5.934, phase: 0}, wave2: {amplitude: 20.879, frequency: 6.154, phase: 0}, wave3: {amplitude: 50.549, frequency: 0, phase: 0} }
+    ];
+
     posts.forEach(function(post, i){
         var card = document.createElement('div');
         card.className = 'carousel-card';
 
-        var index = document.createElement('div');
-        index.className = 'carousel-card-index';
-        index.textContent = String(i + 1).padStart(2, '0');
-        card.appendChild(index);
+        var blobDiv = document.createElement('div');
+        blobDiv.className = 'carousel-card-blob';
+        blobDiv.id = 'card-blob-' + i;
+        card.appendChild(blobDiv);
+
+        var fade = document.createElement('div');
+        fade.className = 'carousel-card-fade';
+        card.appendChild(fade);
 
         var cat = document.createElement('p');
         cat.className = 'carousel-card-cat';
@@ -445,6 +466,32 @@ new BlobAnimation("blob_container", {
 
         stage.appendChild(card);
         cards.push(card);
+
+        var shape = cardShapes[i % cardShapes.length];
+        new BlobAnimation('card-blob-' + i, {
+            BLOB_SIZE: 130,
+            BLOB_DISTANCE: 1000,
+            DETALISATION: 45,
+            PERSPECTIVE_DISTORTION: 1,
+            ROTATION_SPEED: 4 + i,
+            DOT_SIZE: 0.9,
+            DOT_COLOR: '#d0d0d0',
+            MOUSE_DISTANCE_MIN: 20,
+            MOUSE_DISTANCE_MAX: 400,
+            MOUSE_SENSITIVITY: 1,
+            INERTIAL_TIME: 4,
+            INITIAL_SHAPE: shape,
+            USE_WAVE_MOTION: true,
+            USE_WAVE_SWING: true,
+            USE_MORPHING: true,
+            MORPHING_AUTOPLAY: true,
+            MORPHING_DURATION: 1,
+            MORPHING_DELAY: 0,
+            MORPHING_TRANSITION_TYPE: 'cubic',
+            MORPHING_SHAPES: [shape],
+            WAVE_1_MOTION_SPEED: 1 + i * 0.3,
+            WAVE_2_MOTION_SPEED: 0.6 + i * 0.2
+        });
     });
 
     var SIDE_OFFSET = 150;
