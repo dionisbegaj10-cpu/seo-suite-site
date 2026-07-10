@@ -299,45 +299,11 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
     margin: 0 0 24px;
 }
 
-/* --- Language switch (top right) --- */
-#lang-switch {
-    position: fixed;
-    top: max(24px, env(safe-area-inset-top, 0px) + 16px);
-    right: max(24px, env(safe-area-inset-right, 0px) + 16px);
-    z-index: 1100;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 700;
-    font-size: 12px;
-    letter-spacing: 0.5px;
-}
-#lang-switch .lang-opt {
-    background: none;
-    border: none;
-    padding: 4px 2px;
-    color: #ffffff;
-    cursor: pointer;
-    opacity: 0.45;
-    transition: opacity 0.2s ease, color 0.2s ease;
-}
-#lang-switch .lang-opt.active { opacity: 1; }
-#lang-switch .lang-opt:hover { opacity: 0.8; }
-#lang-switch .lang-sep { color: #ffffff; opacity: 0.3; }
-body:has(#article-overlay.open) #lang-switch .lang-opt,
-body:has(#article-overlay.open) #lang-switch .lang-sep { color: #1c1c1c; }
 </style>
 </head>
 <body>
 
 <div id="blob_container"></div>
-
-<div id="lang-switch" role="group" aria-label="Language">
-    <button type="button" class="lang-opt" data-lang="en">EN</button>
-    <span class="lang-sep">/</span>
-    <button type="button" class="lang-opt" data-lang="de">DE</button>
-</div>
 
 <div id="hero">
     <h1 id="page-title">Learn, Explore<br>&amp; Grow</h1>
@@ -775,17 +741,11 @@ new BlobAnimation("blob_container", {
             });
         }
 
-        document.querySelectorAll('.lang-opt').forEach(function(btn){
-            btn.classList.toggle('active', btn.dataset.lang === lang);
-        });
-
         render();
     }
 
-    document.querySelectorAll('.lang-opt').forEach(function(btn){
-        btn.addEventListener('click', function(){ applyLang(btn.dataset.lang); });
-    });
-
+    // No visible switch on this page — language is chosen on the homepage
+    // and carried over here via the shared ss_lang localStorage key.
     applyLang(lang);
     setInterval(next, 5000);
 })();
