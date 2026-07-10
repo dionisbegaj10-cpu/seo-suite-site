@@ -17,15 +17,28 @@
     font-style: normal;
 }
 html, body { background: #000; margin: 0; padding: 0; }
-body { height: 300vh; overflow-x: hidden; cursor: auto; }
+body { overflow-x: hidden; cursor: auto; }
+
+/* --- Hero: sphere pinned while you scroll through it, then releases --- */
+#hero-scroll {
+    height: 300vh;
+    position: relative;
+}
+#hero-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+}
 #blob_container {
-    position: fixed;
+    position: absolute;
     top: 0; left: 0;
     width: 100vw; height: 100vh;
     background: #000;
 }
 #page-title {
-    position: fixed;
+    position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
@@ -36,12 +49,132 @@ body { height: 300vh; overflow-x: hidden; cursor: auto; }
     line-height: 1.05;
     color: #fff;
 }
+
+/* --- Blog preview carousel --- */
+#carousel-section {
+    background: #fff;
+    padding: 90px 6% 120px;
+    position: relative;
+}
+.carousel-grid {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+.carousel-stage {
+    position: relative;
+    width: 100%;
+    max-width: 340px;
+    height: 340px;
+    margin: 0 auto;
+    perspective: 1000px;
+}
+.carousel-card {
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.4);
+    opacity: 0;
+    transform: scale(0.9) translateY(20px) rotate(0deg);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+}
+.carousel-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.carousel-card.active {
+    opacity: 1;
+    transform: scale(1) translateY(0) rotate(0deg);
+    z-index: 5;
+    pointer-events: auto;
+}
+.carousel-card.behind {
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.carousel-text { padding: 16px 0; }
+.carousel-cat {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.4);
+    margin: 0 0 8px;
+}
+.carousel-title {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 2rem;
+    line-height: 1.15;
+    margin: 0 0 24px;
+    color: #1c1c1c;
+    min-height: 96px;
+}
+.carousel-quote {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(0,0,0,0.6);
+    margin: 0;
+    min-height: 110px;
+}
+.carousel-controls {
+    display: flex;
+    gap: 14px;
+    margin-top: 32px;
+}
+.carousel-btn {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: #f1f1f1;
+    color: #1c1c1c;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+.carousel-btn:hover { background: #e2e2e2; transform: translateY(-2px); }
+
+@media (max-width: 720px) {
+    .carousel-grid { grid-template-columns: 1fr; gap: 32px; }
+    .carousel-text { text-align: center; }
+    .carousel-controls { justify-content: center; }
+    .carousel-title { min-height: 0; }
+    .carousel-quote { min-height: 0; }
+}
 </style>
 </head>
 <body>
 
-<div id="blob_container"></div>
-<h1 id="page-title">Learn, Explore<br>&amp; Grow</h1>
+<div id="hero-scroll">
+    <div id="hero-sticky">
+        <div id="blob_container"></div>
+        <h1 id="page-title">Learn, Explore<br>&amp; Grow</h1>
+    </div>
+</div>
+
+<section id="carousel-section">
+    <div class="carousel-grid">
+        <div class="carousel-stage" id="carousel-stage"></div>
+        <div class="carousel-text">
+            <p class="carousel-cat" id="carousel-cat"></p>
+            <h2 class="carousel-title" id="carousel-title"></h2>
+            <p class="carousel-quote" id="carousel-quote"></p>
+            <div class="carousel-controls">
+                <button class="carousel-btn" id="carousel-prev" aria-label="Previous post">&larr;</button>
+                <button class="carousel-btn" id="carousel-next" aria-label="Next post">&rarr;</button>
+            </div>
+        </div>
+    </div>
+</section>
 
 <script>
 var shape = { wave1: {amplitude: 200, frequency: 7.692, phase: 6.283}, wave2: {amplitude: 200, frequency: 7.912, phase: 6.283}, wave3: {amplitude: 200, frequency: 10, phase: 6.283} };
@@ -69,6 +202,79 @@ new BlobAnimation("blob_container", {
     WAVE_1_MOTION_SPEED: 1.3,
     WAVE_2_MOTION_SPEED: 0.8
 });
+</script>
+
+<script>
+(function(){
+    var posts = [
+        {
+            title: "Master SEO",
+            cat: "AI Search",
+            quote: "Increase organic traffic, improve search rankings, and build long-term visibility with proven search engine optimization strategies.",
+            img: "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=700&auto=format&fit=crop&q=80"
+        },
+        {
+            title: "Unlock AI-Powered SEO",
+            cat: "SEO",
+            quote: "Discover how artificial intelligence is transforming keyword research, content creation, technical SEO, and search performance.",
+            img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=700&auto=format&fit=crop&q=80"
+        },
+        {
+            title: "Boost Website Performance",
+            cat: "Performance",
+            quote: "Learn how faster loading times, Core Web Vitals, and technical optimization improve user experience, SEO rankings, and conversion rates.",
+            img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&auto=format&fit=crop&q=80"
+        },
+        {
+            title: "Create High-Converting Web Designs",
+            cat: "Design",
+            quote: "Explore modern web design principles, responsive development, and UX best practices that turn visitors into loyal customers.",
+            img: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=700&auto=format&fit=crop&q=80"
+        }
+    ];
+
+    var stage = document.getElementById('carousel-stage');
+    var catEl = document.getElementById('carousel-cat');
+    var titleEl = document.getElementById('carousel-title');
+    var quoteEl = document.getElementById('carousel-quote');
+    var active = 0;
+    var cards = [];
+
+    posts.forEach(function(post, i){
+        var card = document.createElement('div');
+        card.className = 'carousel-card';
+        var img = document.createElement('img');
+        img.src = post.img;
+        img.alt = post.title;
+        card.appendChild(img);
+        stage.appendChild(card);
+        cards.push(card);
+    });
+
+    function render(){
+        cards.forEach(function(card, i){
+            card.classList.remove('active', 'behind');
+            if (i === active) {
+                card.classList.add('active');
+            } else {
+                card.classList.add('behind');
+            }
+        });
+        var post = posts[active];
+        catEl.textContent = post.cat;
+        titleEl.textContent = post.title;
+        quoteEl.textContent = post.quote;
+    }
+
+    function next(){ active = (active + 1) % posts.length; render(); }
+    function prev(){ active = (active - 1 + posts.length) % posts.length; render(); }
+
+    document.getElementById('carousel-next').addEventListener('click', next);
+    document.getElementById('carousel-prev').addEventListener('click', prev);
+
+    render();
+    setInterval(next, 5000);
+})();
 </script>
 
 </body>
