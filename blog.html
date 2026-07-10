@@ -237,6 +237,9 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
     color: #1c1c1c;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    /* Without the body scroll lock, keep overlay scrolling from chaining
+       through to the page underneath. */
+    overscroll-behavior: contain;
     opacity: 0;
     visibility: hidden;
     /* iOS Safari can keep a -webkit-overflow-scrolling:touch layer
@@ -596,12 +599,25 @@ new BlobAnimation("blob_container", {
         });
         overlay.scrollTop = 0;
         overlay.classList.add('open');
-        document.body.style.overflow = 'hidden';
+        // NO body scroll lock: iOS Safari only re-samples its bar tint on
+        // scroll activity, and freezing the page at the exact moment the
+        // color changes left the bars stuck black. The overlay covers the
+        // page and scrolls itself, so the lock wasn't needed anyway.
+        // Nudge the overlay's scroll by a pixel to poke Safari into
+        // refreshing the bar color right away.
+        requestAnimationFrame(function(){
+            overlay.scrollTop = 1;
+            overlay.scrollTop = 0;
+        });
     }
 
     function closeArticle(){
         overlay.classList.remove('open');
-        document.body.style.overflow = '';
+        // Same nudge on the way back to black.
+        requestAnimationFrame(function(){
+            window.scrollBy(0, 1);
+            window.scrollBy(0, -1);
+        });
     }
 
     document.getElementById('article-close').addEventListener('click', closeArticle);
