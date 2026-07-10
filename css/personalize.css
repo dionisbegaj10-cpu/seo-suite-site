@@ -349,7 +349,7 @@ body.hero-view #pixel-orb { opacity: 1; pointer-events: all; }
 }
 /* Tighten the gap below the logos so it matches the gap above them. */
 .container:has(.box-trusted) { margin-bottom: 0; }
-#free-analysis-section { padding-top: 12px; }
+#free-analysis-section { padding-top: 48px; }
 body.animated .box-trusted { border-top-color: rgba(255,255,255,0.12); }
 #trusted-label {
     font-family: Arial, Helvetica, sans-serif;
