@@ -556,9 +556,16 @@ new BlobAnimation("blob_container", {
         // Keep Safari's top/bottom bars matching the actual page background —
         // the meta tag AND both html/body backgrounds, since Safari samples
         // the real rendered color of the page, not just the meta value.
-        if (themeMeta) themeMeta.setAttribute('content', color);
-        document.documentElement.style.backgroundColor = color;
-        document.body.style.backgroundColor = color;
+        // Re-apply on the next frame too: on iOS Safari a same-tick style
+        // change can get sampled before the white panel has actually
+        // painted, leaving the bar stuck on the old color.
+        function apply(){
+            if (themeMeta) themeMeta.setAttribute('content', color);
+            document.documentElement.style.backgroundColor = color;
+            document.body.style.backgroundColor = color;
+        }
+        apply();
+        requestAnimationFrame(function(){ requestAnimationFrame(apply); });
     }
 
     function openArticle(card, post){
@@ -580,6 +587,7 @@ new BlobAnimation("blob_container", {
 
     function closeArticle(){
         overlay.classList.remove('open');
+        overlay.style.visibility = '';
         document.body.style.overflow = '';
         setChrome('#000000');
     }
