@@ -249,6 +249,16 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
     border-radius: 0 !important;
     transition: transform .5s cubic-bezier(.4,0,.2,1), border-radius .5s cubic-bezier(.4,0,.2,1);
 }
+/* Closing fades the full-screen panel out in place (no shrink, no hard
+   cut) so the dark page underneath reveals itself gradually instead of
+   flashing a flat black frame before the particle sphere repaints. */
+#article-overlay.closing {
+    opacity: 0 !important;
+    visibility: visible !important;
+    transform: translate(0,0) scale(1,1) !important;
+    border-radius: 0 !important;
+    transition: opacity .25s ease !important;
+}
 .article-close {
     position: fixed;
     top: 24px; right: 24px;
@@ -591,18 +601,19 @@ new BlobAnimation("blob_container", {
     }
 
     function closeArticle(){
-        // Closing should be instant, not shrink back down to the card —
-        // kill the transition and clear the stored open-transform first,
-        // so nothing is left animating and the bars flip back immediately.
-        overlay.style.transition = 'none';
+        // Fade the full-screen panel out in place (no shrink-back, no hard
+        // cut) and turn the bars black at the same moment the fade starts,
+        // so the page goes dark gradually instead of flashing flat black.
         overlay.classList.remove('open');
-        overlay.style.transform = '';
-        overlay.style.borderRadius = '';
-        overlay.style.visibility = 'hidden';
-        overlay.offsetHeight;
-        overlay.style.transition = '';
+        overlay.classList.add('closing');
         document.body.style.overflow = '';
         setChrome('#000000');
+        setTimeout(function(){
+            overlay.classList.remove('closing');
+            overlay.style.transform = '';
+            overlay.style.borderRadius = '';
+            overlay.style.visibility = 'hidden';
+        }, 250);
     }
 
     document.getElementById('article-close').addEventListener('click', closeArticle);
