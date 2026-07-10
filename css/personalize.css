@@ -357,7 +357,12 @@ body.hero-view #pixel-orb { opacity: 1; pointer-events: all; }
     font-size: 12px;
     letter-spacing: 0.5px;
     mix-blend-mode: difference;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
 }
+/* Only shown while the hero is on screen — same rule the pixel orb uses. */
+body.hero-view #lang-switch { opacity: 1; pointer-events: all; }
 #lang-switch .lang-opt {
     background: none;
     border: none;
