@@ -591,7 +591,16 @@ new BlobAnimation("blob_container", {
     }
 
     function closeArticle(){
+        // Closing should be instant, not shrink back down to the card —
+        // kill the transition and clear the stored open-transform first,
+        // so nothing is left animating and the bars flip back immediately.
+        overlay.style.transition = 'none';
         overlay.classList.remove('open');
+        overlay.style.transform = '';
+        overlay.style.borderRadius = '';
+        overlay.style.visibility = 'hidden';
+        overlay.offsetHeight;
+        overlay.style.transition = '';
         document.body.style.overflow = '';
         setChrome('#000000');
     }
