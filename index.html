@@ -452,8 +452,14 @@
                 var d = (localized && localized[key]) || data[key];
                 if(!d) return;
                 titleEl.innerHTML = d.title; bodyEl.textContent = d.body; panel.classList.add('open'); backdrop.classList.add('open');
+                // iOS Safari only re-samples its bar tint on scroll activity —
+                // nudge the page a pixel so the bars pick up the white panel.
+                requestAnimationFrame(function(){ window.scrollBy(0, 1); window.scrollBy(0, -1); });
             }
-            function closePanel(){ panel.classList.remove('open'); backdrop.classList.remove('open'); }
+            function closePanel(){
+                panel.classList.remove('open'); backdrop.classList.remove('open');
+                requestAnimationFrame(function(){ window.scrollBy(0, 1); window.scrollBy(0, -1); });
+            }
             document.getElementById('service-panel-close').addEventListener('click', closePanel);
             backdrop.addEventListener('click', closePanel);
             jQuery('.customer-clients .integration').on('click', function(){ openPanel($(this).closest('li').data('service-key')); });
