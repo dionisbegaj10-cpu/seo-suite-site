@@ -101,6 +101,8 @@ body.animated .customer-clients li .integration:hover { border-color: rgba(255, 
 @media (max-width: 767px) {
     .customer-clients li { width: 50% !important; }
     .customer-clients li:first-child { width: 100% !important; }
+    /* Hosting sits under Growth + Branding, full width like Performance. */
+    .customer-clients li:last-child { width: 100% !important; }
 }
 
 /* --- Free website analysis CTA section --- */

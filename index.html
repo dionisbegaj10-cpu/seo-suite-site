@@ -16,7 +16,7 @@
         <link href="css/style.css" rel="stylesheet"/>
         <link href="css/mediaquery.css" rel="stylesheet"/>
         <link href="css/portfolio_style.css" rel="stylesheet"/>
-        <link href="css/personalize.css?v=trusted8" rel="stylesheet"/>
+        <link href="css/personalize.css?v=trusted9" rel="stylesheet"/>
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
         <script src="js/libs/anime.min.js"></script>
         <script src="js/libs/jsband-min.js"></script>
@@ -172,6 +172,7 @@
                     <li data-service-key="AI Suite"><span class="integration">AI Suite</span></li>
                     <li data-service-key="Growth"><span class="integration">Growth</span></li>
                     <li data-service-key="Branding"><span class="integration">Branding</span></li>
+                    <li data-service-key="Hosting"><span class="integration">Hosting</span></li>
                 </ul>
             </div>
             <!-- Trusted-by logo strip -->
@@ -438,7 +439,8 @@
                 'Web &Design': { title: 'Web &amp; Design', body: 'From UI/UX and web design to full-stack development, eCommerce and landing pages — we build digital experiences that convert. Whether a CMS-powered site or a headless build, every detail is crafted to perform.' },
                 'Growth': { title: 'Growth', body: 'Growth strategies rooted in data — SEO, AI search visibility, content marketing, email and organic social — turning audience attention into measurable business results.' },
                 'Performance': { title: 'Performance', body: 'Paid media across Google, Meta and beyond — combining sharp creative with rigorous analytics to drive efficient acquisition, lower CPAs and scalable returns.' },
-                'AI Suite': { title: 'AI Suite', body: 'SEO AI Suite is our own software — an AI-powered SEO platform with 20+ built-in skills. It connects to Google Search Console and the AI model of your choice to plan content, optimize pages, audit sites, track rankings and monitor competitors, all from one dashboard.' }
+                'AI Suite': { title: 'AI Suite', body: 'SEO AI Suite is our own software — an AI-powered SEO platform with 20+ built-in skills. It connects to Google Search Console and the AI model of your choice to plan content, optimize pages, audit sites, track rankings and monitor competitors, all from one dashboard.' },
+                'Hosting': { title: 'Hosting', body: 'Fast, secure, fully managed hosting — SSL, daily backups, updates and monitoring included. Your website stays online, up to date and performing at its best while we handle the technical side.' }
             };
             var panel = document.getElementById('service-panel');
             var backdrop = document.getElementById('service-panel-backdrop');
@@ -671,6 +673,7 @@
                     'tile-ai-suite': 'AI Suite',
                     'tile-growth': 'Growth',
                     'tile-branding': 'Branding',
+                    'tile-hosting': 'Hosting',
                     'trusted-label': 'Trusted by',
                     'free-analysis-label': 'Limited spots available',
                     'free-analysis-title': '<span>Get your</span><br><span>website</span><br><span>analysis.</span>',
@@ -713,6 +716,7 @@
                     'tile-ai-suite': 'AI Suite',
                     'tile-growth': 'Wachstum',
                     'tile-branding': 'Branding',
+                    'tile-hosting': 'Hosting',
                     'trusted-label': 'Vertraut von',
                     'free-analysis-label': 'Begrenzte Pl&auml;tze verf&uuml;gbar',
                     'free-analysis-title': '<span>Ihre</span><br><span>Website-</span><br><span>Analyse.</span>',
@@ -757,6 +761,7 @@
                 'tile-ai-suite': '.customer-clients li:nth-child(3) .integration',
                 'tile-growth': '.customer-clients li:nth-child(4) .integration',
                 'tile-branding': '.customer-clients li:nth-child(5) .integration',
+                'tile-hosting': '.customer-clients li:nth-child(6) .integration',
                 'trusted-label': '#trusted-label',
                 'free-analysis-label': '#free-analysis-label',
                 'free-analysis-title': '#free-analysis-title',
@@ -796,14 +801,16 @@
                     'Web &Design': { title: 'Web &amp; Design', body: 'From UI/UX and web design to full-stack development, eCommerce and landing pages — we build digital experiences that convert. Whether a CMS-powered site or a headless build, every detail is crafted to perform.' },
                     'Growth': { title: 'Growth', body: 'Growth strategies rooted in data — SEO, AI search visibility, content marketing, email and organic social — turning audience attention into measurable business results.' },
                     'Performance': { title: 'Performance', body: 'Paid media across Google, Meta and beyond — combining sharp creative with rigorous analytics to drive efficient acquisition, lower CPAs and scalable returns.' },
-                    'AI Suite': { title: 'AI Suite', body: 'SEO AI Suite is our own software — an AI-powered SEO platform with 20+ built-in skills. It connects to Google Search Console and the AI model of your choice to plan content, optimize pages, audit sites, track rankings and monitor competitors, all from one dashboard.' }
+                    'AI Suite': { title: 'AI Suite', body: 'SEO AI Suite is our own software — an AI-powered SEO platform with 20+ built-in skills. It connects to Google Search Console and the AI model of your choice to plan content, optimize pages, audit sites, track rankings and monitor competitors, all from one dashboard.' },
+                    'Hosting': { title: 'Hosting', body: 'Fast, secure, fully managed hosting — SSL, daily backups, updates and monitoring included. Your website stays online, up to date and performing at its best while we handle the technical side.' }
                 },
                 de: {
                     'Branding': { title: 'Branding', body: 'Wir bauen Marken von Grund auf — Naming, Tonalität, visuelle Identität, Art Direction und Copywriting. Jede Markenstrategie ist unverwechselbar, konsistent und auf Langlebigkeit ausgelegt.' },
                     'Web &Design': { title: 'Web &amp; Design', body: 'Von UI/UX und Webdesign bis zu Full-Stack-Entwicklung, E-Commerce und Landingpages — wir gestalten digitale Erlebnisse, die konvertieren. Ob CMS-basiert oder Headless: jedes Detail ist auf Leistung ausgelegt.' },
                     'Growth': { title: 'Wachstum', body: 'Wachstumsstrategien auf Datenbasis — SEO, KI-Sichtbarkeit, Content-Marketing, E-Mail und organische Social-Media-Präsenz — wir verwandeln Aufmerksamkeit in messbare Geschäftsergebnisse.' },
                     'Performance': { title: 'Performance', body: 'Paid Media auf Google, Meta und darüber hinaus — scharfes Creative kombiniert mit präziser Analytik für effiziente Akquise, niedrigere CPAs und skalierbare Ergebnisse.' },
-                    'AI Suite': { title: 'AI Suite', body: 'SEO AI Suite ist unsere eigene Software — eine KI-gestützte SEO-Plattform mit über 20 integrierten Skills. Sie verbindet sich mit der Google Search Console und dem KI-Modell Ihrer Wahl, um Inhalte zu planen, Seiten zu optimieren, Websites zu prüfen, Rankings zu verfolgen und Wettbewerber zu beobachten — alles über ein Dashboard.' }
+                    'AI Suite': { title: 'AI Suite', body: 'SEO AI Suite ist unsere eigene Software — eine KI-gestützte SEO-Plattform mit über 20 integrierten Skills. Sie verbindet sich mit der Google Search Console und dem KI-Modell Ihrer Wahl, um Inhalte zu planen, Seiten zu optimieren, Websites zu prüfen, Rankings zu verfolgen und Wettbewerber zu beobachten — alles über ein Dashboard.' },
+                    'Hosting': { title: 'Hosting', body: 'Schnelles, sicheres, vollständig verwaltetes Hosting — SSL, tägliche Backups, Updates und Monitoring inklusive. Ihre Website bleibt online, aktuell und leistungsstark, während wir uns um die Technik kümmern.' }
                 }
             };
             window.__servicePanelData = servicePanelData;
