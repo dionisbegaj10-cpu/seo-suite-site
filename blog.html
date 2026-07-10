@@ -16,7 +16,7 @@
     font-weight: 900;
     font-style: normal;
 }
-html, body { background: #000; margin: 0; padding: 0; width: 100%; max-width: 100%; transition: background-color .3s ease; }
+html, body { background: #000; margin: 0; padding: 0; width: 100%; max-width: 100%; }
 html { overflow-x: hidden; }
 body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
 * { box-sizing: border-box; }
@@ -551,22 +551,39 @@ new BlobAnimation("blob_container", {
     var articleTitle = document.getElementById('article-title');
     var articleBody = document.getElementById('article-body');
 
-    var themeMeta = document.querySelector('meta[name="theme-color"]');
-    function setChrome(color){
-        // Keep Safari's top/bottom bars matching the actual page background —
-        // the meta tag AND both html/body backgrounds, since Safari samples
-        // the real rendered color of the page, not just the meta value.
-        // Re-apply on the next frame too: on iOS Safari a same-tick style
-        // change can get sampled before the white panel has actually
-        // painted, leaving the bar stuck on the old color.
-        function apply(){
-            if (themeMeta) themeMeta.setAttribute('content', color);
-            document.documentElement.style.backgroundColor = color;
-            document.body.style.backgroundColor = color;
+    // Same continuous chrome-sync pattern that works on the homepage:
+    // every frame, mirror the color the page should be onto <html> and the
+    // theme-color meta. iOS Safari respects the every-frame loop where
+    // one-shot changes were getting ignored/sampled at the wrong moment.
+    (function(){
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (!meta) { meta = document.createElement('meta'); meta.setAttribute('name','theme-color'); document.head.appendChild(meta); }
+        var last = '', lastMeta = '';
+        // Ramp the color over the same 300ms as the overlay's CSS fade,
+        // driven by our own clock rather than the overlay's computed
+        // opacity — deterministic even if style sampling lags on iOS.
+        var target = 0, current = 0, prevT = 0;
+        function tick(t){
+            if (!prevT) prevT = t;
+            var step = (t - prevT) / 300;
+            prevT = t;
+            target = overlay.classList.contains('open') ? 1 : 0;
+            if (current < target) current = Math.min(target, current + step);
+            else if (current > target) current = Math.max(target, current - step);
+            var o = current;
+            var v = Math.round(o * 255);
+            var raw = 'rgb(' + v + ', ' + v + ', ' + v + ')';
+            if (raw !== last) {
+                last = raw;
+                document.documentElement.style.backgroundColor = raw;
+                document.body.style.backgroundColor = raw;
+            }
+            var snapped = o < 0.5 ? '#000000' : '#ffffff';
+            if (snapped !== lastMeta) { lastMeta = snapped; meta.setAttribute('content', snapped); }
+            requestAnimationFrame(tick);
         }
-        apply();
-        requestAnimationFrame(function(){ requestAnimationFrame(apply); });
-    }
+        requestAnimationFrame(tick);
+    })();
 
     function openArticle(card, post){
         articleCat.textContent = post.cat;
@@ -578,18 +595,13 @@ new BlobAnimation("blob_container", {
             articleBody.appendChild(p);
         });
         overlay.scrollTop = 0;
-        // Bars and the page fade to white together.
-        setChrome('#ffffff');
-        overlay.style.visibility = 'visible';
         overlay.classList.add('open');
         document.body.style.overflow = 'hidden';
     }
 
     function closeArticle(){
         overlay.classList.remove('open');
-        overlay.style.visibility = '';
         document.body.style.overflow = '';
-        setChrome('#000000');
     }
 
     document.getElementById('article-close').addEventListener('click', closeArticle);
