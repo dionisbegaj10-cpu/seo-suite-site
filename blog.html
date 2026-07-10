@@ -239,6 +239,11 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
     -webkit-overflow-scrolling: touch;
     opacity: 0;
     visibility: hidden;
+    /* iOS Safari can keep a -webkit-overflow-scrolling:touch layer
+       capturing touch/scroll input even while hidden, which is what was
+       eating the card swipes and page scroll. pointer-events:none while
+       closed guarantees touches pass straight through to the page. */
+    pointer-events: none;
     /* Plain full-screen fade — no card-position geometry animation, since
        that depended on live measurements at tap time and was unreliable
        on mobile (slow, sometimes not opening, sometimes stuck open). */
@@ -247,6 +252,7 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
 #article-overlay.open {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
     transition: opacity .3s ease;
 }
 .article-close {
