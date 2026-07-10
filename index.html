@@ -452,13 +452,20 @@
                 var d = (localized && localized[key]) || data[key];
                 if(!d) return;
                 titleEl.innerHTML = d.title; bodyEl.textContent = d.body; panel.classList.add('open'); backdrop.classList.add('open');
-                // iOS Safari only re-samples its bar tint on scroll activity —
-                // nudge the page a pixel so the bars pick up the white panel.
-                requestAnimationFrame(function(){ window.scrollBy(0, 1); window.scrollBy(0, -1); });
+                nudgeBars();
             }
             function closePanel(){
                 panel.classList.remove('open'); backdrop.classList.remove('open');
-                requestAnimationFrame(function(){ window.scrollBy(0, 1); window.scrollBy(0, -1); });
+                nudgeBars();
+            }
+            // iOS Safari only re-samples its bar tint on scroll activity.
+            // The two moves must land in DIFFERENT frames — done back-to-back
+            // they cancel out before paint and no scroll event ever fires.
+            function nudgeBars(){
+                requestAnimationFrame(function(){
+                    window.scrollBy(0, 1);
+                    setTimeout(function(){ window.scrollBy(0, -1); }, 120);
+                });
             }
             document.getElementById('service-panel-close').addEventListener('click', closePanel);
             backdrop.addEventListener('click', closePanel);

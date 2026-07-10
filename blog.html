@@ -907,11 +907,12 @@ new BlobAnimation("blob_container", {
         // scroll activity, and freezing the page at the exact moment the
         // color changes left the bars stuck black. The overlay covers the
         // page and scrolls itself, so the lock wasn't needed anyway.
-        // Nudge the overlay's scroll by a pixel to poke Safari into
-        // refreshing the bar color right away.
+        // Nudge the scroll to poke Safari into refreshing the bar color.
+        // The two moves must land in DIFFERENT frames — back-to-back they
+        // cancel before paint and no scroll event ever fires.
         requestAnimationFrame(function(){
             overlay.scrollTop = 1;
-            overlay.scrollTop = 0;
+            setTimeout(function(){ overlay.scrollTop = 0; }, 120);
         });
     }
 
@@ -920,7 +921,7 @@ new BlobAnimation("blob_container", {
         // Same nudge on the way back to black.
         requestAnimationFrame(function(){
             window.scrollBy(0, 1);
-            window.scrollBy(0, -1);
+            setTimeout(function(){ window.scrollBy(0, -1); }, 120);
         });
     }
 
