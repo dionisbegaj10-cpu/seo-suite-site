@@ -186,6 +186,69 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
     .carousel-title { min-height: 0; }
     .carousel-quote { min-height: 0; }
 }
+
+/* --- Card flip + full-screen article overlay --- */
+.carousel-card.flipping { transform: rotateY(90deg) !important; transition: transform .3s ease !important; }
+
+#article-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: #fff;
+    color: #1c1c1c;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(24px);
+    transition: opacity .35s ease, transform .35s ease, visibility 0s linear .35s;
+}
+#article-overlay.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: opacity .35s ease, transform .35s ease;
+}
+.article-close {
+    position: fixed;
+    top: 24px; right: 24px;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.15);
+    background: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2;
+}
+.article-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 100px 6% 140px;
+}
+.article-cat {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.4);
+    margin: 0 0 16px;
+}
+.article-title {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    line-height: 1.1;
+    margin: 0 0 32px;
+    color: #1c1c1c;
+}
+.article-body p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    line-height: 1.8;
+    color: rgba(0,0,0,0.72);
+    margin: 0 0 24px;
+}
 </style>
 </head>
 <body>
@@ -210,6 +273,15 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
         </div>
     </div>
 </section>
+
+<div id="article-overlay">
+    <button class="article-close" id="article-close" aria-label="Close article">&times;</button>
+    <div class="article-inner">
+        <p class="article-cat" id="article-cat"></p>
+        <h1 class="article-title" id="article-title"></h1>
+        <div class="article-body" id="article-body"></div>
+    </div>
+</div>
 
 <script>
 var shape = { wave1: {amplitude: 200, frequency: 7.692, phase: 6.283}, wave2: {amplitude: 200, frequency: 7.912, phase: 6.283}, wave3: {amplitude: 200, frequency: 10, phase: 6.283} };
@@ -246,25 +318,45 @@ new BlobAnimation("blob_container", {
             title: "Master SEO",
             cat: "AI Search",
             quote: "Increase organic traffic, improve search rankings, and build long-term visibility with proven search engine optimization strategies.",
-            img: "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=700&auto=format&fit=crop&q=80"
+            img: "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=700&auto=format&fit=crop&q=80",
+            article: [
+                "Search engine optimization is still the most reliable way to earn consistent, high-intent traffic — but the tactics that worked five years ago rarely move the needle today. Google's ranking systems now weigh dozens of signals at once, from page experience to topical authority, and treating SEO as a checklist of keywords and backlinks is a fast way to plateau.",
+                "The strongest starting point is understanding what your audience is actually searching for, not just what you want to rank for. Keyword research should map to real intent: are people comparing options, looking for a how-to, or ready to buy? Content built around that intent naturally earns better engagement, and engagement is one of the clearest signals search engines use to judge relevance.",
+                "Technical health matters just as much as content quality. A fast, crawlable, mobile-friendly site gives your content a fair chance to be indexed and ranked — no amount of great writing overcomes a site that's slow or broken on mobile. Pair that technical foundation with a consistent publishing cadence and internal linking strategy, and you build the kind of long-term visibility that keeps compounding instead of resetting with every algorithm update."
+            ]
         },
         {
             title: "Unlock AI-Powered SEO",
             cat: "SEO",
             quote: "Discover how artificial intelligence is transforming keyword research, content creation, technical SEO, and search performance.",
-            img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=700&auto=format&fit=crop&q=80"
+            img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=700&auto=format&fit=crop&q=80",
+            article: [
+                "AI has moved from a novelty in the SEO toolkit to a core part of how modern search visibility gets built. Search engines themselves increasingly use AI to interpret queries and rank content, which means the sites that adapt their own workflows around AI tend to move faster than those still working manually.",
+                "On the research side, AI models can process far more search data than a person could manually, surfacing keyword clusters, content gaps, and competitor patterns in minutes instead of days. That doesn't replace strategic judgment — it just clears the busywork so more time goes into decisions that actually require a human perspective.",
+                "The same shift is happening in content creation and technical audits. AI-assisted drafting speeds up production, but the sites that win are the ones that use it as a first draft, not a final one — adding real expertise, original data, and a distinct point of view. Combined with AI-powered technical crawls that catch issues humans miss, this is quickly becoming the baseline for staying competitive in search."
+            ]
         },
         {
             title: "Boost Website Performance",
             cat: "Performance",
             quote: "Learn how faster loading times, Core Web Vitals, and technical optimization improve user experience, SEO rankings, and conversion rates.",
-            img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&auto=format&fit=crop&q=80"
+            img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&auto=format&fit=crop&q=80",
+            article: [
+                "Site speed isn't a nice-to-have anymore — it's a ranking factor, a conversion factor, and often the first thing visitors judge before they've read a single word. Core Web Vitals gave website performance a concrete, measurable standard: how fast content loads, how quickly the page becomes interactive, and how stable the layout stays as it loads.",
+                "Most performance problems trace back to a handful of causes: unoptimized images, render-blocking scripts, and third-party embeds that load more than they need to. Fixing these doesn't require a full rebuild — targeted image compression, deferring non-critical JavaScript, and trimming unnecessary plugins or trackers can meaningfully improve load times on their own.",
+                "The payoff compounds. Faster sites get crawled more efficiently by search engines, which helps new content get indexed sooner. Visitors bounce less and convert more, because every extra second of load time is a moment where attention can be lost. Treating performance as an ongoing discipline — not a one-time audit — keeps a site competitive as content and traffic grow."
+            ]
         },
         {
             title: "Create High-Converting Web Designs",
             cat: "Design",
             quote: "Explore modern web design principles, responsive development, and UX best practices that turn visitors into loyal customers.",
-            img: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=700&auto=format&fit=crop&q=80"
+            img: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=700&auto=format&fit=crop&q=80",
+            article: [
+                "Good design is often invisible — visitors don't consciously notice a well-structured page, they just find what they need and move forward without friction. That's the real goal of a high-converting website: removing every unnecessary obstacle between a visitor's intent and the action you want them to take.",
+                "Responsive development is the foundation, not an afterthought. With traffic split across phones, tablets, and desktops, a layout that only feels intentional on one screen size loses a meaningful share of visitors before they even engage with the content. Designing mobile-first tends to produce cleaner, more focused pages across every device.",
+                "Beyond layout, conversion-focused design is about clarity and trust: a clear value proposition above the fold, calls to action that stand out without feeling aggressive, and enough visual breathing room that the page doesn't feel like it's competing for attention. Small, consistent improvements — faster forms, clearer navigation, better contrast — tend to outperform a single dramatic redesign."
+            ]
         }
     ];
 
@@ -343,10 +435,41 @@ new BlobAnimation("blob_container", {
     document.getElementById('carousel-next').addEventListener('click', next);
     document.getElementById('carousel-prev').addEventListener('click', prev);
 
+    var overlay = document.getElementById('article-overlay');
+    var articleCat = document.getElementById('article-cat');
+    var articleTitle = document.getElementById('article-title');
+    var articleBody = document.getElementById('article-body');
+
+    function openArticle(card, post){
+        card.classList.add('flipping');
+        setTimeout(function(){
+            articleCat.textContent = post.cat;
+            articleTitle.textContent = post.title;
+            articleBody.innerHTML = '';
+            post.article.forEach(function(paragraph){
+                var p = document.createElement('p');
+                p.textContent = paragraph;
+                articleBody.appendChild(p);
+            });
+            overlay.scrollTop = 0;
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            card.classList.remove('flipping');
+        }, 300);
+    }
+
+    function closeArticle(){
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    document.getElementById('article-close').addEventListener('click', closeArticle);
+
     cards.forEach(function(card, i){
         card.addEventListener('click', function(){
-            if (card.classList.contains('prev')) prev();
-            else if (card.classList.contains('next')) next();
+            if (card.classList.contains('prev')) { prev(); return; }
+            if (card.classList.contains('next')) { next(); return; }
+            if (card.classList.contains('active')) { openArticle(card, posts[i]); }
         });
     });
 
