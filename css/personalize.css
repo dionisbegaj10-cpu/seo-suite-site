@@ -380,6 +380,7 @@ body.hero-view #lang-switch { opacity: 1; pointer-events: all; }
 
 /* --- Trusted-by logo strip --- */
 .box-trusted {
+    margin-top: 60px;
     padding: 36px 0 8px;
     text-align: center;
     border-top: 1px solid rgba(0,0,0,0.08);
