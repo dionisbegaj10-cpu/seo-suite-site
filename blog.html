@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — SEO Suite</title>
+<meta name="theme-color" content="#000000">
+<script src="js/libs/jsband-min.js"></script>
+<script src="js/blob-min.js"></script>
+<style>
+@font-face {
+    font-family: 'Grumpy 24';
+    src: url('css/fonts/Grumpy-Black24.woff2') format('woff2'),
+        url('css/fonts/Grumpy-Black24.woff') format('woff'),
+        url('css/fonts/Grumpy-Black24.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+html, body { background: #000; margin: 0; padding: 0; width: 100%; max-width: 100%; }
+html { overflow-x: hidden; }
+body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
+* { box-sizing: border-box; }
+
+/* Sphere stays fixed behind EVERYTHING for the whole page — the carousel
+   below is a continuation of this same dark scene, not a new section. */
+#blob_container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: #000;
+    z-index: 0;
+}
+
+#hero {
+    position: relative;
+    z-index: 1;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#page-title {
+    margin: 0;
+    text-align: center;
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: clamp(2.6rem, 7vw, 5rem);
+    line-height: 1.05;
+    color: #fff;
+}
+
+/* --- Filter pills: inline in the flow, same transparent backdrop as
+   everything else — not a boxed section, just part of the continuous page. --- */
+#filter-bar {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 6% 50px;
+}
+.filter-pill {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    padding: 12px 22px;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: transparent;
+    color: rgba(255,255,255,0.6);
+    cursor: pointer;
+    transition: all .2s ease;
+}
+.filter-pill.active,
+.filter-pill:hover {
+    background: #fff;
+    border-color: #fff;
+    color: #1c1c1c;
+}
+
+/* --- Blog preview carousel: same dark backdrop, no section break --- */
+#carousel-section {
+    position: relative;
+    z-index: 1;
+    background: transparent;
+    padding: 0 6% 140px;
+}
+.carousel-grid {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+.carousel-stage {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    height: 300px;
+    margin: 0 auto;
+    overflow: hidden;
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.carousel-card {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 220px;
+    height: 280px;
+    margin-left: -110px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid rgba(255,255,255,0.25);
+    background: #000;
+    opacity: 0;
+    transition: transform .35s ease, opacity .35s ease, border-color .35s ease;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 22px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.carousel-card.active {
+    z-index: 10;
+    pointer-events: auto;
+    border-color: rgba(255,255,255,0.55);
+    opacity: 1;
+    cursor: default;
+}
+.carousel-card.prev,
+.carousel-card.next {
+    z-index: 5;
+    pointer-events: auto;
+    opacity: 0.4;
+}
+.carousel-card-index {
+    position: absolute;
+    top: 20px; left: 26px;
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 4rem;
+    line-height: 1;
+    color: rgba(255,255,255,0.08);
+}
+.carousel-card-cat {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin: 0 0 10px;
+    position: relative;
+}
+.carousel-card-title {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 1.55rem;
+    line-height: 1.18;
+    color: #fff;
+    margin: 0;
+    position: relative;
+}
+
+.carousel-text { padding: 16px 0; }
+.carousel-cat {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin: 0 0 8px;
+}
+.carousel-title {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 2rem;
+    line-height: 1.15;
+    margin: 0 0 24px;
+    color: #fff;
+    min-height: 96px;
+}
+.carousel-quote {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.6);
+    margin: 0;
+    min-height: 110px;
+}
+.carousel-controls {
+    display: flex;
+    gap: 14px;
+    margin-top: 32px;
+}
+.carousel-btn {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+.carousel-btn:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
+
+@media (max-width: 720px) {
+    .carousel-grid { grid-template-columns: 1fr; gap: 32px; }
+    .carousel-text { text-align: center; }
+    .carousel-controls { justify-content: center; }
+    .carousel-title { min-height: 0; }
+    .carousel-quote { min-height: 0; }
+}
+
+/* --- Card flip + full-screen article overlay --- */
+.carousel-card.flipping { transform: rotateY(90deg) !important; transition: transform .3s ease !important; }
+
+#article-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: #fff;
+    color: #1c1c1c;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(24px);
+    transition: opacity .35s ease, transform .35s ease, visibility 0s linear .35s;
+}
+#article-overlay.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: opacity .35s ease, transform .35s ease;
+}
+.article-close {
+    position: fixed;
+    top: 24px; right: 24px;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.15);
+    background: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2;
+}
+.article-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 100px 6% 140px;
+}
+.article-cat {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.4);
+    margin: 0 0 16px;
+}
+.article-title {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    line-height: 1.1;
+    margin: 0 0 32px;
+    color: #1c1c1c;
+}
+.article-body p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    line-height: 1.8;
+    color: rgba(0,0,0,0.72);
+    margin: 0 0 24px;
+}
+</style>
+</head>
+<body>
+
+<div id="blob_container"></div>
+
+<div id="hero">
+    <h1 id="page-title">Learn, Explore<br>&amp; Grow</h1>
+</div>
+
+<div id="filter-bar"></div>
+
+<section id="carousel-section">
+    <div class="carousel-grid">
+        <div class="carousel-stage" id="carousel-stage"></div>
+        <div class="carousel-text">
+            <p class="carousel-cat" id="carousel-cat"></p>
+            <h2 class="carousel-title" id="carousel-title"></h2>
+            <p class="carousel-quote" id="carousel-quote"></p>
+            <div class="carousel-controls">
+                <button class="carousel-btn" id="carousel-prev" aria-label="Previous post">&larr;</button>
+                <button class="carousel-btn" id="carousel-next" aria-label="Next post">&rarr;</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="article-overlay">
+    <button class="article-close" id="article-close" aria-label="Close article">&times;</button>
+    <div class="article-inner">
+        <p class="article-cat" id="article-cat"></p>
+        <h1 class="article-title" id="article-title"></h1>
+        <div class="article-body" id="article-body"></div>
+    </div>
+</div>
+
+<script>
+var shape = { wave1: {amplitude: 200, frequency: 7.692, phase: 6.283}, wave2: {amplitude: 200, frequency: 7.912, phase: 6.283}, wave3: {amplitude: 200, frequency: 10, phase: 6.283} };
+new BlobAnimation("blob_container", {
+    BLOB_SIZE: 220,
+    BLOB_DISTANCE: 1000,
+    DETALISATION: 60,
+    PERSPECTIVE_DISTORTION: 1,
+    ROTATION_SPEED: 5,
+    DOT_SIZE: (window.innerWidth > 480) ? 1.021 : 0.6,
+    DOT_COLOR: "#d0d0d0",
+    MOUSE_DISTANCE_MIN: 20,
+    MOUSE_DISTANCE_MAX: 400,
+    MOUSE_SENSITIVITY: 1,
+    INERTIAL_TIME: 4,
+    INITIAL_SHAPE: shape,
+    USE_WAVE_MOTION: true,
+    USE_WAVE_SWING: true,
+    USE_MORPHING: true,
+    MORPHING_AUTOPLAY: true,
+    MORPHING_DURATION: 1,
+    MORPHING_DELAY: 0,
+    MORPHING_TRANSITION_TYPE: "cubic",
+    MORPHING_SHAPES: [shape],
+    WAVE_1_MOTION_SPEED: 1.3,
+    WAVE_2_MOTION_SPEED: 0.8
+});
+</script>
+
+<script>
+(function(){
+    var posts = [
+        {
+            title: "Master SEO",
+            cat: "AI Search",
+            quote: "Increase organic traffic, improve search rankings, and build long-term visibility with proven search engine optimization strategies.",
+            img: "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=700&auto=format&fit=crop&q=80",
+            article: [
+                "Search engine optimization is still the most reliable way to earn consistent, high-intent traffic — but the tactics that worked five years ago rarely move the needle today. Google's ranking systems now weigh dozens of signals at once, from page experience to topical authority, and treating SEO as a checklist of keywords and backlinks is a fast way to plateau.",
+                "The strongest starting point is understanding what your audience is actually searching for, not just what you want to rank for. Keyword research should map to real intent: are people comparing options, looking for a how-to, or ready to buy? Content built around that intent naturally earns better engagement, and engagement is one of the clearest signals search engines use to judge relevance.",
+                "Technical health matters just as much as content quality. A fast, crawlable, mobile-friendly site gives your content a fair chance to be indexed and ranked — no amount of great writing overcomes a site that's slow or broken on mobile. Pair that technical foundation with a consistent publishing cadence and internal linking strategy, and you build the kind of long-term visibility that keeps compounding instead of resetting with every algorithm update."
+            ]
+        },
+        {
+            title: "Unlock AI-Powered SEO",
+            cat: "SEO",
+            quote: "Discover how artificial intelligence is transforming keyword research, content creation, technical SEO, and search performance.",
+            img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=700&auto=format&fit=crop&q=80",
+            article: [
+                "AI has moved from a novelty in the SEO toolkit to a core part of how modern search visibility gets built. Search engines themselves increasingly use AI to interpret queries and rank content, which means the sites that adapt their own workflows around AI tend to move faster than those still working manually.",
+                "On the research side, AI models can process far more search data than a person could manually, surfacing keyword clusters, content gaps, and competitor patterns in minutes instead of days. That doesn't replace strategic judgment — it just clears the busywork so more time goes into decisions that actually require a human perspective.",
+                "The same shift is happening in content creation and technical audits. AI-assisted drafting speeds up production, but the sites that win are the ones that use it as a first draft, not a final one — adding real expertise, original data, and a distinct point of view. Combined with AI-powered technical crawls that catch issues humans miss, this is quickly becoming the baseline for staying competitive in search."
+            ]
+        },
+        {
+            title: "Boost Website Performance",
+            cat: "Performance",
+            quote: "Learn how faster loading times, Core Web Vitals, and technical optimization improve user experience, SEO rankings, and conversion rates.",
+            img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&auto=format&fit=crop&q=80",
+            article: [
+                "Site speed isn't a nice-to-have anymore — it's a ranking factor, a conversion factor, and often the first thing visitors judge before they've read a single word. Core Web Vitals gave website performance a concrete, measurable standard: how fast content loads, how quickly the page becomes interactive, and how stable the layout stays as it loads.",
+                "Most performance problems trace back to a handful of causes: unoptimized images, render-blocking scripts, and third-party embeds that load more than they need to. Fixing these doesn't require a full rebuild — targeted image compression, deferring non-critical JavaScript, and trimming unnecessary plugins or trackers can meaningfully improve load times on their own.",
+                "The payoff compounds. Faster sites get crawled more efficiently by search engines, which helps new content get indexed sooner. Visitors bounce less and convert more, because every extra second of load time is a moment where attention can be lost. Treating performance as an ongoing discipline — not a one-time audit — keeps a site competitive as content and traffic grow."
+            ]
+        },
+        {
+            title: "Create High-Converting Web Designs",
+            cat: "Design",
+            quote: "Explore modern web design principles, responsive development, and UX best practices that turn visitors into loyal customers.",
+            img: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=700&auto=format&fit=crop&q=80",
+            article: [
+                "Good design is often invisible — visitors don't consciously notice a well-structured page, they just find what they need and move forward without friction. That's the real goal of a high-converting website: removing every unnecessary obstacle between a visitor's intent and the action you want them to take.",
+                "Responsive development is the foundation, not an afterthought. With traffic split across phones, tablets, and desktops, a layout that only feels intentional on one screen size loses a meaningful share of visitors before they even engage with the content. Designing mobile-first tends to produce cleaner, more focused pages across every device.",
+                "Beyond layout, conversion-focused design is about clarity and trust: a clear value proposition above the fold, calls to action that stand out without feeling aggressive, and enough visual breathing room that the page doesn't feel like it's competing for attention. Small, consistent improvements — faster forms, clearer navigation, better contrast — tend to outperform a single dramatic redesign."
+            ]
+        }
+    ];
+
+    var stage = document.getElementById('carousel-stage');
+    var catEl = document.getElementById('carousel-cat');
+    var titleEl = document.getElementById('carousel-title');
+    var quoteEl = document.getElementById('carousel-quote');
+    var filterBar = document.getElementById('filter-bar');
+    var active = 0;
+    var cards = [];
+    var pills = [];
+
+    // Filter pills jump the carousel straight to the first post in that
+    // category — inline in the page flow, no boxed section of its own.
+    var categories = ['All'];
+    posts.forEach(function(post){ if (categories.indexOf(post.cat) === -1) categories.push(post.cat); });
+    categories.forEach(function(cat){
+        var pill = document.createElement('button');
+        pill.className = 'filter-pill';
+        pill.textContent = cat;
+        pill.addEventListener('click', function(){
+            pills.forEach(function(p){ p.classList.remove('active'); });
+            pill.classList.add('active');
+            if (cat !== 'All') {
+                var idx = posts.findIndex(function(post){ return post.cat === cat; });
+                if (idx !== -1) { active = idx; render(); }
+            }
+        });
+        filterBar.appendChild(pill);
+        pills.push(pill);
+    });
+    pills[0].classList.add('active');
+
+    posts.forEach(function(post, i){
+        var card = document.createElement('div');
+        card.className = 'carousel-card';
+
+        var index = document.createElement('div');
+        index.className = 'carousel-card-index';
+        index.textContent = String(i + 1).padStart(2, '0');
+        card.appendChild(index);
+
+        var cat = document.createElement('p');
+        cat.className = 'carousel-card-cat';
+        cat.textContent = post.cat;
+        card.appendChild(cat);
+
+        var title = document.createElement('h3');
+        title.className = 'carousel-card-title';
+        title.textContent = post.title;
+        card.appendChild(title);
+
+        stage.appendChild(card);
+        cards.push(card);
+    });
+
+    var SIDE_OFFSET = 150;
+
+    function render(){
+        var n = posts.length;
+        cards.forEach(function(card, i){
+            card.classList.remove('active', 'prev', 'next');
+            // Position relative to active, wrapping both directions so the
+            // deck always rotates — never a dead end at either edge.
+            var rel = i - active;
+            if (rel > n / 2) rel -= n;
+            if (rel < -n / 2) rel += n;
+
+            if (rel === 0) {
+                card.classList.add('active');
+                card.style.transform = 'translateX(0px) scale(1)';
+                card.style.opacity = '1';
+                card.style.pointerEvents = 'auto';
+            } else if (rel === -1 || (n === 2 && rel === 1)) {
+                card.classList.add('prev');
+                card.style.transform = 'translateX(-' + SIDE_OFFSET + 'px) scale(0.82)';
+                card.style.opacity = '0.4';
+                card.style.pointerEvents = 'auto';
+            } else if (rel === 1) {
+                card.classList.add('next');
+                card.style.transform = 'translateX(' + SIDE_OFFSET + 'px) scale(0.82)';
+                card.style.opacity = '0.4';
+                card.style.pointerEvents = 'auto';
+            } else {
+                card.style.opacity = '0';
+                card.style.transform = 'translateX(0px) scale(0.7)';
+                card.style.pointerEvents = 'none';
+            }
+        });
+        var post = posts[active];
+        catEl.textContent = post.cat;
+        titleEl.textContent = post.title;
+        quoteEl.textContent = post.quote;
+    }
+
+    function next(){ active = (active + 1) % posts.length; render(); }
+    function prev(){ active = (active - 1 + posts.length) % posts.length; render(); }
+
+    document.getElementById('carousel-next').addEventListener('click', next);
+    document.getElementById('carousel-prev').addEventListener('click', prev);
+
+    var overlay = document.getElementById('article-overlay');
+    var articleCat = document.getElementById('article-cat');
+    var articleTitle = document.getElementById('article-title');
+    var articleBody = document.getElementById('article-body');
+
+    function openArticle(card, post){
+        card.classList.add('flipping');
+        setTimeout(function(){
+            articleCat.textContent = post.cat;
+            articleTitle.textContent = post.title;
+            articleBody.innerHTML = '';
+            post.article.forEach(function(paragraph){
+                var p = document.createElement('p');
+                p.textContent = paragraph;
+                articleBody.appendChild(p);
+            });
+            overlay.scrollTop = 0;
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            card.classList.remove('flipping');
+        }, 300);
+    }
+
+    function closeArticle(){
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    document.getElementById('article-close').addEventListener('click', closeArticle);
+
+    cards.forEach(function(card, i){
+        card.addEventListener('click', function(){
+            if (card.classList.contains('prev')) { prev(); return; }
+            if (card.classList.contains('next')) { next(); return; }
+            if (card.classList.contains('active')) { openArticle(card, posts[i]); }
+        });
+    });
+
+    // Touch swipe (mobile) + mouse drag (desktop) — both directions, circular.
+    var startX = null, dragging = false;
+    function onStart(x){ startX = x; dragging = true; }
+    function onEnd(x){
+        if (!dragging || startX === null) return;
+        dragging = false;
+        var delta = x - startX;
+        startX = null;
+        if (Math.abs(delta) < 30) return;
+        if (delta < 0) next(); else prev();
+    }
+    stage.addEventListener('touchstart', function(e){ onStart(e.touches[0].clientX); }, { passive: true });
+    stage.addEventListener('touchend', function(e){ onEnd(e.changedTouches[0].clientX); }, { passive: true });
+    stage.addEventListener('mousedown', function(e){ onStart(e.clientX); });
+    window.addEventListener('mouseup', function(e){ if (dragging) onEnd(e.clientX); });
+
+    render();
+    setInterval(next, 5000);
+})();
+</script>
+
+</body>
+</html>
