@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 80" width="400" height="80">
+  <rect width="400" height="80" fill="none"/>
+  <text x="200" y="34" text-anchor="middle"
+        font-family="Didot, 'Times Text', Garamond, 'Times New Roman', serif"
+        font-weight="300"
+        font-size="22"
+        letter-spacing="0.2em"
+        fill="#1a1a1a">R  U  E  G  E  R</text>
+  <text x="200" y="54" text-anchor="middle"
+        font-family="Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+        font-weight="400"
+        font-size="10"
+        letter-spacing="0.1em"
+        fill="#4a4a4a">PLASTIC SURGERY</text>
+</svg>

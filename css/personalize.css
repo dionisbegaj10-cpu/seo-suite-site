@@ -340,3 +340,48 @@ body.hero-view #pixel-orb { opacity: 1; pointer-events: all; }
 
 /* The pixel orb replaces the rotating pencil badge as the contact button. */
 .bottom_nav { display: none !important; }
+
+/* --- Trusted-by logo strip --- */
+.box-trusted {
+    padding-top: 40px;
+}
+#trusted-label {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    font-size: 13px;
+    color: rgba(0,0,0,0.55);
+    margin-bottom: 24px;
+}
+.trusted-logos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 48px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.trusted-logos li {
+    display: flex;
+    align-items: center;
+    height: 34px;
+}
+.trusted-logos img {
+    height: 100%;
+    width: auto;
+    max-width: 140px;
+    object-fit: contain;
+    filter: brightness(0);
+    opacity: 0.75;
+    transition: opacity 0.25s ease;
+}
+.trusted-logos img:hover {
+    opacity: 1;
+}
+@media (max-width: 767px) {
+    .trusted-logos { gap: 32px; }
+    .trusted-logos li { height: 26px; }
+    .trusted-logos img { max-width: 100px; }
+}
