@@ -231,7 +231,7 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
 
 #article-overlay {
     position: fixed;
-    inset: 0;
+    top: 0; left: 0;
     z-index: 1000;
     background: #fff;
     color: #1c1c1c;
@@ -239,14 +239,15 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
     -webkit-overflow-scrolling: touch;
     opacity: 1;
     visibility: hidden;
-    transform: translateY(100%);
-    transition: transform .45s cubic-bezier(.4,0,.2,1), visibility 0s linear .45s;
+    transform-origin: top left;
+    transition: transform .5s cubic-bezier(.4,0,.2,1), border-radius .5s cubic-bezier(.4,0,.2,1), visibility 0s linear .5s;
 }
 #article-overlay.open {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
-    transition: transform .45s cubic-bezier(.4,0,.2,1);
+    transform: translate(0,0) scale(1,1) !important;
+    border-radius: 0 !important;
+    transition: transform .5s cubic-bezier(.4,0,.2,1), border-radius .5s cubic-bezier(.4,0,.2,1);
 }
 .article-close {
     position: fixed;
@@ -566,8 +567,22 @@ new BlobAnimation("blob_container", {
                 articleBody.appendChild(p);
             });
             overlay.scrollTop = 0;
-            // Turn the bars white right as the white panel starts sliding
-            // up to cover the page, so the bars and the page turn white together.
+
+            // Grow the white panel out from the tapped card's exact size/
+            // position/shape until it covers the whole screen.
+            var rect = card.getBoundingClientRect();
+            var cardRadius = getComputedStyle(card).borderRadius;
+            overlay.style.width = window.innerWidth + 'px';
+            overlay.style.height = window.innerHeight + 'px';
+            overlay.style.borderRadius = cardRadius;
+            overlay.style.transform = 'translate(' + rect.left + 'px,' + rect.top + 'px) scale(' + (rect.width / window.innerWidth) + ',' + (rect.height / window.innerHeight) + ')';
+            overlay.style.visibility = 'visible';
+            // Force a reflow so the browser registers the starting transform
+            // before we add the class that animates it to full-screen.
+            overlay.offsetHeight;
+
+            // Turn the bars white the instant the panel starts growing, so
+            // the bars and the page turn white together, gradually.
             setChrome('#ffffff');
             overlay.classList.add('open');
             document.body.style.overflow = 'hidden';
