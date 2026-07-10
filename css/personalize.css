@@ -341,6 +341,36 @@ body.hero-view #pixel-orb { opacity: 1; pointer-events: all; }
 /* The pixel orb replaces the rotating pencil badge as the contact button. */
 .bottom_nav { display: none !important; }
 
+/* --- Language switch (top right, fixed) --- */
+#lang-switch {
+    position: fixed;
+    top: 40px;
+    right: 28px;
+    top: max(40px, env(safe-area-inset-top, 0px) + 24px);
+    right: max(28px, env(safe-area-inset-right, 0px) + 16px);
+    z-index: 9997;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    mix-blend-mode: difference;
+}
+#lang-switch .lang-opt {
+    background: none;
+    border: none;
+    padding: 4px 2px;
+    color: #ffffff;
+    cursor: pointer;
+    opacity: 0.45;
+    transition: opacity 0.2s ease;
+}
+#lang-switch .lang-opt.active { opacity: 1; }
+#lang-switch .lang-opt:hover { opacity: 0.8; }
+#lang-switch .lang-sep { color: #ffffff; opacity: 0.3; }
+
 /* --- Trusted-by logo strip --- */
 .box-trusted {
     padding: 36px 0 8px;

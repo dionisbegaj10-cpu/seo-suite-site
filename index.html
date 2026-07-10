@@ -167,11 +167,11 @@
                 <h2 id="customers" style="display:none;"><span id="collaborations"></span></h2>
                 <p id="explore-label">Tap to explore our services</p>
                 <ul class="customer customer-clients">
-                    <li><span class="integration">Performance</span></li>
-                    <li><span class="integration">Web &amp;<br>Design</span></li>
-                    <li><span class="integration">AI Suite</span></li>
-                    <li><span class="integration">Growth</span></li>
-                    <li><span class="integration">Branding</span></li>
+                    <li data-service-key="Performance"><span class="integration">Performance</span></li>
+                    <li data-service-key="Web &amp;Design"><span class="integration">Web &amp;<br>Design</span></li>
+                    <li data-service-key="AI Suite"><span class="integration">AI Suite</span></li>
+                    <li data-service-key="Growth"><span class="integration">Growth</span></li>
+                    <li data-service-key="Branding"><span class="integration">Branding</span></li>
                 </ul>
             </div>
             <!-- Trusted-by logo strip -->
@@ -308,6 +308,11 @@
                 </div>
             </div>
         </div>
+        <div id="lang-switch" role="group" aria-label="Language">
+            <button type="button" class="lang-opt active" data-lang="en">EN</button>
+            <span class="lang-sep">/</span>
+            <button type="button" class="lang-opt" data-lang="de">DE</button>
+        </div>
         <span class="edit_button_overlay"></span>
         <script src="js/cursor.js"></script>
         <!-- script src="js/skew.js"></script -->
@@ -439,11 +444,17 @@
             var backdrop = document.getElementById('service-panel-backdrop');
             var titleEl = document.getElementById('service-panel-title');
             var bodyEl = document.getElementById('service-panel-body');
-            function openPanel(key){ var d = data[key]; if(!d) return; titleEl.innerHTML = d.title; bodyEl.textContent = d.body; panel.classList.add('open'); backdrop.classList.add('open'); }
+            function openPanel(key){
+                var lang = window.__currentLang || 'en';
+                var localized = window.__servicePanelData && window.__servicePanelData[lang];
+                var d = (localized && localized[key]) || data[key];
+                if(!d) return;
+                titleEl.innerHTML = d.title; bodyEl.textContent = d.body; panel.classList.add('open'); backdrop.classList.add('open');
+            }
             function closePanel(){ panel.classList.remove('open'); backdrop.classList.remove('open'); }
             document.getElementById('service-panel-close').addEventListener('click', closePanel);
             backdrop.addEventListener('click', closePanel);
-            jQuery('.customer-clients .integration').on('click', function(){ openPanel($(this).text().replace(/\s+/g,' ').trim()); });
+            jQuery('.customer-clients .integration').on('click', function(){ openPanel($(this).closest('li').data('service-key')); });
         })();
         </script>
 
@@ -629,6 +640,186 @@
                 requestAnimationFrame(tick);
             }
             requestAnimationFrame(tick);
+        })();
+        </script>
+
+        <script>
+        /* EN / DE language switch. "digital creative studio", "Contact Us" and
+           "start a project" are left untranslated on purpose (per-letter spans
+           driving scroll animations, or intentionally kept in English). */
+        (function(){
+            function words(arr){ return arr.map(function(w){ return '<span>' + w + '</span>'; }).join(' '); }
+
+            var t = {
+                en: {
+                    'text1-p1': words(['SEO','Suite','&mdash;','a','digital','creative','and','marketing','studio,','fusing','strategy,','brand,','design','and','technology','into','experiences','people','remember.']),
+                    'text1-p2': words(['From','concept','to','launch,','we','craft','websites,','campaigns','and','content','engineered','for','growth','&mdash;','turning','attention','into','measurable','results.']),
+                    'text1-p3': words(['Your','brand,','visible','to','AI','&mdash;','so','when','people','ask','ChatGPT,','Claude,','Perplexity','or','Copilot','for','a','recommendation,','you','show','up.']),
+                    'explore-label': 'Tap to explore our services',
+                    'tile-performance': 'Performance',
+                    'tile-web-design': 'Web &amp;<br>Design',
+                    'tile-ai-suite': 'AI Suite',
+                    'tile-growth': 'Growth',
+                    'tile-branding': 'Branding',
+                    'trusted-label': 'Trusted by',
+                    'free-analysis-label': 'Limited spots available',
+                    'free-analysis-title': '<span>Get your</span><br><span>website</span><br><span>analysis.</span>',
+                    'free-analysis-sub': 'We review your site, SEO health, and AI visibility &mdash; then send you a detailed report. No pitch, no strings.',
+                    'free-analysis-cta': 'Request your analysis &rarr;',
+                    'award-text': words(['Growth,','built','in-house.']),
+                    'stat-label-1': 'AI skills built-in',
+                    'stat-label-2': 'credits needed',
+                    'stat-label-3': 'dashboard for everything',
+                    'learn-label': 'Free resources',
+                    'learn-title': '<span>Learn,</span><br><span>Explore</span><br><span>&amp; Grow</span>',
+                    'learn-sub': '<strong>Digital Made Simple.</strong> Web design, SEO, and online growth explained for business owners &mdash; without the confusing tech language.',
+                    'learn-cta': 'Explore our blog &rarr;',
+                    'address': 'SEO Suite<br/>Digital Creative Studio<br />Worldwide &middot; Remote-first',
+                    'footer-available': 'Available for new projects',
+                    'contact-panel-title': "Let's work<br>together.",
+                    'label-name': 'Name',
+                    'label-lastname': 'Last Name',
+                    'label-email': 'Email',
+                    'label-phone': 'Telephone',
+                    'label-interest': "I'm interested in",
+                    'tag-all': 'All Services',
+                    'tag-branding': 'Branding',
+                    'tag-web-design': 'Web &amp; Design',
+                    'tag-growth': 'Growth',
+                    'tag-performance': 'Performance',
+                    'tag-ai-suite': 'AI Suite',
+                    'tag-seo': 'SEO Optimization',
+                    'tag-analysis': 'Website Analysis',
+                    'cpf-submit': 'Send &rarr;',
+                    'send-success-text': 'We will<br>contact you<br>soon.'
+                },
+                de: {
+                    'text1-p1': words(['SEO','Suite','&mdash;','unser','digital','creative','studio','f&uuml;r','Strategie,','Marke,','Design','und','Technologie,','verschmolzen','zu','Erlebnissen,','an','die','sich','Menschen','erinnern.']),
+                    'text1-p2': words(['Von','der','Idee','bis','zum','Launch','gestalten','wir','Websites,','Kampagnen','und','Inhalte','f&uuml;r','Wachstum','&mdash;','wir','verwandeln','Aufmerksamkeit','in','messbare','Ergebnisse.']),
+                    'text1-p3': words(['Ihre','Marke,','sichtbar','f&uuml;r','KI','&mdash;','wenn','Menschen','ChatGPT,','Claude,','Perplexity','oder','Copilot','um','eine','Empfehlung','bitten,','erscheinen','Sie.']),
+                    'explore-label': 'Tippen Sie, um unsere Leistungen zu entdecken',
+                    'tile-performance': 'Performance',
+                    'tile-web-design': 'Web &amp;<br>Design',
+                    'tile-ai-suite': 'AI Suite',
+                    'tile-growth': 'Wachstum',
+                    'tile-branding': 'Branding',
+                    'trusted-label': 'Vertraut von',
+                    'free-analysis-label': 'Begrenzte Pl&auml;tze verf&uuml;gbar',
+                    'free-analysis-title': '<span>Ihre</span><br><span>Website-</span><br><span>Analyse.</span>',
+                    'free-analysis-sub': 'Wir pr&uuml;fen Ihre Website, SEO-Zustand und KI-Sichtbarkeit &mdash; und senden Ihnen einen detaillierten Bericht. Unverbindlich, ohne Verkaufsgespr&auml;ch.',
+                    'free-analysis-cta': 'Analyse anfordern &rarr;',
+                    'award-text': words(['Wachstum,','intern','entwickelt.']),
+                    'stat-label-1': 'KI-F&auml;higkeiten integriert',
+                    'stat-label-2': 'ben&ouml;tigte Credits',
+                    'stat-label-3': 'Dashboard f&uuml;r alles',
+                    'learn-label': 'Kostenlose Ressourcen',
+                    'learn-title': '<span>Lernen,</span><br><span>Entdecken</span><br><span>&amp; Wachsen</span>',
+                    'learn-sub': '<strong>Digital einfach gemacht.</strong> Webdesign, SEO und Online-Wachstum, erkl&auml;rt f&uuml;r Unternehmer &mdash; ohne verwirrenden Fachjargon.',
+                    'learn-cta': 'Blog entdecken &rarr;',
+                    'address': 'SEO Suite<br/>Digital Creative Studio<br />Weltweit &middot; Remote-first',
+                    'footer-available': 'Verf&uuml;gbar f&uuml;r neue Projekte',
+                    'contact-panel-title': 'Lass uns<br>zusammenarbeiten.',
+                    'label-name': 'Vorname',
+                    'label-lastname': 'Nachname',
+                    'label-email': 'E-Mail',
+                    'label-phone': 'Telefon',
+                    'label-interest': 'Ich interessiere mich f&uuml;r',
+                    'tag-all': 'Alle Leistungen',
+                    'tag-branding': 'Branding',
+                    'tag-web-design': 'Web &amp; Design',
+                    'tag-growth': 'Wachstum',
+                    'tag-performance': 'Performance',
+                    'tag-ai-suite': 'AI Suite',
+                    'tag-seo': 'SEO-Optimierung',
+                    'tag-analysis': 'Website-Analyse',
+                    'cpf-submit': 'Senden &rarr;',
+                    'send-success-text': 'Wir melden uns<br>in K&uuml;rze<br>bei Ihnen.'
+                }
+            };
+
+            var idMap = {
+                'text1-p1': '#text1 p:nth-child(1)',
+                'text1-p2': '#text1 p:nth-child(2)',
+                'text1-p3': '#text1 p:nth-child(3)',
+                'explore-label': '#explore-label',
+                'tile-performance': '.customer-clients li:nth-child(1) .integration',
+                'tile-web-design': '.customer-clients li:nth-child(2) .integration',
+                'tile-ai-suite': '.customer-clients li:nth-child(3) .integration',
+                'tile-growth': '.customer-clients li:nth-child(4) .integration',
+                'tile-branding': '.customer-clients li:nth-child(5) .integration',
+                'trusted-label': '#trusted-label',
+                'free-analysis-label': '#free-analysis-label',
+                'free-analysis-title': '#free-analysis-title',
+                'free-analysis-sub': '#free-analysis-sub',
+                'free-analysis-cta': '#free-analysis-cta',
+                'award-text': '#award-text',
+                'stat-label-1': '#aa-loghi li:nth-child(1) .stat-label',
+                'stat-label-2': '#aa-loghi li:nth-child(2) .stat-label',
+                'stat-label-3': '#aa-loghi li:nth-child(3) .stat-label',
+                'learn-label': '#learn-label',
+                'learn-title': '#learn-title',
+                'learn-sub': '#learn-sub',
+                'learn-cta': '#learn-cta',
+                'address': '#address',
+                'footer-available': '.footer-box-center li:nth-child(2)',
+                'contact-panel-title': '#contact-panel-title',
+                'label-name': 'label[for="cpf-name"]',
+                'label-lastname': 'label[for="cpf-lastname"]',
+                'label-email': 'label[for="cpf-email"]',
+                'label-phone': 'label[for="cpf-phone"]',
+                'label-interest': '.cpf-field > label:not([for])',
+                'tag-all': '.cpf-tag[data-value="All Services"]',
+                'tag-branding': '.cpf-tag[data-value="Branding"]',
+                'tag-web-design': '.cpf-tag[data-value="Web & Design"]',
+                'tag-growth': '.cpf-tag[data-value="Growth"]',
+                'tag-performance': '.cpf-tag[data-value="Performance"]',
+                'tag-ai-suite': '.cpf-tag[data-value="AI Suite"]',
+                'tag-seo': '.cpf-tag[data-value="SEO Optimization"]',
+                'tag-analysis': '.cpf-tag[data-value="Website Analysis"]',
+                'cpf-submit': '#cpf-submit',
+                'send-success-text': '#send-success-text'
+            };
+
+            var servicePanelData = {
+                en: {
+                    'Branding': { title: 'Branding', body: 'We build brands from the ground up — naming, tone of voice, visual identity, art direction and copywriting. Every brand strategy is designed to be distinctive, consistent and built to last.' },
+                    'Web &Design': { title: 'Web &amp; Design', body: 'From UI/UX and web design to full-stack development, eCommerce and landing pages — we build digital experiences that convert. Whether a CMS-powered site or a headless build, every detail is crafted to perform.' },
+                    'Growth': { title: 'Growth', body: 'Growth strategies rooted in data — SEO, AI search visibility, content marketing, email and organic social — turning audience attention into measurable business results.' },
+                    'Performance': { title: 'Performance', body: 'Paid media across Google, Meta and beyond — combining sharp creative with rigorous analytics to drive efficient acquisition, lower CPAs and scalable returns.' },
+                    'AI Suite': { title: 'AI Suite', body: 'SEO AI Suite is our own software — an AI-powered SEO platform with 20+ built-in skills. It connects to Google Search Console and the AI model of your choice to plan content, optimize pages, audit sites, track rankings and monitor competitors, all from one dashboard.' }
+                },
+                de: {
+                    'Branding': { title: 'Branding', body: 'Wir bauen Marken von Grund auf — Naming, Tonalität, visuelle Identität, Art Direction und Copywriting. Jede Markenstrategie ist unverwechselbar, konsistent und auf Langlebigkeit ausgelegt.' },
+                    'Web &Design': { title: 'Web &amp; Design', body: 'Von UI/UX und Webdesign bis zu Full-Stack-Entwicklung, E-Commerce und Landingpages — wir gestalten digitale Erlebnisse, die konvertieren. Ob CMS-basiert oder Headless: jedes Detail ist auf Leistung ausgelegt.' },
+                    'Growth': { title: 'Wachstum', body: 'Wachstumsstrategien auf Datenbasis — SEO, KI-Sichtbarkeit, Content-Marketing, E-Mail und organische Social-Media-Präsenz — wir verwandeln Aufmerksamkeit in messbare Geschäftsergebnisse.' },
+                    'Performance': { title: 'Performance', body: 'Paid Media auf Google, Meta und darüber hinaus — scharfes Creative kombiniert mit präziser Analytik für effiziente Akquise, niedrigere CPAs und skalierbare Ergebnisse.' },
+                    'AI Suite': { title: 'AI Suite', body: 'SEO AI Suite ist unsere eigene Software — eine KI-gestützte SEO-Plattform mit über 20 integrierten Skills. Sie verbindet sich mit der Google Search Console und dem KI-Modell Ihrer Wahl, um Inhalte zu planen, Seiten zu optimieren, Websites zu prüfen, Rankings zu verfolgen und Wettbewerber zu beobachten — alles über ein Dashboard.' }
+                }
+            };
+            window.__servicePanelData = servicePanelData;
+
+            var LANG_KEY = 'ss_lang';
+
+            function applyLang(lang){
+                var dict = t[lang] || t.en;
+                Object.keys(idMap).forEach(function(key){
+                    var el = document.querySelector(idMap[key]);
+                    if (el && dict[key] !== undefined) el.innerHTML = dict[key];
+                });
+                document.documentElement.setAttribute('lang', lang);
+                document.querySelectorAll('.lang-opt').forEach(function(btn){
+                    btn.classList.toggle('active', btn.dataset.lang === lang);
+                });
+                window.__currentLang = lang;
+                localStorage.setItem(LANG_KEY, lang);
+            }
+
+            document.querySelectorAll('.lang-opt').forEach(function(btn){
+                btn.addEventListener('click', function(){ applyLang(btn.dataset.lang); });
+            });
+
+            var saved = localStorage.getItem(LANG_KEY) || 'en';
+            applyLang(saved);
         })();
         </script>
     </body>
