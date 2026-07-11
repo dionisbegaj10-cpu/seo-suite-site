@@ -347,7 +347,7 @@ body:has(#article-overlay.open) #back-home:after { background-color: #1c1c1c; }
 
 <div id="blob_container"></div>
 
-<a id="back-home" href="index.html">back to main page</a>
+<a id="back-home" href="index.html">&larr; Main page</a>
 
 <div id="hero">
     <h1 id="page-title">Learn, Explore<br>&amp; Grow</h1>
@@ -717,8 +717,8 @@ new BlobAnimation("blob_container", {
     };
 
     var uiText = {
-        en: { pageTitle: 'Learn, Explore<br>&amp; Grow', all: 'All', prev: 'Previous post', next: 'Next post', close: 'Close article', backHome: 'back to main page' },
-        de: { pageTitle: 'Lernen, Entdecken<br>&amp; Wachsen', all: 'Alle', prev: 'Vorheriger Beitrag', next: 'Nächster Beitrag', close: 'Artikel schließen', backHome: 'zurück zur Startseite' }
+        en: { pageTitle: 'Learn, Explore<br>&amp; Grow', all: 'All', prev: 'Previous post', next: 'Next post', close: 'Close article', backHome: '&larr; Main page' },
+        de: { pageTitle: 'Lernen, Entdecken<br>&amp; Wachsen', all: 'Alle', prev: 'Vorheriger Beitrag', next: 'Nächster Beitrag', close: 'Artikel schließen', backHome: '&larr; Startseite' }
     };
 
     var LANG_KEY = 'ss_lang';
@@ -960,7 +960,7 @@ new BlobAnimation("blob_container", {
         localStorage.setItem(LANG_KEY, lang);
 
         document.getElementById('page-title').innerHTML = uiText[lang].pageTitle;
-        document.getElementById('back-home').textContent = uiText[lang].backHome;
+        document.getElementById('back-home').innerHTML = uiText[lang].backHome;
         prevBtn.setAttribute('aria-label', uiText[lang].prev);
         nextBtn.setAttribute('aria-label', uiText[lang].next);
         closeBtn.setAttribute('aria-label', uiText[lang].close);
