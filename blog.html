@@ -881,6 +881,12 @@ new BlobAnimation("blob_container", {
                 last = raw;
                 document.documentElement.style.backgroundColor = raw;
                 document.body.style.backgroundColor = raw;
+                // iOS 26 Safari derives its bar tint from FIXED elements at
+                // the viewport edges — and the full-screen sphere backdrop is
+                // exactly that, permanently black. Paint it along with the
+                // ramp so the bars follow the article open/close.
+                var blobEl = document.getElementById('blob_container');
+                if (blobEl) blobEl.style.backgroundColor = raw;
             }
             var snapped = o < 0.5 ? '#000000' : '#ffffff';
             if (snapped !== lastMeta) { lastMeta = snapped; meta.setAttribute('content', snapped); }
