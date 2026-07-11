@@ -71,6 +71,18 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
     gap: 10px;
     padding: 0 6% 50px;
 }
+#tap-to-read {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin: -26px 0 24px;
+}
 .filter-pill {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 700;
@@ -331,6 +343,7 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
 }
 body.scrolled #back-home { opacity: 0; pointer-events: none; }
 html.article-view #back-home { display: none; }
+html.article-view #tap-to-read { display: none; }
 #back-home:after {
     content: "";
     position: absolute;
@@ -357,6 +370,8 @@ body:has(#article-overlay.open) #back-home:after { background-color: #1c1c1c; }
 </div>
 
 <div id="filter-bar"></div>
+
+<p id="tap-to-read">Tap to read</p>
 
 <section id="carousel-section">
     <div class="carousel-grid">
@@ -880,8 +895,8 @@ new BlobAnimation("blob_container", {
     };
 
     var uiText = {
-        en: { pageTitle: 'Learn, Explore<br>&amp; Grow', all: 'All', prev: 'Previous post', next: 'Next post', close: 'Close article', backHome: '&larr; Main page' },
-        de: { pageTitle: 'Lernen, Entdecken<br>&amp; Wachsen', all: 'Alle', prev: 'Vorheriger Beitrag', next: 'Nächster Beitrag', close: 'Artikel schließen', backHome: '&larr; Startseite' }
+        en: { pageTitle: 'Learn, Explore<br>&amp; Grow', all: 'All', prev: 'Previous post', next: 'Next post', close: 'Close article', backHome: '&larr; Main page', tapToRead: 'Tap to read' },
+        de: { pageTitle: 'Lernen, Entdecken<br>&amp; Wachsen', all: 'Alle', prev: 'Vorheriger Beitrag', next: 'Nächster Beitrag', close: 'Artikel schließen', backHome: '&larr; Startseite', tapToRead: 'Zum Lesen tippen' }
     };
 
     var LANG_KEY = 'ss_lang';
@@ -1158,6 +1173,7 @@ new BlobAnimation("blob_container", {
 
         document.getElementById('page-title').innerHTML = uiText[lang].pageTitle;
         document.getElementById('back-home').innerHTML = uiText[lang].backHome;
+        document.getElementById('tap-to-read').textContent = uiText[lang].tapToRead;
         prevBtn.setAttribute('aria-label', uiText[lang].prev);
         nextBtn.setAttribute('aria-label', uiText[lang].next);
         closeBtn.setAttribute('aria-label', uiText[lang].close);
