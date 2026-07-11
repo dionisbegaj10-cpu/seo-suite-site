@@ -273,10 +273,12 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
     position: fixed;
     top: 24px; right: 24px;
     width: 44px; height: 44px;
-    border-radius: 50%;
-    border: 1px solid rgba(0,0,0,0.15);
-    background: #fff;
-    font-size: 20px;
+    border-radius: 0;
+    border: none;
+    background: transparent;
+    color: #1c1c1c;
+    font-size: 28px;
+    line-height: 1;
     cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     z-index: 2;
@@ -328,6 +330,7 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
     transition: opacity 0.35s ease;
 }
 body.scrolled #back-home { opacity: 0; pointer-events: none; }
+html.article-view #back-home { display: none; }
 #back-home:after {
     content: "";
     position: absolute;
