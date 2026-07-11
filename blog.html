@@ -855,45 +855,21 @@ new BlobAnimation("blob_container", {
     var articleTitle = document.getElementById('article-title');
     var articleBody = document.getElementById('article-body');
 
-    // Same continuous chrome-sync pattern that works on the homepage:
-    // every frame, mirror the color the page should be onto <html> and the
-    // theme-color meta. iOS Safari respects the every-frame loop where
-    // one-shot changes were getting ignored/sampled at the wrong moment.
-    (function(){
+    // Set the page colors the exact same way the homepage service panel
+    // does (that one works on iOS 26): a single synchronous change in the
+    // click handler, not a gradual rAF ramp — Safari 26 doesn't re-derive
+    // its bar tint from continuous tiny JS background mutations.
+    function setPageColor(color){
+        document.documentElement.style.backgroundColor = color;
+        document.body.style.backgroundColor = color;
+        // iOS 26 Safari derives its bar tint from FIXED elements at the
+        // viewport edges — and the full-screen sphere backdrop is exactly
+        // that, permanently black unless painted along.
+        var blobEl = document.getElementById('blob_container');
+        if (blobEl) blobEl.style.backgroundColor = color;
         var meta = document.querySelector('meta[name="theme-color"]');
-        if (!meta) { meta = document.createElement('meta'); meta.setAttribute('name','theme-color'); document.head.appendChild(meta); }
-        var last = '', lastMeta = '';
-        // Ramp the color over the same 300ms as the overlay's CSS fade,
-        // driven by our own clock rather than the overlay's computed
-        // opacity — deterministic even if style sampling lags on iOS.
-        var target = 0, current = 0, prevT = 0;
-        function tick(t){
-            if (!prevT) prevT = t;
-            var step = (t - prevT) / 300;
-            prevT = t;
-            target = overlay.classList.contains('open') ? 1 : 0;
-            if (current < target) current = Math.min(target, current + step);
-            else if (current > target) current = Math.max(target, current - step);
-            var o = current;
-            var v = Math.round(o * 255);
-            var raw = 'rgb(' + v + ', ' + v + ', ' + v + ')';
-            if (raw !== last) {
-                last = raw;
-                document.documentElement.style.backgroundColor = raw;
-                document.body.style.backgroundColor = raw;
-                // iOS 26 Safari derives its bar tint from FIXED elements at
-                // the viewport edges — and the full-screen sphere backdrop is
-                // exactly that, permanently black. Paint it along with the
-                // ramp so the bars follow the article open/close.
-                var blobEl = document.getElementById('blob_container');
-                if (blobEl) blobEl.style.backgroundColor = raw;
-            }
-            var snapped = o < 0.5 ? '#000000' : '#ffffff';
-            if (snapped !== lastMeta) { lastMeta = snapped; meta.setAttribute('content', snapped); }
-            requestAnimationFrame(tick);
-        }
-        requestAnimationFrame(tick);
-    })();
+        if (meta) meta.setAttribute('content', color);
+    }
 
     function openArticle(card, post){
         articleCat.textContent = post.cat;
@@ -908,6 +884,7 @@ new BlobAnimation("blob_container", {
         // display first, then .open a frame later so the fade still runs.
         overlay.style.display = 'block';
         setTimeout(function(){ overlay.classList.add('open'); }, 20);
+        setPageColor('#ffffff');
         // NO body scroll lock: iOS Safari only re-samples its bar tint on
         // scroll activity, and freezing the page at the exact moment the
         // color changes left the bars stuck black. The overlay covers the
@@ -923,6 +900,7 @@ new BlobAnimation("blob_container", {
 
     function closeArticle(){
         overlay.classList.remove('open');
+        setPageColor('#000000');
         setTimeout(function(){ if (!overlay.classList.contains('open')) overlay.style.display = 'none'; }, 350);
         // Same nudge on the way back to black.
         requestAnimationFrame(function(){
