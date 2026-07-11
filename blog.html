@@ -323,7 +323,11 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
     color: #fff;
     text-decoration: none;
     padding-bottom: 3px;
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.35s ease;
 }
+body.scrolled #back-home { opacity: 0; pointer-events: none; }
 #back-home:after {
     content: "";
     position: absolute;
@@ -992,6 +996,13 @@ new BlobAnimation("blob_container", {
     applyLang(lang);
     showArticleFromURL();
     setInterval(next, 5000);
+
+    // "back to main page" only shows at the very top of the page.
+    function updateBackHomeVisibility(){
+        document.body.classList.toggle('scrolled', window.pageYOffset > 20);
+    }
+    window.addEventListener('scroll', updateBackHomeVisibility, { passive: true });
+    updateBackHomeVisibility();
 })();
 </script>
 
