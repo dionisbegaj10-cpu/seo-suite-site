@@ -459,3 +459,17 @@ body.animated .trusted-logos img {
     .box-pres { width: min(900px, 86vw) !important; text-align: center; }
     #text1 p { max-width: 100%; }
 }
+
+/* --- Desktop service tiles: Branding + Hosting sit under Web & Design and
+   AI Suite specifically, not under Performance/Web & Design. Row order
+   stays Performance / Web & Design / AI Suite / Growth on row one; grid
+   placement (rather than reordering the HTML) keeps mobile untouched. --- */
+@media (min-width: 1024px) {
+    .customer-clients {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .customer-clients li { width: auto; }
+    .customer-clients li:nth-child(5) { grid-column: 2; }
+    .customer-clients li:nth-child(6) { grid-column: 3; }
+}
