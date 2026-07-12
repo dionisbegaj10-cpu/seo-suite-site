@@ -17,11 +17,11 @@
         <link href="css/mediaquery.css" rel="stylesheet"/>
         <link href="css/portfolio_style.css" rel="stylesheet"/>
         <link href="css/personalize.css?v=trusted17" rel="stylesheet"/>
-        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-        <script src="js/libs/anime.min.js"></script>
-        <script src="js/libs/jsband-min.js"></script>
-        <script src="js/blob-min.js"></script>
-        <script src="js/main.js"></script>
+        <script src="js/libs/jquery-2.2.4.min.js" defer></script>
+        <script src="js/libs/anime.min.js" defer></script>
+        <script src="js/libs/jsband-min.js" defer></script>
+        <script src="js/blob-min.js" defer></script>
+        <script src="js/main.js" defer></script>
         <script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
 
         <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
@@ -348,10 +348,12 @@
             //imagesLoaded(document.querySelectorAll('.img-inner'), {background: true}, () => document.body.classList.remove('loading'));
         </script>        
         <script>
-            $("#mail").on("click", function(){
-                if(typeof fbq == "function"){
-                    fbq('track', 'Contact');
-                }
+            document.addEventListener('DOMContentLoaded', function(){
+                $("#mail").on("click", function(){
+                    if(typeof fbq == "function"){
+                        fbq('track', 'Contact');
+                    }
+                });
             });
         </script>
 
@@ -458,7 +460,7 @@
 
         <script>
         /* Service tiles → slide-in detail panel */
-        (function(){
+        document.addEventListener('DOMContentLoaded', function(){
             var data = {
                 'Branding': { title: 'Branding', body: 'We build brands from the ground up — naming, tone of voice, visual identity, art direction and copywriting. Every brand strategy is designed to be distinctive, consistent and built to last.' },
                 'Web &Design': { title: 'Web &amp; Design', body: 'From UI/UX and web design to full-stack development, eCommerce and landing pages — we build digital experiences that convert. Whether a CMS-powered site or a headless build, every detail is crafted to perform.' },
@@ -504,7 +506,7 @@
             document.getElementById('service-panel-close').addEventListener('click', closePanel);
             backdrop.addEventListener('click', closePanel);
             jQuery('.customer-clients .integration').on('click', function(){ openPanel($(this).closest('li').data('service-key')); });
-        })();
+        });
         </script>
 
         <script>
