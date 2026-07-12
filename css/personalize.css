@@ -473,3 +473,9 @@ body.animated .trusted-logos img {
     .customer-clients li:nth-child(5) { grid-column: 2; }
     .customer-clients li:nth-child(6) { grid-column: 3; }
 }
+
+/* --- Desktop polish: more breathing room between the trusted-by logos
+   and the website-analysis CTA section below them. --- */
+@media (min-width: 1024px) {
+    #free-analysis-section { padding-top: 160px; }
+}
