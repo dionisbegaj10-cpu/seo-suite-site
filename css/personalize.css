@@ -451,3 +451,11 @@ body.animated .trusted-logos img {
     font-size: clamp(2.8rem, 8vw, 5.5rem) !important;
     line-height: 1.05 !important;
 }
+
+/* --- Desktop polish: cap intro paragraph line-length to a readable width.
+   Every other text block on the site (free-analysis-sub, award-text,
+   learn-sub) already caps its width for readability — the hero intro
+   paragraphs were the one block stretching full-width on desktop. --- */
+@media (min-width: 1024px) {
+    #text1 p { max-width: 720px; }
+}
