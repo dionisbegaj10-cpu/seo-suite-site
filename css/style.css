@@ -442,6 +442,16 @@ body.animated #learn-cta { background: #ffffff; color: #1c1c1c; }
     margin-bottom:15vh;
 }
 
+.sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 #customers span {
     white-space: nowrap;
 }

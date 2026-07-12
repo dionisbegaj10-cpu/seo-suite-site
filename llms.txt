@@ -1,0 +1,24 @@
+# SEO Suite
+
+> SEO Suite is a digital creative and marketing studio that makes brands visible in traditional search and AI search (ChatGPT, Claude, Perplexity, Copilot, Google AI Overviews).
+
+SEO Suite blends strategy, brand, design and technology for modern businesses. From concept to launch, the studio crafts websites, campaigns and content engineered for growth, turning attention into measurable results.
+
+## Services
+
+- **Branding** — naming, tone of voice, visual identity, art direction and copywriting.
+- **Web & Design** — UI/UX, web design, full-stack development, eCommerce and landing pages.
+- **Growth** — SEO, AI search visibility, content marketing, email and organic social.
+- **Performance** — paid media across Google, Meta and beyond.
+- **AI Suite** — SEO AI Suite, an AI-powered SEO platform with 20+ built-in skills that connects to Google Search Console to plan content, optimize pages, audit sites, track rankings and monitor competitors.
+- **Hosting** — fully managed hosting with SSL, daily backups, updates and monitoring.
+
+## Key pages
+
+- [Homepage](https://seosuite.studio/): overview of all services and free website analysis request.
+- [Blog](https://seosuite.studio/blog.html): "For Dummies" articles on SEO, web design and digital growth for entrepreneurs.
+
+## Contact
+
+- Email: contact@seosuite.studio
+- Available for new projects, remote-first, worldwide.
