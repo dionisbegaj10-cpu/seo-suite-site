@@ -444,3 +444,10 @@ body.animated .trusted-logos img {
     .trusted-logos li { height: 60px; }
     .trusted-logos img { max-width: 100%; }
 }
+
+/* --- "start a project" footer CTA: same size/style as "Learn, Explore & Grow" --- */
+#ftitle {
+    font-family: 'Grumpy 24', Georgia, serif !important;
+    font-size: clamp(2.8rem, 8vw, 5.5rem) !important;
+    line-height: 1.05 !important;
+}
