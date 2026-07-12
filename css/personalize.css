@@ -400,10 +400,10 @@ body.animated .box-trusted { border-top-color: rgba(255,255,255,0.12); }
 }
 body.animated #trusted-label { color: rgba(255,255,255,0.4); }
 .trusted-logos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     align-items: center;
+    justify-items: center;
     gap: 56px;
     list-style: none;
     margin: 0;
@@ -414,11 +414,12 @@ body.animated #trusted-label { color: rgba(255,255,255,0.4); }
     align-items: center;
     justify-content: center;
     height: 84px;
+    width: 100%;
 }
 .trusted-logos img {
     height: 100%;
     width: auto;
-    max-width: 260px;
+    max-width: min(260px, 100%);
     object-fit: contain;
     filter: brightness(0);
     opacity: 0.6;
@@ -452,10 +453,9 @@ body.animated .trusted-logos img {
     line-height: 1.05 !important;
 }
 
-/* --- Desktop polish: cap intro paragraph line-length to a readable width.
-   Every other text block on the site (free-analysis-sub, award-text,
-   learn-sub) already caps its width for readability — the hero intro
-   paragraphs were the one block stretching full-width on desktop. --- */
+/* --- Desktop polish: center the intro paragraphs as a balanced centered
+   block with long, flowing lines, instead of left-aligned narrow stacks. --- */
 @media (min-width: 1024px) {
-    #text1 p { max-width: 720px; }
+    .box-pres { width: min(900px, 86vw) !important; text-align: center; }
+    #text1 p { max-width: 100%; }
 }
