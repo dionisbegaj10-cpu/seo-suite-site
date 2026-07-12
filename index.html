@@ -19,7 +19,7 @@
         <link href="css/style.css?v=perf1" rel="stylesheet"/>
         <link href="css/mediaquery.css" rel="stylesheet"/>
         <link href="css/portfolio_style.css" rel="stylesheet"/>
-        <link href="css/personalize.css?v=trusted17" rel="stylesheet"/>
+        <link href="css/personalize.css?v=trusted18" rel="stylesheet"/>
         <script src="js/libs/jquery-2.2.4.min.js" defer></script>
         <script src="js/libs/anime.min.js" defer></script>
         <script src="js/libs/jsband-min.js" defer></script>
@@ -192,12 +192,12 @@
                 <h2 id="customers" style="display:none;"><span id="collaborations"></span></h2>
                 <p id="explore-label">Tap to explore our services</p>
                 <ul class="customer customer-clients">
-                    <li data-service-key="Performance"><span class="integration">Performance</span></li>
-                    <li data-service-key="Web &amp;Design"><span class="integration">Web &amp;<br>Design</span></li>
-                    <li data-service-key="AI Suite"><span class="integration">AI Suite</span></li>
-                    <li data-service-key="Growth"><span class="integration">Growth</span></li>
-                    <li data-service-key="Branding"><span class="integration">Branding</span></li>
-                    <li data-service-key="Hosting"><span class="integration">Hosting</span></li>
+                    <li data-service-key="Performance"><a class="integration" href="services/performance.html">Performance</a></li>
+                    <li data-service-key="Web &amp;Design"><a class="integration" href="services/web-design.html">Web &amp;<br>Design</a></li>
+                    <li data-service-key="AI Suite"><a class="integration" href="services/ai-suite.html">AI Suite</a></li>
+                    <li data-service-key="Growth"><a class="integration" href="services/growth.html">Growth</a></li>
+                    <li data-service-key="Branding"><a class="integration" href="services/branding.html">Branding</a></li>
+                    <li data-service-key="Hosting"><a class="integration" href="services/hosting.html">Hosting</a></li>
                 </ul>
             </div>
             <!-- Trusted-by logo strip -->
@@ -508,7 +508,13 @@
             }
             document.getElementById('service-panel-close').addEventListener('click', closePanel);
             backdrop.addEventListener('click', closePanel);
-            jQuery('.customer-clients .integration').on('click', function(){ openPanel($(this).closest('li').data('service-key')); });
+            jQuery('.customer-clients .integration').on('click', function(e){
+                // Real <a href> to a dedicated page keeps each service crawlable
+                // and indexable on its own URL; JS users get the instant in-page
+                // panel instead of a full navigation.
+                e.preventDefault();
+                openPanel($(this).closest('li').data('service-key'));
+            });
         });
         </script>
 
