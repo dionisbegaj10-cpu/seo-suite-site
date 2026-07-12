@@ -1,7 +1,7 @@
 /* ============================================================
-   SEO Suite cosmetic layer over the original ilab engine.
+   SEO Suite cosmetic layer.
    COSMETIC ONLY — no blob / scroll / animation rules here, so the
-   original scroll engine (main.js + style.css) is left fully intact.
+   scroll engine (main.js + style.css) is left fully intact.
    ============================================================ */
 
 /* Even spacing between the three intro paragraphs (original only spaced the first). */
@@ -17,7 +17,7 @@
     background-image: url('../img/cta_en_white.svg') !important;
 }
 
-/* Replace the circular ILAB logo with a SEO SUITE word-mark.
+/* Replace the circular logo mark with a SEO SUITE word-mark.
    mix-blend-mode keeps it readable on both the dark hero and light sections. */
 #mytopnav a.brand-logo {
     background-image: none !important;
