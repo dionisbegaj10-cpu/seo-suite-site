@@ -83,6 +83,21 @@ main p.body {
     text-transform: uppercase;
     text-decoration: none;
 }
+#related-reading {
+    margin-top: 64px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+}
+.related-link {
+    display: block;
+    font-size: 17px;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.related-link:hover { color: #fff; }
+.related-link span { opacity: 0.5; margin-left: 6px; }
 </style>
 </head>
 <body>
@@ -94,6 +109,11 @@ main p.body {
     <p class="body">Your website stays online, up to date and performing at its best while we handle the technical side: server maintenance, security patches, uptime monitoring and backups, so a technical issue never becomes your problem to solve at 2am.</p>
     <p class="body">One less vendor to manage, one less thing that can silently break — hosting handled by the same team that built the site.</p>
     <a id="cta" href="../index.html#start">Start a project &rarr;</a>
+    <div id="related-reading">
+        <p class="eyebrow">Related reading</p>
+        <a class="related-link" href="../blog.html?post=2">Boost Website Performance <span>&rarr;</span></a>
+        <a class="related-link" href="../blog.html?post=14">Why Mobile-Friendly Design Matters <span>&rarr;</span></a>
+    </div>
 </main>
 </body>
 </html>

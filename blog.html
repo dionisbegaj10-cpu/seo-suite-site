@@ -344,6 +344,32 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
     color: rgba(0,0,0,0.72);
     margin: 0 0 24px;
 }
+#related-service {
+    margin-top: 40px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+#related-service .eyebrow {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.4);
+    margin: 0 0 12px;
+}
+.related-service-link {
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: #1c1c1c;
+    text-decoration: none;
+    border-bottom: 2px solid #1c1c1c;
+    padding-bottom: 3px;
+}
+.related-service-link:hover { opacity: 0.6; }
+.related-service-link span { opacity: 0.5; }
 
 /* --- Back to main page (top right) — same look as "start a project" --- */
 #back-home {
@@ -1330,6 +1356,33 @@ new BlobAnimation("blob_container", {
         window.location.href = 'blog.html';
     }
 
+    // Send readers toward the service that matches what they just read.
+    var serviceUrlByCat = {
+        'Performance': '../services/performance.html',
+        'Marketing': '../services/performance.html',
+        'Design': '../services/web-design.html',
+        'SEO': '../services/growth.html',
+        'AI Search': '../services/ai-suite.html',
+        'GEO': '../services/ai-suite.html'
+    };
+    var relatedServiceLabel = { en: 'Related service', de: 'Passende Leistung' };
+    function appendRelatedService(post){
+        var url = serviceUrlByCat[post.cat];
+        if (!url) return;
+        var wrap = document.createElement('div');
+        wrap.id = 'related-service';
+        var label = document.createElement('p');
+        label.className = 'eyebrow';
+        label.textContent = relatedServiceLabel[lang] || relatedServiceLabel.en;
+        var link = document.createElement('a');
+        link.className = 'related-service-link';
+        link.href = url;
+        link.innerHTML = post.cat + ' <span>&rarr;</span>';
+        wrap.appendChild(label);
+        wrap.appendChild(link);
+        articleBody.appendChild(wrap);
+    }
+
     function showArticleFromURL(){
         var m = window.location.search.match(/[?&]post=(\d+)/);
         if (!m) return;
@@ -1344,6 +1397,7 @@ new BlobAnimation("blob_container", {
             p.textContent = paragraph;
             articleBody.appendChild(p);
         });
+        appendRelatedService(post);
         // Shown instantly — no fade, this is a fresh page.
         overlay.style.transition = 'none';
         overlay.style.display = 'block';
@@ -1417,6 +1471,7 @@ new BlobAnimation("blob_container", {
                 p.textContent = paragraph;
                 articleBody.appendChild(p);
             });
+            appendRelatedService(post);
         }
 
         render();
