@@ -44,7 +44,11 @@ a { color: inherit; }
     font-size: 1.1rem;
     text-decoration: none;
     z-index: 10;
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.35s ease;
 }
+body.scrolled #back-home { opacity: 0; pointer-events: none; }
 main {
     max-width: 760px;
     margin: 0 auto;
@@ -115,5 +119,12 @@ main p.body {
         <a class="related-link" href="../blog.html?post=20">Performance Marketing for Dummies <span>&rarr;</span></a>
     </div>
 </main>
+<script>
+(function(){
+    function update(){ document.body.classList.toggle('scrolled', window.pageYOffset > 20); }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+})();
+</script>
 </body>
 </html>
