@@ -426,6 +426,7 @@
             <div id="service-panel-inner">
                 <h3 id="service-panel-title"></h3>
                 <p id="service-panel-body"></p>
+                <a id="service-panel-link" href="#">Read full details &rarr;</a>
             </div>
         </div>
         <div id="service-panel-backdrop"></div>
@@ -453,8 +454,16 @@
         }
         #service-panel-body {
             font-family: Arial, Helvetica, sans-serif; font-size: 16px; line-height: 1.8;
-            color: #444; margin: 0;
+            color: #444; margin: 0 0 28px;
         }
+        #service-panel-link {
+            display: inline-block;
+            font-family: Arial, Helvetica, sans-serif; font-weight: 700; font-size: 13px;
+            letter-spacing: 1px; text-transform: uppercase;
+            color: #1c1c1c; text-decoration: none;
+            border-bottom: 2px solid #1c1c1c; padding-bottom: 4px;
+        }
+        #service-panel-link:hover { opacity: 0.6; }
         /* The panel is full-screen, so the dim backdrop is never visible —
            and iOS 26 Safari samples fixed semi-transparent layers for its
            toolbar tint, which turned the bars gray. Never show it. */
@@ -472,16 +481,27 @@
                 'AI Suite': { title: 'AI Suite', body: 'SEO AI Suite is our own software — an AI-powered SEO platform with 20+ built-in skills. It connects to Google Search Console and the AI model of your choice to plan content, optimize pages, audit sites, track rankings and monitor competitors, all from one dashboard.' },
                 'Hosting': { title: 'Hosting', body: 'Fast, secure, fully managed hosting — SSL, daily backups, updates and monitoring included. Your website stays online, up to date and performing at its best while we handle the technical side.' }
             };
+            var pageUrls = {
+                'Branding': 'services/branding.html',
+                'Web &Design': 'services/web-design.html',
+                'Growth': 'services/growth.html',
+                'Performance': 'services/performance.html',
+                'AI Suite': 'services/ai-suite.html',
+                'Hosting': 'services/hosting.html'
+            };
             var panel = document.getElementById('service-panel');
             var backdrop = document.getElementById('service-panel-backdrop');
             var titleEl = document.getElementById('service-panel-title');
             var bodyEl = document.getElementById('service-panel-body');
+            var linkEl = document.getElementById('service-panel-link');
             function openPanel(key){
                 var lang = window.__currentLang || 'en';
                 var localized = window.__servicePanelData && window.__servicePanelData[lang];
                 var d = (localized && localized[key]) || data[key];
                 if(!d) return;
                 titleEl.innerHTML = d.title; bodyEl.textContent = d.body;
+                linkEl.href = pageUrls[key] || '#';
+                linkEl.textContent = (lang === 'de' ? 'Vollständige Details →' : 'Read full details →');
                 // display first, then .open on the next frame so the slide
                 // transition still runs from translateX(100%).
                 panel.style.display = 'flex';
