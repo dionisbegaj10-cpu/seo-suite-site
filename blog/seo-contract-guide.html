@@ -6,6 +6,9 @@
 <title>The SEO Contract Guide: What to Look For Before Signing | SEO Suite Blog</title>
 <meta name="description" content="An SEO contract protects both parties, but only if it's genuinely clear. Here's what to look for, and what red flags to watch for before signing." />
 <link rel="canonical" href="https://seosuite.studio/blog/seo-contract-guide.html" />
+<link rel="alternate" hreflang="en" href="https://seosuite.studio/blog/seo-contract-guide.html" />
+<link rel="alternate" hreflang="de" href="https://seosuite.studio/blog/de/seo-contract-guide.html" />
+<link rel="alternate" hreflang="x-default" href="https://seosuite.studio/blog/seo-contract-guide.html" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="The SEO Contract Guide: What to Look For Before Signing | SEO Suite" />
 <meta property="og:description" content="An SEO contract protects both parties, but only if it's genuinely clear. Here's what to look for, and what red flags to watch for before signing." />
@@ -56,6 +59,22 @@ a { color: inherit; }
     transition: opacity 0.35s ease;
 }
 body.scrolled #back-home { opacity: 0; pointer-events: none; }
+#lang-switch-article {
+    position: fixed;
+    top: max(24px, env(safe-area-inset-top, 0px) + 16px);
+    right: max(24px, env(safe-area-inset-right, 0px) + 16px);
+    z-index: 10;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    opacity: 1;
+    transition: opacity 0.35s ease;
+}
+body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
+#lang-switch-article a { text-decoration: none; color: rgba(0,0,0,0.4); }
+#lang-switch-article a.active { color: #1c1c1c; }
+#lang-switch-article span { color: rgba(0,0,0,0.3); margin: 0 4px; }
 .article-inner {
     max-width: 680px;
     margin: 0 auto;
@@ -127,6 +146,9 @@ body.scrolled #back-home { opacity: 0; pointer-events: none; }
 </head>
 <body>
 <a id="back-home" href="../blog.html">&larr; Blog</a>
+<div id="lang-switch-article">
+    <a href="seo-contract-guide.html" class="active">EN</a><span>/</span><a href="de/seo-contract-guide.html">DE</a>
+</div>
 <div class="article-inner">
     <p class="article-cat">Agency &middot; 4 min read</p>
     <h1 class="article-title">The SEO Contract Guide: What to Look For Before Signing</h1>
