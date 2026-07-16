@@ -6,17 +6,26 @@ SEO Suite blends strategy, brand, design and technology for modern businesses. F
 
 ## Services
 
-- **Branding** — naming, tone of voice, visual identity, art direction and copywriting.
-- **Web & Design** — UI/UX, web design, full-stack development, eCommerce and landing pages.
-- **Growth** — SEO, AI search visibility, content marketing, email and organic social.
-- **Performance** — paid media across Google, Meta and beyond.
-- **AI Suite** — SEO AI Suite, an AI-powered SEO platform with 20+ built-in skills that connects to Google Search Console to plan content, optimize pages, audit sites, track rankings and monitor competitors.
-- **Hosting** — fully managed hosting with SSL, daily backups, updates and monitoring.
+- [Branding](https://seosuite.studio/services/branding.html) — naming, tone of voice, visual identity, art direction and copywriting.
+- [Web & Design](https://seosuite.studio/services/web-design.html) — UI/UX, web design, full-stack development, eCommerce and landing pages.
+- [Growth](https://seosuite.studio/services/growth.html) — SEO, AI search visibility, content marketing, email and organic social.
+- [Performance](https://seosuite.studio/services/performance.html) — paid media across Google, Meta and beyond.
+- [AI Suite](https://seosuite.studio/services/ai-suite.html) — SEO AI Suite, an AI-powered SEO platform with 20+ built-in skills that connects to Google Search Console to plan content, optimize pages, audit sites, track rankings and monitor competitors.
+- [Hosting](https://seosuite.studio/services/hosting.html) — fully managed hosting with SSL, daily backups, updates and monitoring.
 
 ## Key pages
 
 - [Homepage](https://seosuite.studio/): overview of all services and free website analysis request.
-- [Blog](https://seosuite.studio/blog.html): "For Dummies" articles on SEO, web design and digital growth for entrepreneurs.
+- [Blog](https://seosuite.studio/blog.html): "For Dummies" articles on SEO, web design and digital growth for entrepreneurs, in English and German.
+- [Full sitemap](https://seosuite.studio/sitemap.xml): complete list of all pages, including 90+ blog articles covering SEO, AI search, web design, hosting, SaaS and local SEO.
+
+## Featured articles
+
+- [What Is SEO?](https://seosuite.studio/blog/what-is-seo.html)
+- [What Is EEAT?](https://seosuite.studio/blog/what-is-eeat.html)
+- [What Is GEO?](https://seosuite.studio/blog/what-is-geo.html)
+- [How to Perform an SEO Audit](https://seosuite.studio/blog/how-to-perform-an-seo-audit.html)
+- [Get Mentioned by ChatGPT](https://seosuite.studio/blog/get-mentioned-by-chatgpt.html)
 
 ## Contact
 
