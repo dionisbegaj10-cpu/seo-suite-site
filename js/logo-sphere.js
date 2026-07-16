@@ -7,14 +7,14 @@
         this.img = img;
         this.depth = opts.depth || 40;
         this.dotColor = opts.dotColor || '208,208,208';
-        this.rotationSpeed = opts.rotationSpeed || 0.18; // radians/sec
+        this.rotationSpeed = opts.rotationSpeed || 0; // no idle rotation
         this.cameraDistance = 200; // shrinks (and goes negative) as user scrolls -> "zoom in"
         this.targetCameraDistance = 200;
         this.focal = 1400;
         this.angle = 0;
         this.points = [];
         this.assembleStart = null;
-        this.assembleDuration = 250;
+        this.assembleDuration = 900;
         this.assembled = false;
         this._resize();
         this._sample();
@@ -58,16 +58,11 @@
             return;
         }
 
-        // Adaptive sampling: keep the dot count near the homepage sphere's
-        // density (~8k) regardless of how large the logo renders, so big
-        // viewports don't tank performance.
-        // Much denser sampling (~18k target vs. 8k) with a smaller floor, so
-        // thin logo/text strokes don't fall apart into gaps between dots.
-        var step = Math.max(1.6, Math.sqrt((w * h) / 18000));
-        // Dot size now slightly exceeds the sampling gap so neighboring dots
-        // overlap and cover the shape solidly instead of leaving visible
-        // negative space between them — that's what was breaking legibility.
-        this.dotBase = Math.max(2.6, step * 1.05);
+        // Lighter sampling (~10k target) — dot size is kept close to the
+        // step spacing (1.05x) so dots still overlap just enough to read
+        // as a solid shape, without the denser, heavier look.
+        var step = Math.max(2, Math.sqrt((w * h) / 10000));
+        this.dotBase = Math.max(2.4, step * 1.05);
         var pts = [];
         for (var y = 0; y < h; y += step) {
             for (var x = 0; x < w; x += step) {
@@ -76,12 +71,17 @@
                     var lx = x - w / 2;
                     var ly = y - h / 2;
                     var lz = (Math.random() - 0.5) * this.depth;
+                    // Each particle approaches from its own random direction
+                    // and distance so they visibly mix together as they
+                    // converge, rather than all sliding in from one side.
+                    var dir = Math.random() * Math.PI * 2;
+                    var dist = this.vw * (0.35 + Math.random() * 0.55);
                     pts.push({
                         x: lx, y: ly, z: lz,
-                        startX: (Math.random() - 0.5) * this.vw * 1.4,
-                        startY: (Math.random() - 0.5) * this.vh * 1.4,
-                        startZ: (Math.random() - 0.5) * 900,
-                        delay: Math.random() * 40
+                        startX: Math.cos(dir) * dist,
+                        startY: Math.sin(dir) * dist * (this.vh / this.vw),
+                        startZ: (Math.random() - 0.5) * 1100,
+                        delay: Math.random() * 350
                     });
                 }
             }
