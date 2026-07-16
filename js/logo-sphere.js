@@ -142,7 +142,16 @@
         var sinA = Math.sin(this.angle);
         var allAssembled = true;
 
-        for (var i = 0; i < this.points.length; i++) {
+        // Once assembled, the dots crossfade out while the real crisp logo
+        // fades in on top — so the end state is the clean image only, no
+        // visible dot texture left behind.
+        var imgFadeT = 0;
+        if (this.assembled && this.assembledAt !== null) {
+            imgFadeT = Math.max(0, Math.min(1, (ts - this.assembledAt) / this.imgFadeDuration));
+        }
+        var dotAlphaMul = 1 - imgFadeT;
+
+        for (var i = 0; i < this.points.length && dotAlphaMul > 0; i++) {
             var p = this.points[i];
             var t = Math.max(0, Math.min(1, (elapsed - p.delay) / this.assembleDuration));
             if (t < 1) allAssembled = false;
@@ -160,7 +169,7 @@
             var sx = cx + curX * scale;
             var sy = cy + curY * scale;
             var size = Math.max(1.1, (this.dotBase || 2.4) * scale);
-            var alpha = Math.max(0.55, Math.min(1, scale * 1.1)) * (0.7 + 0.3 * e);
+            var alpha = Math.max(0.55, Math.min(1, scale * 1.1)) * (0.7 + 0.3 * e) * dotAlphaMul;
 
             ctx.fillStyle = 'rgba(' + this.dotColor + ',' + alpha.toFixed(2) + ')';
             ctx.fillRect(sx, sy, size, size);
