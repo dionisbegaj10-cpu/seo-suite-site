@@ -61,10 +61,13 @@
         // Adaptive sampling: keep the dot count near the homepage sphere's
         // density (~8k) regardless of how large the logo renders, so big
         // viewports don't tank performance.
-        var step = Math.max(2.2, Math.sqrt((w * h) / 8000));
-        // Dots scale with the sampling gap so the logo reads as a dense
-        // dotted surface (like the homepage sphere) at any render size.
-        this.dotBase = Math.max(2.4, step * 0.6);
+        // Much denser sampling (~18k target vs. 8k) with a smaller floor, so
+        // thin logo/text strokes don't fall apart into gaps between dots.
+        var step = Math.max(1.6, Math.sqrt((w * h) / 18000));
+        // Dot size now slightly exceeds the sampling gap so neighboring dots
+        // overlap and cover the shape solidly instead of leaving visible
+        // negative space between them — that's what was breaking legibility.
+        this.dotBase = Math.max(2.6, step * 1.05);
         var pts = [];
         for (var y = 0; y < h; y += step) {
             for (var x = 0; x < w; x += step) {
