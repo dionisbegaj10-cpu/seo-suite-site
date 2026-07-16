@@ -177,13 +177,15 @@ body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
     <a href="../schema-markup-for-dummies.html">EN</a><span>/</span><a href="schema-markup-for-dummies.html" class="active">DE</a>
 </div>
 <div class="article-inner">
-    <p class="article-cat">KI-Suche &middot; 3 Min. Lesezeit</p>
+    <p class="article-cat">KI-Suche &middot; 4 Min. Lesezeit</p>
     <h1 class="article-title">Schema-Markup für Anfänger</h1>
     <div class="article-body">
         <p>Ein Suchergebnis, das die Sternebewertung eines Rezepts, die Kochzeit und den Kaloriengehalt zeigt, hat diese Formatierung nicht zufällig bekommen, diese Seite hatte Schema-Markup, standardisierten Code, der einer Seite hinzugefügt wird und Inhalte explizit kennzeichnet: das ist ein Rezept, das ist die Bewertung, das ist der Preis, das sind die Öffnungszeiten. Ohne das müssen Google und KI-Assistenten die Bedeutung aus dem umgebenden Text erraten, und Raten ist unzuverlässig.</p>
         <p>Die nützlichsten Typen für ein kleines Unternehmen sind FAQPage, das einzelne Fragen und Antworten direkt in Suchergebnissen erscheinen lassen kann, LocalBusiness, das Adresse, Öffnungszeiten und Telefonnummer explizit kennzeichnet, und Review, das die in Suchergebnissen sichtbaren Sternebewertungen ermöglicht. Ein Sanitärunternehmen mit FAQ-Schema, das &quot;Was kostet eine Warmwasserbereiter-Reparatur?&quot; direkt in Suchergebnissen zeigt, gewinnt den Klick, bevor die Seite eines Konkurrenten überhaupt gesehen wird.</p>
         <p>Das ist für KI-Sichtbarkeit noch wichtiger, wenn ChatGPT oder Perplexity eine Antwort zusammenfassen, bevorzugen sie eindeutigen, klar gekennzeichneten Inhalt gegenüber Inhalt, den sie interpretieren müssen, Schema-Markup spricht effektiv direkt die Sprache der KI, statt zu hoffen, dass sie richtig zwischen den Zeilen liest. Googles kostenloses Rich-Results-Test-Tool prüft, ob das Markup einer bestimmten Seite korrekt implementiert ist, und kostenlose Plugins für WordPress und andere große Plattformen fügen grundlegendes Schema hinzu, ohne dass Code von Hand geschrieben werden muss.</p>
-    </div>
+            <p>Die meisten modernen Implementierungen nutzen ein Format namens JSON-LD, einen Code-Block im Kopfbereich einer Seite, der den Inhalt beschreibt, ohne die sichtbare Seite selbst zu berühren, weshalb es sich als Standard durchgesetzt hat, den Google gegenüber älteren Methoden wie Microdata bevorzugt, die direkt im sichtbaren HTML markieren und bei einem Redesign leichter versehentlich kaputtgehen.</p>
+        <p>Das Markup nach der Implementierung zu testen ist genauso wichtig wie es überhaupt hinzuzufügen, ein kleiner Syntaxfehler kann das gewünschte Rich Result in Suchergebnissen still verhindern. Das Markup nach der Einrichtung zu testen ist genauso wichtig wie es überhaupt hinzuzufügen, ein kleiner Syntaxfehler kann das gewünschte Rich Result in Suchergebnissen still verhindern.</p>
+</div>
     <div id="related-service">
         <p class="eyebrow">Verwandte Leistung</p>
         <a class="related-service-link" href="../../services/ai-suite.html">KI-Suche <span>&rarr;</span></a>
