@@ -86,122 +86,6 @@ body.scrolled #back-home { opacity: 0; pointer-events: none; }
     inset: 0;
 }
 
-#hero-spacer {
-    position: relative;
-    z-index: 1;
-    /* Extra scroll distance so the break-apart/sphere/zoom/wash sequence
-       can't be skipped past by a single fast swipe before it's visible. */
-    height: 100vh;
-}
-
-#text1-client {
-    position: relative;
-    z-index: 1;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 6%;
-    background: #000;
-}
-#text1-client p {
-    max-width: 760px;
-    margin: 0;
-    text-align: center;
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-    line-height: 1.4;
-    color: rgba(255,255,255,0.92);
-}
-#text1-client span {
-    display: inline-block;
-    opacity: 0;
-    transform: translateY(15px);
-    transition-timing-function: cubic-bezier(.25,.46,.45,.94), cubic-bezier(.25,.46,.45,.94);
-    transition-property: transform, opacity;
-    transition-duration: 0.45s, 0.45s;
-}
-#text1-client.animated span {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-main {
-    position: relative;
-    z-index: 1;
-    background: #000;
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 100px 6% 120px;
-}
-p.eyebrow {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.45);
-    margin: 0 0 16px;
-}
-h1 {
-    font-family: 'Grumpy 24', Georgia, serif;
-    font-size: clamp(2.2rem, 6vw, 3.8rem);
-    line-height: 1.1;
-    margin: 0 0 16px;
-}
-p.client-meta {
-    font-size: 15px;
-    color: rgba(255,255,255,0.5);
-    margin: 0 0 40px;
-}
-main p.body {
-    font-size: 17px;
-    line-height: 1.8;
-    color: rgba(255,255,255,0.72);
-    margin: 0 0 24px;
-}
-p.svc-subhead {
-    font-family: 'Grumpy 24', Georgia, serif;
-    font-size: 1.5rem;
-    line-height: 1.2;
-    margin: 48px 0 20px;
-}
-.svc-list {
-    list-style: none;
-    margin: 0 0 24px;
-    padding: 0;
-}
-.svc-list li {
-    padding: 0;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-.svc-list li a {
-    display: block;
-    font-size: 16px;
-    line-height: 1.7;
-    color: rgba(255,255,255,0.85);
-    text-decoration: none;
-    padding: 14px 26px 14px 0;
-    position: relative;
-}
-.svc-list li a:hover { color: #fff; }
-.svc-list li a:after {
-    content: "\2192";
-    position: absolute;
-    right: 0;
-    opacity: 0.5;
-}
-#cta {
-    display: inline-block;
-    margin-top: 24px;
-    background: #fff;
-    color: #1c1c1c;
-    border-radius: 100px;
-    padding: 16px 36px;
-    font-weight: 900;
-    font-size: 13px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    text-decoration: none;
-}
 </style>
 </head>
 <body>
@@ -210,51 +94,12 @@ p.svc-subhead {
 <div class="logo-sphere-container">
     <img class="logo-sphere-source" src="../img/trusted/ute-pilot.svg" alt="Dr. Ute Pilot">
 </div>
-<div id="hero-spacer"></div>
-
-<div id="text1-client">
-    <p><span>Dr.</span> <span>Ute</span> <span>Pilot,</span> <span>visible</span> <span>to</span> <span>AI</span> <span>—</span> <span>so</span> <span>when</span> <span>people</span> <span>ask</span> <span>ChatGPT,</span> <span>Claude,</span> <span>Perplexity</span> <span>or</span> <span>Copilot</span> <span>for</span> <span>an</span> <span>orthodontist</span> <span>in</span> <span>Köln,</span> <span>they</span> <span>show</span> <span>up.</span></p>
-</div>
-
-<main>
-    <p class="eyebrow">Client</p>
-    <h1>Dr. Ute Pilot</h1>
-    <p class="client-meta">Orthodontic practice (Kieferorthopädie) &middot; Köln</p>
-    <p class="body">An ongoing engagement for an orthodontic practice in Köln, covering branding, growth, performance marketing, AI visibility and hosting.</p>
-    <p class="svc-subhead">What we worked on</p>
-    <ul class="svc-list">
-        <li><a href="../services/branding.html">Branding</a></li>
-        <li><a href="../services/growth.html">Growth</a></li>
-        <li><a href="../services/performance.html">Performance</a></li>
-        <li><a href="../services/ai-suite.html">AI Suite</a></li>
-        <li><a href="../services/hosting.html">Hosting</a></li>
-    </ul>
-    <a id="cta" href="../index.html#start">Start a project &rarr;</a>
-</main>
-
 <script src="../js/logo-sphere.js?v=14"></script>
 <script>
 (function(){
     function update(){ document.body.classList.toggle('scrolled', window.pageYOffset > 20); }
     window.addEventListener('scroll', update, { passive: true });
     update();
-})();
-(function(){
-    var el = document.getElementById('text1-client');
-    function isInViewport(elem){
-        var bounding = elem.getBoundingClientRect();
-        return bounding.top < (window.innerHeight || document.documentElement.clientHeight) * 0.85;
-    }
-    function check(){
-        if (isInViewport(el)) {
-            el.classList.add('animated');
-            var spans = el.querySelectorAll('span');
-            spans.forEach(function(s, i){ s.style.transitionDelay = (i * 0.035) + 's'; });
-            window.removeEventListener('scroll', check);
-        }
-    }
-    window.addEventListener('scroll', check, { passive: true });
-    check();
 })();
 </script>
 </body>
