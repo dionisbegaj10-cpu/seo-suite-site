@@ -172,7 +172,9 @@
             var alpha = Math.max(0.55, Math.min(1, scale * 1.1)) * (0.7 + 0.3 * e) * dotAlphaMul;
 
             ctx.fillStyle = 'rgba(' + this.dotColor + ',' + alpha.toFixed(2) + ')';
-            ctx.fillRect(sx, sy, size, size);
+            ctx.beginPath();
+            ctx.arc(sx, sy, size / 2, 0, Math.PI * 2);
+            ctx.fill();
         }
 
         if (allAssembled && !this.assembled) {
