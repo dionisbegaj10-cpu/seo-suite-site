@@ -6,7 +6,7 @@
         this.ctx = canvas.getContext('2d');
         this.img = img;
         this.depth = opts.depth || 40;
-        this.dotColor = opts.dotColor || '208,208,208';
+        this.dotColor = opts.dotColor || '255,255,255';
         this.rotationSpeed = opts.rotationSpeed || 0; // no idle rotation
         this.cameraDistance = 200; // shrinks (and goes negative) as user scrolls -> "zoom in"
         this.targetCameraDistance = 200;
