@@ -1,5 +1,5 @@
 /* ============================================================
-   SEO Suite cosmetic layer.
+   SSUITE cosmetic layer.
    COSMETIC ONLY — no blob / scroll / animation rules here, so the
    scroll engine (main.js + style.css) is left fully intact.
    ============================================================ */
@@ -17,7 +17,7 @@
     background-image: url('../img/cta_en_white.svg') !important;
 }
 
-/* Replace the circular logo mark with a SEO SUITE word-mark.
+/* Replace the circular logo mark with a SSUITE word-mark.
    mix-blend-mode keeps it readable on both the dark hero and light sections. */
 #mytopnav a.brand-logo {
     background-image: none !important;
@@ -34,7 +34,7 @@
     opacity: 0;
     transition: opacity 0.35s ease;
 }
-/* SEO SUITE shows only at the very top of the hero, fades as soon as you scroll. */
+/* SSUITE shows only at the very top of the hero, fades as soon as you scroll. */
 body.at-top #mytopnav a.brand-logo { opacity: 1; }
 
 /* ============================================================

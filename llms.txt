@@ -1,8 +1,8 @@
-# SEO Suite
+# SSUITE
 
-> SEO Suite is a digital creative and marketing studio that makes brands visible in traditional search and AI search (ChatGPT, Claude, Perplexity, Copilot, Google AI Overviews).
+> SSUITE is a digital creative and marketing studio that makes brands visible in traditional search and AI search (ChatGPT, Claude, Perplexity, Copilot, Google AI Overviews).
 
-SEO Suite blends strategy, brand, design and technology for modern businesses. From concept to launch, the studio crafts websites, campaigns and content engineered for growth, turning attention into measurable results.
+SSUITE blends strategy, brand, design and technology for modern businesses. From concept to launch, the studio crafts websites, campaigns and content engineered for growth, turning attention into measurable results.
 
 ## Services
 
