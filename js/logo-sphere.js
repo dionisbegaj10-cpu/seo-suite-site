@@ -16,6 +16,8 @@
         this.assembleStart = null;
         this.assembleDuration = 900;
         this.assembled = false;
+        this.assembledAt = null;
+        this.imgFadeDuration = 500;
         this._resize();
         this._sample();
         this._bindEvents();
@@ -44,6 +46,8 @@
         var scale = Math.min(this.vw * 1.1 / img.naturalWidth, this.vh * 1.1 / img.naturalHeight);
         var w = img.naturalWidth * scale;
         var h = img.naturalHeight * scale;
+        this.logoW = w;
+        this.logoH = h;
 
         var off = document.createElement('canvas');
         off.width = w;
@@ -145,8 +149,24 @@
 
         if (allAssembled && !this.assembled) {
             this.assembled = true;
+            this.assembledAt = ts;
             if (this.canvas.parentElement) {
                 this.canvas.parentElement.classList.add('sphere-assembled');
+            }
+        }
+
+        // Once the dots have converged, crossfade in the real logo image so
+        // the exact, crisp line-art design is what the viewer actually reads,
+        // rather than relying purely on the dot approximation.
+        if (this.assembled && this.assembledAt !== null) {
+            var fadeT = Math.max(0, Math.min(1, (ts - this.assembledAt) / this.imgFadeDuration));
+            if (fadeT > 0) {
+                var camScale = this.focal / (this.focal + this.cameraDistance);
+                var dw = this.logoW * camScale;
+                var dh = this.logoH * camScale;
+                ctx.globalAlpha = fadeT;
+                ctx.drawImage(this.img, cx - dw / 2, cy - dh / 2, dw, dh);
+                ctx.globalAlpha = 1;
             }
         }
 
