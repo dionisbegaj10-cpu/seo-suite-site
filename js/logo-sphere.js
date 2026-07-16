@@ -118,13 +118,8 @@
         window.addEventListener('resize', function () {
             self._resize();
         });
-        window.addEventListener('scroll', function () {
-            var vh = self.vh;
-            var y = window.pageYOffset || document.documentElement.scrollTop || 0;
-            var hz = Math.max(0, Math.min(1, y / (vh * 0.9)));
-            // 200 (idle) -> -150 (camera pushes past the surface) as user scrolls
-            self.targetCameraDistance = 200 - hz * 350;
-        }, { passive: true });
+        // No scroll-linked zoom: the logo stays put and simply gets covered
+        // by the next section as the user scrolls past it.
     };
 
     LogoSphere.prototype._frame = function (ts) {
