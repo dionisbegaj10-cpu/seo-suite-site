@@ -37,8 +37,11 @@
 
     LogoSphere.prototype._sample = function () {
         var img = this.img;
-        var maxDim = Math.min(this.vw, this.vh) * 1.2;
-        var scale = Math.min(maxDim / img.naturalWidth, maxDim / img.naturalHeight);
+        // Fit the logo against the real viewport axes (not the smaller
+        // dimension) so wide logos fill the screen just like tall ones —
+        // sized like the homepage hero sphere. The 1.1 compensates for the
+        // resting projection scale (~0.875) so the logo lands near full-bleed.
+        var scale = Math.min(this.vw * 1.1 / img.naturalWidth, this.vh * 1.1 / img.naturalHeight);
         var w = img.naturalWidth * scale;
         var h = img.naturalHeight * scale;
 
@@ -55,7 +58,13 @@
             return;
         }
 
-        var step = 2.2;
+        // Adaptive sampling: keep the dot count near the homepage sphere's
+        // density (~8k) regardless of how large the logo renders, so big
+        // viewports don't tank performance.
+        var step = Math.max(2.2, Math.sqrt((w * h) / 8000));
+        // Dots scale with the sampling gap so the logo reads as a dense
+        // dotted surface (like the homepage sphere) at any render size.
+        this.dotBase = Math.max(1.7, step * 0.42);
         var pts = [];
         for (var y = 0; y < h; y += step) {
             for (var x = 0; x < w; x += step) {
@@ -124,7 +133,7 @@
             var scale = this.focal / (this.focal + curZ + this.cameraDistance);
             var sx = cx + curX * scale;
             var sy = cy + curY * scale;
-            var size = Math.max(0.6, 1.7 * scale);
+            var size = Math.max(0.6, (this.dotBase || 1.7) * scale);
             var alpha = Math.max(0.15, Math.min(1, scale * 1.1)) * (0.6 + 0.4 * e);
 
             ctx.fillStyle = 'rgba(' + this.dotColor + ',' + alpha.toFixed(2) + ')';
