@@ -35,6 +35,7 @@
         this._resize();
         this._sample();
         this._bindEvents();
+        window.__logoSphereDebug = this;
         requestAnimationFrame(this._frame.bind(this));
     }
 
