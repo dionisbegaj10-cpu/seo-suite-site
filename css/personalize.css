@@ -417,6 +417,14 @@ body.animated #trusted-label { color: rgba(255,255,255,0.4); }
     height: 84px;
     width: 100%;
 }
+.trusted-logos li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+}
 .trusted-logos img {
     height: 100%;
     width: auto;
