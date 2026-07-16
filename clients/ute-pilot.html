@@ -124,20 +124,58 @@ main p.body {
     text-transform: uppercase;
     text-decoration: none;
 }
+
+#lang-switch {
+    position: fixed;
+    top: max(24px, env(safe-area-inset-top, 0px) + 16px);
+    right: max(24px, env(safe-area-inset-right, 0px) + 16px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    opacity: 1;
+    transition: opacity 0.35s ease;
+}
+body.scrolled #lang-switch { opacity: 0; pointer-events: none; }
+#lang-switch .lang-opt {
+    background: none;
+    border: none;
+    padding: 4px 2px;
+    color: #ffffff;
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+    cursor: pointer;
+    opacity: 0.45;
+    transition: opacity 0.2s ease;
+}
+#lang-switch .lang-opt.active { opacity: 1; }
+#lang-switch .lang-opt:hover { opacity: 0.8; }
+#lang-switch .lang-sep { color: #ffffff; opacity: 0.3; }
 </style>
 </head>
 <body>
 <a id="back-home" href="../index.html">&larr; SSUITE</a>
+<div id="lang-switch" role="group" aria-label="Language">
+    <button type="button" class="lang-opt active" data-lang="en">EN</button>
+    <span class="lang-sep">/</span>
+    <button type="button" class="lang-opt" data-lang="de">DE</button>
+</div>
 
 <div class="logo-sphere-container">
     <img class="logo-sphere-source" src="../img/trusted/ute-pilot.svg" alt="Dr. Ute Pilot">
 </div>
 
 <main>
-    <p class="eyebrow">Client</p>
+    <p class="eyebrow" id="eyebrow">Client</p>
     <h1>KFO Rodenkirchen</h1>
-    <p class="body">Dr. Ute Pilot and her team at KFO Rodenkirchen work with patients of every age to get them to a smile they're genuinely happy with. They lean on modern tools and real orthodontic experience, but every plan &mdash; whether it's Invisalign, ceramic braces, or early treatment for a child &mdash; gets built around the person, not a template. Comfort and long-term results matter just as much here as the technical side of the work.</p>
-    <a id="cta" href="https://kfo-rodenkirchen.de/" target="_blank" rel="noopener noreferrer">Check the website &rarr;</a>
+    <p class="body" id="body-text">Dr. Ute Pilot and her team at KFO Rodenkirchen work with patients of every age to get them to a smile they're genuinely happy with. They lean on modern tools and real orthodontic experience, but every plan &mdash; whether it's Invisalign, ceramic braces, or early treatment for a child &mdash; gets built around the person, not a template. Comfort and long-term results matter just as much here as the technical side of the work.</p>
+    <a id="cta" href="https://kfo-rodenkirchen.de/" target="_blank" rel="noopener noreferrer"><span id="cta-text">Check the website</span> &rarr;</a>
 </main>
 
 <script src="../js/logo-sphere.js?v=14"></script>
@@ -146,6 +184,34 @@ main p.body {
     function update(){ document.body.classList.toggle('scrolled', window.pageYOffset > 20); }
     window.addEventListener('scroll', update, { passive: true });
     update();
+})();
+</script>
+
+<script>
+(function(){
+    var LANG_KEY = 'ss_lang';
+    var dict = {
+        en: { eyebrow: "Client", body: "Dr. Ute Pilot and her team at KFO Rodenkirchen work with patients of every age to get them to a smile they're genuinely happy with. They lean on modern tools and real orthodontic experience, but every plan &mdash; whether it's Invisalign, ceramic braces, or early treatment for a child &mdash; gets built around the person, not a template. Comfort and long-term results matter just as much here as the technical side of the work.", cta: "Check the website" },
+        de: { eyebrow: "Kunde", body: "Dr. Ute Pilot und ihr Team bei KFO Rodenkirchen begleiten Patienten jeden Alters zu einem L&auml;cheln, mit dem sie wirklich zufrieden sind. Sie setzen auf moderne Technik und echte kieferorthop&auml;dische Erfahrung, doch jeder Behandlungsplan &mdash; ob Invisalign, keramische Brackets oder Fr&uuml;hbehandlung bei Kindern &mdash; wird um die jeweilige Person herum aufgebaut, nicht nach Schema F. Wohlbefinden und langfristige Ergebnisse z&auml;hlen hier genauso viel wie die fachliche Seite der Arbeit.", cta: "Webseite ansehen" }
+    };
+    function applyLang(lang){
+        var d = dict[lang] || dict.en;
+        var eyebrow = document.getElementById('eyebrow');
+        var body = document.getElementById('body-text');
+        var cta = document.getElementById('cta-text');
+        if (eyebrow) eyebrow.innerHTML = d.eyebrow;
+        if (body) body.innerHTML = d.body;
+        if (cta) cta.innerHTML = d.cta;
+        document.documentElement.setAttribute('lang', lang);
+        document.querySelectorAll('.lang-opt').forEach(function(btn){
+            btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+        localStorage.setItem(LANG_KEY, lang);
+    }
+    document.querySelectorAll('.lang-opt').forEach(function(btn){
+        btn.addEventListener('click', function(){ applyLang(btn.dataset.lang); });
+    });
+    applyLang(localStorage.getItem(LANG_KEY) || 'en');
 })();
 </script>
 </body>

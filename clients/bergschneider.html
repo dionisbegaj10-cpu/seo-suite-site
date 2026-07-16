@@ -124,20 +124,58 @@ main p.body {
     text-transform: uppercase;
     text-decoration: none;
 }
+
+#lang-switch {
+    position: fixed;
+    top: max(24px, env(safe-area-inset-top, 0px) + 16px);
+    right: max(24px, env(safe-area-inset-right, 0px) + 16px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    opacity: 1;
+    transition: opacity 0.35s ease;
+}
+body.scrolled #lang-switch { opacity: 0; pointer-events: none; }
+#lang-switch .lang-opt {
+    background: none;
+    border: none;
+    padding: 4px 2px;
+    color: #ffffff;
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+    cursor: pointer;
+    opacity: 0.45;
+    transition: opacity 0.2s ease;
+}
+#lang-switch .lang-opt.active { opacity: 1; }
+#lang-switch .lang-opt:hover { opacity: 0.8; }
+#lang-switch .lang-sep { color: #ffffff; opacity: 0.3; }
 </style>
 </head>
 <body>
 <a id="back-home" href="../index.html">&larr; SSUITE</a>
+<div id="lang-switch" role="group" aria-label="Language">
+    <button type="button" class="lang-opt active" data-lang="en">EN</button>
+    <span class="lang-sep">/</span>
+    <button type="button" class="lang-opt" data-lang="de">DE</button>
+</div>
 
 <div class="logo-sphere-container">
     <img class="logo-sphere-source" src="../img/trusted/bergschneider.svg" alt="Dr. Felix Bergschneider">
 </div>
 
 <main>
-    <p class="eyebrow">Client</p>
+    <p class="eyebrow" id="eyebrow">Client</p>
     <h1>KFO Bergschneider</h1>
-    <p class="body">Tucked in the heart of Frankfurt, KFO Bergschneider offers orthodontic care for kids, teens, and adults alike, led by Dr. Felix Bergschneider. The practice pairs newer treatment methods &mdash; Invisalign, lingual braces, early intervention for younger patients &mdash; with something a bit more old-fashioned: actually tailoring the plan to the person in the chair. The result is a healthy, natural-looking smile, built in a space that doesn't feel clinical or rushed.</p>
-    <a id="cta" href="https://www.kfo-bergschneider.de/" target="_blank" rel="noopener noreferrer">Check the website &rarr;</a>
+    <p class="body" id="body-text">Tucked in the heart of Frankfurt, KFO Bergschneider offers orthodontic care for kids, teens, and adults alike, led by Dr. Felix Bergschneider. The practice pairs newer treatment methods &mdash; Invisalign, lingual braces, early intervention for younger patients &mdash; with something a bit more old-fashioned: actually tailoring the plan to the person in the chair. The result is a healthy, natural-looking smile, built in a space that doesn't feel clinical or rushed.</p>
+    <a id="cta" href="https://www.kfo-bergschneider.de/" target="_blank" rel="noopener noreferrer"><span id="cta-text">Check the website</span> &rarr;</a>
 </main>
 
 <script src="../js/logo-sphere.js?v=14"></script>
@@ -146,6 +184,34 @@ main p.body {
     function update(){ document.body.classList.toggle('scrolled', window.pageYOffset > 20); }
     window.addEventListener('scroll', update, { passive: true });
     update();
+})();
+</script>
+
+<script>
+(function(){
+    var LANG_KEY = 'ss_lang';
+    var dict = {
+        en: { eyebrow: "Client", body: "Tucked in the heart of Frankfurt, KFO Bergschneider offers orthodontic care for kids, teens, and adults alike, led by Dr. Felix Bergschneider. The practice pairs newer treatment methods &mdash; Invisalign, lingual braces, early intervention for younger patients &mdash; with something a bit more old-fashioned: actually tailoring the plan to the person in the chair. The result is a healthy, natural-looking smile, built in a space that doesn't feel clinical or rushed.", cta: "Check the website" },
+        de: { eyebrow: "Kunde", body: "Mitten im Herzen von Frankfurt bietet KFO Bergschneider kieferorthop&auml;dische Behandlungen f&uuml;r Kinder, Jugendliche und Erwachsene, geleitet von Dr. Felix Bergschneider. Die Praxis kombiniert neuere Behandlungsmethoden &mdash; Invisalign, Lingualspangen, Fr&uuml;hbehandlung f&uuml;r j&uuml;ngere Patienten &mdash; mit etwas eher Altbew&auml;hrtem: den Behandlungsplan wirklich auf die jeweilige Person abzustimmen. Das Ergebnis ist ein gesundes, nat&uuml;rlich aussehendes L&auml;cheln, entstanden in einer Praxis, die sich weder klinisch noch gehetzt anf&uuml;hlt.", cta: "Webseite ansehen" }
+    };
+    function applyLang(lang){
+        var d = dict[lang] || dict.en;
+        var eyebrow = document.getElementById('eyebrow');
+        var body = document.getElementById('body-text');
+        var cta = document.getElementById('cta-text');
+        if (eyebrow) eyebrow.innerHTML = d.eyebrow;
+        if (body) body.innerHTML = d.body;
+        if (cta) cta.innerHTML = d.cta;
+        document.documentElement.setAttribute('lang', lang);
+        document.querySelectorAll('.lang-opt').forEach(function(btn){
+            btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+        localStorage.setItem(LANG_KEY, lang);
+    }
+    document.querySelectorAll('.lang-opt').forEach(function(btn){
+        btn.addEventListener('click', function(){ applyLang(btn.dataset.lang); });
+    });
+    applyLang(localStorage.getItem(LANG_KEY) || 'en');
 })();
 </script>
 </body>
