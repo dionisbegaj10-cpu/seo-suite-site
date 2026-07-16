@@ -6,6 +6,10 @@
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
         this.img = img;
+        // Total scroll distance (px) the disassemble/sphere/zoom/wash
+        // sequence plays out over. Falls back to one viewport height if no
+        // #hero-spacer is found.
+        this.scrollRange = opts.scrollRange || (window.innerHeight || 800);
         this.depth = opts.depth || 40;
         this.dotColor = opts.dotColor || '255,255,255';
         this.baseRotationSpeed = opts.rotationSpeed !== undefined ? opts.rotationSpeed : 0.22; // idle: none; ramps in as it morphs into the sphere
@@ -150,12 +154,12 @@
             self._resize();
         });
         window.addEventListener('scroll', function () {
-            var vh = self.vh;
             var y = window.pageYOffset || document.documentElement.scrollTop || 0;
             // The whole sequence (break-apart -> sphere -> zoom -> white wash)
-            // plays out over exactly one viewport height of scroll, matching
-            // the #hero-spacer that reserves that scroll distance.
-            var hz = Math.max(0, Math.min(1, y / vh));
+            // plays out over this.scrollRange px, matching the #hero-spacer
+            // that reserves that scroll distance — made deliberately long so
+            // a single fast swipe can't skip past it before it's visible.
+            var hz = Math.max(0, Math.min(1, y / self.scrollRange));
             self.targetMorphT = hz;
             // Wash to white over the back half of the same scroll range.
             self.targetWashT = Math.max(0, Math.min(1, (hz - 0.55) / 0.45));
@@ -269,7 +273,10 @@
             container.appendChild(canvas);
 
             function run() {
-                new LogoSphere(canvas, img, {});
+                var heroSpacer = document.getElementById('hero-spacer');
+                var opts = {};
+                if (heroSpacer) opts.scrollRange = heroSpacer.offsetHeight;
+                new LogoSphere(canvas, img, opts);
             }
             if (img.complete && img.naturalWidth) {
                 run();

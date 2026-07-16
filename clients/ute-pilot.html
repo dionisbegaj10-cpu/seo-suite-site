@@ -89,7 +89,9 @@ body.scrolled #back-home { opacity: 0; pointer-events: none; }
 #hero-spacer {
     position: relative;
     z-index: 1;
-    height: 100vh;
+    /* Extra scroll distance so the break-apart/sphere/zoom/wash sequence
+       can't be skipped past by a single fast swipe before it's visible. */
+    height: 260vh;
 }
 
 #text1-client {
@@ -230,7 +232,7 @@ p.svc-subhead {
     <a id="cta" href="../index.html#start">Start a project &rarr;</a>
 </main>
 
-<script src="../js/logo-sphere.js?v=10"></script>
+<script src="../js/logo-sphere.js?v=11"></script>
 <script>
 (function(){
     function update(){ document.body.classList.toggle('scrolled', window.pageYOffset > 20); }
