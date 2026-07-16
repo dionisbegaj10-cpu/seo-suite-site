@@ -62,6 +62,15 @@
             return;
         }
 
+        // Tint the logo pure white (keeping its alpha shape) so the fade-in
+        // reveal matches the white dot particles instead of showing the
+        // source logo's own (often black) line color.
+        offCtx.globalCompositeOperation = 'source-in';
+        offCtx.fillStyle = '#fff';
+        offCtx.fillRect(0, 0, w, h);
+        offCtx.globalCompositeOperation = 'source-over';
+        this.whiteImg = off;
+
         // Lighter sampling (~10k target) — dot size is kept close to the
         // step spacing (1.05x) so dots still overlap just enough to read
         // as a solid shape, without the denser, heavier look.
@@ -165,7 +174,7 @@
                 var dw = this.logoW * camScale;
                 var dh = this.logoH * camScale;
                 ctx.globalAlpha = fadeT;
-                ctx.drawImage(this.img, cx - dw / 2, cy - dh / 2, dw, dh);
+                ctx.drawImage(this.whiteImg || this.img, cx - dw / 2, cy - dh / 2, dw, dh);
                 ctx.globalAlpha = 1;
             }
         }
