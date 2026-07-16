@@ -64,19 +64,17 @@ a { color: inherit; }
 }
 body.scrolled #back-home { opacity: 0; pointer-events: none; }
 
-/* --- Full-screen particle hero: logo assembles from scattered pixels,
-   rotates gently, and zooms in as you scroll (matches the homepage's
-   dot-sphere hero behavior, but shaped as the client's logo). --- */
+/* --- Full-height particle hero: logo assembles from scattered pixels,
+   then sits static. Normal in-flow section (not position:fixed) so it
+   scrolls away like ordinary page content -- no exotic positioning to
+   fight iOS Safari's scroll/touch handling. --- */
 .logo-sphere-container {
-    position: fixed;
-    inset: 0;
+    position: relative;
+    width: 100%;
+    height: 100vh;
     z-index: 0;
     background: #000;
-    touch-action: pan-y;
     overflow: hidden;
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-    will-change: transform;
 }
 .logo-sphere-container img.logo-sphere-source {
     display: none;
@@ -84,12 +82,6 @@ body.scrolled #back-home { opacity: 0; pointer-events: none; }
 .logo-sphere-canvas {
     position: absolute;
     inset: 0;
-}
-
-#hero-spacer {
-    position: relative;
-    z-index: 1;
-    height: 100vh;
 }
 
 main {
@@ -147,7 +139,6 @@ main p.body {
 <div class="logo-sphere-container">
     <img class="logo-sphere-source" src="../img/trusted/ute-pilot.svg" alt="Dr. Ute Pilot">
 </div>
-<div id="hero-spacer"></div>
 
 <main>
     <p class="eyebrow">Client</p>
@@ -162,22 +153,6 @@ main p.body {
     function update(){ document.body.classList.toggle('scrolled', window.pageYOffset > 20); }
     window.addEventListener('scroll', update, { passive: true });
     update();
-})();
-(function(){
-    // The logo simply dissolves as you scroll (plain opacity fade on the
-    // fixed hero layer) -- the case-study text below is normal, scrollable
-    // page content, so it reads naturally regardless of how long it is.
-    var container = document.querySelector('.logo-sphere-container');
-    if (!container) return;
-    var vh = window.innerHeight || document.documentElement.clientHeight || 800;
-    function updateFade(){
-        var y = window.pageYOffset || document.documentElement.scrollTop || 0;
-        var t = Math.max(0, Math.min(1, y / vh));
-        container.style.opacity = String(1 - t);
-    }
-    window.addEventListener('scroll', updateFade, { passive: true });
-    window.addEventListener('resize', function(){ vh = window.innerHeight || document.documentElement.clientHeight || 800; updateFade(); });
-    updateFade();
 })();
 (function(){
     // The case-study text gently fades and rises into place once scrolled
