@@ -93,12 +93,18 @@ body.scrolled #back-home { opacity: 0; pointer-events: none; }
 }
 
 main {
-    position: relative;
+    position: fixed;
+    inset: 0;
     z-index: 1;
-    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+}
+main .main-inner {
     max-width: 720px;
-    margin: 0 auto;
-    padding: 100px 6% 120px;
+    padding: 0 6%;
 }
 p.eyebrow {
     font-size: 11px;
@@ -143,10 +149,12 @@ main p.body {
 <div id="hero-spacer"></div>
 
 <main>
+  <div class="main-inner">
     <p class="eyebrow">Client</p>
     <h1>KFO Bergschneider</h1>
     <p class="body">Tucked in the heart of Frankfurt, KFO Bergschneider offers orthodontic care for kids, teens, and adults alike, led by Dr. Felix Bergschneider. The practice pairs newer treatment methods &mdash; Invisalign, lingual braces, early intervention for younger patients &mdash; with something a bit more old-fashioned: actually tailoring the plan to the person in the chair. The result is a healthy, natural-looking smile, built in a space that doesn't feel clinical or rushed.</p>
     <a id="cta" href="https://www.kfo-bergschneider.de/" target="_blank" rel="noopener noreferrer">Check the website &rarr;</a>
+  </div>
 </main>
 
 <script src="../js/logo-sphere.js?v=14"></script>
@@ -157,16 +165,19 @@ main p.body {
     update();
 })();
 (function(){
-    // The logo fades out as you scroll (instead of the next section's
-    // black background sliding up and visually "covering" it), so by the
-    // time the case-study text arrives, the logo has simply disappeared.
+    // Crossfade the logo out and the case-study text in, both pinned to
+    // the same full-screen position -- nothing slides or "covers"
+    // anything, the logo simply dissolves and the text takes its place.
     var container = document.querySelector('.logo-sphere-container');
-    if (!container) return;
+    var content = document.querySelector('main');
+    if (!container || !content) return;
     var vh = window.innerHeight || document.documentElement.clientHeight || 800;
     function updateFade(){
         var y = window.pageYOffset || document.documentElement.scrollTop || 0;
         var t = Math.max(0, Math.min(1, y / vh));
         container.style.opacity = String(1 - t);
+        content.style.opacity = String(t);
+        content.style.pointerEvents = t > 0.5 ? 'auto' : 'none';
     }
     window.addEventListener('scroll', updateFade, { passive: true });
     window.addEventListener('resize', function(){ vh = window.innerHeight || document.documentElement.clientHeight || 800; updateFade(); });
