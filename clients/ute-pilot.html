@@ -94,10 +94,12 @@ p.eyebrow {
     object-fit: contain;
 }
 .client-logo-canvas {
-    position: absolute;
+    position: fixed;
     inset: 0;
+    z-index: 9999;
+    pointer-events: none;
     opacity: 1;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.6s ease;
 }
 .client-logo-canvas.assembled {
     opacity: 0;
@@ -171,7 +173,6 @@ p.svc-subhead {
     <p class="eyebrow">Client</p>
     <div class="client-logo-wrap">
         <img class="client-logo" src="../img/trusted/ute-pilot.png" alt="Dr. Ute Pilot">
-        <canvas class="client-logo-canvas" data-width="220" data-height="90"></canvas>
     </div>
     <h1>Dr. Ute Pilot</h1>
     <p class="client-meta">Orthodontic practice (Kieferorthopädie) &middot; Köln</p>
@@ -186,7 +187,7 @@ p.svc-subhead {
     </ul>
     <a id="cta" href="../index.html#start">Start a project &rarr;</a>
 </main>
-<script src="../js/logo-particles.js"></script>
+<script src="../js/logo-particles.js?v=4"></script>
 <script>
 (function(){
     function update(){ document.body.classList.toggle('scrolled', window.pageYOffset > 20); }
