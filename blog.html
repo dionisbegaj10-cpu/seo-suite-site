@@ -1025,7 +1025,13 @@ var featuredPosts = posts.slice(0, 5);
 var folderPosts = posts.slice(5);
 
 var grid = document.getElementById("post-grid");
-document.getElementById("filter-bar").remove();
+var filterBar = document.getElementById("filter-bar");
+
+var categories = ["All"];
+posts.forEach(function(p){
+    if (categories.indexOf(p.cat) === -1) categories.push(p.cat);
+});
+var activeCat = "All";
 
 function postCardHTML(p){
     return '<p class="post-card-cat">' + p.cat + '</p>' +
@@ -1036,22 +1042,49 @@ function postCardHTML(p){
 
 function renderFeaturedGrid(){
     grid.innerHTML = "";
-    featuredPosts.forEach(function(p){
-        var a = document.createElement("a");
-        a.className = "post-card";
-        a.href = "blog/" + p.slug + ".html";
-        a.innerHTML = postCardHTML(p);
-        grid.appendChild(a);
-    });
 
-    var folderCard = document.createElement("div");
-    folderCard.className = "folder-card";
-    folderCard.innerHTML =
-        '<div class="folder-icon"><div class="folder-icon-tab"></div><div class="folder-icon-body"></div></div>' +
-        '<p class="folder-card-title">More articles</p>' +
-        '<p class="folder-card-count">+' + folderPosts.length + ' articles</p>';
-    folderCard.addEventListener("click", openFolder);
-    grid.appendChild(folderCard);
+    if (activeCat === "All") {
+        featuredPosts.forEach(function(p){
+            var a = document.createElement("a");
+            a.className = "post-card";
+            a.href = "blog/" + p.slug + ".html";
+            a.innerHTML = postCardHTML(p);
+            grid.appendChild(a);
+        });
+
+        var folderCard = document.createElement("div");
+        folderCard.className = "folder-card";
+        folderCard.innerHTML =
+            '<div class="folder-icon"><div class="folder-icon-tab"></div><div class="folder-icon-body"></div></div>' +
+            '<p class="folder-card-title">More articles</p>' +
+            '<p class="folder-card-count">+' + folderPosts.length + ' articles</p>';
+        folderCard.addEventListener("click", openFolder);
+        grid.appendChild(folderCard);
+    } else {
+        posts.filter(function(p){ return p.cat === activeCat; })
+            .forEach(function(p){
+                var a = document.createElement("a");
+                a.className = "post-card";
+                a.href = "blog/" + p.slug + ".html";
+                a.innerHTML = postCardHTML(p);
+                grid.appendChild(a);
+            });
+    }
+}
+
+function renderPills(){
+    filterBar.innerHTML = "";
+    categories.forEach(function(cat){
+        var btn = document.createElement("button");
+        btn.className = "filter-pill" + (cat === activeCat ? " active" : "");
+        btn.textContent = cat;
+        btn.addEventListener("click", function(){
+            activeCat = cat;
+            renderPills();
+            renderFeaturedGrid();
+        });
+        filterBar.appendChild(btn);
+    });
 }
 
 var folderOverlay = document.getElementById("folder-overlay");
@@ -1106,6 +1139,7 @@ document.addEventListener("keydown", function(e){
     if (e.key === "Escape" && folderOverlay.classList.contains("open")) closeFolder();
 });
 
+renderPills();
 renderFeaturedGrid();
 renderFolderPills();
 renderFolderGrid();
