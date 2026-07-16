@@ -45,9 +45,10 @@
     font-display: swap;
 }
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; background: #000; color: #fff; }
-body { font-family: Arial, Helvetica, sans-serif; }
+html, body { margin: 0; padding: 0; background: #000; color: #fff; width: 100%; max-width: 100%; overflow-x: hidden; }
+body { font-family: Arial, Helvetica, sans-serif; cursor: auto; }
 a { color: inherit; }
+
 #back-home {
     position: fixed;
     top: max(24px, env(safe-area-inset-top, 0px) + 16px);
@@ -56,16 +57,74 @@ a { color: inherit; }
     font-weight: 900;
     font-size: 1.1rem;
     text-decoration: none;
-    z-index: 10;
+    z-index: 100;
     opacity: 1;
     pointer-events: auto;
     transition: opacity 0.35s ease;
 }
 body.scrolled #back-home { opacity: 0; pointer-events: none; }
+
+/* --- Full-screen particle hero: logo assembles from scattered pixels,
+   rotates gently, and zooms in as you scroll (matches the homepage's
+   dot-sphere hero behavior, but shaped as the client's logo). --- */
+.logo-sphere-container {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background: #000;
+}
+.logo-sphere-container img.logo-sphere-source {
+    display: none;
+}
+.logo-sphere-canvas {
+    position: absolute;
+    inset: 0;
+}
+
+#hero-spacer {
+    position: relative;
+    z-index: 1;
+    height: 100vh;
+}
+
+#text1-client {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6%;
+    background: #000;
+}
+#text1-client p {
+    max-width: 760px;
+    margin: 0;
+    text-align: center;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    line-height: 1.4;
+    color: rgba(255,255,255,0.92);
+}
+#text1-client span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(15px);
+    transition-timing-function: cubic-bezier(.25,.46,.45,.94), cubic-bezier(.25,.46,.45,.94);
+    transition-property: transform, opacity;
+    transition-duration: 0.45s, 0.45s;
+}
+#text1-client.animated span {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 main {
+    position: relative;
+    z-index: 1;
+    background: #000;
     max-width: 760px;
     margin: 0 auto;
-    padding: 140px 6% 120px;
+    padding: 100px 6% 120px;
 }
 p.eyebrow {
     font-size: 11px;
@@ -74,35 +133,6 @@ p.eyebrow {
     text-transform: uppercase;
     color: rgba(255,255,255,0.45);
     margin: 0 0 16px;
-}
-.client-logo-wrap {
-    position: relative;
-    width: 220px;
-    height: 90px;
-    margin: 0 0 32px;
-}
-.client-logo {
-    position: absolute;
-    inset: 0;
-    max-width: 220px;
-    max-height: 90px;
-    width: auto;
-    height: auto;
-    margin: auto;
-    filter: brightness(0) invert(1);
-    opacity: 0.9;
-    object-fit: contain;
-}
-.client-logo-canvas {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    pointer-events: none;
-    opacity: 1;
-    transition: opacity 0.6s ease;
-}
-.client-logo-canvas.assembled {
-    opacity: 0;
 }
 h1 {
     font-family: 'Grumpy 24', Georgia, serif;
@@ -169,11 +199,18 @@ p.svc-subhead {
 </head>
 <body>
 <a id="back-home" href="../index.html">&larr; SSUITE</a>
+
+<div class="logo-sphere-container">
+    <img class="logo-sphere-source" src="../img/trusted/rueger.png" alt="Rueger Plastic Surgery">
+</div>
+<div id="hero-spacer"></div>
+
+<div id="text1-client">
+    <p><span>Rueger</span> <span>Plastic</span> <span>Surgery,</span> <span>visible</span> <span>to</span> <span>AI</span> <span>—</span> <span>so</span> <span>when</span> <span>people</span> <span>ask</span> <span>ChatGPT,</span> <span>Claude,</span> <span>Perplexity</span> <span>or</span> <span>Copilot</span> <span>for</span> <span>a</span> <span>plastic</span> <span>surgeon</span> <span>in</span> <span>Darmstadt,</span> <span>they</span> <span>show</span> <span>up.</span></p>
+</div>
+
 <main>
     <p class="eyebrow">Client</p>
-    <div class="client-logo-wrap">
-        <img class="client-logo" src="../img/trusted/rueger.png" alt="Rueger Plastic Surgery">
-    </div>
     <h1>Rueger Plastic Surgery</h1>
     <p class="client-meta">Plastic surgery practice &middot; Darmstadt</p>
     <p class="body">A full-service engagement for a plastic surgery practice in Darmstadt, covering web design, branding, growth, performance marketing, AI visibility and hosting.</p>
@@ -188,12 +225,30 @@ p.svc-subhead {
     </ul>
     <a id="cta" href="../index.html#start">Start a project &rarr;</a>
 </main>
-<script src="../js/logo-particles.js?v=4"></script>
+
+<script src="../js/logo-sphere.js?v=1"></script>
 <script>
 (function(){
     function update(){ document.body.classList.toggle('scrolled', window.pageYOffset > 20); }
     window.addEventListener('scroll', update, { passive: true });
     update();
+})();
+(function(){
+    var el = document.getElementById('text1-client');
+    function isInViewport(elem){
+        var bounding = elem.getBoundingClientRect();
+        return bounding.top < (window.innerHeight || document.documentElement.clientHeight) * 0.85;
+    }
+    function check(){
+        if (isInViewport(el)) {
+            el.classList.add('animated');
+            var spans = el.querySelectorAll('span');
+            spans.forEach(function(s, i){ s.style.transitionDelay = (i * 0.035) + 's'; });
+            window.removeEventListener('scroll', check);
+        }
+    }
+    window.addEventListener('scroll', check, { passive: true });
+    check();
 })();
 </script>
 </body>
