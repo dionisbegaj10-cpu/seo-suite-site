@@ -8,9 +8,9 @@
         this.depth = opts.depth || 90;
         this.dotColor = opts.dotColor || '208,208,208';
         this.rotationSpeed = opts.rotationSpeed || 0.18; // radians/sec
-        this.cameraDistance = 640; // shrinks as user scrolls -> "zoom in"
-        this.targetCameraDistance = 640;
-        this.focal = 520;
+        this.cameraDistance = 300; // shrinks as user scrolls -> "zoom in"
+        this.targetCameraDistance = 300;
+        this.focal = 900;
         this.angle = 0;
         this.points = [];
         this.assembleStart = null;
@@ -37,7 +37,7 @@
 
     LogoSphere.prototype._sample = function () {
         var img = this.img;
-        var maxDim = 260;
+        var maxDim = Math.min(this.vw, this.vh) * 0.9;
         var scale = Math.min(maxDim / img.naturalWidth, maxDim / img.naturalHeight);
         var w = img.naturalWidth * scale;
         var h = img.naturalHeight * scale;
@@ -86,8 +86,8 @@
             var vh = self.vh;
             var y = window.pageYOffset || document.documentElement.scrollTop || 0;
             var hz = Math.max(0, Math.min(1, y / (vh * 0.9)));
-            // 640 (idle) -> 220 (zoomed in) as user scrolls through the first screen
-            self.targetCameraDistance = 640 - hz * 420;
+            // 300 (idle) -> 60 (zoomed in) as user scrolls through the first screen
+            self.targetCameraDistance = 300 - hz * 240;
         }, { passive: true });
     };
 
