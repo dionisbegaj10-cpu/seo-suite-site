@@ -62,14 +62,22 @@
             return;
         }
 
-        // Tint the logo pure white (keeping its alpha shape) so the fade-in
-        // reveal matches the white dot particles instead of showing the
-        // source logo's own (often black) line color.
-        offCtx.globalCompositeOperation = 'source-in';
-        offCtx.fillStyle = '#fff';
-        offCtx.fillRect(0, 0, w, h);
-        offCtx.globalCompositeOperation = 'source-over';
-        this.whiteImg = off;
+        // Render a separate, high-resolution (device-pixel-ratio aware) white
+        // tint of the logo purely for the crisp fade-in reveal — the low-res
+        // sampling canvas above is fine for picking particle positions, but
+        // drawing it back out at screen size looked jagged/pixelated.
+        var dpr = window.devicePixelRatio || 1;
+        var hi = document.createElement('canvas');
+        hi.width = w * dpr;
+        hi.height = h * dpr;
+        var hiCtx = hi.getContext('2d');
+        hiCtx.scale(dpr, dpr);
+        hiCtx.drawImage(img, 0, 0, w, h);
+        hiCtx.globalCompositeOperation = 'source-in';
+        hiCtx.fillStyle = '#fff';
+        hiCtx.fillRect(0, 0, w, h);
+        hiCtx.globalCompositeOperation = 'source-over';
+        this.whiteImg = hi;
 
         // Lighter sampling (~10k target) — dot size is kept close to the
         // step spacing (1.05x) so dots still overlap just enough to read
