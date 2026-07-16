@@ -75,14 +75,32 @@ p.eyebrow {
     color: rgba(255,255,255,0.45);
     margin: 0 0 16px;
 }
+.client-logo-wrap {
+    position: relative;
+    width: 220px;
+    height: 90px;
+    margin: 0 0 32px;
+}
 .client-logo {
+    position: absolute;
+    inset: 0;
     max-width: 220px;
     max-height: 90px;
     width: auto;
     height: auto;
-    margin: 0 0 32px;
+    margin: auto;
     filter: brightness(0) invert(1);
     opacity: 0.9;
+    object-fit: contain;
+}
+.client-logo-canvas {
+    position: absolute;
+    inset: 0;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+.client-logo-canvas.assembled {
+    opacity: 0;
 }
 h1 {
     font-family: 'Grumpy 24', Georgia, serif;
@@ -151,7 +169,10 @@ p.svc-subhead {
 <a id="back-home" href="../index.html">&larr; SEO Suite</a>
 <main>
     <p class="eyebrow">Client</p>
-    <img class="client-logo" src="../img/trusted/bergschneider.png" alt="Dr. Felix Bergschneider">
+    <div class="client-logo-wrap">
+        <img class="client-logo" src="../img/trusted/bergschneider.png" alt="Dr. Felix Bergschneider">
+        <canvas class="client-logo-canvas" data-width="220" data-height="90"></canvas>
+    </div>
     <h1>Dr. Felix Bergschneider</h1>
     <p class="client-meta">Orthodontic practice (Kieferorthopädie) &middot; Frankfurt</p>
     <p class="body">A full-service engagement for an orthodontic practice in Frankfurt, covering web design, branding, growth, performance marketing, AI visibility and hosting.</p>
@@ -166,6 +187,7 @@ p.svc-subhead {
     </ul>
     <a id="cta" href="../index.html#start">Start a project &rarr;</a>
 </main>
+<script src="../js/logo-particles.js"></script>
 <script>
 (function(){
     function update(){ document.body.classList.toggle('scrolled', window.pageYOffset > 20); }
