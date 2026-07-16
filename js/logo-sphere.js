@@ -71,6 +71,8 @@
         hi.width = w * dpr;
         hi.height = h * dpr;
         var hiCtx = hi.getContext('2d');
+        hiCtx.imageSmoothingEnabled = true;
+        hiCtx.imageSmoothingQuality = 'high';
         hiCtx.scale(dpr, dpr);
         hiCtx.drawImage(img, 0, 0, w, h);
         hiCtx.globalCompositeOperation = 'source-in';
