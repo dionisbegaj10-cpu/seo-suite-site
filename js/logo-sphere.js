@@ -81,11 +81,12 @@
         hiCtx.globalCompositeOperation = 'source-over';
         this.whiteImg = hi;
 
-        // Lighter sampling (~10k target) — dot size is kept close to the
-        // step spacing (1.05x) so dots still overlap just enough to read
-        // as a solid shape, without the denser, heavier look.
-        var step = Math.max(2, Math.sqrt((w * h) / 10000));
-        this.dotBase = Math.max(2.4, step * 1.05);
+        // Sparser sampling (~4k target) — the dots only need to read as an
+        // approximate silhouette during assembly since they fade out and
+        // are replaced by the crisp real logo once assembled, so they no
+        // longer need tight overlap for legibility.
+        var step = Math.max(3, Math.sqrt((w * h) / 4000));
+        this.dotBase = Math.max(2, step * 0.7);
         var pts = [];
         for (var y = 0; y < h; y += step) {
             for (var x = 0; x < w; x += step) {
