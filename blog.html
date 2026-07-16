@@ -157,6 +157,118 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
     color: rgba(255,255,255,0.4);
 }
 
+/* --- Folder card: 6th grid slot, opens into an overlay with the rest --- */
+.folder-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.16);
+    background: rgba(255,255,255,0.03);
+    padding: 26px;
+    cursor: pointer;
+    transition: border-color .2s ease, background .2s ease, transform .2s ease;
+    min-height: 180px;
+}
+.folder-card:hover {
+    border-color: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.06);
+    transform: translateY(-3px);
+}
+.folder-icon {
+    position: relative;
+    width: 84px;
+    height: 60px;
+    margin-bottom: 18px;
+    transition: transform .3s ease;
+}
+.folder-card:hover .folder-icon { transform: translateY(-4px); }
+.folder-icon-tab {
+    position: absolute;
+    top: 0; left: 6px;
+    width: 34px; height: 12px;
+    background: rgba(255,255,255,0.22);
+    border-radius: 4px 4px 0 0;
+}
+.folder-icon-body {
+    position: absolute;
+    top: 9px; left: 0;
+    width: 84px; height: 51px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08));
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 6px;
+}
+.folder-card-title {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 1.15rem;
+    color: #fff;
+    margin: 0 0 8px;
+    text-align: center;
+}
+.folder-card-count {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    margin: 0;
+}
+
+#folder-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(0,0,0,0.92);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    display: none;
+    pointer-events: none;
+    overflow-y: auto;
+    transition: opacity .3s ease;
+}
+#folder-overlay.open {
+    opacity: 1;
+    display: block;
+    pointer-events: auto;
+}
+#folder-overlay-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 6% 120px;
+    transform: translateY(24px);
+    transition: transform .35s ease;
+}
+#folder-overlay.open #folder-overlay-inner { transform: translateY(0); }
+#folder-overlay-title {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    color: #fff;
+    margin: 0 0 28px;
+    text-align: center;
+}
+#folder-close {
+    position: fixed;
+    top: max(24px, env(safe-area-inset-top, 0px) + 16px);
+    right: max(24px, env(safe-area-inset-right, 0px) + 16px);
+    z-index: 2100;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+}
+#folder-close:hover { background: rgba(255,255,255,0.15); }
+#folder-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 0 40px;
+}
+
 /* --- Back to main page (top right) --- */
 #back-home {
     position: fixed;
@@ -222,6 +334,15 @@ body.scrolled #lang-switch-index { opacity: 0; pointer-events: none; }
 <section id="post-grid-section">
     <div class="post-grid" id="post-grid"></div>
 </section>
+
+<div id="folder-overlay">
+    <button id="folder-close" aria-label="Close">&times;</button>
+    <div id="folder-overlay-inner">
+        <h2 id="folder-overlay-title">All articles</h2>
+        <div id="folder-filter-bar"></div>
+        <div class="post-grid" id="folder-post-grid"></div>
+    </div>
+</div>
 
 <script>
 var posts = [
@@ -900,49 +1021,94 @@ var posts = [
 
 ];
 
+var featuredPosts = posts.slice(0, 5);
+var folderPosts = posts.slice(5);
+
 var grid = document.getElementById("post-grid");
-var filterBar = document.getElementById("filter-bar");
+document.getElementById("filter-bar").remove();
 
-var categories = ["All"];
-posts.forEach(function(p){
-    if (categories.indexOf(p.cat) === -1) categories.push(p.cat);
-});
+function postCardHTML(p){
+    return '<p class="post-card-cat">' + p.cat + '</p>' +
+        '<h3 class="post-card-title">' + p.title + '</h3>' +
+        '<p class="post-card-excerpt">' + p.quote + '</p>' +
+        '<p class="post-card-meta">' + p.readingTime + '</p>';
+}
 
-var activeCat = "All";
-
-function renderGrid(){
+function renderFeaturedGrid(){
     grid.innerHTML = "";
-    posts.filter(function(p){ return activeCat === "All" || p.cat === activeCat; })
+    featuredPosts.forEach(function(p){
+        var a = document.createElement("a");
+        a.className = "post-card";
+        a.href = "blog/" + p.slug + ".html";
+        a.innerHTML = postCardHTML(p);
+        grid.appendChild(a);
+    });
+
+    var folderCard = document.createElement("div");
+    folderCard.className = "folder-card";
+    folderCard.innerHTML =
+        '<div class="folder-icon"><div class="folder-icon-tab"></div><div class="folder-icon-body"></div></div>' +
+        '<p class="folder-card-title">More articles</p>' +
+        '<p class="folder-card-count">+' + folderPosts.length + ' articles</p>';
+    folderCard.addEventListener("click", openFolder);
+    grid.appendChild(folderCard);
+}
+
+var folderOverlay = document.getElementById("folder-overlay");
+var folderGrid = document.getElementById("folder-post-grid");
+var folderFilterBar = document.getElementById("folder-filter-bar");
+var folderCategories = ["All"];
+folderPosts.forEach(function(p){
+    if (folderCategories.indexOf(p.cat) === -1) folderCategories.push(p.cat);
+});
+var folderActiveCat = "All";
+
+function renderFolderGrid(){
+    folderGrid.innerHTML = "";
+    folderPosts.filter(function(p){ return folderActiveCat === "All" || p.cat === folderActiveCat; })
         .forEach(function(p){
             var a = document.createElement("a");
             a.className = "post-card";
             a.href = "blog/" + p.slug + ".html";
-            a.innerHTML =
-                '<p class="post-card-cat">' + p.cat + '</p>' +
-                '<h3 class="post-card-title">' + p.title + '</h3>' +
-                '<p class="post-card-excerpt">' + p.quote + '</p>' +
-                '<p class="post-card-meta">' + p.readingTime + '</p>';
-            grid.appendChild(a);
+            a.innerHTML = postCardHTML(p);
+            folderGrid.appendChild(a);
         });
 }
 
-function renderPills(){
-    filterBar.innerHTML = "";
-    categories.forEach(function(cat){
+function renderFolderPills(){
+    folderFilterBar.innerHTML = "";
+    folderCategories.forEach(function(cat){
         var btn = document.createElement("button");
-        btn.className = "filter-pill" + (cat === activeCat ? " active" : "");
+        btn.className = "filter-pill" + (cat === folderActiveCat ? " active" : "");
         btn.textContent = cat;
         btn.addEventListener("click", function(){
-            activeCat = cat;
-            renderPills();
-            renderGrid();
+            folderActiveCat = cat;
+            renderFolderPills();
+            renderFolderGrid();
         });
-        filterBar.appendChild(btn);
+        folderFilterBar.appendChild(btn);
     });
 }
 
-renderPills();
-renderGrid();
+function openFolder(){
+    folderOverlay.classList.add("open");
+    document.body.style.overflow = "hidden";
+}
+function closeFolder(){
+    folderOverlay.classList.remove("open");
+    document.body.style.overflow = "";
+}
+document.getElementById("folder-close").addEventListener("click", closeFolder);
+folderOverlay.addEventListener("click", function(e){
+    if (e.target === folderOverlay) closeFolder();
+});
+document.addEventListener("keydown", function(e){
+    if (e.key === "Escape" && folderOverlay.classList.contains("open")) closeFolder();
+});
+
+renderFeaturedGrid();
+renderFolderPills();
+renderFolderGrid();
 
 (function(){
     function update(){ document.body.classList.toggle("scrolled", window.pageYOffset > 20); }
