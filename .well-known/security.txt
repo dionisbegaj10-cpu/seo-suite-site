@@ -1,0 +1,4 @@
+Contact: mailto:contact@seosuite.studio
+Preferred-Languages: en, de
+Canonical: https://seosuite.studio/.well-known/security.txt
+Expires: 2027-07-16T00:00:00.000Z
