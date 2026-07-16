@@ -91,13 +91,6 @@ main {
     max-width: 720px;
     margin: 0 auto;
     padding: 100px 6% 120px;
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.7s cubic-bezier(.25,.46,.45,.94), transform 0.7s cubic-bezier(.25,.46,.45,.94);
-}
-main.revealed {
-    opacity: 1;
-    transform: translateY(0);
 }
 p.eyebrow {
     font-size: 11px;
@@ -153,24 +146,6 @@ main p.body {
     function update(){ document.body.classList.toggle('scrolled', window.pageYOffset > 20); }
     window.addEventListener('scroll', update, { passive: true });
     update();
-})();
-(function(){
-    // The case-study text gently fades and rises into place once scrolled
-    // to, instead of just appearing as a hard block -- reads as "appearing"
-    // rather than a solid panel sliding up and covering the hero.
-    var main = document.querySelector('main');
-    if (!main) return;
-    function isReached(){
-        return main.getBoundingClientRect().top < (window.innerHeight || document.documentElement.clientHeight) * 0.88;
-    }
-    function check(){
-        if (isReached()) {
-            main.classList.add('revealed');
-            window.removeEventListener('scroll', check);
-        }
-    }
-    window.addEventListener('scroll', check, { passive: true });
-    check();
 })();
 </script>
 </body>
