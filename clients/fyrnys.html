@@ -93,18 +93,12 @@ body.scrolled #back-home { opacity: 0; pointer-events: none; }
 }
 
 main {
-    position: fixed;
-    inset: 0;
+    position: relative;
     z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-}
-main .main-inner {
+    background: #000;
     max-width: 720px;
-    padding: 0 6%;
+    margin: 0 auto;
+    padding: 100px 6% 120px;
 }
 p.eyebrow {
     font-size: 11px;
@@ -149,12 +143,10 @@ main p.body {
 <div id="hero-spacer"></div>
 
 <main>
-  <div class="main-inner">
     <p class="eyebrow">Client</p>
     <h1>Studio Fyrnys</h1>
     <p class="body">Studio Fyrnys designs interiors that hold up to daily life without losing their sense of craft. Whether the client is a homeowner or a business, the studio digs into the specifics of each project &mdash; how the space will actually be used, what the client is really going for &mdash; before anything gets drawn up. That close collaboration is what makes each space feel distinct rather than generic, and genuinely built around the people who'll live or work in it.</p>
     <a id="cta" href="https://www.studiofyrnys.com/" target="_blank" rel="noopener noreferrer">Check the website &rarr;</a>
-  </div>
 </main>
 
 <script src="../js/logo-sphere.js?v=14"></script>
@@ -165,19 +157,16 @@ main p.body {
     update();
 })();
 (function(){
-    // Crossfade the logo out and the case-study text in, both pinned to
-    // the same full-screen position -- nothing slides or "covers"
-    // anything, the logo simply dissolves and the text takes its place.
+    // The logo simply dissolves as you scroll (plain opacity fade on the
+    // fixed hero layer) -- the case-study text below is normal, scrollable
+    // page content, so it reads naturally regardless of how long it is.
     var container = document.querySelector('.logo-sphere-container');
-    var content = document.querySelector('main');
-    if (!container || !content) return;
+    if (!container) return;
     var vh = window.innerHeight || document.documentElement.clientHeight || 800;
     function updateFade(){
         var y = window.pageYOffset || document.documentElement.scrollTop || 0;
         var t = Math.max(0, Math.min(1, y / vh));
         container.style.opacity = String(1 - t);
-        content.style.opacity = String(t);
-        content.style.pointerEvents = t > 0.5 ? 'auto' : 'none';
     }
     window.addEventListener('scroll', updateFade, { passive: true });
     window.addEventListener('resize', function(){ vh = window.innerHeight || document.documentElement.clientHeight || 800; updateFade(); });
