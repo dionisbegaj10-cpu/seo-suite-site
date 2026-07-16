@@ -5,7 +5,7 @@
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
         this.img = img;
-        this.depth = opts.depth || 90;
+        this.depth = opts.depth || 40;
         this.dotColor = opts.dotColor || '208,208,208';
         this.rotationSpeed = opts.rotationSpeed || 0.18; // radians/sec
         this.cameraDistance = 200; // shrinks (and goes negative) as user scrolls -> "zoom in"
@@ -14,7 +14,7 @@
         this.angle = 0;
         this.points = [];
         this.assembleStart = null;
-        this.assembleDuration = 1500;
+        this.assembleDuration = 550;
         this.assembled = false;
         this._resize();
         this._sample();
@@ -64,7 +64,7 @@
         var step = Math.max(2.2, Math.sqrt((w * h) / 8000));
         // Dots scale with the sampling gap so the logo reads as a dense
         // dotted surface (like the homepage sphere) at any render size.
-        this.dotBase = Math.max(1.7, step * 0.42);
+        this.dotBase = Math.max(2.4, step * 0.6);
         var pts = [];
         for (var y = 0; y < h; y += step) {
             for (var x = 0; x < w; x += step) {
@@ -78,7 +78,7 @@
                         startX: (Math.random() - 0.5) * this.vw * 1.4,
                         startY: (Math.random() - 0.5) * this.vh * 1.4,
                         startZ: (Math.random() - 0.5) * 900,
-                        delay: Math.random() * 500
+                        delay: Math.random() * 150
                     });
                 }
             }
@@ -133,8 +133,8 @@
             var scale = this.focal / (this.focal + curZ + this.cameraDistance);
             var sx = cx + curX * scale;
             var sy = cy + curY * scale;
-            var size = Math.max(0.6, (this.dotBase || 1.7) * scale);
-            var alpha = Math.max(0.15, Math.min(1, scale * 1.1)) * (0.6 + 0.4 * e);
+            var size = Math.max(1.1, (this.dotBase || 2.4) * scale);
+            var alpha = Math.max(0.55, Math.min(1, scale * 1.1)) * (0.7 + 0.3 * e);
 
             ctx.fillStyle = 'rgba(' + this.dotColor + ',' + alpha.toFixed(2) + ')';
             ctx.fillRect(sx, sy, size, size);
