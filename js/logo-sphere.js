@@ -14,7 +14,7 @@
         this.angle = 0;
         this.points = [];
         this.assembleStart = null;
-        this.assembleDuration = 550;
+        this.assembleDuration = 250;
         this.assembled = false;
         this._resize();
         this._sample();
@@ -78,7 +78,7 @@
                         startX: (Math.random() - 0.5) * this.vw * 1.4,
                         startY: (Math.random() - 0.5) * this.vh * 1.4,
                         startZ: (Math.random() - 0.5) * 900,
-                        delay: Math.random() * 150
+                        delay: Math.random() * 40
                     });
                 }
             }
