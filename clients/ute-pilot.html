@@ -72,9 +72,10 @@ body.scrolled #back-home { opacity: 0; pointer-events: none; }
     position: relative;
     width: 100%;
     height: 100vh;
-    z-index: 0;
+    z-index: 2;
     background: #000;
     overflow: hidden;
+    pointer-events: none;
 }
 .logo-sphere-container img.logo-sphere-source {
     display: none;
@@ -89,7 +90,7 @@ main {
     z-index: 1;
     background: #000;
     max-width: 720px;
-    margin: 0 auto;
+    margin: -65vh auto 0;
     padding: 100px 6% 120px;
 }
 p.eyebrow {
@@ -186,10 +187,10 @@ body.scrolled #lang-switch { opacity: 0; pointer-events: none; }
     update();
 })();
 (function(){
-    // The logo fades out quickly as soon as scrolling starts, and the hero
-    // section collapses in height at the same rate -- so the case-study
-    // text arrives right as the logo disappears, with no dead scroll gap
-    // in between.
+    // The text sits pulled up underneath the (opaque) hero the whole time --
+    // no resizing during scroll, which the browser's scroll anchoring was
+    // silently fighting. The hero simply fades out via opacity, revealing
+    // the text that's already there in the same spot the instant it's gone.
     var container = document.querySelector('.logo-sphere-container');
     if (!container) return;
     var vh = window.innerHeight || document.documentElement.clientHeight || 800;
@@ -197,7 +198,6 @@ body.scrolled #lang-switch { opacity: 0; pointer-events: none; }
         var y = window.pageYOffset || document.documentElement.scrollTop || 0;
         var t = Math.max(0, Math.min(1, y / (vh * 0.35)));
         container.style.opacity = String(1 - t);
-        container.style.height = ((1 - t) * 100) + 'vh';
     }
     window.addEventListener('scroll', updateFade, { passive: true });
     window.addEventListener('resize', function(){ vh = window.innerHeight || document.documentElement.clientHeight || 800; updateFade(); });
