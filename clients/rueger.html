@@ -45,7 +45,7 @@
     font-display: swap;
 }
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; background: #000; color: #fff; width: 100%; max-width: 100%; overflow-x: hidden; }
+html, body { margin: 0; padding: 0; background: #000; color: #fff; width: 100%; max-width: 100%; overflow-x: hidden; overscroll-behavior-x: none; touch-action: pan-y; }
 body { font-family: Arial, Helvetica, sans-serif; cursor: auto; }
 a { color: inherit; }
 
@@ -72,6 +72,8 @@ body.scrolled #back-home { opacity: 0; pointer-events: none; }
     inset: 0;
     z-index: 0;
     background: #000;
+    touch-action: pan-y;
+    overflow: hidden;
 }
 .logo-sphere-container img.logo-sphere-source {
     display: none;
