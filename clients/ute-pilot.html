@@ -86,6 +86,52 @@ body.scrolled #back-home { opacity: 0; pointer-events: none; }
     inset: 0;
 }
 
+#hero-spacer {
+    position: relative;
+    z-index: 1;
+    height: 100vh;
+}
+
+main {
+    position: relative;
+    z-index: 1;
+    background: #000;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 100px 6% 120px;
+}
+p.eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin: 0 0 16px;
+}
+h1 {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: clamp(2.2rem, 6vw, 3.8rem);
+    line-height: 1.1;
+    margin: 0 0 24px;
+}
+main p.body {
+    font-size: 17px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.72);
+    margin: 0 0 32px;
+}
+#cta {
+    display: inline-block;
+    background: #fff;
+    color: #1c1c1c;
+    border-radius: 100px;
+    padding: 16px 36px;
+    font-weight: 900;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
 </style>
 </head>
 <body>
@@ -94,6 +140,15 @@ body.scrolled #back-home { opacity: 0; pointer-events: none; }
 <div class="logo-sphere-container">
     <img class="logo-sphere-source" src="../img/trusted/ute-pilot.svg" alt="Dr. Ute Pilot">
 </div>
+<div id="hero-spacer"></div>
+
+<main>
+    <p class="eyebrow">Client</p>
+    <h1>KFO Rodenkirchen</h1>
+    <p class="body">Dr. Ute Pilot and her team at KFO Rodenkirchen work with patients of every age to get them to a smile they're genuinely happy with. They lean on modern tools and real orthodontic experience, but every plan &mdash; whether it's Invisalign, ceramic braces, or early treatment for a child &mdash; gets built around the person, not a template. Comfort and long-term results matter just as much here as the technical side of the work.</p>
+    <a id="cta" href="https://kfo-rodenkirchen.de/" target="_blank" rel="noopener noreferrer">Check the website &rarr;</a>
+</main>
+
 <script src="../js/logo-sphere.js?v=14"></script>
 <script>
 (function(){
