@@ -186,8 +186,10 @@ body.scrolled #lang-switch { opacity: 0; pointer-events: none; }
     update();
 })();
 (function(){
-    // The logo fades out quickly as soon as scrolling starts, instead of
-    // staying visible until it naturally scrolls out of the viewport.
+    // The logo fades out quickly as soon as scrolling starts, and the hero
+    // section collapses in height at the same rate -- so the case-study
+    // text arrives right as the logo disappears, with no dead scroll gap
+    // in between.
     var container = document.querySelector('.logo-sphere-container');
     if (!container) return;
     var vh = window.innerHeight || document.documentElement.clientHeight || 800;
@@ -195,6 +197,7 @@ body.scrolled #lang-switch { opacity: 0; pointer-events: none; }
         var y = window.pageYOffset || document.documentElement.scrollTop || 0;
         var t = Math.max(0, Math.min(1, y / (vh * 0.35)));
         container.style.opacity = String(1 - t);
+        container.style.height = ((1 - t) * 100) + 'vh';
     }
     window.addEventListener('scroll', updateFade, { passive: true });
     window.addEventListener('resize', function(){ vh = window.innerHeight || document.documentElement.clientHeight || 800; updateFade(); });
