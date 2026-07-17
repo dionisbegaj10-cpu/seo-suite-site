@@ -443,10 +443,10 @@ body.animated .trusted-logos img {
    which reads as less black/bold next to them -- fatten it slightly with a
    faux-bold drop-shadow stack rather than touching the source art. */
 .trusted-logos img[src*="rueger"] {
-    filter: brightness(0) drop-shadow(0.5px 0 0 #000) drop-shadow(-0.5px 0 0 #000) drop-shadow(0 0.5px 0 #000) drop-shadow(0 -0.5px 0 #000);
+    filter: brightness(0) drop-shadow(1px 0 0 #000) drop-shadow(-1px 0 0 #000) drop-shadow(0 1px 0 #000) drop-shadow(0 -1px 0 #000) drop-shadow(1px 1px 0 #000) drop-shadow(-1px -1px 0 #000) drop-shadow(1px -1px 0 #000) drop-shadow(-1px 1px 0 #000);
 }
 body.animated .trusted-logos img[src*="rueger"] {
-    filter: brightness(0) invert(1) drop-shadow(0.5px 0 0 #fff) drop-shadow(-0.5px 0 0 #fff) drop-shadow(0 0.5px 0 #fff) drop-shadow(0 -0.5px 0 #fff);
+    filter: brightness(0) invert(1) drop-shadow(1px 0 0 #fff) drop-shadow(-1px 0 0 #fff) drop-shadow(0 1px 0 #fff) drop-shadow(0 -1px 0 #fff) drop-shadow(1px 1px 0 #fff) drop-shadow(-1px -1px 0 #fff) drop-shadow(1px -1px 0 #fff) drop-shadow(-1px 1px 0 #fff);
 }
 .trusted-logos img:hover {
     opacity: 1;
