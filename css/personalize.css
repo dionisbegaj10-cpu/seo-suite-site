@@ -414,7 +414,7 @@ body.animated #trusted-label { color: rgba(255,255,255,0.4); }
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 84px;
+    height: 130px;
     width: 100%;
 }
 .trusted-logos li a {
@@ -428,7 +428,7 @@ body.animated #trusted-label { color: rgba(255,255,255,0.4); }
 .trusted-logos img {
     height: 100%;
     width: auto;
-    max-width: min(260px, 100%);
+    max-width: min(340px, 100%);
     object-fit: contain;
     filter: brightness(0);
     opacity: 0.6;
@@ -451,7 +451,7 @@ body.animated .trusted-logos img {
         align-items: center;
         justify-items: center;
     }
-    .trusted-logos li { height: 60px; }
+    .trusted-logos li { height: 88px; }
     .trusted-logos img { max-width: 100%; }
 }
 
