@@ -6,6 +6,7 @@
         this.ctx = canvas.getContext('2d');
         this.img = img;
         this.depth = opts.depth || 40;
+        this.sizeScale = opts.sizeScale || 1;
         this.dotColor = opts.dotColor || '255,255,255';
         this.rotationSpeed = opts.rotationSpeed || 0; // no idle rotation
         this.cameraDistance = 200; // shrinks (and goes negative) as user scrolls -> "zoom in"
@@ -43,7 +44,7 @@
         // dimension) so wide logos fill the screen just like tall ones —
         // sized like the homepage hero sphere. The 1.1 compensates for the
         // resting projection scale (~0.875) so the logo lands near full-bleed.
-        var scale = Math.min(this.vw * 1.1 / img.naturalWidth, this.vh * 1.1 / img.naturalHeight);
+        var scale = Math.min(this.vw * 1.1 / img.naturalWidth, this.vh * 1.1 / img.naturalHeight) * this.sizeScale;
         var w = img.naturalWidth * scale;
         var h = img.naturalHeight * scale;
         this.logoW = w;
@@ -209,7 +210,8 @@
             container.appendChild(canvas);
 
             function run() {
-                new LogoSphere(canvas, img, {});
+                var sizeScale = parseFloat(container.dataset.sizeScale) || 1;
+                new LogoSphere(canvas, img, { sizeScale: sizeScale });
             }
             if (img.complete && img.naturalWidth) {
                 run();

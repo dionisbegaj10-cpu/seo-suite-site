@@ -210,7 +210,7 @@ body.scrolled #lang-switch { opacity: 0; pointer-events: none; }
     <button type="button" class="lang-opt" data-lang="de">DE</button>
 </div>
 
-<div class="logo-sphere-container">
+<div class="logo-sphere-container" data-size-scale="0.85">
     <img class="logo-sphere-source" src="../img/trusted/fyrnys.svg" alt="Fyrnys">
 </div>
 
@@ -234,7 +234,7 @@ body.scrolled #lang-switch { opacity: 0; pointer-events: none; }
     </div>
 </main>
 
-<script src="../js/logo-sphere.js?v=14"></script>
+<script src="../js/logo-sphere.js?v=15"></script>
 <script>
 (function(){
     function update(){ document.body.classList.toggle('scrolled', window.pageYOffset > 20); }
