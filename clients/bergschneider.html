@@ -125,6 +125,49 @@ main p.body {
     text-decoration: none;
 }
 
+p.svc-subhead {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    margin: 48px 0 20px;
+}
+.svc-list {
+    list-style: none;
+    margin: 0 0 48px;
+    padding: 0;
+}
+.svc-list li {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 16px;
+    color: rgba(255,255,255,0.85);
+}
+.testimonial {
+    margin-top: 48px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+.testimonial .stars {
+    color: #f5c518;
+    font-size: 18px;
+    letter-spacing: 3px;
+    margin: 0 0 16px;
+}
+.testimonial .quote {
+    font-size: 18px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.9);
+    font-style: italic;
+    margin: 0 0 16px;
+}
+.testimonial .cite {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.5);
+    margin: 0;
+}
+
 #lang-switch {
     position: fixed;
     top: max(24px, env(safe-area-inset-top, 0px) + 16px);
@@ -176,6 +219,19 @@ body.scrolled #lang-switch { opacity: 0; pointer-events: none; }
     <h1>KFO Bergschneider</h1>
     <p class="body" id="body-text">Tucked in the heart of Frankfurt, KFO Bergschneider offers orthodontic care for kids, teens, and adults alike, led by Dr. Felix Bergschneider. The practice pairs newer treatment methods &mdash; Invisalign, lingual braces, early intervention for younger patients &mdash; with something a bit more old-fashioned: actually tailoring the plan to the person in the chair. The result is a healthy, natural-looking smile, built in a space that doesn't feel clinical or rushed.</p>
     <a id="cta" href="https://www.kfo-bergschneider.de/" target="_blank" rel="noopener noreferrer"><span id="cta-text">Check the website</span> &rarr;</a>
+    <p class="svc-subhead" id="svc-subhead">What we do for them</p>
+    <ul class="svc-list" id="svc-list">
+        <li>SEO</li>
+        <li>GEO</li>
+        <li>Hosting</li>
+        <li>Performance (Google Ads)</li>
+    </ul>
+
+    <div class="testimonial">
+        <p class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+        <p class="quote" id="testimonial-quote">&ldquo;SEO Suite Studio helped us improve our digital presence with professional SEO, GEO optimization, reliable hosting, and well-managed Google Ads campaigns. They explained every step clearly and made the entire process simple for our team.&rdquo;</p>
+        <p class="cite" id="testimonial-cite">&mdash; KFO Bergschneider</p>
+    </div>
 </main>
 
 <script src="../js/logo-sphere.js?v=14"></script>
@@ -218,17 +274,25 @@ body.scrolled #lang-switch { opacity: 0; pointer-events: none; }
 (function(){
     var LANG_KEY = 'ss_lang';
     var dict = {
-        en: { eyebrow: "Client", body: "Tucked in the heart of Frankfurt, KFO Bergschneider offers orthodontic care for kids, teens, and adults alike, led by Dr. Felix Bergschneider. The practice pairs newer treatment methods &mdash; Invisalign, lingual braces, early intervention for younger patients &mdash; with something a bit more old-fashioned: actually tailoring the plan to the person in the chair. The result is a healthy, natural-looking smile, built in a space that doesn't feel clinical or rushed.", cta: "Check the website" },
-        de: { eyebrow: "Kunde", body: "Mitten in Frankfurt kümmert sich KFO Bergschneider unter der Leitung von Dr. Felix Bergschneider um die Zähne von Kindern, Jugendlichen und Erwachsenen. Die Praxis setzt auf moderne Methoden wie Invisalign, linguale Zahnspangen und Frühbehandlungen bei jüngeren Patienten – kombiniert mit etwas, das man heute selten findet: einen Behandlungsplan, der wirklich zum Menschen passt, der gerade im Stuhl sitzt. Das Ergebnis ist ein gesundes, natürliches Lächeln, entstanden in einer Praxis, die sich weder steril noch gehetzt anfühlt.", cta: "Webseite ansehen" }
+        en: { eyebrow: "Client", body: "Tucked in the heart of Frankfurt, KFO Bergschneider offers orthodontic care for kids, teens, and adults alike, led by Dr. Felix Bergschneider. The practice pairs newer treatment methods &mdash; Invisalign, lingual braces, early intervention for younger patients &mdash; with something a bit more old-fashioned: actually tailoring the plan to the person in the chair. The result is a healthy, natural-looking smile, built in a space that doesn't feel clinical or rushed.", cta: "Check the website", svcSubhead: "What we do for them", svcList: "<li>SEO</li><li>GEO</li><li>Hosting</li><li>Performance (Google Ads)</li>", quote: "SEO Suite Studio helped us improve our digital presence with professional SEO, GEO optimization, reliable hosting, and well-managed Google Ads campaigns. They explained every step clearly and made the entire process simple for our team.", cite: "KFO Bergschneider" },
+        de: { eyebrow: "Kunde", body: "Mitten in Frankfurt kümmert sich KFO Bergschneider unter der Leitung von Dr. Felix Bergschneider um die Zähne von Kindern, Jugendlichen und Erwachsenen. Die Praxis setzt auf moderne Methoden wie Invisalign, linguale Zahnspangen und Frühbehandlungen bei jüngeren Patienten – kombiniert mit etwas, das man heute selten findet: einen Behandlungsplan, der wirklich zum Menschen passt, der gerade im Stuhl sitzt. Das Ergebnis ist ein gesundes, natürliches Lächeln, entstanden in einer Praxis, die sich weder steril noch gehetzt anfühlt.", cta: "Webseite ansehen", svcSubhead: "Was wir f\u00fcr sie tun", svcList: "<li>SEO</li><li>GEO</li><li>Hosting</li><li>Performance (Google Ads)</li>", quote: "SEO Suite Studio hat unsere digitale Pr\u00e4senz mit professionellem SEO, GEO-Optimierung, zuverl\u00e4ssigem Hosting und gut betreuten Google-Ads-Kampagnen deutlich verbessert. Jeder Schritt wurde uns verst\u00e4ndlich erkl\u00e4rt, wodurch der gesamte Prozess f\u00fcr unser Team ganz unkompliziert war.", cite: "KFO Bergschneider" }
     };
     function applyLang(lang){
         var d = dict[lang] || dict.en;
         var eyebrow = document.getElementById('eyebrow');
         var body = document.getElementById('body-text');
         var cta = document.getElementById('cta-text');
+        var svcSubhead = document.getElementById('svc-subhead');
+        var svcList = document.getElementById('svc-list');
+        var quote = document.getElementById('testimonial-quote');
+        var cite = document.getElementById('testimonial-cite');
         if (eyebrow) eyebrow.innerHTML = d.eyebrow;
         if (body) body.innerHTML = d.body;
         if (cta) cta.innerHTML = d.cta;
+        if (svcSubhead) svcSubhead.innerHTML = d.svcSubhead;
+        if (svcList) svcList.innerHTML = d.svcList;
+        if (quote) quote.innerHTML = '\u201c' + d.quote + '\u201d';
+        if (cite) cite.innerHTML = '\u2014 ' + d.cite;
         document.documentElement.setAttribute('lang', lang);
         document.querySelectorAll('.lang-opt').forEach(function(btn){
             btn.classList.toggle('active', btn.dataset.lang === lang);

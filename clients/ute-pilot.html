@@ -125,6 +125,49 @@ main p.body {
     text-decoration: none;
 }
 
+p.svc-subhead {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    margin: 48px 0 20px;
+}
+.svc-list {
+    list-style: none;
+    margin: 0 0 48px;
+    padding: 0;
+}
+.svc-list li {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 16px;
+    color: rgba(255,255,255,0.85);
+}
+.testimonial {
+    margin-top: 48px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+.testimonial .stars {
+    color: #f5c518;
+    font-size: 18px;
+    letter-spacing: 3px;
+    margin: 0 0 16px;
+}
+.testimonial .quote {
+    font-size: 18px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.9);
+    font-style: italic;
+    margin: 0 0 16px;
+}
+.testimonial .cite {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.5);
+    margin: 0;
+}
+
 #lang-switch {
     position: fixed;
     top: max(24px, env(safe-area-inset-top, 0px) + 16px);
@@ -176,6 +219,19 @@ body.scrolled #lang-switch { opacity: 0; pointer-events: none; }
     <h1>KFO Rodenkirchen</h1>
     <p class="body" id="body-text">Dr. Ute Pilot and her team at KFO Rodenkirchen work with patients of every age to get them to a smile they're genuinely happy with. They lean on modern tools and real orthodontic experience, but every plan &mdash; whether it's Invisalign, ceramic braces, or early treatment for a child &mdash; gets built around the person, not a template. Comfort and long-term results matter just as much here as the technical side of the work.</p>
     <a id="cta" href="https://kfo-rodenkirchen.de/" target="_blank" rel="noopener noreferrer"><span id="cta-text">Check the website</span> &rarr;</a>
+    <p class="svc-subhead" id="svc-subhead">What we do for them</p>
+    <ul class="svc-list" id="svc-list">
+        <li>SEO</li>
+        <li>GEO</li>
+        <li>Hosting</li>
+        <li>Performance (Google Ads)</li>
+    </ul>
+
+    <div class="testimonial">
+        <p class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+        <p class="quote" id="testimonial-quote">&ldquo;Working with SEO Suite Studio has been a great experience. They manage our SEO, GEO, hosting, and Google Ads with professionalism and attention to detail.&rdquo;</p>
+        <p class="cite" id="testimonial-cite">&mdash; KFO Rodenkirchen</p>
+    </div>
 </main>
 
 <script src="../js/logo-sphere.js?v=14"></script>
@@ -218,17 +274,25 @@ body.scrolled #lang-switch { opacity: 0; pointer-events: none; }
 (function(){
     var LANG_KEY = 'ss_lang';
     var dict = {
-        en: { eyebrow: "Client", body: "Dr. Ute Pilot and her team at KFO Rodenkirchen work with patients of every age to get them to a smile they're genuinely happy with. They lean on modern tools and real orthodontic experience, but every plan &mdash; whether it's Invisalign, ceramic braces, or early treatment for a child &mdash; gets built around the person, not a template. Comfort and long-term results matter just as much here as the technical side of the work.", cta: "Check the website" },
-        de: { eyebrow: "Kunde", body: "Dr. Ute Pilot und ihr Team von KFO Rodenkirchen begleiten Patienten jeden Alters auf dem Weg zu einem Lächeln, mit dem sie sich wirklich wohlfühlen. Modernste Technik trifft hier auf jahrelange kieferorthopädische Erfahrung – doch jeder Behandlungsplan, ob Invisalign, Keramikbrackets oder Frühbehandlung im Kindesalter, wird individuell auf den Menschen zugeschnitten und nicht nach Schema F erstellt. Wohlbefinden zählt hier genauso viel wie das fachliche Ergebnis.", cta: "Webseite ansehen" }
+        en: { eyebrow: "Client", body: "Dr. Ute Pilot and her team at KFO Rodenkirchen work with patients of every age to get them to a smile they're genuinely happy with. They lean on modern tools and real orthodontic experience, but every plan &mdash; whether it's Invisalign, ceramic braces, or early treatment for a child &mdash; gets built around the person, not a template. Comfort and long-term results matter just as much here as the technical side of the work.", cta: "Check the website", svcSubhead: "What we do for them", svcList: "<li>SEO</li><li>GEO</li><li>Hosting</li><li>Performance (Google Ads)</li>", quote: "Working with SEO Suite Studio has been a great experience. They manage our SEO, GEO, hosting, and Google Ads with professionalism and attention to detail.", cite: "KFO Rodenkirchen" },
+        de: { eyebrow: "Kunde", body: "Dr. Ute Pilot und ihr Team von KFO Rodenkirchen begleiten Patienten jeden Alters auf dem Weg zu einem Lächeln, mit dem sie sich wirklich wohlfühlen. Modernste Technik trifft hier auf jahrelange kieferorthopädische Erfahrung – doch jeder Behandlungsplan, ob Invisalign, Keramikbrackets oder Frühbehandlung im Kindesalter, wird individuell auf den Menschen zugeschnitten und nicht nach Schema F erstellt. Wohlbefinden zählt hier genauso viel wie das fachliche Ergebnis.", cta: "Webseite ansehen", svcSubhead: "Was wir f\u00fcr sie tun", svcList: "<li>SEO</li><li>GEO</li><li>Hosting</li><li>Performance (Google Ads)</li>", quote: "Die Zusammenarbeit mit SEO Suite Studio ist rundum positiv. Sie k\u00fcmmern sich professionell und mit viel Liebe zum Detail um unser SEO, GEO, Hosting und Google Ads.", cite: "KFO Rodenkirchen" }
     };
     function applyLang(lang){
         var d = dict[lang] || dict.en;
         var eyebrow = document.getElementById('eyebrow');
         var body = document.getElementById('body-text');
         var cta = document.getElementById('cta-text');
+        var svcSubhead = document.getElementById('svc-subhead');
+        var svcList = document.getElementById('svc-list');
+        var quote = document.getElementById('testimonial-quote');
+        var cite = document.getElementById('testimonial-cite');
         if (eyebrow) eyebrow.innerHTML = d.eyebrow;
         if (body) body.innerHTML = d.body;
         if (cta) cta.innerHTML = d.cta;
+        if (svcSubhead) svcSubhead.innerHTML = d.svcSubhead;
+        if (svcList) svcList.innerHTML = d.svcList;
+        if (quote) quote.innerHTML = '\u201c' + d.quote + '\u201d';
+        if (cite) cite.innerHTML = '\u2014 ' + d.cite;
         document.documentElement.setAttribute('lang', lang);
         document.querySelectorAll('.lang-opt').forEach(function(btn){
             btn.classList.toggle('active', btn.dataset.lang === lang);

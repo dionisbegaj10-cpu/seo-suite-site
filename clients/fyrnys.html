@@ -125,6 +125,49 @@ main p.body {
     text-decoration: none;
 }
 
+p.svc-subhead {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    margin: 48px 0 20px;
+}
+.svc-list {
+    list-style: none;
+    margin: 0 0 48px;
+    padding: 0;
+}
+.svc-list li {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 16px;
+    color: rgba(255,255,255,0.85);
+}
+.testimonial {
+    margin-top: 48px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+.testimonial .stars {
+    color: #f5c518;
+    font-size: 18px;
+    letter-spacing: 3px;
+    margin: 0 0 16px;
+}
+.testimonial .quote {
+    font-size: 18px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.9);
+    font-style: italic;
+    margin: 0 0 16px;
+}
+.testimonial .cite {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.5);
+    margin: 0;
+}
+
 #lang-switch {
     position: fixed;
     top: max(24px, env(safe-area-inset-top, 0px) + 16px);
@@ -176,6 +219,19 @@ body.scrolled #lang-switch { opacity: 0; pointer-events: none; }
     <h1>Studio Fyrnys</h1>
     <p class="body" id="body-text">Studio Fyrnys designs interiors that hold up to daily life without losing their sense of craft. Whether the client is a homeowner or a business, the studio digs into the specifics of each project &mdash; how the space will actually be used, what the client is really going for &mdash; before anything gets drawn up. That close collaboration is what makes each space feel distinct rather than generic, and genuinely built around the people who'll live or work in it.</p>
     <a id="cta" href="https://www.studiofyrnys.com/" target="_blank" rel="noopener noreferrer"><span id="cta-text">Check the website</span> &rarr;</a>
+    <p class="svc-subhead" id="svc-subhead">What we do for them</p>
+    <ul class="svc-list" id="svc-list">
+        <li>Web &amp; Design</li>
+        <li>SEO</li>
+        <li>GEO</li>
+        <li>Digital Marketing</li>
+    </ul>
+
+    <div class="testimonial">
+        <p class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+        <p class="quote" id="testimonial-quote">&ldquo;SEO Suite Studio created a beautiful website, developed our SEO and GEO strategy, and supported us with digital marketing every step of the way. The result is a strong online presence that truly reflects our studio.&rdquo;</p>
+        <p class="cite" id="testimonial-cite">&mdash; Studio Fyrnys</p>
+    </div>
 </main>
 
 <script src="../js/logo-sphere.js?v=14"></script>
@@ -218,17 +274,25 @@ body.scrolled #lang-switch { opacity: 0; pointer-events: none; }
 (function(){
     var LANG_KEY = 'ss_lang';
     var dict = {
-        en: { eyebrow: "Client", body: "Studio Fyrnys designs interiors that hold up to daily life without losing their sense of craft. Whether the client is a homeowner or a business, the studio digs into the specifics of each project &mdash; how the space will actually be used, what the client is really going for &mdash; before anything gets drawn up. That close collaboration is what makes each space feel distinct rather than generic, and genuinely built around the people who'll live or work in it.", cta: "Check the website" },
-        de: { eyebrow: "Kunde", body: "Studio Fyrnys gestaltet Innenräume, die dem Alltag standhalten, ohne dabei an Handwerkskunst zu verlieren. Ob privater Wohnraum oder Geschäftsfläche – bevor auch nur ein Strich gezeichnet wird, setzt sich das Studio intensiv mit jedem Projekt auseinander: Wie wird der Raum tatsächlich genutzt? Was schwebt dem Kunden wirklich vor? Genau diese enge Zusammenarbeit macht jeden Raum einzigartig statt austauschbar – gebaut für die Menschen, die darin wirklich leben und arbeiten.", cta: "Webseite ansehen" }
+        en: { eyebrow: "Client", body: "Studio Fyrnys designs interiors that hold up to daily life without losing their sense of craft. Whether the client is a homeowner or a business, the studio digs into the specifics of each project &mdash; how the space will actually be used, what the client is really going for &mdash; before anything gets drawn up. That close collaboration is what makes each space feel distinct rather than generic, and genuinely built around the people who'll live or work in it.", cta: "Check the website", svcSubhead: "What we do for them", svcList: "<li>Web &amp; Design</li><li>SEO</li><li>GEO</li><li>Digital Marketing</li>", quote: "SEO Suite Studio created a beautiful website, developed our SEO and GEO strategy, and supported us with digital marketing every step of the way. The result is a strong online presence that truly reflects our studio.", cite: "Studio Fyrnys" },
+        de: { eyebrow: "Kunde", body: "Studio Fyrnys gestaltet Innenräume, die dem Alltag standhalten, ohne dabei an Handwerkskunst zu verlieren. Ob privater Wohnraum oder Geschäftsfläche – bevor auch nur ein Strich gezeichnet wird, setzt sich das Studio intensiv mit jedem Projekt auseinander: Wie wird der Raum tatsächlich genutzt? Was schwebt dem Kunden wirklich vor? Genau diese enge Zusammenarbeit macht jeden Raum einzigartig statt austauschbar – gebaut für die Menschen, die darin wirklich leben und arbeiten.", cta: "Webseite ansehen", svcSubhead: "Was wir f\u00fcr sie tun", svcList: "<li>Webdesign</li><li>SEO</li><li>GEO</li><li>Digitales Marketing</li>", quote: "SEO Suite Studio hat uns eine wundersch\u00f6ne Website gestaltet, unsere SEO- und GEO-Strategie entwickelt und uns bei jedem Schritt im digitalen Marketing unterst\u00fctzt. Das Ergebnis ist eine starke Online-Pr\u00e4senz, die unser Studio wirklich widerspiegelt.", cite: "Studio Fyrnys" }
     };
     function applyLang(lang){
         var d = dict[lang] || dict.en;
         var eyebrow = document.getElementById('eyebrow');
         var body = document.getElementById('body-text');
         var cta = document.getElementById('cta-text');
+        var svcSubhead = document.getElementById('svc-subhead');
+        var svcList = document.getElementById('svc-list');
+        var quote = document.getElementById('testimonial-quote');
+        var cite = document.getElementById('testimonial-cite');
         if (eyebrow) eyebrow.innerHTML = d.eyebrow;
         if (body) body.innerHTML = d.body;
         if (cta) cta.innerHTML = d.cta;
+        if (svcSubhead) svcSubhead.innerHTML = d.svcSubhead;
+        if (svcList) svcList.innerHTML = d.svcList;
+        if (quote) quote.innerHTML = '\u201c' + d.quote + '\u201d';
+        if (cite) cite.innerHTML = '\u2014 ' + d.cite;
         document.documentElement.setAttribute('lang', lang);
         document.querySelectorAll('.lang-opt').forEach(function(btn){
             btn.classList.toggle('active', btn.dataset.lang === lang);

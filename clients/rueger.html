@@ -125,6 +125,49 @@ main p.body {
     text-decoration: none;
 }
 
+p.svc-subhead {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    margin: 48px 0 20px;
+}
+.svc-list {
+    list-style: none;
+    margin: 0 0 48px;
+    padding: 0;
+}
+.svc-list li {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 16px;
+    color: rgba(255,255,255,0.85);
+}
+.testimonial {
+    margin-top: 48px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+.testimonial .stars {
+    color: #f5c518;
+    font-size: 18px;
+    letter-spacing: 3px;
+    margin: 0 0 16px;
+}
+.testimonial .quote {
+    font-size: 18px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.9);
+    font-style: italic;
+    margin: 0 0 16px;
+}
+.testimonial .cite {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.5);
+    margin: 0;
+}
+
 #lang-switch {
     position: fixed;
     top: max(24px, env(safe-area-inset-top, 0px) + 16px);
@@ -176,6 +219,19 @@ body.scrolled #lang-switch { opacity: 0; pointer-events: none; }
     <h1>R&uuml;ger Plastic Surgery</h1>
     <p class="body" id="body-text">For Dr. Daniel R&uuml;ger, a good result starts with trust, not a scalpel. He takes real time to sit down with each patient, understand what they actually want, and figure out what's realistic &mdash; his goal was never to change who you are, just to bring out a more confident, natural version of it. With years of surgical experience and training from around the world behind him, he brings a modern approach to plastic and aesthetic surgery without cutting corners on precision, safety, or genuine patient care.</p>
     <a id="cta" href="https://rueger-plastic-surgery.com/" target="_blank" rel="noopener noreferrer"><span id="cta-text">Check the website</span> &rarr;</a>
+    <p class="svc-subhead" id="svc-subhead">What we do for them</p>
+    <ul class="svc-list" id="svc-list">
+        <li>Web &amp; Design</li>
+        <li>SEO</li>
+        <li>GEO</li>
+        <li>Digital Marketing</li>
+    </ul>
+
+    <div class="testimonial">
+        <p class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+        <p class="quote" id="testimonial-quote">&ldquo;SEO Suite Studio has been an incredible partner for our practice. They took care of everything—from building our new website to SEO, GEO, digital marketing, and our overall online presence.&rdquo;</p>
+        <p class="cite" id="testimonial-cite">&mdash; Dr. Daniel R&uuml;ger, R&uuml;ger Plastic Surgery</p>
+    </div>
 </main>
 
 <script src="../js/logo-sphere.js?v=14"></script>
@@ -218,17 +274,25 @@ body.scrolled #lang-switch { opacity: 0; pointer-events: none; }
 (function(){
     var LANG_KEY = 'ss_lang';
     var dict = {
-        en: { eyebrow: "Client", body: "For Dr. Daniel R&uuml;ger, a good result starts with trust, not a scalpel. He takes real time to sit down with each patient, understand what they actually want, and figure out what's realistic &mdash; his goal was never to change who you are, just to bring out a more confident, natural version of it. With years of surgical experience and training from around the world behind him, he brings a modern approach to plastic and aesthetic surgery without cutting corners on precision, safety, or genuine patient care.", cta: "Check the website" },
-        de: { eyebrow: "Kunde", body: "Für Dr. Daniel Rüger beginnt ein gutes Ergebnis mit Vertrauen – nicht mit dem Skalpell. Er nimmt sich für jeden Patienten wirklich Zeit, hört zu, was er sich tatsächlich wünscht, und sagt offen, was realistisch ist. Es geht ihm nie darum, jemanden zu verändern, sondern darum, die selbstbewusstere, natürlichere Version seiner selbst zum Vorschein zu bringen. Mit jahrelanger chirurgischer Erfahrung und Weiterbildungen aus aller Welt verbindet er einen modernen Ansatz in der plastischen und ästhetischen Chirurgie mit höchsten Ansprüchen an Präzision, Sicherheit und echte Fürsorge für seine Patienten.", cta: "Webseite ansehen" }
+        en: { eyebrow: "Client", body: "For Dr. Daniel R&uuml;ger, a good result starts with trust, not a scalpel. He takes real time to sit down with each patient, understand what they actually want, and figure out what's realistic &mdash; his goal was never to change who you are, just to bring out a more confident, natural version of it. With years of surgical experience and training from around the world behind him, he brings a modern approach to plastic and aesthetic surgery without cutting corners on precision, safety, or genuine patient care.", cta: "Check the website", svcSubhead: "What we do for them", svcList: "<li>Web &amp; Design</li><li>SEO</li><li>GEO</li><li>Digital Marketing</li>", quote: "SEO Suite Studio has been an incredible partner for our practice. They took care of everything\u2014from building our new website to SEO, GEO, digital marketing, and our overall online presence.", cite: "Dr. Daniel R\u00fcger, R\u00fcger Plastic Surgery" },
+        de: { eyebrow: "Kunde", body: "Für Dr. Daniel Rüger beginnt ein gutes Ergebnis mit Vertrauen – nicht mit dem Skalpell. Er nimmt sich für jeden Patienten wirklich Zeit, hört zu, was er sich tatsächlich wünscht, und sagt offen, was realistisch ist. Es geht ihm nie darum, jemanden zu verändern, sondern darum, die selbstbewusstere, natürlichere Version seiner selbst zum Vorschein zu bringen. Mit jahrelanger chirurgischer Erfahrung und Weiterbildungen aus aller Welt verbindet er einen modernen Ansatz in der plastischen und ästhetischen Chirurgie mit höchsten Ansprüchen an Präzision, Sicherheit und echte Fürsorge für seine Patienten.", cta: "Webseite ansehen", svcSubhead: "Was wir f\u00fcr sie tun", svcList: "<li>Webdesign</li><li>SEO</li><li>GEO</li><li>Digitales Marketing</li>", quote: "SEO Suite Studio ist ein unglaublich verl\u00e4sslicher Partner f\u00fcr unsere Praxis. Von der neuen Website \u00fcber SEO und GEO bis hin zum digitalen Marketing haben sie sich um alles gek\u00fcmmert.", cite: "Dr. Daniel R\u00fcger, R\u00fcger Plastic Surgery" }
     };
     function applyLang(lang){
         var d = dict[lang] || dict.en;
         var eyebrow = document.getElementById('eyebrow');
         var body = document.getElementById('body-text');
         var cta = document.getElementById('cta-text');
+        var svcSubhead = document.getElementById('svc-subhead');
+        var svcList = document.getElementById('svc-list');
+        var quote = document.getElementById('testimonial-quote');
+        var cite = document.getElementById('testimonial-cite');
         if (eyebrow) eyebrow.innerHTML = d.eyebrow;
         if (body) body.innerHTML = d.body;
         if (cta) cta.innerHTML = d.cta;
+        if (svcSubhead) svcSubhead.innerHTML = d.svcSubhead;
+        if (svcList) svcList.innerHTML = d.svcList;
+        if (quote) quote.innerHTML = '\u201c' + d.quote + '\u201d';
+        if (cite) cite.innerHTML = '\u2014 ' + d.cite;
         document.documentElement.setAttribute('lang', lang);
         document.querySelectorAll('.lang-opt').forEach(function(btn){
             btn.classList.toggle('active', btn.dataset.lang === lang);
