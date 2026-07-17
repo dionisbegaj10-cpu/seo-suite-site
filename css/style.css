@@ -356,10 +356,11 @@ body.animated #learn-label { color: rgba(255,255,255,0.38); }
 
 #learn-title {
     font-family: 'Grumpy 24', Georgia, serif;
-    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    font-size: clamp(2.1rem, 9vw, 5.5rem);
     line-height: 1.05;
     color: #1c1c1c;
     margin: 0 0 28px;
+    overflow-wrap: break-word;
     opacity: 0;
     transform: translateY(18px);
     transition: opacity 0.45s ease 0.2s, transform 0.45s ease 0.2s, color 0.25s ease;
