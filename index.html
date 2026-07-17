@@ -164,24 +164,24 @@
                 </p>
                 <p>
                     <span>From</span>
-                    <span>concept</span>
+                    <strong class="lead-q"><span>concept</span></strong>
                     <span>to</span>
-                    <span>launch,</span>
+                    <strong class="lead-q"><span>launch,</span></strong>
                     <span>we</span>
                     <span>craft</span>
-                    <span>websites,</span>
-                    <span>campaigns</span>
+                    <strong class="lead-q"><span>websites,</span></strong>
+                    <strong class="lead-q"><span>campaigns</span></strong>
                     <span>and</span>
-                    <span>content</span>
+                    <strong class="lead-q"><span>content</span></strong>
                     <span>engineered</span>
                     <span>for</span>
-                    <span>growth</span>
+                    <strong class="lead-q"><span>growth</span></strong>
                     <span>&mdash;</span>
                     <span>turning</span>
                     <span>attention</span>
                     <span>into</span>
                     <span>measurable</span>
-                    <span>results.</span>
+                    <strong class="lead-q"><span>results.</span></strong>
                 </p>
             </div>
         </div>
@@ -754,11 +754,19 @@
         (function(){
             function words(arr){ return arr.map(function(w){ return '<span>' + w + '</span>'; }).join(' '); }
             function leadQuestion(leadArr, restArr){ return '<strong class="lead-q">' + words(leadArr) + '</strong> ' + words(restArr); }
+            function boldWords(arr, targets){
+                var lowerTargets = targets.map(function(t){ return t.toLowerCase(); });
+                return arr.map(function(w){
+                    var bare = w.replace(/^\W+|\W+$/g, '').toLowerCase();
+                    var span = '<span>' + w + '</span>';
+                    return lowerTargets.indexOf(bare) !== -1 ? '<strong class="lead-q">' + span + '</strong>' : span;
+                }).join(' ');
+            }
 
             var t = {
                 en: {
                     'text1-p1': leadQuestion(['Is','your','brand','already','AI\'s','answer?'], ['Make','sure','ChatGPT,','Claude,','Perplexity','and','Copilot','recommend','your','business','when','potential','customers','search','for','solutions.']),
-                    'text1-p2': words(['From','concept','to','launch,','we','craft','websites,','campaigns','and','content','engineered','for','growth','&mdash;','turning','attention','into','measurable','results.']),
+                    'text1-p2': boldWords(['From','concept','to','launch,','we','craft','websites,','campaigns','and','content','engineered','for','growth','&mdash;','turning','attention','into','measurable','results.'], ['concept','launch','websites','campaigns','content','growth','results']),
                     'explore-label': 'Tap to explore our services',
                     'tile-performance': 'Performance',
                     'tile-web-design': 'Web &amp;<br>Design',
@@ -799,7 +807,7 @@
                 },
                 de: {
                     'text1-p1': leadQuestion(['Ist','Ihre','Marke','bereits','die','Antwort','der','KI?'], ['Sorgen','Sie','daf&uuml;r,','dass','ChatGPT,','Claude,','Perplexity','und','Copilot','Ihr','Unternehmen','empfehlen,','wenn','potenzielle','Kunden','nach','L&ouml;sungen','suchen.']),
-                    'text1-p2': words(['Von','der','Idee','bis','zum','Launch','gestalten','wir','Websites,','Kampagnen','und','Inhalte','f&uuml;r','Wachstum','&mdash;','wir','verwandeln','Aufmerksamkeit','in','messbare','Ergebnisse.']),
+                    'text1-p2': boldWords(['Von','der','Idee','bis','zum','Launch','gestalten','wir','Websites,','Kampagnen','und','Inhalte','f&uuml;r','Wachstum','&mdash;','wir','verwandeln','Aufmerksamkeit','in','messbare','Ergebnisse.'], ['Idee','Launch','Websites','Kampagnen','Inhalte','Wachstum','Ergebnisse']),
                     'explore-label': 'Tippen Sie, um unsere Leistungen zu entdecken',
                     'tile-performance': 'Performance',
                     'tile-web-design': 'Web &amp;<br>Design',
