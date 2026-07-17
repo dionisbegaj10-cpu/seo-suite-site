@@ -6,6 +6,8 @@
 
 /* Even spacing between the three intro paragraphs (original only spaced the first). */
 #text1 p { margin-bottom: 3.5vh; }
+#text1 .lead-q { font-weight: 900; color: #000; }
+body.animated #text1 .lead-q { color: #000; }
 #text1 p:last-child { margin-bottom: 0; }
 
 /* Replace the Italian "CONTATTACI PER UN PREVENTIVO" rotating badge with an
