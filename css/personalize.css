@@ -431,7 +431,7 @@ body.animated #trusted-label { color: rgba(255,255,255,0.4); }
     max-width: min(340px, 100%);
     object-fit: contain;
     filter: brightness(0);
-    opacity: 0.6;
+    opacity: 1;
     transition: opacity 0.25s ease, filter 0.25s ease, transform 0.25s ease;
 }
 body.animated .trusted-logos img {
