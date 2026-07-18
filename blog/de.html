@@ -56,9 +56,16 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
     margin: 0;
     text-align: center;
     font-family: 'Grumpy 24', Georgia, serif;
-    font-size: clamp(2.6rem, 7vw, 5rem);
+    font-size: clamp(1.8rem, 8vw, 5rem);
     line-height: 1.05;
     color: #fff;
+    overflow-wrap: break-word;
+}
+#page-title span.page-title-small {
+    font-size: 0.4em;
+    font-weight: 400;
+    opacity: 0.6;
+    display: inline-block;
 }
 
 #filter-bar {
@@ -205,7 +212,7 @@ body.scrolled #lang-switch-index { opacity: 0; pointer-events: none; }
 </div>
 
 <div id="hero">
-    <h1 id="page-title">Der &quot;For Dummies&quot;-Blog<br>f&uuml;r Unternehmer.</h1>
+    <h1 id="page-title">&quot;F&uuml;r Dummies&quot;<br><span class="page-title-small">Blog</span></h1>
 </div>
 
 <div id="filter-bar"></div>
