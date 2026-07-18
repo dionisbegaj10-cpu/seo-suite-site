@@ -367,8 +367,8 @@ body.animated #learn-label { color: rgba(255,255,255,0.38); }
 }
 #learn-title span { display: inline; }
 #learn-title span.learn-title-small {
-    font-size: 0.4em;
-    font-weight: 400;
+    font-size: 0.6em;
+    font-weight: 900;
     opacity: 0.6;
     display: inline-block;
 }
