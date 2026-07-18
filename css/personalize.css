@@ -405,7 +405,7 @@ body.animated .box-trusted { border-top-color: rgba(255,255,255,0.12); }
 body.animated #trusted-label { color: rgba(255,255,255,0.4); }
 .trusted-logos {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     align-items: center;
     justify-items: center;
     gap: 56px;
