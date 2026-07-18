@@ -405,7 +405,7 @@ body.animated .box-trusted { border-top-color: rgba(255,255,255,0.12); }
 body.animated #trusted-label { color: rgba(255,255,255,0.4); }
 .trusted-logos {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     align-items: center;
     justify-items: center;
     gap: 56px;
@@ -413,6 +413,9 @@ body.animated #trusted-label { color: rgba(255,255,255,0.4); }
     margin: 0;
     padding: 0;
 }
+/* Remy Ebner sits on its own row, centered under Bergschneider (Felix) and
+   Rueger specifically, rather than wrapping to the leftmost column. */
+.trusted-logos li:nth-child(5) { grid-column: 3 / span 2; }
 .trusted-logos li {
     display: flex;
     align-items: center;
@@ -449,6 +452,14 @@ body.animated .trusted-logos img {
 body.animated .trusted-logos img[src*="rueger"] {
     filter: brightness(0) invert(1) drop-shadow(0.5px 0 0 #fff) drop-shadow(-0.5px 0 0 #fff) drop-shadow(0 0.5px 0 #fff) drop-shadow(0 -0.5px 0 #fff);
 }
+/* Remy Ebner's logo is a slightly thin charcoal wordmark -- nudge it a
+   touch darker/bolder to match the others' visual weight. */
+.trusted-logos img[src*="remy-ebner"] {
+    filter: brightness(0) drop-shadow(0.3px 0 0 #000) drop-shadow(-0.3px 0 0 #000);
+}
+body.animated .trusted-logos img[src*="remy-ebner"] {
+    filter: brightness(0) invert(1) drop-shadow(0.3px 0 0 #fff) drop-shadow(-0.3px 0 0 #fff);
+}
 .trusted-logos img:hover {
     opacity: 1;
     transform: translateY(-2px);
@@ -464,6 +475,7 @@ body.animated .trusted-logos img[src*="rueger"] {
         justify-items: center;
     }
     .trusted-logos li { height: 88px; }
+    .trusted-logos li:nth-child(5) { grid-column: 1 / span 2; }
     .trusted-logos img { max-width: 100%; }
 }
 
