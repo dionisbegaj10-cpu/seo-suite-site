@@ -479,6 +479,14 @@ body.animated .trusted-logos img[src*="remy-ebner"] {
     .trusted-logos li:nth-child(5) { grid-column: 1 / span 2; }
     .trusted-logos img { max-width: 100%; }
 }
+/* Tablet range: the desktop 4-column grid (150px-tall logos, 56px gaps) is
+   too dense at this width and crowds/overlaps the section below -- scale
+   it down without touching the phone layout above. */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .trusted-logos { gap: 32px; }
+    .trusted-logos li { height: 100px; }
+    .trusted-logos img { max-width: min(220px, 100%); }
+}
 
 /* --- "start a project" footer CTA: same size/style as "Learn, Explore & Grow" --- */
 #ftitle {
