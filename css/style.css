@@ -163,6 +163,11 @@ border-bottom: 1px solid #000000
 .box-header h1 {
     margin:auto 0;
 }
+/* "digital / creative / studio" must always stack one word per line
+   (only used here, so safe to force everywhere -- desktop and mobile). */
+#intro .no-wrap {
+    display: block;
+}
 
 h2 {
     text-transform: uppercase;
