@@ -60,6 +60,27 @@
       "item": "https://seosuite.studio/blog/dns-explained/"
     }
   ]
+}</script><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why does it take time for DNS changes to go live?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DNS records are cached at multiple points across the internet, and those caches need to expire before everyone sees the update — this is normal and expected, not a sign something went wrong."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I get DNS settings wrong?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Typically your website or email becomes unreachable until it's corrected — DNS mistakes rarely cause permanent damage, but they can cause real downtime, so it's worth double-checking changes before saving them."
+      }
+    }
+  ]
 }</script>
 <style>
 @font-face {
@@ -172,6 +193,29 @@ body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
     color: rgba(0,0,0,0.55);
 }
 #post-nav a:hover { color: #1c1c1c; }
+
+.faq-section { margin: 40px 0 0; }
+.faq-heading {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 1.3rem;
+    line-height: 1.2;
+    margin: 0 0 20px;
+    color: #1c1c1c;
+}
+.faq-item { margin: 0 0 24px; }
+.faq-q {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 1.05rem;
+    line-height: 1.3;
+    margin: 0 0 8px;
+    color: #1c1c1c;
+}
+.faq-a {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(0,0,0,0.65);
+    margin: 0;
+}
 </style>
 </head>
 <body>
@@ -193,7 +237,7 @@ body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
 <p>DNS records are typically managed either through a domain registrar (where the domain was purchased) or through a separate DNS provider, if one is being used instead of the registrar's default DNS management. Understanding where your DNS is actually managed is essential before making any changes, since editing the wrong place has no effect on the live site.</p>
 <p>Making DNS changes without understanding the propagation delay, and expecting instant results, is one of the most common sources of confusion. Editing the wrong DNS records, or editing them in the wrong management interface, is another common and easily avoidable mistake, particularly during hosting migrations or email setup changes.</p>
 <p>DNS translates human-readable domain names into the addresses computers actually use to connect, using several distinct record types for different purposes (website, email, verification). Understanding the basics — what record types exist and that changes take time to propagate — helps avoid common, avoidable mistakes during hosting migrations, email setup, or any other DNS-related change.</p>
-</div>
+</div><div class="faq-section"><p class="faq-heading">Frequently asked questions</p><div class="faq-item"><p class="faq-q">Why does it take time for DNS changes to go live?</p><p class="faq-a">DNS records are cached at multiple points across the internet, and those caches need to expire before everyone sees the update — this is normal and expected, not a sign something went wrong.</p></div><div class="faq-item"><p class="faq-q">What happens if I get DNS settings wrong?</p><p class="faq-a">Typically your website or email becomes unreachable until it's corrected — DNS mistakes rarely cause permanent damage, but they can cause real downtime, so it's worth double-checking changes before saving them.</p></div></div>
 <div id="related-service">
 <p class="eyebrow">Related service</p>
 <a class="related-service-link" href="/services/hosting/">Hosting <span>→</span></a>

@@ -61,6 +61,27 @@
       "item": "https://seosuite.studio/blog/de/core-web-vitals-for-dummies/"
     }
   ]
+}</script><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Beeinflussen Core Web Vitals wirklich mein Google-Ranking?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja, sie sind ein bestätigter Rankingfaktor, allerdings ein kleinerer im Vergleich zu Inhaltsrelevanz und -qualität — starker Content mit mittelmäßigen Core-Web-Vitals-Werten schlägt meist dünnen Content mit perfekten Werten."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Welche Core-Web-Vitals-Kennzahl lässt sich am leichtesten verbessern?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Layout-Verschiebung ist oft der schnellste Erfolg — meist verursacht durch Bilder oder Anzeigen, die ohne reservierten Platz laden, was im Vergleich zu tieferen Ladegeschwindigkeitsproblemen unkompliziert zu beheben ist."
+      }
+    }
+  ]
 }</script>
 <style>
 @font-face {
@@ -173,6 +194,29 @@ body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
     color: rgba(0,0,0,0.55);
 }
 #post-nav a:hover { color: #1c1c1c; }
+
+.faq-section { margin: 40px 0 0; }
+.faq-heading {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 1.3rem;
+    line-height: 1.2;
+    margin: 0 0 20px;
+    color: #1c1c1c;
+}
+.faq-item { margin: 0 0 24px; }
+.faq-q {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 1.05rem;
+    line-height: 1.3;
+    margin: 0 0 8px;
+    color: #1c1c1c;
+}
+.faq-a {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(0,0,0,0.65);
+    margin: 0;
+}
 </style>
 </head>
 <body>
@@ -187,7 +231,7 @@ body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
 <p>Google prüft nicht einfach, ob eine Website generell schnell ist, es misst drei spezifische Dinge namens Core Web Vitals, und eine Seite kann durchfallen, obwohl sie sich für einen zufälligen Besucher einigermaßen schnell anfühlt. Largest Contentful Paint misst, wie lange das größte sichtbare Element zum Laden braucht, und sollte unter 2,5 Sekunden liegen. Cumulative Layout Shift misst, ob Inhalte beim Laden herumspringen, etwa ein Button, der sich verschiebt, während jemand darauf tippen will, und sollte unter 0,1 bleiben. Interaction to Next Paint misst, wie schnell die Seite nach einem Klick oder Tippen reagiert, und sollte unter 200 Millisekunden bleiben.</p>
 <p>Die meisten schlechten Werte lassen sich auf wenige Ursachen zurückführen: übergroße Bilder, die nie komprimiert wurden, Schriftarten, die das Rendering blockieren, bis sie vollständig geladen sind, und Anzeigen oder Einbettungen, die das Layout verschieben, nachdem die Seite bereits geladen hat. Ein Produktfoto, direkt von der Kamera mit 4 Megabyte gespeichert, ruiniert Largest Contentful Paint allein, es auf unter 200 Kilobyte zu verkleinern und zu komprimieren kann die gesamte Kennzahl allein reparieren.</p>
 <p>Googles kostenloses Tool PageSpeed Insights bewertet eine Seite auf einer Skala bis 100, sowohl auf Mobilgeräten als auch am Desktop, und listet die genauen Probleme dieser spezifischen Seite auf, keine generischen Ratschläge, die Lösungen sind also konkret statt Rätselraten. Diese Werte sind ein Rankingsignal unter vielen, nicht das einzige, aber auf Mobilgeräten, wo mehr als die Hälfte des gesamten Webtraffics stattfindet, werden langsame Ladezeiten abgebrochen, bevor der Inhalt überhaupt gesehen wird, sie zu beheben schützt Umsatz auch über SEO hinaus. Es lohnt sich zu wissen, dass es zwei Arten von Core-Web-Vitals-Daten gibt: Labordaten aus einem simulierten Test und Felddaten, echte Messungen realer Besucher der letzten 28 Tage. Eine Seite kann im Labortest gut abschneiden, während Felddaten zeigen, dass echte Nutzer mit langsamerer Verbindung oder älterem Smartphone eine spürbar schlechtere Erfahrung machen, weshalb Google für Rankingzwecke, wo genug Daten vorliegen, auf Felddaten setzt.</p>
-</div>
+</div><div class="faq-section"><p class="faq-heading">Häufig gestellte Fragen</p><div class="faq-item"><p class="faq-q">Beeinflussen Core Web Vitals wirklich mein Google-Ranking?</p><p class="faq-a">Ja, sie sind ein bestätigter Rankingfaktor, allerdings ein kleinerer im Vergleich zu Inhaltsrelevanz und -qualität — starker Content mit mittelmäßigen Core-Web-Vitals-Werten schlägt meist dünnen Content mit perfekten Werten.</p></div><div class="faq-item"><p class="faq-q">Welche Core-Web-Vitals-Kennzahl lässt sich am leichtesten verbessern?</p><p class="faq-a">Layout-Verschiebung ist oft der schnellste Erfolg — meist verursacht durch Bilder oder Anzeigen, die ohne reservierten Platz laden, was im Vergleich zu tieferen Ladegeschwindigkeitsproblemen unkompliziert zu beheben ist.</p></div></div>
 <div id="related-service">
 <p class="eyebrow">Verwandte Leistung</p>
 <a class="related-service-link" href="/services/performance/">Performance <span>→</span></a>

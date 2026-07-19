@@ -60,6 +60,27 @@
       "item": "https://seosuite.studio/blog/cdn-explained/"
     }
   ]
+}</script><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do small websites actually need a CDN?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It helps even small sites, especially if visitors are geographically spread out, since a CDN serves content from a server physically closer to each visitor — but the impact is most noticeable for sites with real traffic volume or global audiences."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does using a CDN cost extra on top of hosting?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Often it's included free with modern hosting or website platforms; standalone CDN services typically have a free tier suitable for smaller sites, with paid tiers for higher traffic."
+      }
+    }
+  ]
 }</script>
 <style>
 @font-face {
@@ -172,6 +193,29 @@ body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
     color: rgba(0,0,0,0.55);
 }
 #post-nav a:hover { color: #1c1c1c; }
+
+.faq-section { margin: 40px 0 0; }
+.faq-heading {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 1.3rem;
+    line-height: 1.2;
+    margin: 0 0 20px;
+    color: #1c1c1c;
+}
+.faq-item { margin: 0 0 24px; }
+.faq-q {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 1.05rem;
+    line-height: 1.3;
+    margin: 0 0 8px;
+    color: #1c1c1c;
+}
+.faq-a {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(0,0,0,0.65);
+    margin: 0;
+}
 </style>
 </head>
 <body>
@@ -192,7 +236,7 @@ body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
 <p>For a very small, low-traffic site serving a geographically concentrated, local audience, a CDN's benefit is more modest — the physical distance issue matters less if visitors are already close to the origin server. For sites with a geographically distributed audience, meaningful traffic, or media-heavy content, a CDN's benefit becomes substantial and often directly noticeable in real load time improvements.</p>
 <p>Many modern hosting providers include CDN integration built in or as a simple add-on, and popular standalone CDN services (Cloudflare being one of the most widely used) offer free or low-cost tiers that are straightforward to set up even for non-technical site owners.</p>
 <p>A CDN distributes a website's content across servers worldwide, reducing the physical distance data has to travel to reach each visitor, which directly improves load speed — particularly valuable for sites with a geographically spread-out audience, high traffic, or media-heavy content. Setup has become accessible enough that there's little reason not to use one for most sites serving more than a small, local audience.</p>
-</div>
+</div><div class="faq-section"><p class="faq-heading">Frequently asked questions</p><div class="faq-item"><p class="faq-q">Do small websites actually need a CDN?</p><p class="faq-a">It helps even small sites, especially if visitors are geographically spread out, since a CDN serves content from a server physically closer to each visitor — but the impact is most noticeable for sites with real traffic volume or global audiences.</p></div><div class="faq-item"><p class="faq-q">Does using a CDN cost extra on top of hosting?</p><p class="faq-a">Often it's included free with modern hosting or website platforms; standalone CDN services typically have a free tier suitable for smaller sites, with paid tiers for higher traffic.</p></div></div>
 <div id="related-service">
 <p class="eyebrow">Related service</p>
 <a class="related-service-link" href="/services/hosting/">Hosting <span>→</span></a>

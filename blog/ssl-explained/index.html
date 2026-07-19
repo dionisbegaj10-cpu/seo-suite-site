@@ -60,6 +60,27 @@
       "item": "https://seosuite.studio/blog/ssl-explained/"
     }
   ]
+}</script><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I really need SSL if my site doesn't take payments?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — Google uses HTTPS as a ranking signal for all sites, not just ones handling payments, and browsers now visibly flag non-HTTPS sites as 'not secure,' which can hurt visitor trust."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is SSL expensive to set up?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually not — most hosting providers now include free SSL certificates (often via Let's Encrypt) as standard, so there's rarely a real cost barrier anymore."
+      }
+    }
+  ]
 }</script>
 <style>
 @font-face {
@@ -172,6 +193,29 @@ body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
     color: rgba(0,0,0,0.55);
 }
 #post-nav a:hover { color: #1c1c1c; }
+
+.faq-section { margin: 40px 0 0; }
+.faq-heading {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 1.3rem;
+    line-height: 1.2;
+    margin: 0 0 20px;
+    color: #1c1c1c;
+}
+.faq-item { margin: 0 0 24px; }
+.faq-q {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 1.05rem;
+    line-height: 1.3;
+    margin: 0 0 8px;
+    color: #1c1c1c;
+}
+.faq-a {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(0,0,0,0.65);
+    margin: 0;
+}
 </style>
 </head>
 <body>
@@ -192,7 +236,7 @@ body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
 <p>Domain Validated (DV) certificates are the simplest and most common, verifying only domain ownership — sufficient for most standard websites. Organization Validated (OV) and Extended Validation (EV) certificates involve more rigorous verification of the actual business behind the site, sometimes used by financial institutions or businesses wanting to display additional visible trust signals, though the practical difference for most small businesses is minimal.</p>
 <p>Look for "https://" and a padlock icon in the browser bar when visiting your own site, and check for any "mixed content" warnings, which occur when a page is technically served over HTTPS but still loads some resources (images, scripts) over the older, insecure HTTP.</p>
 <p>SSL encrypts the connection between visitors and a website, and it's now a baseline requirement rather than an optional security feature — affecting browser trust signals, SEO rankings, and basic visitor confidence. With most hosts now offering it free and often automatically, there's little reason for any modern site to be running without it.</p>
-</div>
+</div><div class="faq-section"><p class="faq-heading">Frequently asked questions</p><div class="faq-item"><p class="faq-q">Do I really need SSL if my site doesn't take payments?</p><p class="faq-a">Yes — Google uses HTTPS as a ranking signal for all sites, not just ones handling payments, and browsers now visibly flag non-HTTPS sites as 'not secure,' which can hurt visitor trust.</p></div><div class="faq-item"><p class="faq-q">Is SSL expensive to set up?</p><p class="faq-a">Usually not — most hosting providers now include free SSL certificates (often via Let's Encrypt) as standard, so there's rarely a real cost barrier anymore.</p></div></div>
 <div id="related-service">
 <p class="eyebrow">Related service</p>
 <a class="related-service-link" href="/services/hosting/">Hosting <span>→</span></a>

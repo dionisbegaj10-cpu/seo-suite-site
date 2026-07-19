@@ -61,6 +61,27 @@
       "item": "https://seosuite.studio/blog/de/how-to-migrate-hosting/"
     }
   ]
+}</script><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Führt ein Hosting-Umzug zwangsläufig zu Ausfallzeit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nicht zwingend — mit sorgfältiger Planung (die neue Seite vor der DNS-Umstellung vorbereiten, alles prüfen, dann umschalten) lässt sich Ausfallzeit meist vermeiden oder auf Minuten begrenzen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Beeinflusst ein Hosting-Umzug mein SEO-Ranking?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Er kann es, wenn er nicht sorgfältig durchgeführt wird — defekte Weiterleitungen, geänderte URLs oder längere Ausfallzeit während des Umzugs können Rankings vorübergehend schaden, weshalb gründliches Testen vor der finalen Umstellung wichtig ist."
+      }
+    }
+  ]
 }</script>
 <style>
 @font-face {
@@ -173,6 +194,29 @@ body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
     color: rgba(0,0,0,0.55);
 }
 #post-nav a:hover { color: #1c1c1c; }
+
+.faq-section { margin: 40px 0 0; }
+.faq-heading {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 1.3rem;
+    line-height: 1.2;
+    margin: 0 0 20px;
+    color: #1c1c1c;
+}
+.faq-item { margin: 0 0 24px; }
+.faq-q {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 1.05rem;
+    line-height: 1.3;
+    margin: 0 0 8px;
+    color: #1c1c1c;
+}
+.faq-a {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(0,0,0,0.65);
+    margin: 0;
+}
 </style>
 </head>
 <body>
@@ -188,7 +232,7 @@ body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
 <p>Erstellen Sie vor jedem Schritt ein vollständiges Backup, Dateien, Datenbank und Konfiguration, das ist das wichtigste Sicherheitsnetz. Richten Sie die neue Hosting-Umgebung vollständig ein und testen Sie sie, bevor Sie DNS umstellen, so lassen sich Probleme in einer sicheren, nicht-live Umgebung erkennen und beheben.</p>
 <p>Migrieren Sie Datenbank und Dateien sorgfältig, aktualisieren Sie fest codierte Verweise auf den alten Server, und testen Sie alles über eine temporäre URL oder lokale Hosts-Datei, bevor DNS geändert wird. DNS-Änderungen brauchen Zeit zur globalen Verbreitung, bis zu 24-48 Stunden, planen Sie den Umzug daher in eine traffic-arme Zeit.</p>
 <p>Falls E-Mail zusammen mit der Website gehostet wird, prüfen Sie die E-Mail-Konfiguration beim neuen Host sorgfältig vor der vollständigen Umstellung, E-Mail-Ausfälle sind oft schmerzhafter und weniger sichtbar als Website-Ausfälle. Behalten Sie das alte Hosting-Konto für eine kurze Pufferzeit aktiv, bis Sie sicher sind, dass die Migration sauber gelungen ist.</p>
-</div>
+</div><div class="faq-section"><p class="faq-heading">Häufig gestellte Fragen</p><div class="faq-item"><p class="faq-q">Führt ein Hosting-Umzug zwangsläufig zu Ausfallzeit?</p><p class="faq-a">Nicht zwingend — mit sorgfältiger Planung (die neue Seite vor der DNS-Umstellung vorbereiten, alles prüfen, dann umschalten) lässt sich Ausfallzeit meist vermeiden oder auf Minuten begrenzen.</p></div><div class="faq-item"><p class="faq-q">Beeinflusst ein Hosting-Umzug mein SEO-Ranking?</p><p class="faq-a">Er kann es, wenn er nicht sorgfältig durchgeführt wird — defekte Weiterleitungen, geänderte URLs oder längere Ausfallzeit während des Umzugs können Rankings vorübergehend schaden, weshalb gründliches Testen vor der finalen Umstellung wichtig ist.</p></div></div>
 <div id="related-service">
 <p class="eyebrow">Verwandte Leistung</p>
 <a class="related-service-link" href="/services/hosting/">Hosting <span>→</span></a>

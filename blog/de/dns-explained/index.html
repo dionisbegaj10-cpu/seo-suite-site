@@ -61,6 +61,27 @@
       "item": "https://seosuite.studio/blog/de/dns-explained/"
     }
   ]
+}</script><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Warum dauert es, bis DNS-Änderungen live sind?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DNS-Einträge werden an vielen Stellen im Internet zwischengespeichert, und diese Caches müssen erst ablaufen, bevor alle die Änderung sehen — das ist normal und kein Zeichen für ein Problem."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was passiert, wenn ich DNS-Einstellungen falsch setze?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Meist wird die Website oder E-Mail bis zur Korrektur unerreichbar — DNS-Fehler verursachen selten dauerhaften Schaden, können aber echte Ausfallzeit bedeuten, daher lohnt sich eine Kontrolle vor dem Speichern."
+      }
+    }
+  ]
 }</script>
 <style>
 @font-face {
@@ -173,6 +194,29 @@ body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
     color: rgba(0,0,0,0.55);
 }
 #post-nav a:hover { color: #1c1c1c; }
+
+.faq-section { margin: 40px 0 0; }
+.faq-heading {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 1.3rem;
+    line-height: 1.2;
+    margin: 0 0 20px;
+    color: #1c1c1c;
+}
+.faq-item { margin: 0 0 24px; }
+.faq-q {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 1.05rem;
+    line-height: 1.3;
+    margin: 0 0 8px;
+    color: #1c1c1c;
+}
+.faq-a {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(0,0,0,0.65);
+    margin: 0;
+}
 </style>
 </head>
 <body>
@@ -188,7 +232,7 @@ body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
 <p>A-Records verweisen eine Domain auf eine spezifische IPv4-Adresse, der grundlegendste Recordtyp. CNAME-Records verweisen eine Domain oder Subdomain auf eine andere Domain statt direkt auf eine IP-Adresse. MX-Records bestimmen, wohin E-Mails für eine Domain zugestellt werden, getrennt vom Website-Hosting. TXT-Records enthalten beliebige Textdaten, häufig für Domainverifizierung und E-Mail-Authentifizierung wie SPF und DKIM genutzt.</p>
 <p>Wird ein DNS-Record aktualisiert, etwa um eine Domain auf einen neuen Host zu verweisen, tritt diese Änderung nicht sofort überall in Kraft, DNS-Informationen sind an verschiedenen Stellen im Internet zwischengespeichert, eine vollständige globale Verbreitung kann bis zu 48 Stunden dauern.</p>
 <p>DNS-Records werden meist entweder über den Domain-Registrar oder einen separaten DNS-Anbieter verwaltet, zu wissen, wo Ihr DNS tatsächlich verwaltet wird, ist essenziell, bevor Sie Änderungen vornehmen, sonst hat die Bearbeitung an der falschen Stelle keinerlei Effekt auf die live geschaltete Seite.</p>
-</div>
+</div><div class="faq-section"><p class="faq-heading">Häufig gestellte Fragen</p><div class="faq-item"><p class="faq-q">Warum dauert es, bis DNS-Änderungen live sind?</p><p class="faq-a">DNS-Einträge werden an vielen Stellen im Internet zwischengespeichert, und diese Caches müssen erst ablaufen, bevor alle die Änderung sehen — das ist normal und kein Zeichen für ein Problem.</p></div><div class="faq-item"><p class="faq-q">Was passiert, wenn ich DNS-Einstellungen falsch setze?</p><p class="faq-a">Meist wird die Website oder E-Mail bis zur Korrektur unerreichbar — DNS-Fehler verursachen selten dauerhaften Schaden, können aber echte Ausfallzeit bedeuten, daher lohnt sich eine Kontrolle vor dem Speichern.</p></div></div>
 <div id="related-service">
 <p class="eyebrow">Verwandte Leistung</p>
 <a class="related-service-link" href="/services/hosting/">Hosting <span>→</span></a>

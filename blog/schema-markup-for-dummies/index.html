@@ -60,6 +60,27 @@
       "item": "https://seosuite.studio/blog/schema-markup-for-dummies/"
     }
   ]
+}</script><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does adding schema markup guarantee rich results in Google?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No — schema markup makes your page eligible for rich results (star ratings, FAQ dropdowns, etc.), but Google still decides whether and when to actually display them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is schema markup hard to implement without a developer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For common types (FAQ, Article, LocalBusiness), many CMS plugins and generators make it manageable without deep coding knowledge — more complex or custom schema usually benefits from technical help."
+      }
+    }
+  ]
 }</script>
 <style>
 @font-face {
@@ -172,6 +193,29 @@ body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
     color: rgba(0,0,0,0.55);
 }
 #post-nav a:hover { color: #1c1c1c; }
+
+.faq-section { margin: 40px 0 0; }
+.faq-heading {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 1.3rem;
+    line-height: 1.2;
+    margin: 0 0 20px;
+    color: #1c1c1c;
+}
+.faq-item { margin: 0 0 24px; }
+.faq-q {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 1.05rem;
+    line-height: 1.3;
+    margin: 0 0 8px;
+    color: #1c1c1c;
+}
+.faq-a {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(0,0,0,0.65);
+    margin: 0;
+}
 </style>
 </head>
 <body>
@@ -188,7 +232,7 @@ body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
 <p>This matters even more for AI visibility specifically, when ChatGPT or Perplexity summarize an answer, they favor content that is unambiguous and clearly labeled over content they have to interpret, schema markup is effectively speaking the AI's language directly instead of hoping it reads between the lines correctly. Google's free Rich Results Test tool checks whether markup on a given page is implemented correctly, and free plugins exist for WordPress and other major platforms that add basic schema without writing any code by hand.</p>
 <p>Most modern implementations use a format called JSON-LD, a block of code placed in a page's header that describes the content without touching the visible page at all, which is why it's become the standard Google recommends over older methods like microdata that require marking up the visible HTML directly and are easier to break by accident during a redesign.</p>
 <p>Testing markup after implementation matters as much as adding it in the first place, a small syntax error can silently prevent the intended rich result from ever appearing in search.</p>
-</div>
+</div><div class="faq-section"><p class="faq-heading">Frequently asked questions</p><div class="faq-item"><p class="faq-q">Does adding schema markup guarantee rich results in Google?</p><p class="faq-a">No — schema markup makes your page eligible for rich results (star ratings, FAQ dropdowns, etc.), but Google still decides whether and when to actually display them.</p></div><div class="faq-item"><p class="faq-q">Is schema markup hard to implement without a developer?</p><p class="faq-a">For common types (FAQ, Article, LocalBusiness), many CMS plugins and generators make it manageable without deep coding knowledge — more complex or custom schema usually benefits from technical help.</p></div></div>
 <div id="related-service">
 <p class="eyebrow">Related service</p>
 <a class="related-service-link" href="/services/ai-suite/">AI Search <span>→</span></a>

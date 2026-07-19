@@ -60,6 +60,27 @@
       "item": "https://seosuite.studio/blog/domain-vs-hosting/"
     }
   ]
+}</script><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I buy a domain and hosting from different companies?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, this is common and perfectly fine — you just need to point your domain's DNS settings at your hosting provider, which most registrars make straightforward."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to renew my domain and hosting separately?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually yes, since they're often billed by different providers on different cycles — missing a domain renewal specifically can be more damaging since it can let someone else register it."
+      }
+    }
+  ]
 }</script>
 <style>
 @font-face {
@@ -172,6 +193,29 @@ body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
     color: rgba(0,0,0,0.55);
 }
 #post-nav a:hover { color: #1c1c1c; }
+
+.faq-section { margin: 40px 0 0; }
+.faq-heading {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 1.3rem;
+    line-height: 1.2;
+    margin: 0 0 20px;
+    color: #1c1c1c;
+}
+.faq-item { margin: 0 0 24px; }
+.faq-q {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 1.05rem;
+    line-height: 1.3;
+    margin: 0 0 8px;
+    color: #1c1c1c;
+}
+.faq-a {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(0,0,0,0.65);
+    margin: 0;
+}
 </style>
 </head>
 <body>
@@ -191,7 +235,7 @@ body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
 <p>Some site owners deliberately register their domain with one company (a domain registrar) while hosting their site with a different company (a web host), often for reasons like better domain management tools, lower renewal costs, or simply wanting the flexibility to switch hosts without needing to also transfer domain registration.</p>
 <p>When domain and hosting are with different providers, DNS records need to be configured to point the domain to the correct hosting server — typically done by updating nameservers or specific DNS records at the domain registrar to point toward the hosting provider.</p>
 <p>A domain is a website's address; hosting is where the website's actual content lives. They're often bundled together for convenience but are technically separate services, connected through DNS — understanding this distinction becomes especially useful when troubleshooting, migrating, or deliberately using different providers for each.</p>
-</div>
+</div><div class="faq-section"><p class="faq-heading">Frequently asked questions</p><div class="faq-item"><p class="faq-q">Can I buy a domain and hosting from different companies?</p><p class="faq-a">Yes, this is common and perfectly fine — you just need to point your domain's DNS settings at your hosting provider, which most registrars make straightforward.</p></div><div class="faq-item"><p class="faq-q">Do I need to renew my domain and hosting separately?</p><p class="faq-a">Usually yes, since they're often billed by different providers on different cycles — missing a domain renewal specifically can be more damaging since it can let someone else register it.</p></div></div>
 <div id="related-service">
 <p class="eyebrow">Related service</p>
 <a class="related-service-link" href="/services/hosting/">Hosting <span>→</span></a>
