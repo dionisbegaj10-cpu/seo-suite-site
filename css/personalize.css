@@ -8,6 +8,18 @@
 #text1 p { margin-bottom: 3.5vh; }
 #text1 .lead-q { font-weight: 900; color: #000; }
 body.animated #text1 .lead-q { color: #000; }
+
+/* On wide screens .box's generic width:50%;margin:0 auto centers the hero
+   heading in a narrow middle column, floating far from the left edge --
+   very different from mobile, where it sits close to the left margin.
+   Anchor it near the left edge on desktop instead, matching that feel. */
+@media (min-width: 1024px) {
+    .box-header {
+        width: auto;
+        max-width: 900px;
+        margin: 0 auto 0 8%;
+    }
+}
 #text1 p:last-child { margin-bottom: 0; }
 
 /* Replace the Italian "CONTATTACI PER UN PREVENTIVO" rotating badge with an
@@ -485,6 +497,17 @@ body.animated .trusted-logos img[src*="remy-ebner"] {
 @media (min-width: 768px) and (max-width: 1023px) {
     .trusted-logos { gap: 32px; }
     .trusted-logos li { height: 100px; }
+    .trusted-logos img { max-width: min(220px, 100%); }
+}
+/* Desktop: fit all 5 logos on a single row instead of wrapping Rueger to
+   its own second row -- shrink slightly so everything fits together. */
+@media (min-width: 1024px) {
+    .trusted-logos {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 32px;
+    }
+    .trusted-logos li:nth-child(5) { grid-column: auto; }
+    .trusted-logos li { height: 110px; }
     .trusted-logos img { max-width: min(220px, 100%); }
 }
 
