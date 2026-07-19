@@ -9,15 +9,12 @@
 #text1 .lead-q { font-weight: 900; color: #000; }
 body.animated #text1 .lead-q { color: #000; }
 
-/* On wide screens .box's generic width:50%;margin:0 auto centers the hero
-   heading in a narrow middle column, floating far from the left edge --
-   very different from mobile, where it sits close to the left margin.
-   Anchor it near the left edge on desktop instead, matching that feel. */
+/* Keep the hero heading centered in the middle of the page on desktop. */
 @media (min-width: 1024px) {
     .box-header {
         width: auto;
         max-width: 900px;
-        margin: 0 auto 0 8%;
+        margin: 0 auto;
     }
 }
 #text1 p:last-child { margin-bottom: 0; }
