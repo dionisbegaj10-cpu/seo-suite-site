@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Blog — SEO, Webdesign &amp; Wachstum | SSUITE</title>
+<meta content="Kostenlose SEO-, Webdesign- und digitale Wachstumsratgeber für Unternehmer, einfach erklärt, ohne Fachjargon." name="description"/>
+<link href="https://seosuite.studio/blog/de/" rel="canonical"/>
+<link href="https://seosuite.studio/blog/" hreflang="en" rel="alternate"/>
+<link href="https://seosuite.studio/blog/de/" hreflang="de" rel="alternate"/>
+<link href="https://seosuite.studio/blog/" hreflang="x-default" rel="alternate"/>
+<meta content="website" property="og:type"/>
+<meta content="Blog — SSUITE" property="og:title"/>
+<meta content="Kostenlose SEO-, Webdesign- und digitale Wachstumsratgeber für Unternehmer, einfach erklärt, ohne Fachjargon." property="og:description"/>
+<meta content="https://seosuite.studio/blog/de/" property="og:url"/>
+<meta content="SSUITE" property="og:site_name"/>
+<meta content="https://seosuite.studio/img/seosuite-digital-creative-studio.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Blog — SSUITE" name="twitter:title"/>
+<meta content="Kostenlose SEO-, Webdesign- und digitale Wachstumsratgeber für Unternehmer, einfach erklärt, ohne Fachjargon." name="twitter:description"/>
+<meta content="https://seosuite.studio/img/seosuite-digital-creative-studio.jpg" name="twitter:image"/>
+<meta content="#000000" name="theme-color"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "SSUITE Blog",
+  "url": "https://seosuite.studio/blog/de/",
+  "description": "Kostenlose SEO-, Webdesign- und digitale Wachstumsratgeber für Unternehmer, einfach erklärt, ohne Fachjargon.",
+  "inLanguage": "de",
+  "publisher": {
+    "@type": "Organization",
+    "name": "SSUITE",
+    "url": "https://seosuite.studio/"
+  }
+}</script>
+<script src="/js/libs/jsband-min.js"></script>
+<script src="/js/blob-min.js"></script>
+<style>
+@font-face {
+    font-family: 'Grumpy 24';
+    src: url('/css/fonts/Grumpy-Black24.woff2') format('woff2'),
+        url('/css/fonts/Grumpy-Black24.woff') format('woff'),
+        url('/css/fonts/Grumpy-Black24.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+html, body { background: #000; margin: 0; padding: 0; width: 100%; max-width: 100%; }
+html { overflow-x: hidden; }
+body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
+* { box-sizing: border-box; }
+
+#blob_container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: #000;
+    z-index: 0;
+}
+
+#hero {
+    position: relative;
+    z-index: 1;
+    padding: 22vh 6% 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#page-title {
+    margin: 0;
+    text-align: center;
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: clamp(1.8rem, 8vw, 5rem);
+    line-height: 1.05;
+    color: #fff;
+    overflow-wrap: break-word;
+}
+#page-title span.page-title-small {
+    font-size: 0.6em;
+    font-weight: 900;
+    opacity: 0.6;
+    display: inline-block;
+}
+
+#filter-bar {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 6% 60px;
+}
+.filter-pill {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    padding: 12px 22px;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: transparent;
+    color: rgba(255,255,255,0.6);
+    cursor: pointer;
+    transition: all .2s ease;
+}
+.filter-pill.active,
+.filter-pill:hover {
+    background: #fff;
+    border-color: #fff;
+    color: #1c1c1c;
+}
+
+#post-grid-section {
+    position: relative;
+    z-index: 1;
+    background: transparent;
+    padding: 0 6% 140px;
+}
+.post-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+.post-card {
+    display: block;
+    padding: 28px 24px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.post-card:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.18);
+    transform: translateY(-2px);
+}
+.post-card-cat {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin: 0 0 10px;
+}
+.post-card-title {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 1.3rem;
+    line-height: 1.2;
+    color: #fff;
+    margin: 0 0 12px;
+}
+.post-card-excerpt {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.55);
+    margin: 0 0 14px;
+}
+.post-card-meta {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.4);
+}
+
+#back-home {
+    position: fixed;
+    top: max(24px, env(safe-area-inset-top, 0px) + 16px);
+    right: max(24px, env(safe-area-inset-right, 0px) + 16px);
+    z-index: 1100;
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-weight: 900;
+    font-size: 1.15rem;
+    line-height: 1;
+    color: #fff;
+    text-decoration: none;
+    padding-bottom: 3px;
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.35s ease;
+}
+body.scrolled #back-home { opacity: 0; pointer-events: none; }
+#back-home:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background-color: #fff;
+    width: 0%;
+    transition: width 0.5s ease-out;
+}
+#back-home:hover::after { width: 100%; }
+#lang-switch-index {
+    position: fixed;
+    top: max(24px, env(safe-area-inset-top, 0px) + 16px);
+    left: max(24px, env(safe-area-inset-left, 0px) + 16px);
+    z-index: 1100;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    opacity: 1;
+    transition: opacity 0.35s ease;
+}
+body.scrolled #lang-switch-index { opacity: 0; pointer-events: none; }
+#lang-switch-index a { text-decoration: none; color: rgba(255,255,255,0.4); }
+#lang-switch-index a.active { color: #fff; }
+#lang-switch-index span { color: rgba(255,255,255,0.3); margin: 0 4px; }
+</style>
+</head>
+<body>
+<div id="blob_container"></div>
+<a href="/" id="back-home">← Hauptseite</a>
+<div id="lang-switch-index">
+<a href="/blog/">EN</a><span>/</span><a class="active" href="/blog/de/">DE</a>
+</div>
+<div id="hero">
+<h1 id="page-title">"Für Dummies"<br/><span class="page-title-small">Blog</span></h1>
+</div>
+<div id="filter-bar"></div>
+<section id="post-grid-section">
+<div class="post-grid" id="post-grid"></div>
+</section>
+<script>
+var posts = [
+    {
+        "slug": "master-seo",
+        "title": "SEO meistern",
+        "cat": "KI-Suche",
+        "quote": "Steigern Sie den organischen Traffic, verbessern Sie Ihre Suchrankings und bauen Sie langfristige Sichtbarkeit mit bewährten SEO-Strategien auf.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "unlock-ai-powered-seo",
+        "title": "KI-gestützte SEO freischalten",
+        "cat": "SEO",
+        "quote": "Entdecken Sie, wie künstliche Intelligenz Keyword-Recherche, Content-Erstellung, technisches SEO und Suchperformance verändert.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "boost-website-performance",
+        "title": "Website-Performance steigern",
+        "cat": "Performance",
+        "quote": "Erfahren Sie, wie schnellere Ladezeiten, Core Web Vitals und technische Optimierung Nutzererlebnis, SEO-Rankings und Conversion-Raten verbessern.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "create-high-converting-web-designs",
+        "title": "Konversionsstarke Webdesigns gestalten",
+        "cat": "Design",
+        "quote": "Entdecken Sie moderne Webdesign-Prinzipien, responsive Entwicklung und UX-Best-Practices, die Besucher in treue Kunden verwandeln.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "what-is-seo",
+        "title": "Was ist SEO?",
+        "cat": "SEO",
+        "quote": "Steigern Sie den organischen Traffic, verbessern Sie Ihre Suchmaschinenplatzierungen und bauen Sie langfristige Sichtbarkeit mit bewährten SEO-Strategien auf.",
+        "readingTime": "3 Min. Lesezeit"
+    },
+    {
+        "slug": "how-google-ranks-sites",
+        "title": "So rankt Google Seiten",
+        "cat": "SEO",
+        "quote": "Entdecken Sie die wahren Signale hinter Google-Rankings und was es braucht, um die beste verfügbare Antwort für Suchende zu werden.",
+        "readingTime": "3 Min. Lesezeit"
+    },
+    {
+        "slug": "what-is-geo",
+        "title": "Was ist GEO?",
+        "cat": "GEO",
+        "quote": "KI-Assistenten beginnen, Unternehmen direkt zu empfehlen, und GEO entscheidet, ob Ihres auf der Liste steht.",
+        "readingTime": "3 Min. Lesezeit"
+    },
+    {
+        "slug": "what-is-ai-seo",
+        "title": "Was ist AI SEO?",
+        "cat": "KI-Suche",
+        "quote": "KI wird zunehmend Teil davon, wie Menschen Unternehmen entdecken, und AI SEO ist die Vorbereitung darauf.",
+        "readingTime": "3 Min. Lesezeit"
+    },
+    {
+        "slug": "what-is-ai-visibility",
+        "title": "Was ist AI Visibility?",
+        "cat": "KI-Suche",
+        "quote": "Bei Google gefunden zu werden reicht nicht mehr aus. So bedeutet es, von KI verstanden und empfohlen zu werden.",
+        "readingTime": "3 Min. Lesezeit"
+    },
+    {
+        "slug": "seo-vs-geo-vs-ai-seo",
+        "title": "SEO vs. GEO vs. AI SEO",
+        "cat": "GEO",
+        "quote": "Drei Begriffe, drei unterschiedliche Aufgaben. Eine klare Übersicht, was jeder Ansatz für Ihr Unternehmen wirklich leistet.",
+        "readingTime": "3 Min. Lesezeit"
+    },
+    {
+        "slug": "get-mentioned-by-chatgpt",
+        "title": "Von ChatGPT erwähnt werden",
+        "cat": "GEO",
+        "quote": "KI-Assistenten wissen nicht automatisch, dass Ihr Unternehmen existiert. So werden Sie Schritt für Schritt zur empfohlenen Antwort.",
+        "readingTime": "3 Min. Lesezeit"
+    },
+    {
+        "slug": "how-ai-picks-businesses",
+        "title": "Wie KI Unternehmen wählt",
+        "cat": "KI-Suche",
+        "quote": "KI-Suchmaschinen wägen Relevanz, Expertise und Vertrauen ab, bevor sie ein Unternehmen empfehlen. Das suchen sie wirklich.",
+        "readingTime": "3 Min. Lesezeit"
+    },
+    {
+        "slug": "does-seo-still-help-ai",
+        "title": "Hilft SEO der KI-Sichtbarkeit?",
+        "cat": "SEO",
+        "quote": "Lohnt sich SEO trotz KI-Suche noch? Ja, so fließt klassisches SEO direkt in die KI-Sichtbarkeit ein.",
+        "readingTime": "3 Min. Lesezeit"
+    },
+    {
+        "slug": "prep-your-site-for-ai",
+        "title": "Website für KI-Suche vorbereiten",
+        "cat": "KI-Suche",
+        "quote": "Ein praktischer Schritt-für-Schritt-Leitfaden, um Ihre Website auf eine Welt vorzubereiten, in der Kunden KI um Empfehlungen bitten.",
+        "readingTime": "3 Min. Lesezeit"
+    },
+    {
+        "slug": "why-mobile-friendly-design-matters",
+        "title": "Warum mobilfreundliches Design zählt",
+        "cat": "Design",
+        "quote": "Die meisten Besucher kommen über ihr Smartphone. So wirkt sich eine schlecht optimierte Website wirklich aus.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "how-to-measure-advertising-success",
+        "title": "Wie misst man Werbeerfolg?",
+        "cat": "Marketing",
+        "quote": "Impressionen, Klicks, Leads, ROAS — welche Zahlen zählen wirklich? Ein Leitfaden, um zu erkennen, ob Werbung wirkt.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "what-makes-a-website-seo-friendly",
+        "title": "Was macht eine Website SEO-freundlich?",
+        "cat": "SEO",
+        "quote": "Eine schöne Website, die niemand findet, lässt kein Unternehmen wachsen. Das macht eine Seite wirklich SEO-freundlich.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "wordpress-vs-webflow-vs-shopify",
+        "title": "WordPress vs. Webflow vs. Shopify",
+        "cat": "Design",
+        "quote": "Die Wahl der Website-Plattform ist wie die Wahl eines Fundaments vor dem Bau. Ein klarer Vergleich der drei.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "what-is-performance-marketing",
+        "title": "Was ist Performance Marketing?",
+        "cat": "Marketing",
+        "quote": "Performance Marketing bedeutet, für messbare Ergebnisse zu bezahlen statt für Hoffnung. Das steckt wirklich dahinter.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "how-does-paid-advertising-work",
+        "title": "Wie funktioniert bezahlte Werbung?",
+        "cat": "Marketing",
+        "quote": "Bezahlte Anzeigen bedeuten nicht einfach 'bezahlen, um zuerst zu erscheinen'. So funktioniert die Auktion wirklich.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "performance-marketing-for-dummies",
+        "title": "Performance Marketing für Anfänger",
+        "cat": "Marketing",
+        "quote": "Ein anfängerfreundlicher Überblick darüber, was Performance Marketing wirklich ist, welche Kanäle zählen und wie man startet, ohne Budget zu verschwenden.",
+        "readingTime": "3 Min. Lesezeit"
+    },
+    {
+        "slug": "keyword-research-for-dummies",
+        "title": "Keyword-Recherche für Anfänger",
+        "cat": "SEO",
+        "quote": "Die meisten Anfänger wählen Keywords nach Bauchgefühl aus. So findet man die, nach denen tatsächlich gesucht wird.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "local-seo-for-dummies",
+        "title": "Lokales SEO für Anfänger",
+        "cat": "SEO",
+        "quote": "46% aller Google-Suchanfragen suchen nach lokalen Unternehmen. So erscheint man tatsächlich in diesen Ergebnissen.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "link-building-for-dummies",
+        "title": "Linkaufbau für Anfänger",
+        "cat": "SEO",
+        "quote": "Backlinks gehören immer noch zu Googles wichtigsten drei Rankingfaktoren. So verdient man sie tatsächlich, und so verschwendet man nur Zeit.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "content-marketing-for-dummies",
+        "title": "Content-Marketing für Anfänger",
+        "cat": "Marketing",
+        "quote": "Content-Marketing ist nicht nur Bloggen. Das ist das eigentliche System, das aus Inhalten Kunden macht.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "email-marketing-for-dummies",
+        "title": "E-Mail-Marketing für Anfänger",
+        "cat": "Marketing",
+        "quote": "E-Mail bringt immer noch etwa 36 Euro für jeden investierten Euro zurück, mehr als jeder andere Kanal. So nutzt man es tatsächlich.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "core-web-vitals-for-dummies",
+        "title": "Core Web Vitals für Anfänger",
+        "cat": "Performance",
+        "quote": "Google nutzt drei spezifische Geschwindigkeitswerte, um Rankings mitzubestimmen. Das messen sie, und so verbessert man sie tatsächlich.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "landing-pages-for-dummies",
+        "title": "Landingpages für Anfänger",
+        "cat": "Design",
+        "quote": "Eine Landingpage hat genau eine Aufgabe, anders als eine Startseite. Das unterscheidet tatsächlich eine konvertierende Seite von einer, die es nicht tut.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "schema-markup-for-dummies",
+        "title": "Schema-Markup für Anfänger",
+        "cat": "KI-Suche",
+        "quote": "Schema-Markup ist unsichtbarer Code, der Google und KI-Assistenten genau sagt, was Ihr Inhalt bedeutet. Das wird jedes Jahr wichtiger.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "how-does-seo-work",
+        "title": "Wie funktioniert SEO?",
+        "cat": "SEO",
+        "quote": "SEO ist keine Magie, sondern ein Prozess. So finden, verstehen und ranken Suchmaschinen eine Website tatsächlich.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "how-long-does-seo-take",
+        "title": "Wie lange dauert SEO?",
+        "cat": "SEO",
+        "quote": "SEO passiert nicht über Nacht. Ein realistischer, monatsweiser Blick darauf, wie lange es wirklich dauert.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "is-seo-worth-it",
+        "title": "Lohnt sich SEO?",
+        "cat": "SEO",
+        "quote": "Lohnt sich SEO wirklich Zeit und Geld? Eine ehrliche Aufschlüsselung von Kosten, Ertrag und wann es Sinn ergibt.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "how-much-does-seo-cost",
+        "title": "Was kostet SEO?",
+        "cat": "SEO",
+        "quote": "SEO-Preise variieren stark. Was den Preis wirklich treibt und realistische Preisspannen für verschiedene Unternehmensgrößen.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "can-i-do-seo-myself",
+        "title": "Kann ich SEO selbst machen?",
+        "cat": "SEO",
+        "quote": "DIY-SEO ist möglich, hat aber echte Grenzen. Das lässt sich realistisch selbst erledigen.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "why-isn-t-my-website-ranking",
+        "title": "Warum rankt meine Website nicht?",
+        "cat": "SEO",
+        "quote": "Kommt bei Google trotz aller Bemühungen nicht vor? Die häufigsten Gründe, und wie man jeden davon tatsächlich behebt.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "what-is-technical-seo",
+        "title": "Was ist technisches SEO?",
+        "cat": "SEO",
+        "quote": "Technisches SEO ist das unsichtbare Fundament, auf dem guter Content aufbaut. Das umfasst es tatsächlich und warum es zählt.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "what-is-enterprise-seo",
+        "title": "Was ist Enterprise SEO?",
+        "cat": "SEO",
+        "quote": "Enterprise SEO ist ein anderes Spiel als SEO für kleine Unternehmen. Das ändert sich im großen Maßstab.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "the-seo-checklist-for-2026",
+        "title": "Die SEO-Checkliste für 2026",
+        "cat": "SEO",
+        "quote": "Eine praktische, priorisierte SEO-Checkliste für 2026, die technische Gesundheit, Content, KI-Sichtbarkeit und Autorität abdeckt.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "how-to-rank-on-google",
+        "title": "So rankt man bei Google",
+        "cat": "SEO",
+        "quote": "Bei Google zu ranken ist keine Geheimformel, sondern ein wiederholbarer Prozess. Das sieht Schritt für Schritt tatsächlich so aus.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "how-to-increase-organic-traffic",
+        "title": "So steigert man organischen Traffic",
+        "cat": "SEO",
+        "quote": "Mehr organischer Traffic kommt selten von einem einzigen Trick, sondern vom Stapeln mehrerer bewährter Strategien. Das funktioniert tatsächlich.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "how-to-perform-an-seo-audit",
+        "title": "Wie man ein SEO-Audit durchführt",
+        "cat": "SEO",
+        "quote": "Ein praktischer, strukturierter Ansatz, um die SEO-Gesundheit einer Website zu prüfen, bevor eine echte Strategie darauf aufgebaut wird.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "what-is-topical-authority",
+        "title": "Was ist thematische Autorität?",
+        "cat": "SEO",
+        "quote": "Warum manche Websites für ein ganzes Thema leicht ranken, während andere für ein einzelnes Keyword kämpfen.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "what-is-eeat",
+        "title": "Was ist EEAT?",
+        "cat": "SEO",
+        "quote": "Erfahrung, Expertise, Autorität und Vertrauenswürdigkeit. Das bedeutet jeder Teil, und so stärkt man ihn tatsächlich.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "how-to-improve-google-rankings",
+        "title": "So verbessert man Google-Rankings",
+        "cat": "SEO",
+        "quote": "Rankt bereits auf Seite zwei oder hängt bei Position acht fest? So bringt man bestehende Seiten tatsächlich weiter nach oben.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "best-web-hosting",
+        "title": "Bestes Webhosting: Wie Sie wirklich den richtigen Anbieter wählen",
+        "cat": "Hosting",
+        "quote": "Es gibt kein einziges 'bestes' Hosting, der richtige Anbieter hängt von den Anforderungen Ihrer Website ab. Ein praktischer Rahmen für eine gute Wahl.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "vps-vs-shared-hosting",
+        "title": "VPS vs. Shared Hosting: Was braucht Ihre Website wirklich?",
+        "cat": "Hosting",
+        "quote": "VPS und Shared Hosting lösen unterschiedliche Probleme zu unterschiedlichen Preisen. Eine praktische Einordnung, wann welches sinnvoll ist.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "cloud-hosting-explained",
+        "title": "Cloud-Hosting erklärt: Was es wirklich bedeutet und warum es zählt",
+        "cat": "Hosting",
+        "quote": "Cloud-Hosting verteilt eine Website statt auf einen einzelnen auf mehrere Server. Das bedeutet das in der Praxis, und wann es sich lohnt.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "wordpress-hosting-guide",
+        "title": "WordPress-Hosting: Was es wirklich anders macht (und wann Sie es brauchen)",
+        "cat": "Hosting",
+        "quote": "WordPress-spezifisches Hosting bietet echte Vorteile gegenüber generischem Hosting. Das ist wirklich anders, und so entscheiden Sie, ob es sich lohnt.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "what-hosting-do-i-need",
+        "title": "Welches Hosting brauche ich wirklich? Eine einfache Entscheidungshilfe",
+        "cat": "Hosting",
+        "quote": "Verwirrt von all den Hosting-Optionen? So finden Sie unkompliziert heraus, welchen Hosting-Typ Ihre Website tatsächlich braucht.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "fastest-hosting-providers",
+        "title": "Was macht einen Hosting-Anbieter wirklich schnell?",
+        "cat": "Hosting",
+        "quote": "Geschwindigkeitsversprechen von Hosting-Anbietern können irreführend sein. Das bestimmt echte Geschwindigkeit wirklich, und so bewerten Sie sie ehrlich.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "how-to-migrate-hosting",
+        "title": "Hosting migrieren, ohne die Website zu zerstören",
+        "cat": "Hosting",
+        "quote": "Ein Hosting-Umzug kann reibungslos verlaufen oder echte Ausfallzeiten und SEO-Verluste verursachen. So gehen Sie ihn sicher und methodisch an.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "ssl-explained",
+        "title": "SSL erklärt: Warum dieses kleine Schloss-Symbol wirklich zählt",
+        "cat": "Hosting",
+        "quote": "SSL verschlüsselt Daten zwischen Browser und Website und ist heute eine Grundvoraussetzung, keine Option mehr. Das bewirkt es wirklich, und warum es zählt.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "cdn-explained",
+        "title": "CDN erklärt: Wie es Websites wirklich schneller macht",
+        "cat": "Hosting",
+        "quote": "Ein CDN liefert Inhalte von Servern nahe jedem Besucher statt von einem einzigen fernen Ursprungsserver. So funktioniert das wirklich.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "dns-explained",
+        "title": "DNS erklärt: Das System hinter jeder Website-Adresse",
+        "cat": "Hosting",
+        "quote": "DNS übersetzt Domainnamen in die Adressen, die Computer tatsächlich verwenden. Eine verständliche Erklärung, wie es funktioniert und warum es zählt.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "email-hosting-guide",
+        "title": "E-Mail-Hosting: Was es ist und warum es sich von Website-Hosting unterscheidet",
+        "cat": "Hosting",
+        "quote": "E-Mail-Hosting wird oft mit Website-Hosting verwechselt, ist aber technisch ein separater Dienst. Das umfasst E-Mail-Hosting wirklich.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "domain-vs-hosting",
+        "title": "Domain vs. Hosting: Was ist der tatsächliche Unterschied?",
+        "cat": "Hosting",
+        "quote": "Domain und Hosting werden oft gebündelt und leicht verwechselt, sind aber wirklich getrennte Dinge. Eine klare Aufschlüsselung beider Begriffe.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "what-is-saas",
+        "title": "Was ist SaaS? Eine Einführung in Software as a Service",
+        "cat": "SaaS",
+        "quote": "SaaS ist zum dominanten Softwaremodell geworden. Das bedeutet es wirklich, so funktioniert es, und warum es traditionelle Software für die meisten Unternehmen ersetzt hat.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "saas-vs-software",
+        "title": "SaaS vs. traditionelle Software: Was ist der echte Unterschied?",
+        "cat": "SaaS",
+        "quote": "SaaS und traditionelle Software lösen dasselbe Grundproblem auf wirklich unterschiedliche Weise. Ein klarer Vergleich, wie sie sich tatsächlich unterscheiden.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "saas-pricing-guide",
+        "title": "SaaS-Preisgestaltung: Wie man sie wirklich gut strukturiert",
+        "cat": "SaaS",
+        "quote": "Preisgestaltung beeinflusst Wachstum, Kundenbindung und Umsatz stärker als fast jede andere Entscheidung. Ein praktischer Überblick über gängige Modelle.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "best-crm",
+        "title": "Bestes CRM: Wie Sie wirklich das richtige auswählen",
+        "cat": "SaaS",
+        "quote": "Es gibt kein einziges bestes CRM, das richtige hängt von Vertriebsprozess und Teamgröße ab. Ein praktischer Rahmen für eine gute Auswahl.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "marketing-automation-guide",
+        "title": "Marketing-Automatisierung: Was sie wirklich tut und wie man sie gut einsetzt",
+        "cat": "SaaS",
+        "quote": "Marketing-Automatisierung kann personalisierte Ansprache echt skalieren oder robotenhaften, wirkungslosen Spam erzeugen. So machen Sie es wirklich gut.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "ai-saas-tools",
+        "title": "KI-SaaS-Tools: Was sie wirklich sind und wie man sie bewertet",
+        "cat": "SaaS",
+        "quote": "KI-gestützte SaaS-Tools sind überall, doch nicht jede 'KI'-Behauptung bedeutet dasselbe. So bewerten Sie ehrlich, ob ein Tool echten Wert liefert.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "saas-onboarding-best-practices",
+        "title": "SaaS-Onboarding: Wie neue Nutzer wirklich zu echtem Mehrwert kommen",
+        "cat": "SaaS",
+        "quote": "Onboarding entscheidet oft über SaaS-Kundenbindung. Ein praktischer Überblick darüber, was Onboarding wirklich effektiv macht.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "saas-seo-guide",
+        "title": "SaaS-SEO: Wie es sich von normalem SEO unterscheidet",
+        "cat": "SaaS",
+        "quote": "SaaS-SEO steht vor eigenen Herausforderungen durch abstrakte Produkte und lange Recherchezyklen. So gehen Sie es effektiv an.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "saas-kpis-to-track",
+        "title": "SaaS-KPIs: Die Kennzahlen, die wirklich die Unternehmensgesundheit zeigen",
+        "cat": "SaaS",
+        "quote": "Vanity-Metriken können echte Probleme in einem SaaS-Unternehmen verschleiern. Ein praktischer Überblick über die KPIs, die wirklich Gesundheit zeigen.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "best-ai-tools",
+        "title": "Beste KI-Tools: Ein praktischer Leitfaden nach tatsächlichem Anwendungsfall",
+        "cat": "KI",
+        "quote": "Es gibt kein einziges bestes KI-Tool, die richtige Wahl hängt von der Aufgabe ab. Ein praktischer Überblick nach Anwendungsfall.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "ai-for-seo",
+        "title": "KI für SEO: Was sie wirklich hilft (und wo sie an Grenzen stößt)",
+        "cat": "KI",
+        "quote": "KI hat SEO-Arbeitsabläufe wirklich verändert. Ein ehrlicher Überblick, wo sie tatsächlich hilft und wo menschliches Urteilsvermögen weiter zählt.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "ai-for-web-design",
+        "title": "KI im Webdesign: Was sie kann und wo sie an Grenzen stößt",
+        "cat": "KI",
+        "quote": "KI-Tools haben Teile des Webdesign-Workflows wirklich verändert. Ein ehrlicher Blick darauf, was sie gut kann und wo Designer-Urteilsvermögen weiter zählt.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "ai-for-marketing",
+        "title": "KI im Marketing: Ein praktischer, ehrlicher Blick auf das, was sich wirklich ändert",
+        "cat": "KI",
+        "quote": "KI hat mehrere Bereiche der Marketingarbeit wirklich verändert. Ein ehrlicher Überblick über echte Verbesserungen und wo Strategie weiterhin zählt.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "ai-for-content-writing",
+        "title": "KI beim Content-Schreiben: Wie man sie nutzt, ohne Qualität zu verlieren",
+        "cat": "KI",
+        "quote": "KI kann Content-Erstellung wirklich beschleunigen, unachtsam genutzt entsteht aber generischer, vergesslicher Text. So nutzen Sie sie wirklich gut.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "ai-for-developers",
+        "title": "KI für Entwickler: Wie sie die Softwareentwicklung wirklich verändert",
+        "cat": "KI",
+        "quote": "KI-Coding-Tools sind wirklich zum Standard-Workflow vieler Entwickler geworden. Das helfen sie wirklich, und wo Entwicklerurteil weiterhin zählt.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "ai-automation-guide",
+        "title": "KI-Automatisierung: Ein praktischer Leitfaden, was sie wirklich gut bewältigt",
+        "cat": "KI",
+        "quote": "KI-Automatisierung bewältigt bestimmte wiederkehrende Geschäftsprozesse wirklich gut und andere weniger. Ein ehrlicher, praktischer Überblick.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "ai-agents-explained",
+        "title": "KI-Agenten erklärt: Was sie wirklich sind (und noch nicht)",
+        "cat": "KI",
+        "quote": "KI-Agenten sind eines der meist gehypten aktuellen KI-Konzepte. Eine bodenständige, ehrliche Erklärung, was sie wirklich leisten und aktuelle Grenzen.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "chatgpt-for-business",
+        "title": "ChatGPT für Unternehmen: Praktische, hochwertige Anwendungsfälle",
+        "cat": "KI",
+        "quote": "ChatGPT hat echte, praktische geschäftliche Anwendungen über die reine Neuheit hinaus. Ein bodenständiger Blick, wo es wirklich echten Wert liefert.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "gemini-vs-chatgpt",
+        "title": "Gemini vs. ChatGPT: Wie Sie wirklich zwischen ihnen entscheiden",
+        "cat": "KI",
+        "quote": "Gemini und ChatGPT sind beide leistungsfähige universelle KI-Assistenten mit echten Unterschieden. Ein praktischer, ehrlicher Vergleich.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "claude-vs-chatgpt",
+        "title": "Claude vs. ChatGPT: Wie Sie wirklich zwischen ihnen entscheiden",
+        "cat": "KI",
+        "quote": "Claude und ChatGPT sind beide führende KI-Assistenten mit wirklich unterschiedlichen Stärken. Ein praktischer, ehrlicher Vergleich für Ihre Entscheidung.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "perplexity-vs-google",
+        "title": "Perplexity vs. Google: Wie sich die beiden wirklich unterscheiden",
+        "cat": "KI",
+        "quote": "Perplexity und Google stehen für wirklich unterschiedliche Ansätze der Suche. Ein praktischer Überblick, wann jedes von beiden besser passt.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "how-to-rank-on-google-maps",
+        "title": "Bei Google Maps ranken: Ein praktischer Leitfaden",
+        "cat": "Lokales SEO",
+        "quote": "Google-Maps-Rankings hängen von anderen Faktoren als normale Suche ab. Das bestimmt Map-Pack-Rankings wirklich, und so verbessern Sie sie.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "google-business-profile-guide",
+        "title": "Google-Unternehmensprofil: Ein vollständiger Einrichtungs- und Optimierungsleitfaden",
+        "cat": "Lokales SEO",
+        "quote": "Das Google-Unternehmensprofil ist für die meisten lokalen Unternehmen das wirkungsvollste kostenlose lokale SEO-Tool. So richten Sie es richtig ein und optimieren es.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "local-citations-guide",
+        "title": "Lokale Zitationen: Warum sie zählen und wie man sie richtig aufbaut",
+        "cat": "Lokales SEO",
+        "quote": "Lokale Zitationen stärken die Glaubwürdigkeit Ihres Unternehmens im gesamten Web. Das sind sie wirklich, warum Konsistenz so zählt, und wie man sie aufbaut.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "local-backlinks-guide",
+        "title": "Lokale Backlinks: Wie man sie verdient, und warum sie mehr zählen als generische Links",
+        "cat": "Lokales SEO",
+        "quote": "Lokale Backlinks tragen ein Gewicht für lokales SEO, das generische Links nicht haben. So verdienen Sie sie tatsächlich für ein lokales Unternehmen.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "multi-location-seo",
+        "title": "SEO für mehrere Standorte: Jeden Standort ranken, ohne sich selbst zu kannibalisieren",
+        "cat": "Lokales SEO",
+        "quote": "Mehrere Geschäftsstandorte zu ranken bringt eigene Herausforderungen mit sich. So gehen Sie es richtig an.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "nap-consistency-guide",
+        "title": "NAP-Konsistenz: Warum dieses einfache Detail lokale Rankings still beeinflusst",
+        "cat": "Lokales SEO",
+        "quote": "NAP-Konsistenz klingt geringfügig, beeinflusst aber echt lokales Suchvertrauen und Rankings. So auditieren und beheben Sie sie tatsächlich.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "reviews-for-seo",
+        "title": "Bewertungen für SEO: Warum sie mehr zählen, als die meisten Unternehmen denken",
+        "cat": "Lokales SEO",
+        "quote": "Bewertungen gehören zu den stärksten lokalen SEO-Vertrauenssignalen. Warum sie fürs Ranking zählen, und praktische Wege, mehr davon zu bekommen.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "local-schema-markup",
+        "title": "Lokales Schema-Markup: Wie es lokales SEO stärkt",
+        "cat": "Lokales SEO",
+        "quote": "LocalBusiness-Schema-Markup hilft Suchmaschinen genau zu verstehen, wer und wo Ihr Unternehmen ist. So funktioniert es, und warum es sich lohnt.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "service-area-business-seo",
+        "title": "SEO für Dienstleister ohne festen Standort: Was ohne Ladengeschäft anders ist",
+        "cat": "Lokales SEO",
+        "quote": "Dienstleister ohne Ladengeschäft stehen vor eigenen lokalen SEO-Herausforderungen. So gehen Sie es richtig an.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "local-seo-checklist",
+        "title": "Die lokale SEO-Checkliste: Alles, was es wert ist, richtig gemacht zu werden",
+        "cat": "Lokales SEO",
+        "quote": "Eine praktische, priorisierte lokale SEO-Checkliste, die Google-Unternehmensprofil, Zitationen, Bewertungen und On-Site-Signale abdeckt.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "how-to-choose-an-seo-agency",
+        "title": "Eine SEO-Agentur wählen: Ein praktischer Prüfleitfaden",
+        "cat": "Agentur",
+        "quote": "Die falsche SEO-Agentur zu wählen verschwendet echtes Geld und Zeit. Ein praktischer Rahmen zur Prüfung und zum Erkennen von Warnsignalen vor Vertragsschluss.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "what-does-an-seo-agency-do",
+        "title": "Was macht eine SEO-Agentur wirklich? Eine klare Aufschlüsselung",
+        "cat": "Agentur",
+        "quote": "SEO-Agentur-Leistungen variieren, doch das umfasst ein wirklich umfassendes Engagement, und das erwartet Sie in jeder Phase.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "web-design-pricing-guide",
+        "title": "Webdesign-Preise: Ein realistischer Leitfaden zu tatsächlichen Kosten",
+        "cat": "Agentur",
+        "quote": "Webdesign-Preise variieren enorm je nach Umfang und Anbieter. Ein realistischer Überblick, um ein angemessenes Budget festzulegen.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "monthly-seo-packages-explained",
+        "title": "Monatliche SEO-Pakete erklärt: Wofür Sie wirklich bezahlen",
+        "cat": "Agentur",
+        "quote": "Preise für monatliche SEO-Retainer können undurchsichtig wirken. Eine praktische Aufschlüsselung, was ein echtes monatliches Paket enthalten sollte.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "seo-roi-explained",
+        "title": "SEO-ROI erklärt: Wie man wirklich berechnet, ob es sich lohnt",
+        "cat": "Agentur",
+        "quote": "SEO-ROI ist schwerer zu berechnen als bei bezahlten Anzeigen, aber wirklich möglich. Ein praktischer Rahmen, um zu messen, ob SEO sich auszahlt.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "seo-contract-guide",
+        "title": "Der SEO-Vertragsleitfaden: Worauf Sie vor der Unterschrift achten sollten",
+        "cat": "Agentur",
+        "quote": "Ein SEO-Vertrag schützt beide Seiten, aber nur wenn er wirklich klar ist. Das sollten Sie beachten, und welche Warnsignale vor der Unterschrift zählen.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "digital-marketing-pricing-guide",
+        "title": "Digital-Marketing-Preise: Ein realistischer Leitfaden über verschiedene Kanäle",
+        "cat": "Agentur",
+        "quote": "Digital-Marketing-Kosten variieren enorm je nach Kanal. Eine realistische, praktische Aufschlüsselung für ein angemessenes Gesamtbudget.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "marketing-budget-guide",
+        "title": "Der Marketingbudget-Leitfaden: Wie man wirklich eines festlegt",
+        "cat": "Agentur",
+        "quote": "Es gibt keine universelle Marketingbudget-Zahl. Ein praktischer Rahmen, um ein Budget festzulegen, das wirklich zu Ihrem Unternehmen passt.",
+        "readingTime": "4 Min. Lesezeit"
+    },
+    {
+        "slug": "hiring-agency-vs-freelancer",
+        "title": "Agentur vs. Freelancer engagieren: Wie Sie wirklich entscheiden",
+        "cat": "Agentur",
+        "quote": "Agenturen und Freelancer bieten genuin unterschiedliche Kompromisse. Ein praktischer Rahmen, um zu entscheiden, was zu Ihrer Situation passt.",
+        "readingTime": "4 Min. Lesezeit"
+    }
+];
+
+var grid = document.getElementById("post-grid");
+var filterBar = document.getElementById("filter-bar");
+
+var categories = ["Alle"];
+posts.forEach(function(p){
+    if (categories.indexOf(p.cat) === -1) categories.push(p.cat);
+});
+
+var activeCat = "Alle";
+
+function renderGrid(){
+    grid.innerHTML = "";
+    posts.filter(function(p){ return activeCat === "Alle" || p.cat === activeCat; })
+        .forEach(function(p){
+            var a = document.createElement("a");
+            a.className = "post-card";
+            a.href = "/blog/de/" + p.slug + "/";
+            a.innerHTML =
+                '<p class="post-card-cat">' + p.cat + '</p>' +
+                '<h3 class="post-card-title">' + p.title + '</h3>' +
+                '<p class="post-card-excerpt">' + p.quote + '</p>' +
+                '<p class="post-card-meta">' + p.readingTime + '</p>';
+            grid.appendChild(a);
+        });
+}
+
+function renderPills(){
+    filterBar.innerHTML = "";
+    categories.forEach(function(cat){
+        var btn = document.createElement("button");
+        btn.className = "filter-pill" + (cat === activeCat ? " active" : "");
+        btn.textContent = cat;
+        btn.addEventListener("click", function(){
+            activeCat = cat;
+            renderPills();
+            renderGrid();
+        });
+        filterBar.appendChild(btn);
+    });
+}
+
+renderPills();
+renderGrid();
+
+(function(){
+    function update(){ document.body.classList.toggle("scrolled", window.pageYOffset > 20); }
+    window.addEventListener("scroll", update, { passive: true });
+    update();
+})();
+
+var shape = { wave1: {amplitude: 200, frequency: 7.692, phase: 6.283}, wave2: {amplitude: 200, frequency: 7.912, phase: 6.283}, wave3: {amplitude: 200, frequency: 10, phase: 6.283} };
+new BlobAnimation("blob_container", {
+    BLOB_SIZE: 220,
+    BLOB_DISTANCE: 1000,
+    DETALISATION: 60,
+    PERSPECTIVE_DISTORTION: 1,
+    ROTATION_SPEED: 5,
+    DOT_SIZE: (window.innerWidth > 480) ? 1.021 : 0.6,
+    DOT_COLOR: "#d0d0d0",
+    MOUSE_DISTANCE_MIN: 20,
+    MOUSE_DISTANCE_MAX: 400,
+    MOUSE_SENSITIVITY: 1,
+    INERTIAL_TIME: 4,
+    INITIAL_SHAPE: shape,
+    USE_WAVE_MOTION: true,
+    USE_WAVE_SWING: true,
+    USE_MORPHING: true,
+    MORPHING_AUTOPLAY: true,
+    MORPHING_DURATION: 1,
+    MORPHING_DELAY: 0,
+    MORPHING_TRANSITION_TYPE: "cubic",
+    MORPHING_SHAPES: [shape],
+    WAVE_1_MOTION_SPEED: 1.3,
+    WAVE_2_MOTION_SPEED: 0.8
+});
+</script>
+</body>
+</html>

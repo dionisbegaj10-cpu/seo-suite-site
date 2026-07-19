@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NAP Consistency | SSUITE</title>
+<meta content="NAP consistency sounds minor but genuinely affects local search trust and rankings. Here's why it matters and how to actually audit and fix it." name="description"/>
+<link href="https://seosuite.studio/blog/nap-consistency-guide/" rel="canonical"/>
+<link href="https://seosuite.studio/blog/nap-consistency-guide/" hreflang="en" rel="alternate"/>
+<link href="https://seosuite.studio/blog/de/nap-consistency-guide/" hreflang="de" rel="alternate"/>
+<link href="https://seosuite.studio/blog/nap-consistency-guide/" hreflang="x-default" rel="alternate"/>
+<meta content="article" property="og:type"/>
+<meta content="NAP Consistency | SSUITE" property="og:title"/>
+<meta content="NAP consistency sounds minor but genuinely affects local search trust and rankings. Here's why it matters and how to actually audit and fix it." property="og:description"/>
+<meta content="https://seosuite.studio/blog/nap-consistency-guide/" property="og:url"/>
+<meta content="SSUITE" property="og:site_name"/>
+<meta content="https://seosuite.studio/img/seosuite-digital-creative-studio.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="NAP Consistency | SSUITE" name="twitter:title"/>
+<meta content="NAP consistency sounds minor but genuinely affects local search trust and rankings. Here's why it matters and how to actually audit and fix it." name="twitter:description"/>
+<meta content="https://seosuite.studio/img/seosuite-digital-creative-studio.jpg" name="twitter:image"/>
+<meta content="#ffffff" name="theme-color"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "NAP Consistency: Why This Simple Detail Quietly Affects Local Rankings",
+  "description": "NAP consistency sounds minor but genuinely affects local search trust and rankings. Here's why it matters and how to actually audit and fix it.",
+  "author": {
+    "@type": "Organization",
+    "name": "SSUITE"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SSUITE",
+    "url": "https://seosuite.studio/"
+  },
+  "mainEntityOfPage": "https://seosuite.studio/blog/nap-consistency-guide/"
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://seosuite.studio/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://seosuite.studio/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "NAP Consistency: Why This Simple Detail Quietly Affects Local Rankings",
+      "item": "https://seosuite.studio/blog/nap-consistency-guide/"
+    }
+  ]
+}</script>
+<style>
+@font-face {
+    font-family: 'Grumpy 24';
+    src: url('/css/fonts/Grumpy-Black24.woff2') format('woff2'),
+        url('/css/fonts/Grumpy-Black24.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #fff; color: #1c1c1c; }
+body { font-family: Arial, Helvetica, sans-serif; }
+a { color: inherit; }
+#back-home {
+    position: fixed;
+    top: max(24px, env(safe-area-inset-top, 0px) + 16px);
+    left: max(24px, env(safe-area-inset-left, 0px) + 16px);
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: #1c1c1c;
+    text-decoration: none;
+    z-index: 10;
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.35s ease;
+}
+body.scrolled #back-home { opacity: 0; pointer-events: none; }
+#lang-switch-article {
+    position: fixed;
+    top: max(24px, env(safe-area-inset-top, 0px) + 16px);
+    right: max(24px, env(safe-area-inset-right, 0px) + 16px);
+    z-index: 10;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    opacity: 1;
+    transition: opacity 0.35s ease;
+}
+body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
+#lang-switch-article a { text-decoration: none; color: rgba(0,0,0,0.4); }
+#lang-switch-article a.active { color: #1c1c1c; }
+#lang-switch-article span { color: rgba(0,0,0,0.3); margin: 0 4px; }
+.article-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 120px 6% 120px;
+}
+.article-cat {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.4);
+    margin: 0 0 16px;
+}
+.article-title {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    line-height: 1.1;
+    margin: 0 0 32px;
+    color: #1c1c1c;
+}
+.article-body p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: rgba(0,0,0,0.72);
+    margin: 0 0 24px;
+}
+#related-service {
+    margin-top: 40px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+#related-service .eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.4);
+    margin: 0 0 12px;
+}
+.related-service-link {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 15px;
+    color: #1c1c1c;
+    text-decoration: none;
+    border-bottom: 2px solid #1c1c1c;
+    padding-bottom: 3px;
+}
+.related-service-link:hover { opacity: 0.6; }
+.related-service-link span { opacity: 0.5; }
+#post-nav {
+    max-width: 680px;
+    margin: 40px auto 0;
+    padding: 0 6% 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+#post-nav a {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    color: rgba(0,0,0,0.55);
+}
+#post-nav a:hover { color: #1c1c1c; }
+</style>
+</head>
+<body>
+<a href="/blog/" id="back-home">← Blog</a>
+<div id="lang-switch-article">
+<a class="active" href="/blog/nap-consistency-guide/">EN</a><span>/</span><a href="/blog/de/nap-consistency-guide/">DE</a>
+</div>
+<div class="article-inner">
+<p class="article-cat">Local SEO · 4 min read</p>
+<h1 class="article-title">NAP Consistency: Why This Simple Detail Quietly Affects Local Rankings</h1>
+<div class="article-body">
+<p>NAP stands for Name, Address, and Phone number — the core identifying details of a business. NAP consistency refers to how accurately and uniformly that information appears across every place it shows up online, and it's a genuinely important, often underestimated local SEO factor.</p>
+<p>Search engines cross-reference a business's information across the web to verify legitimacy and build confidence in local rankings. When the same business shows slightly different details in different places — "123 Main St, Suite 4" on one listing, "123 Main Street" on another, an outdated phone number on a third — it creates ambiguity that can quietly undermine the trust signals local rankings depend on.</p>
+<p>Business name variations. Using "ABC Plumbing" in one place and "ABC Plumbing LLC" or "ABC Plumbing Services" in another, even though they refer to the same business.</p>
+<p>Address formatting differences. Abbreviating "Street" as "St." in one listing and spelling it out in another, or omitting a suite number that appears in some listings but not others.</p>
+<p>Outdated information after a move or number change. A business that's moved locations or changed phone numbers often has old, incorrect information persisting on directories that were never updated.</p>
+<p>Duplicate or conflicting listings. Multiple listings for the same business, sometimes created accidentally over time, with slightly different or conflicting information across them.</p>
+<p>Search for your business name directly and review how it appears across major directories, review sites, and any other citations you can find, comparing each against your current, correct information. Third-party citation-checking tools can also help identify inconsistencies across a broader range of sources than manual searching alone would catch.</p>
+<p>Correct inaccurate listings directly on each individual directory or platform where they appear, and consider using a data aggregator service that can push corrected information out to a wide network of secondary listings more efficiently than manually correcting each one individually.</p>
+<p>Decide on one exact, consistent format for your business name, address, and phone number, and use that exact format everywhere going forward — every new listing, every citation, every mention — to prevent new inconsistencies from accumulating over time.</p>
+<p>NAP consistency is a simple-sounding detail that genuinely affects local search trust and rankings — inconsistent business information across the web creates ambiguity that undermines local SEO signals, even when the underlying business is entirely legitimate. Auditing existing listings and establishing one consistent format going forward is a straightforward, high-value local SEO investment.</p>
+</div>
+<div id="related-service">
+<p class="eyebrow">Related service</p>
+<a class="related-service-link" href="/services/growth/">SEO <span>→</span></a>
+</div>
+</div>
+<div id="post-nav">
+<a href="/blog/multi-location-seo/">← Previous</a>
+<a href="/blog/reviews-for-seo/">Next →</a>
+</div>
+<script>
+(function(){
+    function update(){ document.body.classList.toggle("scrolled", window.pageYOffset > 20); }
+    window.addEventListener("scroll", update, { passive: true });
+    update();
+})();
+</script>
+</body>
+</html>

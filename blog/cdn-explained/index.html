@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CDN Explained | SSUITE</title>
+<meta content="A CDN serves content from servers close to each visitor instead of one distant origin server. Here's how that actually works and why it matters." name="description"/>
+<link href="https://seosuite.studio/blog/cdn-explained/" rel="canonical"/>
+<link href="https://seosuite.studio/blog/cdn-explained/" hreflang="en" rel="alternate"/>
+<link href="https://seosuite.studio/blog/de/cdn-explained/" hreflang="de" rel="alternate"/>
+<link href="https://seosuite.studio/blog/cdn-explained/" hreflang="x-default" rel="alternate"/>
+<meta content="article" property="og:type"/>
+<meta content="CDN Explained | SSUITE" property="og:title"/>
+<meta content="A CDN serves content from servers close to each visitor instead of one distant origin server. Here's how that actually works and why it matters." property="og:description"/>
+<meta content="https://seosuite.studio/blog/cdn-explained/" property="og:url"/>
+<meta content="SSUITE" property="og:site_name"/>
+<meta content="https://seosuite.studio/img/seosuite-digital-creative-studio.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="CDN Explained | SSUITE" name="twitter:title"/>
+<meta content="A CDN serves content from servers close to each visitor instead of one distant origin server. Here's how that actually works and why it matters." name="twitter:description"/>
+<meta content="https://seosuite.studio/img/seosuite-digital-creative-studio.jpg" name="twitter:image"/>
+<meta content="#ffffff" name="theme-color"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CDN Explained: How It Actually Makes Websites Faster",
+  "description": "A CDN serves content from servers close to each visitor instead of one distant origin server. Here's how that actually works and why it matters.",
+  "author": {
+    "@type": "Organization",
+    "name": "SSUITE"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SSUITE",
+    "url": "https://seosuite.studio/"
+  },
+  "mainEntityOfPage": "https://seosuite.studio/blog/cdn-explained/"
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://seosuite.studio/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://seosuite.studio/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "CDN Explained: How It Actually Makes Websites Faster",
+      "item": "https://seosuite.studio/blog/cdn-explained/"
+    }
+  ]
+}</script>
+<style>
+@font-face {
+    font-family: 'Grumpy 24';
+    src: url('/css/fonts/Grumpy-Black24.woff2') format('woff2'),
+        url('/css/fonts/Grumpy-Black24.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #fff; color: #1c1c1c; }
+body { font-family: Arial, Helvetica, sans-serif; }
+a { color: inherit; }
+#back-home {
+    position: fixed;
+    top: max(24px, env(safe-area-inset-top, 0px) + 16px);
+    left: max(24px, env(safe-area-inset-left, 0px) + 16px);
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: #1c1c1c;
+    text-decoration: none;
+    z-index: 10;
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.35s ease;
+}
+body.scrolled #back-home { opacity: 0; pointer-events: none; }
+#lang-switch-article {
+    position: fixed;
+    top: max(24px, env(safe-area-inset-top, 0px) + 16px);
+    right: max(24px, env(safe-area-inset-right, 0px) + 16px);
+    z-index: 10;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    opacity: 1;
+    transition: opacity 0.35s ease;
+}
+body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
+#lang-switch-article a { text-decoration: none; color: rgba(0,0,0,0.4); }
+#lang-switch-article a.active { color: #1c1c1c; }
+#lang-switch-article span { color: rgba(0,0,0,0.3); margin: 0 4px; }
+.article-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 120px 6% 120px;
+}
+.article-cat {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.4);
+    margin: 0 0 16px;
+}
+.article-title {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    line-height: 1.1;
+    margin: 0 0 32px;
+    color: #1c1c1c;
+}
+.article-body p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: rgba(0,0,0,0.72);
+    margin: 0 0 24px;
+}
+#related-service {
+    margin-top: 40px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+#related-service .eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.4);
+    margin: 0 0 12px;
+}
+.related-service-link {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 15px;
+    color: #1c1c1c;
+    text-decoration: none;
+    border-bottom: 2px solid #1c1c1c;
+    padding-bottom: 3px;
+}
+.related-service-link:hover { opacity: 0.6; }
+.related-service-link span { opacity: 0.5; }
+#post-nav {
+    max-width: 680px;
+    margin: 40px auto 0;
+    padding: 0 6% 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+#post-nav a {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    color: rgba(0,0,0,0.55);
+}
+#post-nav a:hover { color: #1c1c1c; }
+</style>
+</head>
+<body>
+<a href="/blog/" id="back-home">← Blog</a>
+<div id="lang-switch-article">
+<a class="active" href="/blog/cdn-explained/">EN</a><span>/</span><a href="/blog/de/cdn-explained/">DE</a>
+</div>
+<div class="article-inner">
+<p class="article-cat">Hosting · 4 min read</p>
+<h1 class="article-title">CDN Explained: How It Actually Makes Websites Faster</h1>
+<div class="article-body">
+<p>A CDN (Content Delivery Network) is a network of servers distributed across many geographic locations, working together to serve website content from whichever server is physically closest to each individual visitor, rather than everyone pulling from a single distant origin server.</p>
+<p>Data takes real, measurable time to travel — a visitor in Australia loading a site hosted on a single server in the US experiences meaningfully more latency than a visitor located near that same server. A CDN caches copies of a site's content across servers worldwide, so that Australian visitor instead loads from a nearby server, cutting that latency dramatically.</p>
+<p>Static content — images, CSS, JavaScript files, videos — is what CDNs typically cache and distribute most effectively, since this content doesn't change per-visitor and can be safely duplicated across many locations. Dynamic, personalized content is less straightforward to cache this way, though CDNs have increasingly added capabilities to help with dynamic content too.</p>
+<p>Reduced load on the origin server. With a CDN handling much of the traffic for cached content, the origin server has less direct load, which can improve reliability and reduce the chance of a server becoming overwhelmed during traffic spikes.</p>
+<p>Better handling of traffic spikes. A sudden surge in traffic (a viral post, a major sale event) is easier for a distributed CDN to absorb than a single origin server.</p>
+<p>Some security benefits. Many CDN providers include basic protection against certain types of attacks (like DDoS attacks) as part of their service, adding a layer of resilience beyond pure speed.</p>
+<p>For a very small, low-traffic site serving a geographically concentrated, local audience, a CDN's benefit is more modest — the physical distance issue matters less if visitors are already close to the origin server. For sites with a geographically distributed audience, meaningful traffic, or media-heavy content, a CDN's benefit becomes substantial and often directly noticeable in real load time improvements.</p>
+<p>Many modern hosting providers include CDN integration built in or as a simple add-on, and popular standalone CDN services (Cloudflare being one of the most widely used) offer free or low-cost tiers that are straightforward to set up even for non-technical site owners.</p>
+<p>A CDN distributes a website's content across servers worldwide, reducing the physical distance data has to travel to reach each visitor, which directly improves load speed — particularly valuable for sites with a geographically spread-out audience, high traffic, or media-heavy content. Setup has become accessible enough that there's little reason not to use one for most sites serving more than a small, local audience.</p>
+</div>
+<div id="related-service">
+<p class="eyebrow">Related service</p>
+<a class="related-service-link" href="/services/hosting/">Hosting <span>→</span></a>
+</div>
+</div>
+<div id="post-nav">
+<a href="/blog/ssl-explained/">← Previous</a>
+<a href="/blog/dns-explained/">Next →</a>
+</div>
+<script>
+(function(){
+    function update(){ document.body.classList.toggle("scrolled", window.pageYOffset > 20); }
+    window.addEventListener("scroll", update, { passive: true });
+    update();
+})();
+</script>
+</body>
+</html>
