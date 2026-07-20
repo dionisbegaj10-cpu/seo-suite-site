@@ -382,6 +382,7 @@ body.hero-view #lang-switch { opacity: 1; pointer-events: all; }
     border: none;
     padding: 4px 2px;
     color: #ffffff;
+    text-decoration: none;
     cursor: pointer;
     opacity: 0.45;
     transition: opacity 0.2s ease;
