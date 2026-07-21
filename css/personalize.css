@@ -498,6 +498,12 @@ body.animated .trusted-logos img {
     .box-pres { width: min(900px, 86vw) !important; text-align: center; }
     #text1 p { max-width: 100%; }
 }
+@media (min-width: 1600px) {
+    .box-pres { width: min(1200px, 70vw) !important; }
+}
+@media (min-width: 2000px) {
+    .box-pres { width: min(1400px, 60vw) !important; }
+}
 
 /* --- Desktop service tiles: Branding + Hosting sit under Web & Design and
    AI Suite specifically, not under Performance/Web & Design. Row order
