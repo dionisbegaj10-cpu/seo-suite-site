@@ -17,6 +17,12 @@ body.animated #text1 .lead-q { color: #000; }
         margin: 0 auto;
     }
 }
+@media (min-width: 1600px) {
+    .box-header { max-width: 1200px; }
+}
+@media (min-width: 2000px) {
+    .box-header { max-width: 1400px; }
+}
 #text1 p:last-child { margin-bottom: 0; }
 
 /* Replace the Italian "CONTATTACI PER UN PREVENTIVO" rotating badge with an
