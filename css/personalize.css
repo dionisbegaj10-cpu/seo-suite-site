@@ -386,7 +386,7 @@ body.hero-view #lang-switch { opacity: 1; pointer-events: all; }
 #lang-switch .lang-opt {
     background: none;
     border: none;
-    padding: 4px 2px;
+    padding: 15px 13px;
     color: #ffffff;
     text-decoration: none;
     cursor: pointer;
