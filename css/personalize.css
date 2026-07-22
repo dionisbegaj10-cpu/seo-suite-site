@@ -490,6 +490,11 @@ body.animated .trusted-logos img {
     .trusted-logos li { height: 150px; }
     .trusted-logos img { max-width: min(280px, 100%); }
 }
+/* 5th trusted logo (Frankfurt Nanny Agency): sits on its own row under
+   Bergschneider (Felix) and Rueger, columns 3-4, on the 4-column grid. */
+@media (min-width: 768px) {
+    .trusted-logos li:nth-child(5) { grid-column: 3 / span 2; }
+}
 
 /* --- "start a project" footer CTA: same size/style as "Learn, Explore & Grow" --- */
 #ftitle {
