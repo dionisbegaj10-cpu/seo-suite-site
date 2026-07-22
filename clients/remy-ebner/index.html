@@ -229,6 +229,7 @@ body.scrolled #lang-switch { opacity: 0; pointer-events: none; }
     border: none;
     padding: 15px 13px;
     color: #ffffff;
+    text-decoration: none;
     font-family: inherit;
     font-weight: inherit;
     font-size: inherit;
@@ -245,9 +246,9 @@ body.scrolled #lang-switch { opacity: 0; pointer-events: none; }
 <body>
 <a href="/" id="back-home">← SSUITE</a>
 <div aria-label="Language" id="lang-switch" role="group">
-<button class="lang-opt active" data-lang="en" type="button">EN</button>
+<a class="lang-opt active" data-lang="en" href="#">EN</a>
 <span class="lang-sep">/</span>
-<button class="lang-opt" data-lang="de" type="button">DE</button>
+<a class="lang-opt" data-lang="de" href="/clients/remy-ebner-de/">DE</a>
 </div>
 <div class="logo-sphere-container">
 <img alt="Privatpraxis Remy Ebner" class="logo-sphere-source" src="/img/trusted/remy-ebner.svg" width="300" height="56"/>
