@@ -25,7 +25,7 @@
   "@type": "Article",
   "headline": "How to Migrate Hosting Without Breaking Your Website",
   "description": "A hosting migration can go smoothly or cause real downtime and lost SEO. Here's a practical, step-by-step approach to doing it safely.",
-  "dateModified": "2026-07-19",
+  "dateModified": "2026-07-22",
   "author": {
     "@type": "Person",
     "name": "Dion B",
@@ -228,7 +228,7 @@ body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
 <a class="active" href="/blog/how-to-migrate-hosting/">EN</a><span>/</span><a href="/blog/de/how-to-migrate-hosting/">DE</a>
 </div>
 <div class="article-inner">
-<p class="article-cat">Hosting · 4 min read · Last updated: July 19, 2026 · By <a href="/about/">Dion B</a></p>
+<p class="article-cat">Hosting · 4 min read · Last updated: July 22, 2026 · By <a href="/about/">Dion B</a></p>
 <h1 class="article-title">How to Migrate Hosting Without Breaking Your Website</h1>
 <div class="article-body">
 <p>Moving a website to a new host is a routine task that occasionally goes very wrong — downtime, lost email, or broken functionality are all avoidable with a careful, methodical approach rather than a rushed one.</p>
@@ -240,7 +240,7 @@ body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
 <p>If email is hosted alongside the website (a common setup), migrating hosting can disrupt email delivery if not planned carefully — verify email configuration on the new host before fully cutting over, since email disruption is often a more painful, less visible mistake than website downtime.</p>
 <p>Watch for broken links, missing functionality, or unexpected errors in the days immediately following migration, and keep the old hosting account active for a short buffer period until you're fully confident the migration succeeded cleanly, rather than canceling it immediately.</p>
 <p>A safe hosting migration means fully setting up and testing the new environment before touching DNS, maintaining a complete backup throughout, planning around email if it's hosted alongside the site, and monitoring closely after the switch. Rushing any of these steps is where most migration problems actually originate.</p>
-</div><div class="faq-section"><p class="faq-heading">Frequently asked questions</p><div class="faq-item"><p class="faq-q">Will migrating hosting break my website temporarily?</p><p class="faq-a">It doesn't have to — with proper planning (staging the new site before switching DNS, checking everything works, then cutting over), downtime can usually be avoided or kept to minutes.</p></div><div class="faq-item"><p class="faq-q">Does migrating hosting affect my SEO rankings?</p><p class="faq-a">It can, if not done carefully — broken redirects, changed URLs, or extended downtime during migration can hurt rankings temporarily, which is why testing thoroughly before the final cutover matters.</p></div></div>
+<p>The core risk in any hosting migration isn't the move itself — it's downtime and DNS propagation timing. The safest sequence: set up and fully test the new host first (without touching DNS yet), confirm the site works correctly at the new host's temporary address, then only update DNS once everything is verified, so visitors experience zero interruption during the actual switch.</p><p>Email is the part most people forget until it breaks: if email hosting is tied to the same DNS records (MX records) as your website, migrating hosting without a plan for email continuity can knock out incoming mail for hours or days while DNS changes propagate. Lowering your DNS TTL (time-to-live) a day or two before the migration shortens that propagation window significantly.</p></div><div class="faq-section"><p class="faq-heading">Frequently asked questions</p><div class="faq-item"><p class="faq-q">Will migrating hosting break my website temporarily?</p><p class="faq-a">It doesn't have to — with proper planning (staging the new site before switching DNS, checking everything works, then cutting over), downtime can usually be avoided or kept to minutes.</p></div><div class="faq-item"><p class="faq-q">Does migrating hosting affect my SEO rankings?</p><p class="faq-a">It can, if not done carefully — broken redirects, changed URLs, or extended downtime during migration can hurt rankings temporarily, which is why testing thoroughly before the final cutover matters.</p></div></div>
 <div id="related-service">
 <p class="eyebrow">Related services</p>
 <a class="related-service-link" href="/services/hosting/">Hosting <span>→</span></a>

@@ -25,7 +25,7 @@
   "@type": "Article",
   "headline": "SSL Explained: Why That Little Padlock Icon Actually Matters",
   "description": "SSL encrypts data between a browser and a website, and it's now a baseline requirement, not an option. Here's what it actually does and why it matters.",
-  "dateModified": "2026-07-19",
+  "dateModified": "2026-07-22",
   "author": {
     "@type": "Person",
     "name": "Dion B",
@@ -228,7 +228,7 @@ body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
 <a class="active" href="/blog/ssl-explained/">EN</a><span>/</span><a href="/blog/de/ssl-explained/">DE</a>
 </div>
 <div class="article-inner">
-<p class="article-cat">Hosting · 4 min read · Last updated: July 19, 2026 · By <a href="/about/">Dion B</a></p>
+<p class="article-cat">Hosting · 4 min read · Last updated: July 22, 2026 · By <a href="/about/">Dion B</a></p>
 <h1 class="article-title">SSL Explained: Why That Little Padlock Icon Actually Matters</h1>
 <div class="article-body">
 <p>SSL (Secure Sockets Layer, though modern implementations technically use its successor, TLS) is the technology behind the padlock icon in a browser's address bar, and behind the "https" instead of "http" at the start of a web address. It's gone from optional to essentially mandatory for any legitimate website.</p>
@@ -240,7 +240,7 @@ body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
 <p>Domain Validated (DV) certificates are the simplest and most common, verifying only domain ownership — sufficient for most standard websites. Organization Validated (OV) and Extended Validation (EV) certificates involve more rigorous verification of the actual business behind the site, sometimes used by financial institutions or businesses wanting to display additional visible trust signals, though the practical difference for most small businesses is minimal.</p>
 <p>Look for "https://" and a padlock icon in the browser bar when visiting your own site, and check for any "mixed content" warnings, which occur when a page is technically served over HTTPS but still loads some resources (images, scripts) over the older, insecure HTTP.</p>
 <p>SSL encrypts the connection between visitors and a website, and it's now a baseline requirement rather than an optional security feature — affecting browser trust signals, SEO rankings, and basic visitor confidence. With most hosts now offering it free and often automatically, there's little reason for any modern site to be running without it.</p>
-</div><div class="faq-section"><p class="faq-heading">Frequently asked questions</p><div class="faq-item"><p class="faq-q">Do I really need SSL if my site doesn't take payments?</p><p class="faq-a">Yes — Google uses HTTPS as a ranking signal for all sites, not just ones handling payments, and browsers now visibly flag non-HTTPS sites as 'not secure,' which can hurt visitor trust.</p></div><div class="faq-item"><p class="faq-q">Is SSL expensive to set up?</p><p class="faq-a">Usually not — most hosting providers now include free SSL certificates (often via Let's Encrypt) as standard, so there's rarely a real cost barrier anymore.</p></div></div>
+<p>SSL (technically superseded by TLS, though the term SSL stuck) encrypts the connection between a visitor's browser and your server, so anything typed into a form — a password, a card number — can't be read if it's intercepted in transit. Without it, that data travels in plain text.</p><p>Beyond security, it's now effectively mandatory for other reasons: Chrome and other browsers flag non-HTTPS sites as 'Not Secure' directly in the address bar, and Google has confirmed HTTPS as a (minor) ranking signal. Most hosts now issue free certificates automatically via Let's Encrypt, so there's rarely a reason a modern site should be running without one.</p></div><div class="faq-section"><p class="faq-heading">Frequently asked questions</p><div class="faq-item"><p class="faq-q">Do I really need SSL if my site doesn't take payments?</p><p class="faq-a">Yes — Google uses HTTPS as a ranking signal for all sites, not just ones handling payments, and browsers now visibly flag non-HTTPS sites as 'not secure,' which can hurt visitor trust.</p></div><div class="faq-item"><p class="faq-q">Is SSL expensive to set up?</p><p class="faq-a">Usually not — most hosting providers now include free SSL certificates (often via Let's Encrypt) as standard, so there's rarely a real cost barrier anymore.</p></div></div>
 <div id="related-service">
 <p class="eyebrow">Related services</p>
 <a class="related-service-link" href="/services/hosting/">Hosting <span>→</span></a>
