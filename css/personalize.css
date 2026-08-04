@@ -586,6 +586,9 @@ body.animated .trusted-logos img {
 .cb-decline:hover { color: #fff; border-color: rgba(255,255,255,0.7); }
 @media (max-width: 600px) {
     #cookie-banner { flex-direction: column; align-items: stretch; gap: 16px; }
+    /* The 320px basis is a width for the row layout; once stacked it becomes a
+       height and inflates the banner to half the screen. Size to content. */
+    #cookie-banner p { flex: 0 0 auto; }
     .cookie-banner-btns button { flex: 1; padding: 14px 18px; }
 }
 
