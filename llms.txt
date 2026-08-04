@@ -27,11 +27,6 @@ SSUITE blends strategy, brand, design and technology for modern businesses. From
 - [How to Perform an SEO Audit](https://seosuite.studio/blog/how-to-perform-an-seo-audit/)
 - [Get Mentioned by ChatGPT](https://seosuite.studio/blog/get-mentioned-by-chatgpt/)
 
-## Legal
-
-- [Privacy policy](https://seosuite.studio/privacy/) · [Datenschutzerklärung](https://seosuite.studio/datenschutz/)
-- [Imprint](https://seosuite.studio/imprint/) · [Impressum](https://seosuite.studio/impressum/)
-
 ## Contact
 
 - Email: contact@seosuite.studio

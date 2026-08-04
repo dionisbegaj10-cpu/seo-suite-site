@@ -12,6 +12,11 @@
     var GA_ID = 'G-15246QV0WM';
     var gaLoaded = false;
 
+    // Flip to true once /privacy/ and /datenschutz/ are published — the banner
+    // then links to them. Held false while those pages are still unwritten so
+    // the banner cannot link to a 404.
+    var LEGAL_PAGES_LIVE = false;
+
     var COPY = {
         en: {
             text: 'We use cookies to measure how the site is used. Analytics only runs if you accept.',
@@ -93,11 +98,14 @@
         wrap.setAttribute('aria-label', t.aria);
 
         var p = document.createElement('p');
-        p.textContent = t.text + ' ';
-        var a = document.createElement('a');
-        a.href = t.privacyHref;
-        a.textContent = t.privacy;
-        p.appendChild(a);
+        p.textContent = t.text;
+        if (LEGAL_PAGES_LIVE) {
+            p.textContent += ' ';
+            var a = document.createElement('a');
+            a.href = t.privacyHref;
+            a.textContent = t.privacy;
+            p.appendChild(a);
+        }
 
         var btns = document.createElement('div');
         btns.className = 'cookie-banner-btns';
