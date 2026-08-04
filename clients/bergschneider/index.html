@@ -1,25 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Dr. Felix Bergschneider — Orthodontist in Frankfurt | SSUITE</title>
-<meta content="A full-service engagement for an orthodontic practice in Frankfurt, covering web design, branding, growth, performance marketing, AI visibility and hosting." name="description"/>
-<link href="https://seosuite.studio/clients/bergschneider/" rel="canonical"/><link href="https://seosuite.studio/clients/bergschneider/" hreflang="en" rel="alternate"/><link href="https://seosuite.studio/clients/bergschneider-de/" hreflang="de" rel="alternate"/><link href="https://seosuite.studio/clients/bergschneider/" hreflang="x-default" rel="alternate"/>
+<title>Dr. Felix Bergschneider, Kieferorthopäde Frankfurt | SSUITE</title>
+<meta content="Eine umfassende Zusammenarbeit mit einer kieferorthopädischen Praxis in Frankfurt: Webdesign, Branding, Wachstum, Performance-Marketing und Hosting." name="description"/>
+<link href="https://seosuite.studio/clients/bergschneider/" rel="canonical"/><link href="https://seosuite.studio/en/clients/bergschneider/" hreflang="en" rel="alternate"/><link href="https://seosuite.studio/clients/bergschneider/" hreflang="de" rel="alternate"/><link href="https://seosuite.studio/en/clients/bergschneider/" hreflang="x-default" rel="alternate"/>
 <meta content="article" property="og:type"/>
-<meta content="Dr. Felix Bergschneider — Orthodontist in Frankfurt | SSUITE" property="og:title"/>
-<meta content="A full-service engagement for an orthodontic practice in Frankfurt, covering web design, branding, growth, performance marketing, AI visibility and hosting." property="og:description"/>
+<meta content="Dr. Felix Bergschneider, Kieferorthopäde Frankfurt | SSUITE" property="og:title"/>
+<meta content="Eine umfassende Zusammenarbeit mit einer kieferorthopädischen Praxis in Frankfurt: Webdesign, Branding, Wachstum, Performance-Marketing und Hosting." property="og:description"/>
 <meta content="https://seosuite.studio/clients/bergschneider/" property="og:url"/>
 <meta content="SSUITE" property="og:site_name"/>
 <meta content="https://seosuite.studio/img/trusted/bergschneider.svg" property="og:image"/>
 <meta content="#000000" name="theme-color"/>
-<script type="application/ld+json">
-{
+<script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "Service",
   "serviceType": "Digital marketing and web services",
-  "provider": { "@type": "ProfessionalService", "name": "SSUITE", "url": "https://seosuite.studio/" },
-  "areaServed": { "@type": "City", "name": "Frankfurt" },
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "SSUITE",
+    "url": "https://seosuite.studio/"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Frankfurt"
+  },
   "about": {
     "@type": "LocalBusiness",
     "name": "Dr. Felix Bergschneider",
@@ -33,9 +39,9 @@
       "addressCountry": "DE"
     }
   },
-  "description": "A full-service engagement for an orthodontic practice in Frankfurt, covering web design, branding, growth, performance marketing, AI visibility and hosting."
-}
-</script>
+  "description": "Eine umfassende Zusammenarbeit mit einer kieferorthopädischen Praxis in Frankfurt: Webdesign, Branding, Wachstum, Performance-Marketing und Hosting.",
+  "inLanguage": "de"
+}</script>
 <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -43,13 +49,13 @@
     {
       "@type": "ListItem",
       "position": 1,
-      "name": "Home",
+      "name": "Startseite",
       "item": "https://seosuite.studio/"
     },
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Clients",
+      "name": "Kunden",
       "item": "https://seosuite.studio/#trusted"
     },
     {
@@ -242,35 +248,50 @@ body.scrolled #lang-switch { opacity: 0; pointer-events: none; }
 #lang-switch .lang-opt.active { opacity: 1; }
 #lang-switch .lang-opt:hover { opacity: 0.8; }
 #lang-switch .lang-sep { color: #ffffff; opacity: 0.3; }
+
+/* Language suggestion bar */
+#lang-hint{position:fixed;top:0;left:0;right:0;z-index:10060;display:flex;align-items:center;
+gap:14px;padding:11px max(20px,env(safe-area-inset-left,0px));background:#101010;
+border-bottom:1px solid rgba(255,255,255,0.14);font-family:Arial,Helvetica,sans-serif;
+font-size:13px;line-height:1.4;color:rgba(255,255,255,0.62);
+transform:translateY(-110%);transition:transform 0.4s cubic-bezier(0.4,0,0.2,1)}
+#lang-hint.visible{transform:translateY(0)}
+#lang-hint .lang-hint-go{color:#fff;text-decoration:underline;white-space:nowrap}
+#lang-hint .lang-hint-go:hover{opacity:0.8}
+#lang-hint .lang-hint-close{margin-left:auto;background:none;border:none;
+color:rgba(255,255,255,0.5);font-size:20px;line-height:1;cursor:pointer;padding:0 2px}
+#lang-hint .lang-hint-close:hover{color:#fff}
+body.lang-hint-open #back-home,body.lang-hint-open #lang-switch-svc,
+body.lang-hint-open #lang-switch-index,body.lang-hint-open #lang-switch-article,
+body.lang-hint-open #lang-switch,body.lang-hint-open .box-topnav{margin-top:46px}
+@media(max-width:600px){#lang-hint{font-size:12px;gap:10px;padding:10px 16px}
+body.lang-hint-open #back-home,body.lang-hint-open #lang-switch-svc,
+body.lang-hint-open #lang-switch-index,body.lang-hint-open #lang-switch-article,
+body.lang-hint-open #lang-switch,body.lang-hint-open .box-topnav{margin-top:60px}}
 </style>
 </head>
 <body>
 <a href="/" id="back-home">← SSUITE</a>
 <div aria-label="Language" id="lang-switch" role="group">
-<a class="lang-opt active" data-lang="en" href="#">EN</a>
+<a class="lang-opt" data-lang="en" href="/en/clients/bergschneider/">EN</a>
 <span class="lang-sep">/</span>
-<a class="lang-opt" data-lang="de" href="/clients/bergschneider-de/">DE</a>
+<a class="lang-opt active" data-lang="de" href="#">DE</a>
 </div>
 <div class="logo-sphere-container">
 <img alt="Dr. Felix Bergschneider" class="logo-sphere-source" src="/img/trusted/bergschneider.svg" width="300" height="100"/>
 </div>
 <main>
-<p class="eyebrow" id="eyebrow">Client</p>
+<p class="eyebrow" id="eyebrow">Kunde</p>
 <h1>KFO Bergschneider</h1>
-<p class="client-meta" id="client-meta">Orthodontic practice (Kieferorthopädie) · Frankfurt</p>
-<p class="body" id="body-text">Tucked in the heart of Frankfurt, KFO Bergschneider offers orthodontic care for kids, teens, and adults alike, led by Dr. Felix Bergschneider. The practice pairs newer treatment methods — Invisalign, lingual braces, early intervention for younger patients — with something a bit more old-fashioned: actually tailoring the plan to the person in the chair. The result is a healthy, natural-looking smile, built in a space that doesn't feel clinical or rushed.</p>
-<a href="https://www.kfo-bergschneider.de/" id="cta" rel="noopener noreferrer" target="_blank"><span id="cta-text">Check the website</span> →</a>
-<p class="local-note" id="local-note">SSUITE is a growth partner for businesses in Frankfurt — <a href="/#start">see how we can help yours</a>.</p>
-<p class="svc-subhead" id="svc-subhead">What we do for them</p>
-<ul class="svc-list" id="svc-list">
-<li>SEO</li>
-<li>GEO</li>
-<li>Hosting</li>
-<li>Performance (Google Ads)</li>
-</ul>
+<p class="client-meta" id="client-meta">Kieferorthopädische Praxis · Frankfurt</p>
+<p class="body" id="body-text">Mitten in Frankfurt kümmert sich KFO Bergschneider unter der Leitung von Dr. Felix Bergschneider um die Zähne von Kindern, Jugendlichen und Erwachsenen. Die Praxis setzt auf moderne Methoden wie Invisalign, linguale Zahnspangen und Frühbehandlungen bei jüngeren Patienten – kombiniert mit etwas, das man heute selten findet: einen Behandlungsplan, der wirklich zum Menschen passt, der gerade im Stuhl sitzt. Das Ergebnis ist ein gesundes, natürliches Lächeln, entstanden in einer Praxis, die sich weder steril noch gehetzt anfühlt.</p>
+<a href="https://www.kfo-bergschneider.de/" id="cta" rel="noopener noreferrer" target="_blank"><span id="cta-text">Webseite ansehen</span> →</a>
+<p class="local-note" id="local-note">SSUITE ist ein Wachstumspartner für Unternehmen in Frankfurt – <a href="/#start">sehen Sie, wie wir auch Ihnen helfen können</a>.</p>
+<p class="svc-subhead" id="svc-subhead">Was wir für sie tun</p>
+<ul class="svc-list" id="svc-list"><li>SEO</li><li>GEO</li><li>Hosting</li><li>Performance (Google Ads)</li></ul>
 <div class="testimonial">
 <p aria-hidden="true" class="stars">★★★★★</p>
-<p class="quote" id="testimonial-quote">“SEO Suite Studio helped us improve our digital presence with professional SEO, GEO optimization, reliable hosting, and well-managed Google Ads campaigns. They explained every step clearly and made the entire process simple for our team.”</p>
+<p class="quote" id="testimonial-quote">“SEO Suite Studio hat unsere digitale Präsenz mit professionellem SEO, GEO-Optimierung, zuverlässigem Hosting und gut betreuten Google-Ads-Kampagnen deutlich verbessert. Jeder Schritt wurde uns verständlich erklärt, wodurch der gesamte Prozess für unser Team ganz unkompliziert war.”</p>
 <p class="cite" id="testimonial-cite">— KFO Bergschneider</p>
 </div>
 </main>
@@ -345,8 +366,9 @@ body.scrolled #lang-switch { opacity: 0; pointer-events: none; }
     document.querySelectorAll('.lang-opt').forEach(function(btn){
         btn.addEventListener('click', function(){ applyLang(btn.dataset.lang); });
     });
-    applyLang(localStorage.getItem(LANG_KEY) || 'en');
+    applyLang('de');
 })();
 </script>
+<script src="/js/langhint.js?v=2"></script>
 </body>
 </html>

@@ -1,38 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>What Is DNS? How Domain Name Systems Work | SSUITE</title>
-<meta content="DNS translates domain names into the addresses computers actually use. Here's a plain-English explanation of how it works and why it matters." name="description"/>
-<link href="https://seosuite.studio/blog/dns-explained/" rel="canonical"/>
-<link href="https://seosuite.studio/blog/dns-explained/" hreflang="en" rel="alternate"/>
-<link href="https://seosuite.studio/blog/de/dns-explained/" hreflang="de" rel="alternate"/>
-<link href="https://seosuite.studio/blog/dns-explained/" hreflang="x-default" rel="alternate"/>
+<title>Was ist DNS? So funktionieren Domain Name Systeme | SSUITE</title>
+<meta content="DNS übersetzt Domainnamen in die Adressen, die Computer tatsächlich verwenden. Eine verständliche Erklärung, wie es funktioniert und warum es zählt." name="description"/>
+<link href="https://seosuite.studio/blog/dns-explained/" rel="canonical"/><link href="https://seosuite.studio/en/blog/dns-explained/" hreflang="en" rel="alternate"/><link href="https://seosuite.studio/blog/dns-explained/" hreflang="de" rel="alternate"/><link href="https://seosuite.studio/en/blog/dns-explained/" hreflang="x-default" rel="alternate"/>
+
+
+
 <meta content="article" property="og:type"/>
-<meta content="What Is DNS? How Domain Name Systems Work | SSUITE" property="og:title"/>
-<meta content="DNS translates domain names into the addresses computers actually use. Here's a plain-English explanation of how it works and why it matters." property="og:description"/>
+<meta content="Was ist DNS? So funktionieren Domain Name Systeme | SSUITE" property="og:title"/>
+<meta content="DNS übersetzt Domainnamen in die Adressen, die Computer tatsächlich verwenden. Eine verständliche Erklärung, wie es funktioniert und warum es zählt." property="og:description"/>
 <meta content="https://seosuite.studio/blog/dns-explained/" property="og:url"/>
 <meta content="SSUITE" property="og:site_name"/>
 <meta content="https://seosuite.studio/img/seosuite-digital-creative-studio.jpg?v=2" property="og:image"/>
 <meta content="summary_large_image" name="twitter:card"/>
-<meta content="What Is DNS? How Domain Name Systems Work | SSUITE" name="twitter:title"/>
-<meta content="DNS translates domain names into the addresses computers actually use. Here's a plain-English explanation of how it works and why it matters." name="twitter:description"/>
+<meta content="Was ist DNS? So funktionieren Domain Name Systeme | SSUITE" name="twitter:title"/>
+<meta content="DNS übersetzt Domainnamen in die Adressen, die Computer tatsächlich verwenden. Eine verständliche Erklärung, wie es funktioniert und warum es zählt." name="twitter:description"/>
 <meta content="https://seosuite.studio/img/seosuite-digital-creative-studio.jpg?v=2" name="twitter:image"/>
 <meta content="#ffffff" name="theme-color"/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "DNS Explained: The System Behind Every Website Address",
-  "description": "DNS translates domain names into the addresses computers actually use. Here's a plain-English explanation of how it works and why it matters.",
+  "headline": "DNS erklärt: Das System hinter jeder Website-Adresse",
+  "description": "DNS übersetzt Domainnamen in die Adressen, die Computer tatsächlich verwenden. Eine verständliche Erklärung, wie es funktioniert und warum es zählt.",
   "image": "https://seosuite.studio/img/seosuite-digital-creative-studio.jpg?v=2",
   "datePublished": "2026-07-19",
   "dateModified": "2026-07-22",
   "author": {
     "@type": "Person",
     "name": "Dion B",
-    "jobTitle": "Founder, SSUITE",
+    "jobTitle": "Gründer, SSUITE",
     "url": "https://seosuite.studio/about/"
   },
   "publisher": {
@@ -44,7 +44,8 @@
       "url": "https://seosuite.studio/img/apple-touch-icon.png"
     }
   },
-  "mainEntityOfPage": "https://seosuite.studio/blog/dns-explained/"
+  "mainEntityOfPage": "https://seosuite.studio/blog/dns-explained/",
+  "inLanguage": "de"
 }
 </script>
 <script type="application/ld+json">{
@@ -66,7 +67,7 @@
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "DNS Explained: The System Behind Every Website Address",
+      "name": "DNS erklärt: Das System hinter jeder Website-Adresse",
       "item": "https://seosuite.studio/blog/dns-explained/"
     }
   ]
@@ -76,18 +77,18 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Why does it take time for DNS changes to go live?",
+      "name": "Warum dauert es, bis DNS-Änderungen live sind?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "DNS records are cached at multiple points across the internet, and those caches need to expire before everyone sees the update — this is normal and expected, not a sign something went wrong."
+        "text": "DNS-Einträge werden an vielen Stellen im Internet zwischengespeichert, und diese Caches müssen erst ablaufen, bevor alle die Änderung sehen — das ist normal und kein Zeichen für ein Problem."
       }
     },
     {
       "@type": "Question",
-      "name": "What happens if I get DNS settings wrong?",
+      "name": "Was passiert, wenn ich DNS-Einstellungen falsch setze?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Typically your website or email becomes unreachable until it's corrected — DNS mistakes rarely cause permanent damage, but they can cause real downtime, so it's worth double-checking changes before saving them."
+        "text": "Meist wird die Website oder E-Mail bis zur Korrektur unerreichbar — DNS-Fehler verursachen selten dauerhaften Schaden, können aber echte Ausfallzeit bedeuten, daher lohnt sich eine Kontrolle vor dem Speichern."
       }
     }
   ]
@@ -228,36 +229,50 @@ body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
 }
 
 .related-service-link { margin-right: 22px; margin-bottom: 10px; }
+
+/* Language suggestion bar */
+#lang-hint{position:fixed;top:0;left:0;right:0;z-index:10060;display:flex;align-items:center;
+gap:14px;padding:11px max(20px,env(safe-area-inset-left,0px));background:#101010;
+border-bottom:1px solid rgba(255,255,255,0.14);font-family:Arial,Helvetica,sans-serif;
+font-size:13px;line-height:1.4;color:rgba(255,255,255,0.62);
+transform:translateY(-110%);transition:transform 0.4s cubic-bezier(0.4,0,0.2,1)}
+#lang-hint.visible{transform:translateY(0)}
+#lang-hint .lang-hint-go{color:#fff;text-decoration:underline;white-space:nowrap}
+#lang-hint .lang-hint-go:hover{opacity:0.8}
+#lang-hint .lang-hint-close{margin-left:auto;background:none;border:none;
+color:rgba(255,255,255,0.5);font-size:20px;line-height:1;cursor:pointer;padding:0 2px}
+#lang-hint .lang-hint-close:hover{color:#fff}
+body.lang-hint-open #back-home,body.lang-hint-open #lang-switch-svc,
+body.lang-hint-open #lang-switch-index,body.lang-hint-open #lang-switch-article,
+body.lang-hint-open #lang-switch,body.lang-hint-open .box-topnav{margin-top:46px}
+@media(max-width:600px){#lang-hint{font-size:12px;gap:10px;padding:10px 16px}
+body.lang-hint-open #back-home,body.lang-hint-open #lang-switch-svc,
+body.lang-hint-open #lang-switch-index,body.lang-hint-open #lang-switch-article,
+body.lang-hint-open #lang-switch,body.lang-hint-open .box-topnav{margin-top:60px}}
 </style>
 </head>
 <body>
 <a href="/blog/" id="back-home">← Blog</a>
 <div id="lang-switch-article">
-<a class="active" href="/blog/dns-explained/">EN</a><span>/</span><a href="/blog/de/dns-explained/">DE</a>
+<a href="/en/blog/dns-explained/">EN</a><span>/</span><a class="active" href="/blog/dns-explained/">DE</a>
 </div>
 <div class="article-inner">
-<p class="article-cat">Hosting · 4 min read · Last updated: July 22, 2026 · By <a href="/about/">Dion B</a></p>
-<h1 class="article-title">DNS Explained: The System Behind Every Website Address</h1>
+<p class="article-cat">Hosting · 4 Min. Lesezeit · Zuletzt aktualisiert: 22. Juli 2026 · Von <a href="/about/">Dion B</a></p>
+<h1 class="article-title">DNS erklärt: Das System hinter jeder Website-Adresse</h1>
 <div class="article-body">
-<p>Every time you type a website address into a browser, something has to translate that human-readable name into the numerical address computers use to find each other on the internet. That translation system is DNS — the Domain Name System.</p>
-<p>DNS works a bit like a phone book, translating a name (a domain like example.com) into a number (an IP address like 192.0.2.1) that computers use to locate and connect to a server. Without DNS, you'd have to remember and type a string of numbers instead of a memorable domain name for every site you visit.</p>
-<p>A records point a domain to a specific IPv4 address — the most basic and common record type, directly connecting a domain name to a server.</p>
-<p>CNAME records point a domain or subdomain to another domain name rather than directly to an IP address, often used for subdomains pointing to a service.</p>
-<p>MX records direct where email for a domain should be delivered, separate from where the website itself is hosted.</p>
-<p>TXT records hold arbitrary text data, commonly used for domain verification and email authentication (like SPF and DKIM records that help prevent email spoofing).</p>
-<p>When a DNS record is updated — pointing a domain to a new host, for example — that change doesn't take effect everywhere instantly. DNS information is cached at various points across the internet, and it can take anywhere from minutes to up to 48 hours for a change to fully propagate globally, which is why hosting migrations require planning around this delay.</p>
-<p>DNS records are typically managed either through a domain registrar (where the domain was purchased) or through a separate DNS provider, if one is being used instead of the registrar's default DNS management. Understanding where your DNS is actually managed is essential before making any changes, since editing the wrong place has no effect on the live site.</p>
-<p>Making DNS changes without understanding the propagation delay, and expecting instant results, is one of the most common sources of confusion. Editing the wrong DNS records, or editing them in the wrong management interface, is another common and easily avoidable mistake, particularly during hosting migrations or email setup changes.</p>
-<p>DNS translates human-readable domain names into the addresses computers use to connect, using several distinct record types for different purposes (website, email, verification). Understanding the basics — what record types exist and that changes take time to propagate — helps avoid common, avoidable mistakes during hosting migrations, email setup, or any other DNS-related change.</p>
-<p>Every domain name is really just a human-friendly alias for an IP address, and DNS is the lookup system that translates between the two. When you type a domain into a browser, your device asks a DNS resolver 'what server does this name point to,' gets back an IP address, and only then connects to the site — all in a fraction of a second, invisibly.</p><p>The most common records to know: an A record points a domain to an IPv4 address, a CNAME points one domain to another domain name instead of an IP, and an MX record tells the internet which server handles email for that domain. Misconfiguring any of these is one of the most common reasons a newly launched site or a freshly migrated email setup doesn't work.</p></div><div class="faq-section"><p class="faq-heading">Frequently asked questions</p><div class="faq-item"><p class="faq-q">Why does it take time for DNS changes to go live?</p><p class="faq-a">DNS records are cached at multiple points across the internet, and those caches need to expire before everyone sees the update — this is normal and expected, not a sign something went wrong.</p></div><div class="faq-item"><p class="faq-q">What happens if I get DNS settings wrong?</p><p class="faq-a">Typically your website or email becomes unreachable until it's corrected — DNS mistakes rarely cause permanent damage, but they can cause real downtime, so it's worth double-checking changes before saving them.</p></div></div>
+<p>Jedes Mal, wenn Sie eine Website-Adresse in einen Browser eingeben, übersetzt etwas diesen menschenlesbaren Namen in die numerische Adresse, die Computer zur gegenseitigen Kommunikation nutzen. Dieses Übersetzungssystem ist DNS, das Domain Name System, vergleichbar mit einem Telefonbuch, das einen Namen in eine Nummer übersetzt.</p>
+<p>A-Records verweisen eine Domain auf eine spezifische IPv4-Adresse, der grundlegendste Recordtyp. CNAME-Records verweisen eine Domain oder Subdomain auf eine andere Domain statt direkt auf eine IP-Adresse. MX-Records bestimmen, wohin E-Mails für eine Domain zugestellt werden, getrennt vom Website-Hosting. TXT-Records enthalten beliebige Textdaten, häufig für Domainverifizierung und E-Mail-Authentifizierung wie SPF und DKIM genutzt.</p>
+<p>Wird ein DNS-Record aktualisiert, etwa um eine Domain auf einen neuen Host zu verweisen, tritt diese Änderung nicht sofort überall in Kraft, DNS-Informationen sind an verschiedenen Stellen im Internet zwischengespeichert, eine vollständige globale Verbreitung kann bis zu 48 Stunden dauern.</p>
+<p>DNS-Records werden meist entweder über den Domain-Registrar oder einen separaten DNS-Anbieter verwaltet, zu wissen, wo Ihr DNS verwaltet wird, ist essenziell, bevor Sie Änderungen vornehmen, sonst hat die Bearbeitung an der falschen Stelle keinerlei Effekt auf die live geschaltete Seite.</p>
+<p>Ein Domainname ist letztlich nur ein menschenlesbarer Alias für eine IP-Adresse, und DNS ist das Nachschlagesystem, das zwischen beidem übersetzt. Wenn Sie eine Domain in den Browser eingeben, fragt Ihr Gerät einen DNS-Resolver, welcher Server zu diesem Namen gehört, erhält eine IP-Adresse zurück und verbindet sich erst dann tatsächlich mit der Seite – alles in Sekundenbruchteilen, unsichtbar für Sie.</p><p>Die wichtigsten Eintragstypen: Ein A-Record verweist eine Domain auf eine IPv4-Adresse, ein CNAME verweist eine Domain auf eine andere Domain statt auf eine IP, und ein MX-Record legt fest, welcher Server für die E-Mails dieser Domain zuständig ist. Eine Fehlkonfiguration dieser Einträge ist einer der häufigsten Gründe, warum eine neu gestartete Website oder ein frisch migriertes E-Mail-Setup nicht funktioniert.</p></div><div class="faq-section"><p class="faq-heading">Häufig gestellte Fragen</p><div class="faq-item"><p class="faq-q">Warum dauert es, bis DNS-Änderungen live sind?</p><p class="faq-a">DNS-Einträge werden an vielen Stellen im Internet zwischengespeichert, und diese Caches müssen erst ablaufen, bevor alle die Änderung sehen — das ist normal und kein Zeichen für ein Problem.</p></div><div class="faq-item"><p class="faq-q">Was passiert, wenn ich DNS-Einstellungen falsch setze?</p><p class="faq-a">Meist wird die Website oder E-Mail bis zur Korrektur unerreichbar — DNS-Fehler verursachen selten dauerhaften Schaden, können aber echte Ausfallzeit bedeuten, daher lohnt sich eine Kontrolle vor dem Speichern.</p></div></div>
 <div id="related-service">
-<p class="eyebrow">Related services</p>
+<p class="eyebrow">Verwandte Leistungen</p>
 <a class="related-service-link" href="/services/hosting/">Hosting <span>→</span></a>
 <a class="related-service-link" href="/services/performance/">Performance <span>→</span></a></div>
 </div>
 <div id="post-nav">
-<a href="/blog/cdn-explained/">← Previous</a>
-<a href="/blog/email-hosting-guide/">Next →</a>
+<a href="/blog/cdn-explained/">← Zurück</a>
+<a href="/blog/email-hosting-guide/">Weiter →</a>
 </div>
 <script>
 (function(){
@@ -266,5 +281,6 @@ body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
     update();
 })();
 </script>
+<script src="/js/langhint.js?v=2"></script>
 </body>
 </html>

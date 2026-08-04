@@ -4,28 +4,40 @@
 
 SSUITE blends strategy, brand, design and technology for modern businesses. From concept to launch, the studio crafts websites, campaigns and content engineered for growth, turning attention into measurable results.
 
-## Services
+The site is German-first: German pages live at the root, English translations live under /en/. Every page declares both versions via hreflang.
 
-- [Branding](https://seosuite.studio/services/branding/) — naming, tone of voice, visual identity, art direction and copywriting.
-- [Web & Design](https://seosuite.studio/services/web-design/) — UI/UX, web design, full-stack development, eCommerce and landing pages.
-- [Growth](https://seosuite.studio/services/growth/) — SEO, AI search visibility, content marketing, email and organic social.
-- [Performance](https://seosuite.studio/services/performance/) — paid media across Google, Meta and beyond.
-- [AI Suite](https://seosuite.studio/services/ai-suite/) — SEO AI Suite, an AI-powered SEO platform with 20+ built-in skills that connects to Google Search Console to plan content, optimize pages, audit sites, track rankings and monitor competitors.
-- [Hosting](https://seosuite.studio/services/hosting/) — fully managed hosting with SSL, daily backups, updates and monitoring.
+## Leistungen (German — primary)
+
+- [Branding](https://seosuite.studio/services/branding/) — Naming, Tone of Voice, visuelle Identität, Art Direction und Copywriting.
+- [Web & Design](https://seosuite.studio/services/web-design/) — UI/UX, Webdesign, Full-Stack-Entwicklung, E-Commerce und Landingpages.
+- [Wachstum](https://seosuite.studio/services/growth/) — SEO, KI-Sichtbarkeit, Content-Marketing, E-Mail und Organic Social.
+- [Performance](https://seosuite.studio/services/performance/) — Paid Media über Google, Meta und weitere Kanäle.
+- [AI Suite](https://seosuite.studio/services/ai-suite/) — KI-gestützte SEO-Plattform mit 20+ integrierten Skills, verbunden mit der Google Search Console.
+- [Hosting](https://seosuite.studio/services/hosting/) — vollständig verwaltetes Hosting mit SSL, täglichen Backups, Updates und Monitoring.
+
+## Services (English)
+
+- [Branding](https://seosuite.studio/en/services/branding/) — naming, tone of voice, visual identity, art direction and copywriting.
+- [Web & Design](https://seosuite.studio/en/services/web-design/) — UI/UX, web design, full-stack development, eCommerce and landing pages.
+- [Growth](https://seosuite.studio/en/services/growth/) — SEO, AI search visibility, content marketing, email and organic social.
+- [Performance](https://seosuite.studio/en/services/performance/) — paid media across Google, Meta and beyond.
+- [AI Suite](https://seosuite.studio/en/services/ai-suite/) — an AI-powered SEO platform with 20+ built-in skills, connected to Google Search Console.
+- [Hosting](https://seosuite.studio/en/services/hosting/) — fully managed hosting with SSL, daily backups, updates and monitoring.
 
 ## Key pages
 
-- [Homepage](https://seosuite.studio/): overview of all services and free website analysis request.
-- [Blog](https://seosuite.studio/blog/): "For Dummies" articles on SEO, web design and digital growth for entrepreneurs, in English and German.
-- [Full sitemap](https://seosuite.studio/sitemap.xml): complete list of all pages, including 97 blog articles covering SEO, AI search, web design, hosting, SaaS and local SEO.
+- [Startseite](https://seosuite.studio/): German homepage — overview of all services and free website analysis request.
+- [English homepage](https://seosuite.studio/en/): the same in English.
+- [Blog (DE)](https://seosuite.studio/blog/) · [Blog (EN)](https://seosuite.studio/en/blog/): 96 "For Dummies" articles on SEO, web design and digital growth, in both languages.
+- [Full sitemap](https://seosuite.studio/sitemap.xml): all 222 pages with hreflang annotations.
 
 ## Featured articles
 
-- [What Is SEO?](https://seosuite.studio/blog/what-is-seo/)
-- [What Is EEAT?](https://seosuite.studio/blog/what-is-eeat/)
-- [What Is GEO?](https://seosuite.studio/blog/what-is-geo/)
-- [How to Perform an SEO Audit](https://seosuite.studio/blog/how-to-perform-an-seo-audit/)
-- [Get Mentioned by ChatGPT](https://seosuite.studio/blog/get-mentioned-by-chatgpt/)
+- [Was ist SEO?](https://seosuite.studio/blog/what-is-seo/) · [What Is SEO?](https://seosuite.studio/en/blog/what-is-seo/)
+- [Was ist EEAT?](https://seosuite.studio/blog/what-is-eeat/) · [What Is EEAT?](https://seosuite.studio/en/blog/what-is-eeat/)
+- [Was ist GEO?](https://seosuite.studio/blog/what-is-geo/) · [What Is GEO?](https://seosuite.studio/en/blog/what-is-geo/)
+- [SEO-Audit durchführen](https://seosuite.studio/blog/how-to-perform-an-seo-audit/) · [How to Perform an SEO Audit](https://seosuite.studio/en/blog/how-to-perform-an-seo-audit/)
+- [Von ChatGPT erwähnt werden](https://seosuite.studio/blog/get-mentioned-by-chatgpt/) · [Get Mentioned by ChatGPT](https://seosuite.studio/en/blog/get-mentioned-by-chatgpt/)
 
 ## Contact
 
