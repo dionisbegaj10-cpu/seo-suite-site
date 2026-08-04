@@ -256,6 +256,25 @@ body.animated #free-analysis-cta { background: #ffffff; color: #1c1c1c; }
 }
 .cpf-field input::placeholder { color: rgba(255,255,255,0.25); }
 .cpf-field input:focus { border-color: rgba(255,255,255,0.7); }
+.cpf-field textarea {
+    width: 100%; box-sizing: border-box; background: transparent; border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.2); color: #fff;
+    font-family: Arial, Helvetica, sans-serif; font-size: 15px; padding: 10px 0;
+    outline: none; transition: border-color 0.2s; resize: vertical; min-height: 60px;
+}
+.cpf-field textarea:focus { border-color: rgba(255,255,255,0.7); }
+.cpf-consent-field { display: flex; align-items: flex-start; gap: 10px; }
+.cpf-consent-field input[type="checkbox"] {
+    flex: 0 0 auto; margin-top: 2px; width: 15px; height: 15px;
+    accent-color: #fff; cursor: pointer;
+}
+.cpf-consent-field label {
+    font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 1.5;
+    color: rgba(255,255,255,0.45); letter-spacing: 0; text-transform: none;
+    font-weight: 400; margin: 0; cursor: pointer;
+}
+.cpf-consent-field label a { color: rgba(255,255,255,0.75); text-decoration: underline; }
+.cpf-consent-field label a:hover { color: #fff; }
 .cpf-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
 .cpf-tag {
     background: transparent; border: 1px solid rgba(255,255,255,0.25);
@@ -536,3 +555,69 @@ body.animated .trusted-logos img {
 @media (min-width: 1024px) {
     #free-analysis-section { padding-top: 160px; }
 }
+
+/* --- Cookie consent banner --- */
+#cookie-banner {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 10050;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 20px; padding: 20px max(24px, env(safe-area-inset-left, 0px) + 16px);
+    padding-bottom: max(20px, env(safe-area-inset-bottom, 0px) + 12px);
+    background: #101010; border-top: 1px solid rgba(255,255,255,0.14);
+    font-family: Arial, Helvetica, sans-serif;
+    transform: translateY(110%); transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+#cookie-banner.visible { transform: translateY(0); }
+#cookie-banner p {
+    margin: 0; flex: 1 1 320px; font-size: 13px; line-height: 1.6;
+    color: rgba(255,255,255,0.62);
+}
+#cookie-banner p a { color: #fff; text-decoration: underline; }
+.cookie-banner-btns { display: flex; gap: 12px; flex: 0 0 auto; }
+.cookie-banner-btns button {
+    border-radius: 100px; padding: 12px 28px; cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif; font-weight: 900; font-size: 12px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    transition: transform 0.2s, background 0.2s, border-color 0.2s, color 0.2s;
+}
+.cookie-banner-btns button:hover { transform: translateY(-2px); }
+.cb-accept { background: #fff; color: #0e0e0e; border: 1px solid #fff; }
+.cb-accept:hover { background: #e8e8e8; }
+.cb-decline { background: transparent; color: rgba(255,255,255,0.62); border: 1px solid rgba(255,255,255,0.28); }
+.cb-decline:hover { color: #fff; border-color: rgba(255,255,255,0.7); }
+@media (max-width: 600px) {
+    #cookie-banner { flex-direction: column; align-items: stretch; gap: 16px; }
+    .cookie-banner-btns button { flex: 1; padding: 14px 18px; }
+}
+
+/* --- Footer legal links --- */
+.footer-legal { margin-top: 18px; }
+.footer-legal a, .footer-legal button {
+    color: rgba(255,255,255,0.45); font-size: 12px; text-decoration: none;
+    background: none; border: none; padding: 0; cursor: pointer;
+    font-family: inherit; letter-spacing: inherit;
+}
+.footer-legal a:hover, .footer-legal button:hover { color: #fff; }
+.footer-legal span { color: rgba(255,255,255,0.25); margin: 0 8px; }
+
+/* --- Footer navigation (site structure for crawlers + screen readers) --- */
+.footer-nav { margin-top: 32px; }
+.footer-nav h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 1.8px;
+    text-transform: uppercase; color: rgba(255,255,255,0.35);
+    margin: 0 0 10px;
+}
+.footer-nav h2 + ul { margin: 0 0 24px; }
+.footer-nav ul { list-style: none; padding: 0; }
+.footer-nav li { margin-bottom: 7px; }
+.footer-nav a {
+    color: rgba(255,255,255,0.62); text-decoration: none; font-size: 14px;
+    transition: color 0.2s;
+}
+.footer-nav a:hover { color: #fff; }
+
+/* Success overlay when arriving back from the form's native POST fallback.
+   The in-page animation paints the blob white behind the (dark) text; on a
+   fresh page load that machinery hasn't run, so the overlay carries its own
+   background instead. */
+#send-success-overlay.standalone { background: #ffffff; pointer-events: all; }
