@@ -163,7 +163,14 @@
     function init() {
         var choice = read();
         if (choice === 'granted') { grant(); }
-        else if (choice !== 'denied') { show(); }
+        else if (choice === 'denied') { clearGACookies(); }
+        else {
+            // No choice recorded yet. Visitors from before the gate existed
+            // still carry _ga cookies set without consent — clear them rather
+            // than letting them survive until someone happens to click Decline.
+            clearGACookies();
+            show();
+        }
     }
 
     if (document.readyState === 'loading') {
