@@ -249,6 +249,15 @@ body.lang-hint-open #lang-switch,body.lang-hint-open .box-topnav{margin-top:46px
 body.lang-hint-open #back-home,body.lang-hint-open #lang-switch-svc,
 body.lang-hint-open #lang-switch-index,body.lang-hint-open #lang-switch-article,
 body.lang-hint-open #lang-switch,body.lang-hint-open .box-topnav{margin-top:60px}}
+
+#related-posts{margin:56px 0 8px;padding-top:28px;border-top:1px solid rgba(0,0,0,0.12)}
+#related-posts .eyebrow{font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:700;
+letter-spacing:1.8px;text-transform:uppercase;color:rgba(0,0,0,0.45);margin:0 0 16px}
+#related-posts ul{list-style:none;padding:0;margin:0}
+#related-posts li{margin:0 0 10px}
+#related-posts a{font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.5;
+color:#1c1c1c;text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2)}
+#related-posts a:hover{border-bottom-color:#1c1c1c}
 </style>
 </head>
 <body>
@@ -265,6 +274,7 @@ body.lang-hint-open #lang-switch,body.lang-hint-open .box-topnav{margin-top:60px
 <p>Migrieren Sie Datenbank und Dateien sorgfältig, aktualisieren Sie fest codierte Verweise auf den alten Server, und testen Sie alles über eine temporäre URL oder lokale Hosts-Datei, bevor DNS geändert wird. DNS-Änderungen brauchen Zeit zur globalen Verbreitung, bis zu 24-48 Stunden, planen Sie den Umzug daher in eine traffic-arme Zeit.</p>
 <p>Falls E-Mail zusammen mit der Website gehostet wird, prüfen Sie die E-Mail-Konfiguration beim neuen Host sorgfältig vor der vollständigen Umstellung, E-Mail-Ausfälle sind oft schmerzhafter und weniger sichtbar als Website-Ausfälle. Behalten Sie das alte Hosting-Konto für eine kurze Pufferzeit aktiv, bis Sie sicher sind, dass die Migration sauber gelungen ist.</p>
 <p>Das eigentliche Risiko bei jeder Hosting-Migration ist nicht der Umzug selbst, sondern Ausfallzeit und DNS-Propagation. Die sicherste Reihenfolge: zuerst den neuen Host vollständig einrichten und testen (ohne DNS anzufassen), dann bestätigen, dass die Website unter der temporären Adresse des neuen Hosts korrekt funktioniert, und erst danach DNS umstellen – so entsteht für Besucher keine Unterbrechung beim eigentlichen Wechsel.</p><p>E-Mail ist der Teil, den die meisten erst bemerken, wenn er ausfällt: Hängt das E-Mail-Hosting an denselben DNS-Einträgen (MX-Records) wie die Website, kann eine Hosting-Migration ohne Plan für die E-Mail-Kontinuität eingehende Mails für Stunden oder Tage lahmlegen, während sich die DNS-Änderung verbreitet. Die DNS-TTL (Time-to-Live) ein bis zwei Tage vor der Migration zu senken, verkürzt dieses Zeitfenster deutlich.</p></div><div class="faq-section"><p class="faq-heading">Häufig gestellte Fragen</p><div class="faq-item"><p class="faq-q">Führt ein Hosting-Umzug zwangsläufig zu Ausfallzeit?</p><p class="faq-a">Nicht zwingend — mit sorgfältiger Planung (die neue Seite vor der DNS-Umstellung vorbereiten, alles prüfen, dann umschalten) lässt sich Ausfallzeit meist vermeiden oder auf Minuten begrenzen.</p></div><div class="faq-item"><p class="faq-q">Beeinflusst ein Hosting-Umzug mein SEO-Ranking?</p><p class="faq-a">Er kann es, wenn er nicht sorgfältig durchgeführt wird — defekte Weiterleitungen, geänderte URLs oder längere Ausfallzeit während des Umzugs können Rankings vorübergehend schaden, weshalb gründliches Testen vor der finalen Umstellung wichtig ist.</p></div></div>
+<div id="related-posts"><p class="eyebrow">Verwandte Artikel</p><ul><li><a href="/blog/welches-hosting-brauche-ich/">Welches Hosting brauche ich wirklich? Eine einfache Entscheidungshilfe</a></li><li><a href="/blog/schnellste-hosting-anbieter/">Was macht einen Hosting-Anbieter wirklich schnell?</a></li><li><a href="/blog/vps-vs-shared-hosting/">VPS vs. Shared Hosting: Was braucht Ihre Website wirklich?</a></li><li><a href="/blog/was-ist-dns/">DNS erklärt: Das System hinter jeder Website-Adresse</a></li></ul></div>
 <div id="related-service">
 <p class="eyebrow">Verwandte Leistungen</p>
 <a class="related-service-link" href="/services/hosting/">Hosting <span>→</span></a>
