@@ -33,11 +33,11 @@ The site is German-first: German pages live at the root, English translations li
 
 ## Featured articles
 
-- [Was ist SEO?](https://seosuite.studio/blog/what-is-seo/) · [What Is SEO?](https://seosuite.studio/en/blog/what-is-seo/)
-- [Was ist EEAT?](https://seosuite.studio/blog/what-is-eeat/) · [What Is EEAT?](https://seosuite.studio/en/blog/what-is-eeat/)
-- [Was ist GEO?](https://seosuite.studio/blog/what-is-geo/) · [What Is GEO?](https://seosuite.studio/en/blog/what-is-geo/)
-- [SEO-Audit durchführen](https://seosuite.studio/blog/how-to-perform-an-seo-audit/) · [How to Perform an SEO Audit](https://seosuite.studio/en/blog/how-to-perform-an-seo-audit/)
-- [Von ChatGPT erwähnt werden](https://seosuite.studio/blog/get-mentioned-by-chatgpt/) · [Get Mentioned by ChatGPT](https://seosuite.studio/en/blog/get-mentioned-by-chatgpt/)
+- [Was ist SEO?](https://seosuite.studio/blog/was-ist-seo/) · [What Is SEO?](https://seosuite.studio/en/blog/what-is-seo/)
+- [Was ist EEAT?](https://seosuite.studio/blog/was-ist-eeat/) · [What Is EEAT?](https://seosuite.studio/en/blog/what-is-eeat/)
+- [Was ist GEO?](https://seosuite.studio/blog/was-ist-geo-einfach-erklaert/) · [What Is GEO?](https://seosuite.studio/en/blog/what-is-geo/)
+- [SEO-Audit durchführen](https://seosuite.studio/blog/seo-audit-durchfuehren/) · [How to Perform an SEO Audit](https://seosuite.studio/en/blog/how-to-perform-an-seo-audit/)
+- [Von ChatGPT erwähnt werden](https://seosuite.studio/blog/von-chatgpt-erwaehnt-werden/) · [Get Mentioned by ChatGPT](https://seosuite.studio/en/blog/get-mentioned-by-chatgpt/)
 
 ## Contact
 
