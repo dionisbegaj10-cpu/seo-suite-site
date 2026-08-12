@@ -478,6 +478,9 @@ body.animated .trusted-logos img {
 .trusted-logos img[src*="rueger"] {
     height: 85%;
 }
+.trusted-logos img[src*="hrware"] {
+    height: 78%;
+}
 .trusted-logos img:hover {
     opacity: 1;
     transform: translateY(-2px);
