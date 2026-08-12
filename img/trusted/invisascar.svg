@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 170" width="512" height="170">
+  <g fill="#000000">
+    <!-- Brand name, bold small caps like "DR. FELIX BERGSCHNEIDER" -->
+    <text x="256" y="90" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" letter-spacing="3" text-anchor="middle" fill="#000000">INVISASCAR</text>
+
+    <!-- Subtitle, tiny caps like "FACHPRAXIS FÜR KIEFERORTHOPÄDIE" -->
+    <text x="256" y="112" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" letter-spacing="2" text-anchor="middle" fill="#000000">SCAR TREATMENT</text>
+  </g>
+</svg>
