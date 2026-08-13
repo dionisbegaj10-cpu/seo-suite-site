@@ -479,7 +479,7 @@ body.animated .trusted-logos img {
     height: 85%;
 }
 .trusted-logos img[src*="hrware"] {
-    height: 78%;
+    height: 58%;
 }
 .trusted-logos img:hover {
     opacity: 1;
