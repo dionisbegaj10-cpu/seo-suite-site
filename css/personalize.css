@@ -481,14 +481,8 @@ body.animated .trusted-logos img {
 .trusted-logos img[src*="hrware"] {
     height: 58%;
 }
-.trusted-logos img[src*="rosenparkklinik"] {
-    height: 65%;
-}
 .trusted-logos img[src*="jl-service"] {
     height: 62%;
-}
-.trusted-logos img[src*="bellari"] {
-    height: 60%;
 }
 .trusted-logos img:hover {
     opacity: 1;
@@ -532,9 +526,6 @@ body.animated .trusted-logos img {
     .trusted-logos li:nth-child(6) { grid-column: 2 / span 1; }
     .trusted-logos li:nth-child(7) { grid-column: 3 / span 1; }
     .trusted-logos li:nth-child(8) { grid-column: 4 / span 1; }
-    .trusted-logos li:nth-child(9) { grid-column: 1 / span 1; }
-    .trusted-logos li:nth-child(10) { grid-column: 2 / span 1; }
-    .trusted-logos li:nth-child(11) { grid-column: 3 / span 1; }
 }
 
 /* --- "start a project" footer CTA: same size/style as "Learn, Explore & Grow" --- */
