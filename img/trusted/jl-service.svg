@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="5 15 245 180" width="245" height="180">
+  <g fill="none" stroke="#000000" stroke-width="14" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M 20 90 L 130 25 L 175 55 L 175 25 L 220 25 L 220 75 L 240 90"/>
+  </g>
+  <g fill="#000000">
+    <text x="130" y="150" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="800" text-anchor="middle" letter-spacing="2">JL</text>
+    <text x="130" y="185" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" text-anchor="middle" letter-spacing="0.3">Service rund ums Haus</text>
+  </g>
+</svg>

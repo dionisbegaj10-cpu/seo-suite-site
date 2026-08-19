@@ -514,13 +514,15 @@ body.animated .trusted-logos img {
 }
 /* 5th-8th trusted logos (Frankfurt Nanny Agency, Remy Ebner, HRWare,
    InvisaScar): fill their own row, columns 1-4, on the 4-column grid.
-   9th logo (Rosenpark Klinik): centered alone on its own row. */
+   9th-11th logos (Rosenpark Klinik, JL Service, Bellari): fill the next row. */
 @media (min-width: 768px) {
     .trusted-logos li:nth-child(5) { grid-column: 1 / span 1; }
     .trusted-logos li:nth-child(6) { grid-column: 2 / span 1; }
     .trusted-logos li:nth-child(7) { grid-column: 3 / span 1; }
     .trusted-logos li:nth-child(8) { grid-column: 4 / span 1; }
-    .trusted-logos li:nth-child(9) { grid-column: 2 / span 2; }
+    .trusted-logos li:nth-child(9) { grid-column: 1 / span 1; }
+    .trusted-logos li:nth-child(10) { grid-column: 2 / span 1; }
+    .trusted-logos li:nth-child(11) { grid-column: 3 / span 1; }
 }
 
 /* --- "start a project" footer CTA: same size/style as "Learn, Explore & Grow" --- */
