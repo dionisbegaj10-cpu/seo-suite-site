@@ -481,6 +481,15 @@ body.animated .trusted-logos img {
 .trusted-logos img[src*="hrware"] {
     height: 58%;
 }
+.trusted-logos img[src*="rosenparkklinik"] {
+    height: 65%;
+}
+.trusted-logos img[src*="jl-service"] {
+    height: 62%;
+}
+.trusted-logos img[src*="bellari"] {
+    height: 55%;
+}
 .trusted-logos img:hover {
     opacity: 1;
     transform: translateY(-2px);
