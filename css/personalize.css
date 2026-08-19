@@ -488,7 +488,7 @@ body.animated .trusted-logos img {
     height: 62%;
 }
 .trusted-logos img[src*="bellari"] {
-    height: 55%;
+    height: 80%;
 }
 .trusted-logos img:hover {
     opacity: 1;
