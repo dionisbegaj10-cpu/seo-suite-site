@@ -494,6 +494,9 @@ body.animated .trusted-logos img {
     opacity: 1;
     transform: translateY(-2px);
 }
+.trusted-logos li.trusted-hidden {
+    display: none;
+}
 @media (max-width: 767px) {
     .box-trusted { padding: 28px 0 4px; }
     .trusted-logos {
