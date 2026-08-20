@@ -11,6 +11,7 @@
  */
 (function () {
     'use strict';
+    return; // language suggestion bar disabled
 
     var KEY = 'ssuite-lang-choice';
 
