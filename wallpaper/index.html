@@ -51,6 +51,8 @@
     #blob_container {
         position: fixed;
         inset: 0;
+        /* Lifted off centre so the headline below it keeps clear space. */
+        transform: translateY(-7%);
         width: 100vw;
         height: 100vh;
         height: 100dvh;
@@ -84,18 +86,48 @@
         opacity: .55;
     }
 
-    /* Wordmark, bottom centre — the only branding on the page. */
+    /* The homepage headline, in the site's own display face. */
+    @font-face {
+        font-family: 'Grumpy 24';
+        src: url('/css/fonts/Grumpy-Black24.woff2') format('woff2'),
+             url('/css/fonts/Grumpy-Black24.woff') format('woff');
+        font-weight: 900;
+        font-style: normal;
+        font-display: swap;
+    }
+
     #mark {
         position: fixed;
         bottom: max(5vh, env(safe-area-inset-bottom));
         left: 0;
         right: 0;
         text-align: center;
-        font-size: clamp(11px, 1.6vw, 14px);
-        letter-spacing: .42em;
-        text-transform: uppercase;
-        opacity: .38;
         pointer-events: none;
+    }
+    #intro {
+        font-family: 'Grumpy 24', Georgia, serif;
+        font-weight: 900;
+        font-size: clamp(38px, 8.5vw, 104px);
+        line-height: .96;
+        opacity: .92;
+    }
+    /* One word per line, as the homepage sets it. */
+    #intro .no-wrap { display: block; }
+    /* Letters rise into place on load, 15ms apart — the homepage's reveal. */
+    #intro span {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(15px);
+        transition-property: transform, opacity;
+        transition-duration: .45s, .45s;
+        transition-timing-function: cubic-bezier(.25, .46, .45, .94);
+    }
+    #intro.animated span {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+        #intro span { opacity: 1; transform: none; transition: none; }
     }
 
     /* Controls: out of the way until tapped. */
@@ -133,15 +165,10 @@
 
     /* One-time hint, fades itself out. */
     #hint {
-        position: fixed;
-        bottom: calc(max(5vh, env(safe-area-inset-bottom)) + 34px);
-        left: 0;
-        right: 0;
-        text-align: center;
         font-size: 12px;
         letter-spacing: .1em;
         opacity: .35;
-        pointer-events: none;
+        margin-bottom: 1.6em;
         transition: opacity 1s ease;
     }
     #hint.gone { opacity: 0; }
@@ -160,14 +187,20 @@
 <div id="date"></div>
 </div>
 
-<div id="mark">SSUITE</div>
+<div id="mark">
+<div id="hint">Drag to spin · tap to show controls</div>
+<h1 id="intro">
+<i class="no-wrap">digital</i>
+<i class="no-wrap">creative</i>
+<i class="no-wrap">studio</i>
+</h1>
+</div>
 
 <div id="controls">
 <button id="toggle-theme" type="button">Theme</button>
 <button id="toggle-clock" type="button">Clock</button>
 </div>
 
-<div id="hint">Drag to spin · tap to show controls</div>
 
 <script src="/js/libs/jsband-min.js"></script>
 <script src="/js/blob-min.js"></script>
@@ -216,7 +249,7 @@
     var blob = new BlobAnimation('blob_container', {
         BLOB_SIZE: 250,
         // Closer than the hero's 1000 so the orb fills a tablet screen.
-        BLOB_DISTANCE: narrow ? 780 : 700,
+        BLOB_DISTANCE: narrow ? 900 : 820,
         DETALISATION: 60,
         PERSPECTIVE_DISTORTION: 1,
         ROTATION_SPEED: 5,
@@ -310,6 +343,25 @@
     }
     tick();
     setInterval(tick, 1000);
+
+    // --- Headline ---------------------------------------------------------
+    // Split each word into letters and stagger them 15ms apart, the same
+    // reveal setAnimationDelay() drives on the homepage.
+    var intro = document.getElementById('intro');
+    var letter = 0;
+    Array.prototype.forEach.call(intro.querySelectorAll('.no-wrap'), function (word) {
+        var text = word.textContent;
+        word.textContent = '';
+        text.split('').forEach(function (ch) {
+            var span = document.createElement('span');
+            span.textContent = ch;
+            span.style.transitionDelay = (letter++ * 15) + 'ms';
+            word.appendChild(span);
+        });
+    });
+    requestAnimationFrame(function () {
+        requestAnimationFrame(function () { intro.classList.add('animated'); });
+    });
 
     // --- Hint -------------------------------------------------------------
     var hint = document.getElementById('hint');
