@@ -1,9 +1,12 @@
 # SEOsuite iPad wallpapers
 
-Generated from the site's own brand assets (`img/logo.png`, `img/logo_white.png`)
-and palette (`#0e0e0e` / `#1c1c1c` / `#e8e8e8` / `#ffffff`).
+Stills of the **homepage hero orb** — the rotating dot sphere ("blob") that
+sits behind the hero on seosuite.studio. `generate.py` re-implements the
+geometry, wave shape and perspective projection of `js/blob-min.js` using
+the `blob_settings` from `js/main.js`, so the sphere is the real thing at
+its resting shape, not a lookalike.
 
-Each file is `seosuite-wallpaper-<device>-<theme>-<orientation>.png`:
+Files are named `seosuite-hero-wallpaper-<device>-<theme>-<orientation>.png`:
 
 | Device key | Portrait resolution |
 | --- | --- |
@@ -14,15 +17,22 @@ Each file is `seosuite-wallpaper-<device>-<theme>-<orientation>.png`:
 | `ipad-10-2` | 1620 x 2160 (iPad 10.2") |
 | `ipad-mini` | 1488 x 2266 (iPad mini 6) |
 
-Themes: `dark`, `light`. Orientations: `portrait`, `landscape`
-(landscape is the same resolution swapped).
+Themes: `dark` (white dots on `#0e0e0e`) and `light` (grey dots on white,
+as the site renders it). Orientations: `portrait` and `landscape`.
 
-The logo is centred at 42% of the height so the lock-screen clock and
-widgets sit clear of it.
+The orb sits at 42% of the height in portrait so the lock-screen clock and
+widgets stay clear of it, and is centred in landscape.
 
 To set one: AirDrop or download the PNG, open it in Photos, then
-Share → Use as Wallpaper → Set (turn **off** "Perspective Zoom" so the
-composition is not cropped).
+Share → Use as Wallpaper → Set. Turn **off** "Perspective Zoom" so the
+sphere is not cropped.
 
-Regenerate with the script used to build these (Pillow required); sizes,
-themes and layout are all defined at the top of it.
+## Regenerating
+
+    pip install pillow
+    python3 img/wallpapers/generate.py
+
+Everything worth changing is at the top of `generate.py` (sizes, colours,
+wave shape) or in `render()`'s arguments: `scale` (orb size), `yaw` /
+`pitch` (viewing angle), `phase` (where in the wave animation the frame is
+taken) and `cy_frac` (vertical position).
