@@ -1,10 +1,14 @@
 # SEOsuite iPad wallpapers
 
-Stills of the **homepage hero orb** — the rotating dot sphere ("blob") that
-sits behind the hero on seosuite.studio. `generate.py` re-implements the
-geometry, wave shape and perspective projection of `js/blob-min.js` using
-the `blob_settings` from `js/main.js`, so the sphere is the real thing at
-its resting shape, not a lookalike.
+Stills of the **live wallpaper page** at `/wallpaper/` — the homepage hero
+orb with the "digital creative studio" headline, typeset as the desktop
+homepage sets it. They are screenshots of that real page at iPad
+resolutions, so the still and the interactive version match exactly. The
+clock is hidden in the stills because iPadOS draws its own.
+
+`generate.py` is the standalone alternative: it re-implements the geometry,
+wave shape and projection of `js/blob-min.js` from the `blob_settings` in
+`js/main.js` and renders the bare orb without a browser.
 
 Files are named `seosuite-hero-wallpaper-<device>-<theme>-<orientation>.png`:
 
