@@ -51,8 +51,6 @@
     #blob_container {
         position: fixed;
         inset: 0;
-        /* Lifted off centre so the headline below it keeps clear space. */
-        transform: translateY(-7%);
         width: 100vw;
         height: 100vh;
         height: 100dvh;
@@ -98,18 +96,21 @@
 
     #mark {
         position: fixed;
-        bottom: max(5vh, env(safe-area-inset-bottom));
-        left: 0;
-        right: 0;
-        text-align: center;
+        inset: 0;
+        display: flex;
+        align-items: center;          /* h1 { margin: auto 0 } on the homepage */
+        padding-left: 18.75vw;        /* the .box column's left edge */
+        padding-right: 6vw;
         pointer-events: none;
     }
     #intro {
         font-family: 'Grumpy 24', Georgia, serif;
-        font-weight: 900;
-        font-size: clamp(38px, 8.5vw, 104px);
-        line-height: .96;
-        opacity: .92;
+        font-weight: 700;
+        /* 100px at the 1440px desktop the homepage is typeset on. */
+        font-size: clamp(40px, 6.95vw, 132px);
+        line-height: 1.08;
+        margin: 0;
+        text-align: left;
     }
     /* One word per line, as the homepage sets it. */
     #intro .no-wrap { display: block; }
@@ -129,6 +130,19 @@
     @media (prefers-reduced-motion: reduce) {
         #intro span { opacity: 1; transform: none; transition: none; }
     }
+
+    /* Wordmark, top left — where the homepage's nav puts it. */
+    #wordmark {
+        position: fixed;
+        top: max(28px, env(safe-area-inset-top));
+        left: max(24px, 6vw);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: .22em;
+        opacity: .85;
+        pointer-events: none;
+    }
+
 
     /* Controls: out of the way until tapped. */
     #controls {
@@ -161,14 +175,20 @@
         text-transform: uppercase;
         cursor: pointer;
     }
-    #controls button:active { opacity: 1; }
+    #controls button:active,
+    #controls button:focus-visible { opacity: 1; }
 
     /* One-time hint, fades itself out. */
     #hint {
+        position: fixed;
+        bottom: max(24px, env(safe-area-inset-bottom));
+        left: 0;
+        right: 0;
+        text-align: center;
+        pointer-events: none;
         font-size: 12px;
         letter-spacing: .1em;
         opacity: .35;
-        margin-bottom: 1.6em;
         transition: opacity 1s ease;
     }
     #hint.gone { opacity: 0; }
@@ -187,14 +207,17 @@
 <div id="date"></div>
 </div>
 
+<div id="wordmark">SSUITE</div>
+
 <div id="mark">
-<div id="hint">Drag to spin · tap to show controls</div>
 <h1 id="intro">
 <i class="no-wrap">digital</i>
 <i class="no-wrap">creative</i>
 <i class="no-wrap">studio</i>
 </h1>
 </div>
+
+<div id="hint">Drag to spin · tap to show controls</div>
 
 <div id="controls">
 <button id="toggle-theme" type="button">Theme</button>
@@ -249,11 +272,11 @@
     var blob = new BlobAnimation('blob_container', {
         BLOB_SIZE: 250,
         // Closer than the hero's 1000 so the orb fills a tablet screen.
-        BLOB_DISTANCE: narrow ? 900 : 820,
+        BLOB_DISTANCE: 1000,
         DETALISATION: 60,
         PERSPECTIVE_DISTORTION: 1,
         ROTATION_SPEED: 5,
-        DOT_SIZE: narrow ? 1.2 : 1.6,
+        DOT_SIZE: narrow ? 1 : 1.5,
         DOT_COLOR: dotColor(),
         MOUSE_DISTANCE_MIN: 20,
         MOUSE_DISTANCE_MAX: 400,
