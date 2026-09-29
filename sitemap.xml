@@ -982,6 +982,24 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://seosuite.studio/services/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://seosuite.studio/services/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://seosuite.studio/en/services/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://seosuite.studio/en/services/"/>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://seosuite.studio/en/services/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://seosuite.studio/services/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://seosuite.studio/en/services/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://seosuite.studio/en/services/"/>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://seosuite.studio/services/performance/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://seosuite.studio/services/performance/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://seosuite.studio/en/services/performance/"/>
