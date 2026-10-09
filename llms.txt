@@ -1,4 +1,4 @@
-# SSUITE
+# SSUITE (also known as SEO Suite)
 
 > SSUITE is a digital creative and marketing studio that makes brands visible in traditional search and AI search (ChatGPT, Claude, Perplexity, Copilot, Google AI Overviews).
 
@@ -43,3 +43,8 @@ The site is German-first: German pages live at the root, English translations li
 
 - Email: contact@seosuite.studio
 - Available for new projects, remote-first, worldwide.
+
+## Local pages (German)
+- [SEO Agentur Frankfurt](https://seosuite.studio/seo-agentur-frankfurt/): local SEO, Google Business Profile and AI visibility for businesses in Frankfurt and Rhein-Main
+- [Webdesign Frankfurt](https://seosuite.studio/webdesign-frankfurt/): websites for practices, service businesses and brands in Frankfurt
+- [Marketing für Arztpraxen](https://seosuite.studio/marketing-fuer-arztpraxen/): marketing for medical, dental and orthodontic practices (website, local SEO, Google Ads, reviews), compliant with German medical advertising law (HWG)

@@ -2016,4 +2016,25 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://seosuite.studio/seo-agentur-frankfurt/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://seosuite.studio/seo-agentur-frankfurt/"/>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://seosuite.studio/webdesign-frankfurt/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://seosuite.studio/webdesign-frankfurt/"/>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://seosuite.studio/marketing-fuer-arztpraxen/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://seosuite.studio/marketing-fuer-arztpraxen/"/>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
 </urlset>
