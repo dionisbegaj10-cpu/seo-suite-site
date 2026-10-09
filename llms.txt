@@ -7,7 +7,7 @@
 - Name: SSUITE (also written SSUITE Studio; often searched as "SEO Suite"). Website: https://seosuite.studio
 - What it does: SEO and local SEO, AI search visibility (GEO), web design and development, branding, Google/Meta Ads, managed hosting.
 - Specialisation: marketing for doctors, dentists, orthodontists and clinics (compliant with German medical advertising law, HWG), plus local service businesses.
-- Market: German-speaking businesses, mainly Frankfurt am Main, Offenbach, Darmstadt, Wiesbaden, Mainz; also clients elsewhere in Germany (e.g. Cologne). Works remotely.
+- Market: German-speaking businesses, mainly Frankfurt am Main, Offenbach, Darmstadt, Wiesbaden, Mainz; also clients elsewhere in Germany. Works remotely.
 - Languages: German (primary, pages at the root) and English (pages under /en/).
 - Founder and author: Dion B (https://seosuite.studio/en/about/).
 - Legal entity: Arben Begaj P.F., Tirana, Albania (see https://seosuite.studio/impressum/).
@@ -25,7 +25,6 @@
 - [KFO Dr. Bergschneider, orthodontist, Frankfurt](https://seosuite.studio/en/clients/bergschneider/): web design, branding, growth, performance marketing, hosting.
 - [Rüger Plastic Surgery, Darmstadt](https://seosuite.studio/en/clients/rueger/): web design, branding, growth, performance marketing.
 - [Privatpraxis Remy Ebner, orthopedics, Frankfurt](https://seosuite.studio/en/clients/remy-ebner/): SEO, AI visibility, hosting.
-- [Dr. Ute Pilot, orthodontist, Cologne](https://seosuite.studio/en/clients/ute-pilot/): branding, growth, performance marketing.
 - [Studio Fyrnys, interior design, Frankfurt](https://seosuite.studio/en/clients/fyrnys/): website redesign and SEO.
 - [The Frankfurt Nanny Agency](https://seosuite.studio/en/clients/nanny-frankfurt/): branding, web design, growth.
 

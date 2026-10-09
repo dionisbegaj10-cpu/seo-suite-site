@@ -937,15 +937,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://seosuite.studio/clients/ute-pilot/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://seosuite.studio/clients/ute-pilot/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://seosuite.studio/en/clients/ute-pilot/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://seosuite.studio/en/clients/ute-pilot/"/>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://seosuite.studio/services/ai-suite/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://seosuite.studio/services/ai-suite/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://seosuite.studio/en/services/ai-suite/"/>
@@ -1949,15 +1940,6 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://seosuite.studio/clients/rueger/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://seosuite.studio/en/clients/rueger/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://seosuite.studio/en/clients/rueger/"/>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://seosuite.studio/en/clients/ute-pilot/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://seosuite.studio/clients/ute-pilot/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://seosuite.studio/en/clients/ute-pilot/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://seosuite.studio/en/clients/ute-pilot/"/>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
