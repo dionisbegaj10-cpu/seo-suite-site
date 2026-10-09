@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
+<script src="/js/consent.js?v=4"></script>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>What Is DNS? How Domain Name Systems Work | SSUITE</title>
 <meta content="DNS translates domain names into the addresses computers actually use. Here's a plain-English explanation of how it works and why it matters." name="description"/>
@@ -30,9 +31,11 @@
   "datePublished": "2026-07-19",
   "dateModified": "2026-07-22",
   "author": {
-    "@type": "Organization",
-    "name": "SSUITE",
-    "url": "https://seosuite.studio/"
+    "@type": "Person",
+    "name": "Dion B",
+    "jobTitle": "Founder, SSUITE",
+    "url": "https://seosuite.studio/en/about/",
+    "worksFor": {"@type": "Organization", "name": "SSUITE", "url": "https://seosuite.studio/"}
   },
   "publisher": {
     "@type": "Organization",
@@ -132,9 +135,9 @@ body.scrolled #back-home { opacity: 0; pointer-events: none; }
     transition: opacity 0.35s ease;
 }
 body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
-#lang-switch-article a { text-decoration: none; color: rgba(0,0,0,0.4); }
+#lang-switch-article a { text-decoration: none; color: rgba(0,0,0,0.62); }
 #lang-switch-article a.active { color: #1c1c1c; }
-#lang-switch-article span { color: rgba(0,0,0,0.3); margin: 0 4px; }
+#lang-switch-article span { color: rgba(0,0,0,0.62); margin: 0 4px; }
 .article-inner {
     max-width: 680px;
     margin: 0 auto;
@@ -146,7 +149,7 @@ body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: rgba(0,0,0,0.4);
+    color: rgba(0,0,0,0.62);
     margin: 0 0 16px;
 }
 .article-title {
@@ -172,7 +175,7 @@ body.scrolled #lang-switch-article { opacity: 0; pointer-events: none; }
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: rgba(0,0,0,0.4);
+    color: rgba(0,0,0,0.62);
     margin: 0 0 12px;
 }
 .related-service-link {
@@ -238,7 +241,7 @@ transform:translateY(-110%);transition:transform 0.4s cubic-bezier(0.4,0,0.2,1)}
 #lang-hint .lang-hint-go{color:#fff;text-decoration:underline;white-space:nowrap}
 #lang-hint .lang-hint-go:hover{opacity:0.8}
 #lang-hint .lang-hint-close{margin-left:auto;background:none;border:none;
-color:rgba(255,255,255,0.5);font-size:20px;line-height:1;cursor:pointer;padding:0 2px}
+color:rgba(255,255,255,0.62);font-size:20px;line-height:1;cursor:pointer;padding:0 2px}
 #lang-hint .lang-hint-close:hover{color:#fff}
 body.lang-hint-open #back-home,body.lang-hint-open #lang-switch-svc,
 body.lang-hint-open #lang-switch-index,body.lang-hint-open #lang-switch-article,
@@ -250,13 +253,13 @@ body.lang-hint-open #lang-switch,body.lang-hint-open .box-topnav{margin-top:60px
 
 #related-posts{margin:56px 0 8px;padding-top:28px;border-top:1px solid rgba(0,0,0,0.12)}
 #related-posts .eyebrow{font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:700;
-letter-spacing:1.8px;text-transform:uppercase;color:rgba(0,0,0,0.45);margin:0 0 16px}
+letter-spacing:1.8px;text-transform:uppercase;color:rgba(0,0,0,0.62);margin:0 0 16px}
 #related-posts ul{list-style:none;padding:0;margin:0}
 #related-posts li{margin:0 0 10px}
 #related-posts a{font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.5;
 color:#1c1c1c;text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2)}
 #related-posts a:hover{border-bottom-color:#1c1c1c}
-</style>
+.post-cta{margin:48px 0 8px;padding:32px 28px;background:#0e0e0e;color:#fff;border-radius:18px}.post-cta p.pc-h{font:900 1.35rem/1.25 "Grumpy 24",Georgia,serif;margin:0 0 10px;color:#fff}.post-cta p.pc-t{font-size:16px;line-height:1.65;color:rgba(255,255,255,0.78);margin:0 0 20px}.post-cta a{display:inline-block;margin:0 10px 10px 0;padding:13px 22px;border-radius:100px;font:900 12px/1 Arial,Helvetica,sans-serif;letter-spacing:1.2px;text-transform:uppercase;text-decoration:none;border:0}.post-cta a.pc-main{background:#fff;color:#0e0e0e}.post-cta a.pc-sec{color:#fff;border:1px solid rgba(255,255,255,0.4)}</style>
 </head>
 <body>
 <a href="/en/blog/" id="back-home">← Blog</a>
@@ -266,6 +269,7 @@ color:#1c1c1c;text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2)}
 <div class="article-inner">
 <p class="article-cat">Hosting · 4 min read · Last updated: July 22, 2026</p>
 <h1 class="article-title">DNS Explained: The System Behind Every Website Address</h1>
+<p class="article-byline" style="font-size:13px;color:rgba(0,0,0,0.62);margin:-8px 0 28px;">By <a href="/en/about/" style="color:inherit;">Dion B</a> · Updated 2026-07-22</p>
 <div class="article-body">
 <p>Every time you type a website address into a browser, something has to translate that human-readable name into the numerical address computers use to find each other on the internet. That translation system is DNS — the Domain Name System.</p>
 <p>DNS works a bit like a phone book, translating a name (a domain like example.com) into a number (an IP address like 192.0.2.1) that computers use to locate and connect to a server. Without DNS, you'd have to remember and type a string of numbers instead of a memorable domain name for every site you visit.</p>
@@ -278,6 +282,7 @@ color:#1c1c1c;text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2)}
 <p>Making DNS changes without understanding the propagation delay, and expecting instant results, is one of the most common sources of confusion. Editing the wrong DNS records, or editing them in the wrong management interface, is another common and easily avoidable mistake, particularly during hosting migrations or email setup changes.</p>
 <p>DNS translates human-readable domain names into the addresses computers use to connect, using several distinct record types for different purposes (website, email, verification). Understanding the basics — what record types exist and that changes take time to propagate — helps avoid common, avoidable mistakes during hosting migrations, email setup, or any other DNS-related change.</p>
 <p>Every domain name is really just a human-friendly alias for an IP address, and DNS is the lookup system that translates between the two. When you type a domain into a browser, your device asks a DNS resolver 'what server does this name point to,' gets back an IP address, and only then connects to the site — all in a fraction of a second, invisibly.</p><p>The most common records to know: an A record points a domain to an IPv4 address, a CNAME points one domain to another domain name instead of an IP, and an MX record tells the internet which server handles email for that domain. Misconfiguring any of these is one of the most common reasons a newly launched site or a freshly migrated email setup doesn't work.</p></div><div class="faq-section"><p class="faq-heading">Frequently asked questions</p><div class="faq-item"><p class="faq-q">Why does it take time for DNS changes to go live?</p><p class="faq-a">DNS records are cached at multiple points across the internet, and those caches need to expire before everyone sees the update — this is normal and expected, not a sign something went wrong.</p></div><div class="faq-item"><p class="faq-q">What happens if I get DNS settings wrong?</p><p class="faq-a">Typically your website or email becomes unreachable until it's corrected — DNS mistakes rarely cause permanent damage, but they can cause real downtime, so it's worth double-checking changes before saving them.</p></div></div>
+<div class="post-cta"><p class="pc-h">How visible is your website, really?</p><p class="pc-t">We review your site for free (SEO, technical health and AI visibility) and show you the three biggest levers for more enquiries.</p><a class="pc-main" data-cta="blog_box_form" href="/en/#start">Get your free analysis →</a><a class="pc-sec" data-cta="blog_box_service" href="/en/services/hosting/">Hosting</a></div>
 <div id="related-posts"><p class="eyebrow">Related articles</p><ul><li><a href="/en/blog/what-hosting-do-i-need/">What Hosting Do I Actually Need? A Simple Decision Guide</a></li><li><a href="/en/blog/domain-vs-hosting/">Domain vs. Hosting: What's the Actual Difference?</a></li><li><a href="/en/blog/email-hosting-guide/">Email Hosting: What It Is and Why It's Different From Website Hosting</a></li><li><a href="/en/blog/fastest-hosting-providers/">What Actually Makes a Hosting Provider Fast?</a></li></ul></div>
 <div id="related-service">
 <p class="eyebrow">Related services</p>
@@ -296,6 +301,7 @@ color:#1c1c1c;text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2)}
 })();
 </script>
 <script src="/js/langhint.js?v=3"></script>
-<p class="legal-links" style="text-align:center;font:12px Arial,Helvetica,sans-serif;color:rgba(255,255,255,0.4);margin:0;padding:24px 16px 32px;"><a href="/imprint/" style="color:inherit;">Imprint</a> · <a href="/privacy/" style="color:inherit;">Privacy</a></p>
+<p class="legal-links" style="text-align:center;font:12px Arial,Helvetica,sans-serif;color:rgba(255,255,255,0.62);margin:0;padding:24px 16px 32px;"><a href="/imprint/" style="color:inherit;">Imprint</a> · <a href="/privacy/" style="color:inherit;">Privacy</a> · <a href="#" onclick="return ssuiteOpenCookieSettings();" style="color:inherit;">Cookie settings</a></p>
+<script src="/js/cta.js?v=1" defer></script>
 </body>
 </html>

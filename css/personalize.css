@@ -66,7 +66,7 @@ body.at-top #mytopnav a.brand-logo { opacity: 1; }
     font-size: 13px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: rgba(0,0,0,0.45);
+    color: rgba(0,0,0,0.62);
     margin: 0 0 24px;
     opacity: 0;
     transform: translateY(15px);
@@ -162,14 +162,14 @@ body.animated #free-analysis-title { color: #ffffff; }
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
     line-height: 1.75;
-    color: rgba(0,0,0,0.5);
+    color: rgba(0,0,0,0.62);
     max-width: 420px;
     margin: 0 auto 40px;
     opacity: 0;
     transform: translateY(12px);
     transition: opacity 0.4s ease 0.32s, transform 0.4s ease 0.32s, color 0.25s ease;
 }
-body.animated #free-analysis-sub { color: rgba(255,255,255,0.5); }
+body.animated #free-analysis-sub { color: rgba(255,255,255,0.62); }
 #free-analysis-section.animated #free-analysis-sub { opacity: 1; transform: translateY(0); }
 
 #free-analysis-cta {
@@ -246,7 +246,7 @@ body.animated #free-analysis-cta { background: #ffffff; color: #1c1c1c; }
     display: block;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 11px; font-weight: 700; letter-spacing: 1.8px;
-    text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 10px;
+    text-transform: uppercase; color: rgba(255,255,255,0.62); margin-bottom: 10px;
 }
 .cpf-field input {
     width: 100%; box-sizing: border-box; background: transparent; border: none;
@@ -270,7 +270,7 @@ body.animated #free-analysis-cta { background: #ffffff; color: #1c1c1c; }
 }
 .cpf-consent-field label {
     font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 1.5;
-    color: rgba(255,255,255,0.45); letter-spacing: 0; text-transform: none;
+    color: rgba(255,255,255,0.62); letter-spacing: 0; text-transform: none;
     font-weight: 400; margin: 0; cursor: pointer;
 }
 .cpf-consent-field label a { color: rgba(255,255,255,0.75); text-decoration: underline; }
@@ -433,11 +433,11 @@ body.animated .box-trusted { border-top-color: rgba(255,255,255,0.12); }
     text-transform: uppercase;
     letter-spacing: 2.5px;
     font-size: 11px;
-    color: rgba(0,0,0,0.35);
+    color: rgba(0,0,0,0.62);
     margin: 0 0 32px;
     transition: color 0.25s ease;
 }
-body.animated #trusted-label { color: rgba(255,255,255,0.4); }
+body.animated #trusted-label { color: rgba(255,255,255,0.62); }
 .trusted-logos {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -607,7 +607,7 @@ body.animated .trusted-logos img {
 /* --- Footer legal links --- */
 .footer-legal { margin-top: 18px; }
 .footer-legal a, .footer-legal button {
-    color: rgba(255,255,255,0.45); font-size: 12px; text-decoration: none;
+    color: rgba(255,255,255,0.62); font-size: 12px; text-decoration: none;
     background: none; border: none; padding: 0; cursor: pointer;
     font-family: inherit; letter-spacing: inherit;
 }

@@ -2,6 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8"/>
+<script src="/js/consent.js?v=4"></script>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Blog — SEO, Webdesign &amp; Wachstum | SSUITE</title>
 <meta content="Kostenlose SEO-, Webdesign- und digitale Wachstumsratgeber für Unternehmer, einfach erklärt, ohne Fachjargon." name="description"/>
@@ -144,7 +145,7 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
     font-weight: 700;
     letter-spacing: 1.6px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.45);
+    color: rgba(255,255,255,0.62);
     margin: 0 0 10px;
 }
 .post-card-title {
@@ -166,7 +167,7 @@ body { overflow-x: hidden; cursor: auto; touch-action: pan-y; }
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.5px;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.62);
 }
 
 #back-home {
@@ -210,9 +211,9 @@ body.scrolled #back-home { opacity: 0; pointer-events: none; }
     transition: opacity 0.35s ease;
 }
 body.scrolled #lang-switch-index { opacity: 0; pointer-events: none; }
-#lang-switch-index a { text-decoration: none; color: rgba(255,255,255,0.4); }
+#lang-switch-index a { text-decoration: none; color: rgba(255,255,255,0.62); }
 #lang-switch-index a.active { color: #fff; }
-#lang-switch-index span { color: rgba(255,255,255,0.3); margin: 0 4px; }
+#lang-switch-index span { color: rgba(255,255,255,0.62); margin: 0 4px; }
 
 /* Language suggestion bar */
 #lang-hint{position:fixed;top:0;left:0;right:0;z-index:10060;display:flex;align-items:center;
@@ -224,7 +225,7 @@ transform:translateY(-110%);transition:transform 0.4s cubic-bezier(0.4,0,0.2,1)}
 #lang-hint .lang-hint-go{color:#fff;text-decoration:underline;white-space:nowrap}
 #lang-hint .lang-hint-go:hover{opacity:0.8}
 #lang-hint .lang-hint-close{margin-left:auto;background:none;border:none;
-color:rgba(255,255,255,0.5);font-size:20px;line-height:1;cursor:pointer;padding:0 2px}
+color:rgba(255,255,255,0.62);font-size:20px;line-height:1;cursor:pointer;padding:0 2px}
 #lang-hint .lang-hint-close:hover{color:#fff}
 body.lang-hint-open #back-home,body.lang-hint-open #lang-switch-svc,
 body.lang-hint-open #lang-switch-index,body.lang-hint-open #lang-switch-article,
@@ -1001,6 +1002,7 @@ new BlobAnimation("blob_container", {
 });
 </script>
 <script src="/js/langhint.js?v=3"></script>
-<p class="legal-links" style="text-align:center;font:12px Arial,Helvetica,sans-serif;color:rgba(255,255,255,0.4);margin:0;padding:24px 16px 32px;"><a href="/impressum/" style="color:inherit;">Impressum</a> · <a href="/datenschutz/" style="color:inherit;">Datenschutz</a></p>
+<p class="legal-links" style="text-align:center;font:12px Arial,Helvetica,sans-serif;color:rgba(255,255,255,0.62);margin:0;padding:24px 16px 32px;"><a href="/impressum/" style="color:inherit;">Impressum</a> · <a href="/datenschutz/" style="color:inherit;">Datenschutz</a> · <a href="#" onclick="return ssuiteOpenCookieSettings();" style="color:inherit;">Cookie-Einstellungen</a></p>
+<script src="/js/cta.js?v=1" defer></script>
 </body>
 </html>

@@ -92,6 +92,13 @@
     }
 
     function buildBanner() {
+        // Pages without the homepage stylesheet get the banner styles on their own.
+        if (!document.querySelector('link[href*="personalize.css"], link[href*="consent.css"]')) {
+            var css = document.createElement('link');
+            css.rel = 'stylesheet';
+            css.href = '/css/consent.css?v=1';
+            document.head.appendChild(css);
+        }
         var wrap = document.createElement('div');
         wrap.id = 'cookie-banner';
         wrap.setAttribute('role', 'dialog');
