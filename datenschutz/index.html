@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Datenschutzerklärung | SSUITE</title>
+<meta content="noindex, follow" name="robots"/>
+<link href="https://seosuite.studio/datenschutz/" rel="canonical"/><link href="https://seosuite.studio/privacy/" hreflang="en" rel="alternate"/><link href="https://seosuite.studio/datenschutz/" hreflang="de" rel="alternate"/>
+<meta content="#000000" name="theme-color"/>
+<style>
+@font-face {
+    font-family: 'Grumpy 24';
+    src: url('/css/fonts/Grumpy-Black24.woff2') format('woff2'),
+        url('/css/fonts/Grumpy-Black24.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #000; color: #fff; }
+body { font-family: Arial, Helvetica, sans-serif; }
+a { color: inherit; }
+#back-home {
+    position: fixed;
+    top: max(24px, env(safe-area-inset-top, 0px) + 16px);
+    left: max(24px, env(safe-area-inset-left, 0px) + 16px);
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    text-decoration: none;
+    z-index: 10;
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.35s ease;
+}
+body.scrolled #back-home { opacity: 0; pointer-events: none; }
+main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 140px 6% 120px;
+}
+p.eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin: 0 0 16px;
+}
+h1 {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: clamp(2.6rem, 7vw, 4.5rem);
+    line-height: 1.05;
+    margin: 0 0 40px;
+}
+main p.body {
+    font-size: 17px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.72);
+    margin: 0 0 24px;
+}
+#cta {
+    display: inline-block;
+    margin-top: 24px;
+    background: #fff;
+    color: #1c1c1c;
+    border-radius: 100px;
+    padding: 16px 36px;
+    font-weight: 900;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+#related-reading {
+    margin-top: 64px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+}
+.related-link {
+    display: block;
+    font-size: 17px;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.related-link:hover { color: #fff; }
+.related-link span { opacity: 0.5; margin-left: 6px; }
+
+.svc-subhead {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    margin: 48px 0 20px;
+}
+.svc-list {
+    list-style: none;
+    margin: 0 0 24px;
+    padding: 0;
+}
+.svc-list li {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.72);
+    padding: 12px 0 12px 26px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    position: relative;
+}
+.svc-list li:before {
+    content: "\2192";
+    position: absolute;
+    left: 0;
+    color: rgba(255,255,255,0.4);
+}
+.faq-item { margin: 0 0 28px; }
+.faq-q {
+    font-family: 'Grumpy 24', Georgia, serif;
+    font-size: 1.15rem;
+    line-height: 1.3;
+    margin: 0 0 10px;
+}
+.faq-a {
+    font-size: 16px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.65);
+    margin: 0;
+}
+
+#lang-switch-svc {
+    position: fixed;
+    top: max(24px, env(safe-area-inset-top, 0px) + 16px);
+    right: max(24px, env(safe-area-inset-right, 0px) + 16px);
+    z-index: 10;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    opacity: 1;
+    transition: opacity 0.35s ease;
+}
+body.scrolled #lang-switch-svc { opacity: 0; pointer-events: none; }
+#lang-switch-svc a { text-decoration: none; color: rgba(255,255,255,0.45); }
+#lang-switch-svc a.active { color: #ffffff; }
+#lang-switch-svc span { color: rgba(255,255,255,0.3); margin: 0 4px; }
+
+/* Language suggestion bar */
+#lang-hint{position:fixed;top:0;left:0;right:0;z-index:10060;display:flex;align-items:center;
+gap:14px;padding:11px max(20px,env(safe-area-inset-left,0px));background:#101010;
+border-bottom:1px solid rgba(255,255,255,0.14);font-family:Arial,Helvetica,sans-serif;
+font-size:13px;line-height:1.4;color:rgba(255,255,255,0.62);
+transform:translateY(-110%);transition:transform 0.4s cubic-bezier(0.4,0,0.2,1)}
+#lang-hint.visible{transform:translateY(0)}
+#lang-hint .lang-hint-go{color:#fff;text-decoration:underline;white-space:nowrap}
+#lang-hint .lang-hint-go:hover{opacity:0.8}
+#lang-hint .lang-hint-close{margin-left:auto;background:none;border:none;
+color:rgba(255,255,255,0.5);font-size:20px;line-height:1;cursor:pointer;padding:0 2px}
+#lang-hint .lang-hint-close:hover{color:#fff}
+body.lang-hint-open #back-home,body.lang-hint-open #lang-switch-svc,
+body.lang-hint-open #lang-switch-index,body.lang-hint-open #lang-switch-article,
+body.lang-hint-open #lang-switch,body.lang-hint-open .box-topnav{margin-top:46px}
+@media(max-width:600px){#lang-hint{font-size:12px;gap:10px;padding:10px 16px}
+body.lang-hint-open #back-home,body.lang-hint-open #lang-switch-svc,
+body.lang-hint-open #lang-switch-index,body.lang-hint-open #lang-switch-article,
+body.lang-hint-open #lang-switch,body.lang-hint-open .box-topnav{margin-top:60px}}
+
+.legal h2{font-family:'Grumpy 24',Georgia,serif;font-size:1.35rem;line-height:1.25;margin:44px 0 14px}
+.legal p,.legal li{font-size:16px;line-height:1.75;color:rgba(255,255,255,0.72)}
+.legal ul{padding-left:20px;margin:0 0 20px}
+.legal a{color:#fff}
+.legal .addr{color:#fff}
+</style>
+</head>
+<body>
+<a href="/" id="back-home">← SSUITE</a><div id="lang-switch-svc"><a href="/privacy/">EN</a><span>/</span><a class="active" href="#">DE</a></div>
+<main class="legal">
+<p class="eyebrow">Rechtliches</p>
+<h1>Datenschutz</h1>
+
+<p>Wir freuen uns über Ihr Interesse an unserer Website. Nachfolgend informieren wir Sie darüber, welche personenbezogenen Daten wir beim Besuch dieser Website verarbeiten, zu welchem Zweck und auf welcher Rechtsgrundlage, und welche Rechte Sie nach der Datenschutz-Grundverordnung (DSGVO) haben.</p>
+<h2>1. Verantwortlicher</h2>
+<p class="addr">Arben Begaj P.F.<br/>SSUITE Studio<br/>Rr. Koli Bano<br/>1001 Tirana<br/>Albanien</p>
+<p>E-Mail: <a href="mailto:contact@seosuite.studio">contact@seosuite.studio</a></p>
+<h2>2. Hosting und Bereitstellung der Website</h2>
+<p>Diese Website wird über <strong>GitHub Pages</strong> (GitHub Inc., 88 Colin P. Kelly Jr. St., San Francisco, CA 94107, USA) gehostet und über das Content-Delivery-Netzwerk von <strong>Cloudflare</strong> (Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, USA) ausgeliefert und geschützt. Beim Aufruf der Website werden technisch notwendige Daten verarbeitet, insbesondere IP-Adresse, Datum und Uhrzeit des Zugriffs, aufgerufene Seite, Referrer-URL, Browsertyp und Betriebssystem. Diese Daten sind erforderlich, um die Website auszuliefern, ihre Stabilität und Sicherheit zu gewährleisten und Angriffe abzuwehren.</p>
+<p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer sicheren und funktionsfähigen Website). Beide Anbieter können Daten in den USA verarbeiten; sie sind nach dem EU-U.S. Data Privacy Framework zertifiziert bzw. verwenden die EU-Standardvertragsklauseln.</p>
+<h2>3. Kontaktformular und E-Mail</h2>
+<p>Wenn Sie uns über das Kontaktformular oder per E-Mail kontaktieren, verarbeiten wir die von Ihnen angegebenen Daten (Name, E-Mail-Adresse, optional Telefonnummer, gewünschte Leistung und Nachricht), um Ihre Anfrage zu beantworten. Das Formular wird über den Dienst <strong>Web3Forms</strong> übermittelt, der die Angaben per E-Mail an uns weiterleitet.</p>
+<p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Anbahnung eines Vertrags) sowie Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO, die Sie über das Kontrollkästchen im Formular erteilen. Wir löschen Ihre Anfrage, sobald sie abschließend bearbeitet ist und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
+<h2>4. Google Analytics 4 (nur mit Einwilligung)</h2>
+<p>Mit Ihrer Einwilligung nutzen wir <strong>Google Analytics 4</strong>, einen Webanalysedienst der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Google Analytics wird erst geladen, nachdem Sie im Cookie-Banner auf „Akzeptieren“ geklickt haben. Dabei werden Cookies gesetzt und Informationen über Ihre Nutzung der Website erhoben, z. B. aufgerufene Seiten, Verweildauer, ungefährer Standort (auf Basis einer gekürzten IP-Adresse), Gerät und Browser sowie das Absenden des Kontaktformulars. IP-Adressen werden in Google Analytics 4 nicht gespeichert.</p>
+<p>Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG. Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft über den Link „Cookie-Einstellungen“ auf der Startseite widerrufen. Daten können auch an Google LLC in den USA übermittelt werden; Google ist nach dem EU-U.S. Data Privacy Framework zertifiziert. Die Analysedaten werden nach 14 Monaten automatisch gelöscht.</p>
+<h2>5. Lokale Speicherung im Browser</h2>
+<p>Ihre Entscheidung im Cookie-Banner sowie Ihre Sprachauswahl speichern wir im lokalen Speicher (localStorage) Ihres Browsers, damit wir Sie nicht bei jedem Besuch erneut fragen müssen. Diese Daten verlassen Ihr Gerät nicht. Rechtsgrundlage ist § 25 Abs. 2 Nr. 2 TDDDG (unbedingt erforderlich).</p>
+<h2>6. Externe Links</h2>
+<p>Unsere Website enthält Links, z. B. zu Instagram. Erst wenn Sie einen solchen Link anklicken, werden Daten an den jeweiligen Anbieter übertragen; es gelten dann dessen Datenschutzbestimmungen.</p>
+<h2>7. Ihre Rechte</h2>
+<p>Sie haben nach der DSGVO das Recht auf:</p>
+<ul><li>Auskunft über Ihre gespeicherten Daten (Art. 15)</li><li>Berichtigung unrichtiger Daten (Art. 16)</li><li>Löschung (Art. 17) und Einschränkung der Verarbeitung (Art. 18)</li><li>Datenübertragbarkeit (Art. 20)</li><li>Widerspruch gegen Verarbeitungen auf Grundlage berechtigter Interessen (Art. 21)</li><li>Widerruf einer erteilten Einwilligung mit Wirkung für die Zukunft (Art. 7 Abs. 3)</li><li>Beschwerde bei einer Datenschutz-Aufsichtsbehörde, insbesondere in dem EU-Mitgliedstaat Ihres Aufenthaltsorts (Art. 77)</li></ul>
+<p>Für die Ausübung Ihrer Rechte genügt eine E-Mail an <a href="mailto:contact@seosuite.studio">contact@seosuite.studio</a>.</p>
+<h2>8. Keine automatisierte Entscheidungsfindung</h2>
+<p>Wir setzen keine automatisierte Entscheidungsfindung einschließlich Profiling im Sinne von Art. 22 DSGVO ein.</p>
+<h2>9. Änderungen</h2>
+<p>Wir passen diese Datenschutzerklärung an, wenn sich die Website oder die rechtlichen Anforderungen ändern. Es gilt die jeweils hier veröffentlichte Fassung.</p>
+
+<p style="margin-top:48px;font-size:13px;color:rgba(255,255,255,0.4)">Stand: Oktober 2026</p>
+</main>
+<script src="/js/consent.js?v=3"></script>
+<script>
+(function(){
+    function update(){ document.body.classList.toggle('scrolled', window.pageYOffset > 20); }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+})();
+</script>
+<script src="/js/langhint.js?v=3"></script>
+</body>
+</html>

@@ -15,7 +15,7 @@
     // Flip to true once /privacy/ and /datenschutz/ are published — the banner
     // then links to them. Held false while those pages are still unwritten so
     // the banner cannot link to a 404.
-    var LEGAL_PAGES_LIVE = false;
+    var LEGAL_PAGES_LIVE = true;
 
     var COPY = {
         en: {
