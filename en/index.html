@@ -675,7 +675,7 @@ body.lang-hint-open #lang-switch,body.lang-hint-open .box-topnav{margin-top:60px
                     body: JSON.stringify(payload)
                 }).then(function(r){ return r.json(); }).then(function(data){
                     btn.disabled = false; btn.innerHTML = 'Send &rarr;';
-                    if (data.success) { showSuccessAnimation(); }
+                    if (data.success) { if (window.gtag) gtag('event', 'generate_lead', { form_id: 'contact', language: 'en', lead_type: 'website_analysis' }); showSuccessAnimation(); }
                     else { nativeSend(payload); }
                 }).catch(function(){
                     // Blocked or offline — fall back to the form POST rather than
@@ -687,6 +687,7 @@ body.lang-hint-open #lang-switch,body.lang-hint-open .box-topnav{margin-top:60px
                 history.replaceState(null, '', window.location.pathname);
                 var ov = document.getElementById('send-success-overlay');
                 ov.classList.add('visible', 'standalone');
+                if (window.gtag) gtag('event', 'generate_lead', { form_id: 'contact', language: 'en', lead_type: 'website_analysis' });
                 document.getElementById('send-success-canvas').style.display = 'none';
                 document.getElementById('send-success-close').onclick = function(){
                     ov.classList.remove('visible', 'standalone');
