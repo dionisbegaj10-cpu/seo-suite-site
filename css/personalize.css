@@ -144,7 +144,7 @@ body.animated #free-analysis-label { color: rgba(255,255,255,0.38); }
 #free-analysis-section.animated #free-analysis-label { opacity: 1; transform: translateY(0); }
 
 #free-analysis-title {
-    font-family: 'Grumpy 24', Georgia, serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(2.1rem, 9vw, 5.5rem);
     line-height: 1.05;
     color: #1c1c1c;
@@ -234,7 +234,7 @@ body.animated #free-analysis-cta { background: #ffffff; color: #1c1c1c; }
     padding-bottom: max(56px, env(safe-area-inset-bottom, 0px) + 40px);
 }
 #contact-panel-title {
-    font-family: 'Grumpy 24', Georgia, serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(2.4rem, 7vw, 4rem);
     color: #fff; margin: 0 0 48px; line-height: 1.05;
 }
@@ -317,7 +317,7 @@ body.animated #free-analysis-cta { background: #ffffff; color: #1c1c1c; }
 }
 #send-success-close:hover { opacity: 1; }
 #send-success-text {
-    text-align: center; font-family: 'Grumpy 24', Georgia, serif;
+    text-align: center; font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(2.4rem, 9vw, 5rem); color: #111; line-height: 1.05;
 }
 
@@ -340,7 +340,7 @@ body.animated #free-analysis-cta { background: #ffffff; color: #1c1c1c; }
 }
 #aa-loghi.stat-grid .stat-num {
     display: block;
-    font-family: 'Grumpy 24', Georgia, serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: 3em;
     line-height: 1;
     color: #fff;
@@ -530,7 +530,7 @@ body.animated .trusted-logos img {
 
 /* --- "start a project" footer CTA: same size/style as "Learn, Explore & Grow" --- */
 #ftitle {
-    font-family: 'Grumpy 24', Georgia, serif !important;
+    font-family: 'Playfair Display', Georgia, serif !important;
     font-size: clamp(2.8rem, 8vw, 5.5rem) !important;
     line-height: 1.05 !important;
 }

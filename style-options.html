@@ -6,12 +6,12 @@
 <title>Style options</title>
 <style>
 @font-face {
-    font-family: 'Grumpy 24';
-    src: url('css/fonts/Grumpy-Black24.woff2') format('woff2'),
-        url('css/fonts/Grumpy-Black24.woff') format('woff'),
-        url('css/fonts/Grumpy-Black24.ttf') format('truetype');
+    font-family: 'Playfair Display';
+    src: url('/css/fonts/PlayfairDisplay-Black.woff2') format('woff2'),
+        url('/css/fonts/PlayfairDisplay-Black.woff') format('woff');
     font-weight: 900;
     font-style: normal;
+    font-display: swap;
 }
 * { box-sizing: border-box; }
 html, body { background: #000; margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; }
@@ -33,13 +33,13 @@ html, body { background: #000; margin: 0; padding: 0; font-family: Arial, Helvet
 #opt1 .op1-entry:first-child { border-top: none; }
 .op1-thumb { width: 96px; height: 96px; border-radius: 12px; object-fit: cover; flex-shrink: 0; }
 .op1-cat { color: rgba(255,255,255,0.62); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin: 0 0 8px; }
-.op1-title { font-family: 'Grumpy 24', Georgia, serif; font-size: 1.5rem; color: #fff; margin: 0 0 8px; line-height: 1.2; }
+.op1-title { font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; color: #fff; margin: 0 0 8px; line-height: 1.2; }
 .op1-quote { color: rgba(255,255,255,0.55); font-size: 14px; line-height: 1.6; margin: 0; }
 
 /* ============ OPTION 2: Pill-CTA minimal (matches free-analysis-section style) ============ */
 #opt2 { padding: 0 6% 100px; text-align: center; max-width: 640px; margin: 0 auto; }
 .op2-cat { color: rgba(255,255,255,0.38); font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; margin: 0 0 24px; }
-.op2-title { font-family: 'Grumpy 24', Georgia, serif; font-size: clamp(2rem, 5vw, 3.2rem); color: #fff; margin: 0 0 24px; line-height: 1.1; }
+.op2-title { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2rem, 5vw, 3.2rem); color: #fff; margin: 0 0 24px; line-height: 1.1; }
 .op2-quote { color: rgba(255,255,255,0.62); font-size: 15px; line-height: 1.75; max-width: 420px; margin: 0 auto 32px; }
 .op2-btn { display: inline-block; background: #fff; color: #1c1c1c; border: none; border-radius: 100px; padding: 16px 38px; font-weight: 900; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; }
 .op2-dots { display: flex; justify-content: center; gap: 8px; margin-top: 36px; }
@@ -61,7 +61,7 @@ html, body { background: #000; margin: 0; padding: 0; font-family: Arial, Helvet
 .op4-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .op4-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.1) 60%); display: flex; flex-direction: column; justify-content: flex-end; padding: 32px; }
 .op4-cat { color: rgba(255,255,255,0.6); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin: 0 0 10px; }
-.op4-title { font-family: 'Grumpy 24', Georgia, serif; font-size: 2rem; color: #fff; margin: 0 0 10px; }
+.op4-title { font-family: 'Playfair Display', Georgia, serif; font-size: 2rem; color: #fff; margin: 0 0 10px; }
 .op4-quote { color: rgba(255,255,255,0.75); font-size: 14px; line-height: 1.6; max-width: 480px; margin: 0; }
 </style>
 </head>

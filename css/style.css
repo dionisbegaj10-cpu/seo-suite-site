@@ -1,11 +1,7 @@
 @font-face {
-    font-family: 'Grumpy 24';
-    src: url('fonts/Grumpy-Black24.eot');
-    src: url('fonts/Grumpy-Black24.eot?#iefix') format('embedded-opentype'),
-        url('fonts/Grumpy-Black24.woff2') format('woff2'),
-        url('fonts/Grumpy-Black24.woff') format('woff'),
-        url('fonts/Grumpy-Black24.ttf') format('truetype'),
-        url('fonts/Grumpy-Black24.svg#Grumpy-Black24') format('svg');
+    font-family: 'Playfair Display';
+    src: url('/css/fonts/PlayfairDisplay-Black.woff2') format('woff2'),
+        url('/css/fonts/PlayfairDisplay-Black.woff') format('woff');
     font-weight: 900;
     font-style: normal;
     font-display: swap;
@@ -122,7 +118,7 @@ body, .work h3{
 
 
 h1, .box b {
-    font-family: 'Grumpy 24', serif;
+    font-family: 'Playfair Display', serif;
 }
 
 h1 {
@@ -360,7 +356,7 @@ body.animated #learn-label { color: rgba(255,255,255,0.38); }
 #learn-section.animated #learn-label { opacity: 1; transform: translateY(0); }
 
 #learn-title {
-    font-family: 'Grumpy 24', Georgia, serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(2.1rem, 9vw, 5.5rem);
     line-height: 1.05;
     color: #1c1c1c;
@@ -771,7 +767,7 @@ body.animated .cursor-circle {
 }
 .customer-awwwards li{
     position:relative;
-    font-family: 'Grumpy 24', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 3em;
 }
 
@@ -981,7 +977,7 @@ iframe.animated{
 
 /* --- Homepage intro text (SEO copy) --- */
 #studio-text { max-width: 720px; margin: 0 auto; padding: 40px 0 80px; text-align: left; }
-#studio-text h2 { font-family: 'Grumpy 24', Georgia, serif; font-size: clamp(1.8rem, 6vw, 3rem); line-height: 1.1; color: #1c1c1c; margin: 0 0 24px; transition: color .25s ease; }
+#studio-text h2 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.8rem, 6vw, 3rem); line-height: 1.1; color: #1c1c1c; margin: 0 0 24px; transition: color .25s ease; }
 #studio-text h3 { font-family: Arial, Helvetica, sans-serif; font-size: 15px; font-weight: 900; color: #1c1c1c; margin: 32px 0 8px; transition: color .25s ease; }
 #studio-text p { font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 1.75; color: rgba(0,0,0,0.62); margin: 0 0 16px; transition: color .25s ease; }
 #studio-text a { color: inherit; text-decoration: underline; }
