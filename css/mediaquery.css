@@ -40,24 +40,6 @@
 
 }
 
-@media (max-width: 880px){
-    .edit_button {
-        width: 110px;
-        height: 110px;
-    }
-    .box-flex {
-        flex-direction: column;
-    }
-
-    .box-flex-left{
-        width: 100%;
-        margin-right: 0;
-    }
-    .box-flex-right{
-        width: 100%;
-    }
-}
-
 @media (max-width: 790px){
     .box, .box.box-close {
         width: calc(100% - 220px);;
@@ -82,40 +64,13 @@
         width: 100%
     }
 }
-
-@media (max-width:768px){
-    .edit_button {
-        margin-left: 120%;
-        width: 100px;
-        height: 100px;
-    }
-    body.body_instagram #blob_container:before {
-       display: none;
-    }
-
-    body.body_linkedin #blob_container {
-        display: none;
-    }
-    
-    body.body_blu #blob_container {
-        display: none;
-    }
-}
 @media (max-width: 700px) {
-    .edit_button {
-        margin-left: 110%;
-        }
     h1 {
         font-size: 2em;
     }
 }
 
 @media (max-width: 520px){
-    .edit_button {
-        margin-left: 100%;
-        width: 100px;
-        height: 100px;
-    }
     
     body{
         font-size: 20px;
@@ -128,11 +83,6 @@
     .customer li{
         width: 33.333%;
     }
-
-    .work{
-        width: 100%;
-        margin-right: 0%;
-    }
     
     #logo img{
         width:5em;
@@ -143,30 +93,14 @@
     
 }
 
-
 /* iphone 6/7/8 Plus e Alcuni modelli samsung */
-@media (max-width: 459px){   
-    .edit_button {
-        margin-left: 90%;
-        width: 95px;
-        height: 95px;
-    }
-    
-    .customer-awwwards li {;
-        font-size: 4.5em;
-    }
-    
-    body .customer-awwwards li span {
-        top:-20px;
-        right:-3%;
-    }
+@media (max-width: 459px){
     
     .customer li {
         width: 33.333%;
     }   
     
     body {
-        cursor: none;
     }
     #logo img{
         width:4em;
@@ -185,12 +119,6 @@
     }
     .box-topnav {
         width: calc(100% - 40px);
-    }
-    .cursor{
-        display:none !important;
-    }
-    .work ul{
-        margin-bottom:30px;
     }
     
     .footer-box span {

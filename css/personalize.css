@@ -1,7 +1,6 @@
 /* ============================================================
-   SSUITE cosmetic layer.
-   COSMETIC ONLY — no blob / scroll / animation rules here, so the
-   scroll engine (main.js + style.css) is left fully intact.
+   SSUITE cosmetic layer, loaded after style.css.
+   The dot field and scroll reveals live in js/field.js and js/home.js.
    ============================================================ */
 
 /* Even spacing between the three intro paragraphs (original only spaced the first). */
@@ -24,15 +23,6 @@ body.animated #text1 .lead-q { color: #000; }
     .box-header { max-width: 1400px; }
 }
 #text1 p:last-child { margin-bottom: 0; }
-
-/* Replace the Italian "CONTATTACI PER UN PREVENTIVO" rotating badge with an
-   English "CONTACT US · FOR A QUOTE" circular word-mark (same rotating element). */
-.edit_button_text:before {
-    background-image: url('../img/cta_en_black.svg') !important;
-}
-.mainBody.animated .edit_button_text:before {
-    background-image: url('../img/cta_en_white.svg') !important;
-}
 
 /* Replace the circular logo mark with a SSUITE word-mark.
    mix-blend-mode keeps it readable on both the dark hero and light sections. */
@@ -321,8 +311,8 @@ body.animated #free-analysis-cta { background: #ffffff; color: #1c1c1c; }
     font-size: clamp(2.4rem, 9vw, 5rem); color: #111; line-height: 1.05;
 }
 
-/* --- SEO AI Suite stats (replaced the awards badges) --- */
-#aa-loghi.stat-grid {
+/* --- Studio stats --- */
+#stats-grid.stat-grid {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -331,21 +321,21 @@ body.animated #free-analysis-cta { background: #ffffff; color: #1c1c1c; }
     margin: 0;
     list-style: none;
 }
-#aa-loghi.stat-grid li {
+#stats-grid.stat-grid li {
     width: 33.333%;
     text-align: center;
     box-sizing: border-box;
     padding: 10px 18px;
     list-style: none;
 }
-#aa-loghi.stat-grid .stat-num {
+#stats-grid.stat-grid .stat-num {
     display: block;
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 3em;
     line-height: 1;
     color: #fff;
 }
-#aa-loghi.stat-grid .stat-label {
+#stats-grid.stat-grid .stat-label {
     display: block;
     font-style: normal;
     margin-top: 16px;
@@ -358,8 +348,8 @@ body.animated #free-analysis-cta { background: #ffffff; color: #1c1c1c; }
     color: rgba(255,255,255,0.55);
 }
 @media (max-width: 767px) {
-    #aa-loghi.stat-grid { flex-direction: column; }
-    #aa-loghi.stat-grid li { width: 100%; padding: 18px; }
+    #stats-grid.stat-grid { flex-direction: column; }
+    #stats-grid.stat-grid li { width: 100%; padding: 18px; }
 }
 
 /* --- Pixel orb contact button — shown only while the hero is on screen --- */
@@ -376,9 +366,6 @@ body.animated #free-analysis-cta { background: #ffffff; color: #1c1c1c; }
     cursor: pointer;
 }
 body.hero-view #pixel-orb { opacity: 1; pointer-events: all; }
-
-/* The pixel orb replaces the rotating pencil badge as the contact button. */
-.bottom_nav { display: none !important; }
 
 /* --- Language switch (top right, fixed) --- */
 #lang-switch {
@@ -614,9 +601,30 @@ body.animated .trusted-logos img {
 .footer-legal a:hover, .footer-legal button:hover { color: #fff; }
 .footer-legal span { color: rgba(255,255,255,0.25); margin: 0 8px; }
 
-
 /* Success overlay when arriving back from the form's native POST fallback.
    The in-page animation paints the blob white behind the (dark) text; on a
    fresh page load that machinery hasn't run, so the overlay carries its own
    background instead. */
 #send-success-overlay.standalone { background: #ffffff; pointer-events: all; }
+
+/* --- Hero heading: three stacked words, stepped to the right, that
+   sharpen into place one after another (see js/home.js). --- */
+#intro {
+    display: block;
+    font-size: clamp(3.2rem, 11vw, 9rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+}
+#intro span {
+    display: block;
+    opacity: 0;
+    transform: translateY(0.35em);
+    filter: blur(8px);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.7,.2,1), filter 0.7s ease;
+}
+#intro span:nth-child(2) { padding-left: 0.6em; }
+#intro span:nth-child(3) { padding-left: 1.2em; }
+#intro.animated span { opacity: 1; transform: none; filter: none; }
+@media (prefers-reduced-motion: reduce) {
+    #intro span { transition: none; filter: none; }
+}
