@@ -978,3 +978,12 @@ iframe.animated{
     display: none;
 }
 
+
+/* --- Homepage intro text (SEO copy) --- */
+#studio-text { max-width: 720px; margin: 0 auto; padding: 40px 0 80px; text-align: left; }
+#studio-text h2 { font-family: 'Grumpy 24', Georgia, serif; font-size: clamp(1.8rem, 6vw, 3rem); line-height: 1.1; color: #1c1c1c; margin: 0 0 24px; transition: color .25s ease; }
+#studio-text h3 { font-family: Arial, Helvetica, sans-serif; font-size: 15px; font-weight: 900; color: #1c1c1c; margin: 32px 0 8px; transition: color .25s ease; }
+#studio-text p { font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 1.75; color: rgba(0,0,0,0.62); margin: 0 0 16px; transition: color .25s ease; }
+#studio-text a { color: inherit; text-decoration: underline; }
+body.animated #studio-text h2, body.animated #studio-text h3 { color: #ffffff; }
+body.animated #studio-text p { color: rgba(255,255,255,0.62); }
