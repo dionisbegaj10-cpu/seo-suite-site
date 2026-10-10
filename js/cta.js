@@ -4,7 +4,7 @@
 (function () {
     'use strict';
     var de = (document.documentElement.lang || '').slice(0, 2) === 'de';
-    var href = de ? '/#start' : '/en/#start';
+    var href = de ? '/#kontakt' : '/en/#contact';
 
     function track(location) {
         if (window.gtag) gtag('event', 'cta_click', { cta_location: location, page_path: window.location.pathname });

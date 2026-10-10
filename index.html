@@ -519,6 +519,11 @@ body.lang-hint-open #lang-switch,body.lang-hint-open .box-topnav{margin-top:60px
             }
             window.__openContact = openPanel;
 
+            // Links from other pages (/#kontakt, /en/#contact) open the form directly.
+            function openFromHash(){ if (/^#(kontakt|contact)$/.test(location.hash)) openPanel(); }
+            openFromHash();
+            window.addEventListener('hashchange', openFromHash);
+
             // Pixel orb opens the panel.
             var orb = document.getElementById('pixel-orb');
             if (orb) orb.addEventListener('click', openPanel);
